@@ -67,7 +67,7 @@ DepthBuffer::~DepthBuffer()
 
 void DepthBuffer::Bind()
 {
-	struct ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
+	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
 	ID3D11DepthStencilView * depthStencilView;
 	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);
 	Engine::GetInstance().GetRenderer().GetContext()->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, myDepthStencilView);
@@ -81,6 +81,11 @@ void DepthBuffer::Unbind()
 	Engine::GetInstance().GetRenderer().GetContext()->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, nullptr);
 }
 
+void DepthBuffer::Clear()
+{
+	Engine::GetInstance().GetRenderer().GetContext()->ClearDepthStencilView(myDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.f, 0);
+}
+
 void DepthBuffer::Clear(UINT aFlags, FLOAT aDepth, UINT8 aStencilMask)
 {
 	Engine::GetInstance().GetRenderer().GetContext()->ClearDepthStencilView(myDepthStencilView, aFlags, aDepth, aStencilMask);
@@ -89,4 +94,9 @@ void DepthBuffer::Clear(UINT aFlags, FLOAT aDepth, UINT8 aStencilMask)
 std::shared_ptr<Texture> DepthBuffer::GetTexture()
 {
 	return myTexture;
+}
+
+ID3D11DepthStencilView * DepthBuffer::GetView()
+{
+	return myDepthStencilView;
 }

@@ -45,6 +45,9 @@
     <ClInclude Include="TextureDebugger.h" />
     <ClInclude Include="SpriteVertex.h" />
     <ClInclude Include="DepthBuffer.h" />
+    <ClInclude Include="ModelRenderer.h" />
+    <ClInclude Include="ModelBatch.h" />
+    <ClInclude Include="SpriteRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -75,5 +78,8 @@
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="TextureDebugger.cpp" />
     <ClCompile Include="DepthBuffer.cpp" />
+    <ClCompile Include="ModelRenderer.cpp" />
+    <ClCompile Include="ModelBatch.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
   </ItemGroup>
 </Project>

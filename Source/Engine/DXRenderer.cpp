@@ -5,20 +5,18 @@
 #include "RenderTexture.h"
 #include "TextureDebugger.h"
 #include "DepthBuffer.h"
+#include "ModelRenderer.h"
+#include "SpriteRenderer.h"
 
 DXRenderer::DXRenderer()
 {
 	mySwapchain = nullptr;
 	myDevice = nullptr;
 	myDeviceContext = nullptr;
-	myBackbuffer = nullptr;
 	mySamplerState = nullptr;
 	myRasterState = nullptr;
 	myAlphaBlendingState = nullptr;
 	myDepthStencilState = nullptr;
-
-	myWidth = 16.f;
-	myHeight = 9.f;
 }
 
 DXRenderer::~DXRenderer()
@@ -26,7 +24,6 @@ DXRenderer::~DXRenderer()
 	SAFE_RELEASE(mySwapchain);
 	SAFE_RELEASE(myDevice);
 	SAFE_RELEASE(myDeviceContext);
-	SAFE_RELEASE(myBackbuffer);
 	SAFE_RELEASE(mySamplerState);
 	SAFE_RELEASE(myRasterState);
 	SAFE_RELEASE(myAlphaBlendingState);
@@ -53,7 +50,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 	swapChainDesc.BufferCount = 2;
 
-	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;
 	swapChainDesc.OutputWindow = reinterpret_cast<HWND>(aOutputTarget);
 	swapChainDesc.Windowed = !aFullscreen;
 	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -84,12 +81,13 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 		{
 			d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_CORRUPTION, true);
 			d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_ERROR, false);
+			d3dInfoQueue->SetBreakOnSeverity(D3D11_MESSAGE_SEVERITY_WARNING, false);
 
 			D3D11_MESSAGE_ID hide[] =
 			{
 				D3D11_MESSAGE_ID_SETPRIVATEDATA_CHANGINGPARAMS
 			};
-
+			
 			D3D11_INFO_QUEUE_FILTER filter;
 			memset(&filter, 0, sizeof(filter));
 			filter.DenyList.NumIDs = _countof(hide);
@@ -99,7 +97,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 	}
 #endif
 
-	SetupBufferViews(aWidth, aHeight);
+	CreateBuffers(aWidth, aHeight);
 
 	D3D11_RASTERIZER_DESC rasterDesc;
 	// Setup the raster description which will determine how and what polygons will be drawn.
@@ -152,7 +150,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 	// Create sampler
 	D3D11_SAMPLER_DESC samplerDesc;
-	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT;
+	samplerDesc.Filter = D3D11_FILTER_ANISOTROPIC; //D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT;
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -172,110 +170,6 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 	myDeviceContext->PSSetSamplers(0, 1, &mySamplerState);
 
-	myTextureDebugger = std::make_unique<TextureDebugger>();
-}
-
-void DXRenderer::ClearFrame()
-{
-	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT] = { nullptr };
-	renderTargets[0] = myBackbuffer;
-
-	myDeviceContext->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, nullptr);
-
-	myDepthBuffer->Bind();
-
-	float color[4];
-	color[0] = 100.f / 255.f;
-	color[1] = 149.f / 255.f;
-	color[2] = 237.f / 255.f;
-	color[3] = 1.0f;
-
-	SetViewport(Vector2f::Zero, Vector2f(myWidth, myHeight));
-
-	myDeviceContext->ClearRenderTargetView(myBackbuffer, color);
-
-	ClearDepthBuffer();
-}
-
-void DXRenderer::ClearDepthBuffer()
-{
-	myDepthBuffer->Clear(D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.f, 0);
-}
-
-void DXRenderer::Present()
-{
-	myTextureDebugger->Render();
-
-	mySwapchain->Present(1, 0);
-}
-
-void DXRenderer::Resize(int aNewWidth, int aNewHeight)
-{
-	myWidth = static_cast<float>(aNewWidth);
-	myHeight = static_cast<float>(aNewHeight);
-	myDeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
-
-	SAFE_RELEASE(myBackbuffer);
-
-	CheckDXError(
-		mySwapchain->ResizeBuffers(0, aNewWidth, aNewHeight, DXGI_FORMAT_UNKNOWN, 0);
-	);
-
-	SetupBufferViews(aNewWidth, aNewHeight);
-}
-
-std::shared_ptr<RenderTexture> DXRenderer::GetBackBuffer()
-{
-	return myBackbufferWrapper;
-}
-
-std::shared_ptr<DepthBuffer> DXRenderer::GetDepthBuffer()
-{
-	return myDepthBuffer;
-}
-
-TextureDebugger& DXRenderer::GetTextureDebugger()
-{
-	return *myTextureDebugger;
-}
-
-float DXRenderer::GetAspectRatio() const
-{
-	return myWidth / myHeight;
-}
-
-float DXRenderer::GetWidth() const
-{
-	return myWidth;
-}
-
-float DXRenderer::GetHeight() const
-{
-	return myHeight;
-}
-
-
-void DXRenderer::SetupBufferViews(int aWidth, int aHeight)
-{
-	SAFE_RELEASE(myBackbuffer);
-	SAFE_RELEASE(myDepthStencilState);
-
-	ID3D11Texture2D *backBuffer = nullptr;
-	CheckDXError(
-		mySwapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBuffer)
-	);
-
-	CheckDXError(
-		myDevice->CreateRenderTargetView(backBuffer, NULL, &myBackbuffer)
-	);
-
-	myBackbufferWrapper = std::make_shared<RenderTexture>(myBackbuffer);
-
-	backBuffer->Release();
-	backBuffer = nullptr;
-	
-	myDepthBuffer = std::make_shared<DepthBuffer>(aWidth, aHeight);
-	
 	D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
 
 	// Initialize the description of the stencil state.
@@ -304,9 +198,83 @@ void DXRenderer::SetupBufferViews(int aWidth, int aHeight)
 
 	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 1);
 
-	myDepthBuffer->Bind();
+	myTextureDebugger = std::make_unique<TextureDebugger>();
+	myModelRenderer = std::make_unique<ModelRenderer>();
+	mySpriteRenderer = std::make_unique<SpriteRenderer>();
+}
 
-	ResetViewport();
+void DXRenderer::ClearFrame()
+{
+	myBackbuffer->Bind(0);
+
+	myBackbuffer->Clear(Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
+}
+
+void DXRenderer::Present()
+{
+	myModelRenderer->RenderBuffer();
+
+	myTextureDebugger->Render();
+
+	mySwapchain->Present(0, 0);
+}
+
+void DXRenderer::Resize(int aNewWidth, int aNewHeight)
+{
+	myDeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+	myBackbuffer = nullptr;
+
+		CheckDXError(
+		mySwapchain->ResizeBuffers(0, aNewWidth, aNewHeight, DXGI_FORMAT_UNKNOWN, 0);
+	);
+
+	CreateBuffers(aNewWidth, aNewHeight);
+}
+
+std::shared_ptr<RenderTexture> DXRenderer::GetBackBuffer()
+{
+	return myBackbuffer;
+}
+
+TextureDebugger& DXRenderer::GetTextureDebugger()
+{
+	return *myTextureDebugger;
+}
+
+ModelRenderer & DXRenderer::GetModelRenderer()
+{
+	return *myModelRenderer;
+}
+
+SpriteRenderer & DXRenderer::GetSpriteRenderer()
+{
+	return *mySpriteRenderer;
+}
+
+void DXRenderer::CreateBuffers(int aWidth, int aHeight)
+{
+	ID3D11Texture2D *texture = nullptr;
+	CheckDXError(
+		mySwapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&texture)
+	);
+
+	ID3D11RenderTargetView * backbuffer;
+	CheckDXError(
+		myDevice->CreateRenderTargetView(texture, NULL, &backbuffer)
+	);
+
+	ID3D11ShaderResourceView * shaderResourceView;
+	CheckDXError(
+		myDevice->CreateShaderResourceView(texture, nullptr, &shaderResourceView);
+	)
+
+	myBackbuffer = std::make_shared<RenderTexture>(texture, backbuffer, shaderResourceView, aWidth, aHeight, true);
+
+	myBackbuffer->Bind(0);
+
+	SAFE_RELEASE(texture);
+	SAFE_RELEASE(backbuffer);
+	SAFE_RELEASE(shaderResourceView);
 }
 
 void DXRenderer::SetViewport(const Vector2f & aTopLeft, const Vector2f & aSize)
@@ -324,5 +292,5 @@ void DXRenderer::SetViewport(const Vector2f & aTopLeft, const Vector2f & aSize)
 
 void DXRenderer::ResetViewport()
 {
-	SetViewport(Vector2f::Zero, Vector2f(myWidth, myHeight));
+	SetViewport(Vector2f::Zero, Vector2f(static_cast<float>(myBackbuffer->GetWidth()), static_cast<float>(myBackbuffer->GetHeight())));
 }

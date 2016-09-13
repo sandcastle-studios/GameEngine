@@ -245,7 +245,9 @@
     <ClInclude Include="Matrix33.h" />
     <ClInclude Include="Matrix44.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelBatch.h" />
     <ClInclude Include="ModelInstance.h" />
+    <ClInclude Include="ModelRenderer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="PlaneModel.h" />
     <ClInclude Include="PlatformHelpers.h" />
@@ -255,6 +257,7 @@
     <ClInclude Include="SimpleVertex.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="SpriteVertex.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stopwatch.h" />
@@ -286,13 +289,16 @@
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelBatch.cpp" />
     <ClCompile Include="ModelInstance.cpp" />
+    <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="PlaneModel.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderResourceBuffer.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

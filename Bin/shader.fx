@@ -4,6 +4,7 @@ struct VertexInputType
     float4 color : COLOR;
 	float2 uv : TEXCOORD0;
 	float2 padding : TEXCOORD1;
+	matrix toWorld : INSTANCE_MATRIX;
 };
 
 struct PixelInputType
@@ -25,11 +26,6 @@ cbuffer CameraCBuffer : register(b0)
 	matrix toProjection;
 }
 
-cbuffer InstanceCBuffer : register(b1)
-{
-	matrix toWorld;
-}
-
 Texture2D boundTexture : register( t0 );
 SamplerState samplerState;
 
@@ -38,7 +34,7 @@ PixelInputType VShader(VertexInputType input)
     PixelInputType output;
 	
 	output.position = input.position;
-	output.position = mul(toWorld, output.position);
+	output.position = mul(input.toWorld, output.position);
 	output.position = mul(toCamera, output.position);
 	output.position = mul(toProjection, output.position);
 	

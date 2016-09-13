@@ -40,7 +40,7 @@ void Buffer::UpdateData(const void * aData, int aSizeInBytes, bool aAllowResize)
 		return;
 	}
 
-	if (mySizeInBytes < aSizeInBytes)
+	if (aSizeInBytes > mySizeInBytes)
 	{
 		if (aAllowResize)
 		{

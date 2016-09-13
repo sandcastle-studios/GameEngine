@@ -27,7 +27,7 @@ void GenericModel::SetTexture(std::shared_ptr<Texture> aTexture)
 	myTexture = aTexture;
 }
 
-void GenericModel::Render()
+void GenericModel::Render() const
 {
 	if (myEffect != nullptr)
 	{
@@ -41,15 +41,26 @@ void GenericModel::Render()
 	myVertexBuffer->Bind(0);
 	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-	if (myIndexBuffer != nullptr)
+	myIndexBuffer->Bind();
+	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
+}
+
+void GenericModel::RenderInstanced(int aInstanceCount) const
+{
+	if (myEffect != nullptr)
 	{
-		myIndexBuffer->Bind();
-		Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
+		myEffect->Bind();
 	}
-	else
+	if (myTexture != nullptr)
 	{
-		Engine::GetInstance().GetRenderer().GetContext()->Draw(myVertexCount, 0);
+		myTexture->BindToPS(0);
 	}
+
+	myVertexBuffer->Bind(0);
+	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	myIndexBuffer->Bind();
+	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexedInstanced(myIndexCount, aInstanceCount, 0, 0, 0);
 }
 
 std::shared_ptr<Texture> GenericModel::GetTexture()

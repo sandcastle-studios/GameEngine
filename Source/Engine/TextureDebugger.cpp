@@ -6,6 +6,7 @@
 #include "InputLayout.h"
 #include "Model.h"
 #include "DepthBuffer.h"
+#include "RenderTexture.h"
 
 
 TextureDebugger::TextureDebugger()
@@ -46,18 +47,18 @@ void TextureDebugger::Render()
 {
 	myEffect->Bind();
 
-	float height = Engine::GetInstance().GetRenderer().GetHeight() * 0.25f;
+	float height = Engine::GetInstance().GetRenderer().GetBackBuffer()->GetHeight() * 0.25f;
 	float width = height;
 
-	Engine::GetInstance().GetRenderer().GetDepthBuffer()->Unbind();
+	Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Unbind();
 	
 	for (size_t i = 0; i < myTexturesToDebug.size(); i++)
 	{
-		myUnitQuad->SetTexture(myTexturesToDebug[i]);
+		// myUnitQuad->SetTexture(myTexturesToDebug[i]);
 
-		Engine::GetInstance().GetRenderer().SetViewport(Vector2f(Engine::GetInstance().GetRenderer().GetWidth() - width, height * static_cast<float>(i)), Vector2f(width, height));
+		// Engine::GetInstance().GetRenderer().SetViewport(Vector2f(Engine::GetInstance().GetRenderer().GetWidth() - width, height * static_cast<float>(i)), Vector2f(width, height));
 		
-		myUnitQuad->Render();
+		// myUnitQuad->Render();
 	}
 
 	Engine::GetInstance().GetRenderer().ResetViewport();

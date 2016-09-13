@@ -15,7 +15,9 @@ public:
 
 	void SetTexture(std::shared_ptr<Texture> aTexture);
 
-	void Render();
+	void Render() const;
+	void RenderInstanced(int aInstanceCount) const;
+
 	std::shared_ptr<Texture> GetTexture();
 
 protected:

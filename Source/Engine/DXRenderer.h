@@ -15,6 +15,8 @@ struct ID3D11DepthStencilView;
 class RenderTexture;
 class DepthBuffer;
 class TextureDebugger;
+class ModelRenderer;
+class SpriteRenderer;
 
 class DXRenderer
 {
@@ -25,7 +27,6 @@ public:
 	void Initialize(void *aOutputTarget, int aWidth, int aHeight, bool aFullscreen);
 
 	void ClearFrame();
-	void ClearDepthBuffer();
 	void Present();
 
 	void Resize(int aNewWidth, int aNewHeight);
@@ -34,34 +35,30 @@ public:
 	ID3D11DeviceContext * GetContext();
 
 	std::shared_ptr<RenderTexture> GetBackBuffer();
-	std::shared_ptr<DepthBuffer> GetDepthBuffer();
 
-	TextureDebugger& GetTextureDebugger();
-
-	float GetAspectRatio() const;
-	float GetWidth() const;
-	float GetHeight() const;
+	TextureDebugger & GetTextureDebugger();
+	ModelRenderer & GetModelRenderer();
+	SpriteRenderer & GetSpriteRenderer();
 
 	void SetViewport(const Vector2f& aTopLeft, const Vector2f& aSize);
 	void ResetViewport();
 
 private:
-	void SetupBufferViews(int aWidth, int aHeight);
+	void CreateBuffers(int aWidth, int aHeight);
+
 	IDXGISwapChain * mySwapchain;
 	ID3D11Device * myDevice;
 	ID3D11DeviceContext * myDeviceContext;
-	ID3D11RenderTargetView * myBackbuffer;
 	ID3D11SamplerState * mySamplerState;
 	ID3D11RasterizerState * myRasterState;
 	ID3D11BlendState * myAlphaBlendingState;
 	ID3D11DepthStencilState* myDepthStencilState;
 
-	std::shared_ptr<RenderTexture> myBackbufferWrapper;
-	float myWidth;
-	float myHeight;
+	std::shared_ptr<RenderTexture> myBackbuffer;
 
 	std::unique_ptr<TextureDebugger> myTextureDebugger;
-	std::shared_ptr<DepthBuffer> myDepthBuffer;
+	std::unique_ptr<ModelRenderer> myModelRenderer;
+	std::unique_ptr<SpriteRenderer> mySpriteRenderer;
 };
 
 inline ID3D11Device * DXRenderer::GetDevice()

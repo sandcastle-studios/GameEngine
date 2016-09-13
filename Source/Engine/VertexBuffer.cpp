@@ -4,8 +4,8 @@
 #include <d3d11.h>
 #include "DXRenderer.h"
 
-GenericVertexBuffer::GenericVertexBuffer(const void *aData, int aSizeInBytes, int aVertexSize)
-	: Buffer(D3D11_BIND_VERTEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0, 0, aData, aSizeInBytes)
+GenericVertexBuffer::GenericVertexBuffer(const void *aData, int aSizeInBytes, int aVertexSize, bool aIsImmutable)
+	: Buffer(D3D11_BIND_VERTEX_BUFFER, aIsImmutable ? D3D11_USAGE_IMMUTABLE : D3D11_USAGE_DYNAMIC, aIsImmutable ? 0 : D3D11_CPU_ACCESS_WRITE, 0, aData, aSizeInBytes)
 {
 	myVertexSize = aVertexSize;
 }
@@ -25,4 +25,9 @@ void GenericVertexBuffer::Bind(int aSlot) const
 int GenericVertexBuffer::GetVertexSize() const
 {
 	return myVertexSize;
+}
+
+int GenericVertexBuffer::GetVertexCount() const
+{
+	return GetSizeInBytes() / GetVertexSize();
 }
