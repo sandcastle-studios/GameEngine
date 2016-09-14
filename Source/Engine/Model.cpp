@@ -1,84 +1,49 @@
 #include "stdafx.h"
 #include "Model.h"
-#include <d3dcommon.h>
-#include <d3d11.h>
-#include "SimpleVertex.h"
-#include "VertexBuffer.h"
-#include "DXRenderer.h"
-#include "IndexBuffer.h"
 #include "Effect.h"
-#include "Texture.h"
+#include "Mesh.h"
 
-GenericModel::GenericModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
+Model::Model(std::shared_ptr<Effect> aEffect)
 {
-	myVertexCount = 0;
-	myIndexCount = 0;
-
 	myEffect = aEffect;
-	myTexture = aTexture;
 }
 
-GenericModel::~GenericModel()
+Model::Model(std::shared_ptr<Effect> aEffect, std::shared_ptr<GenericMesh> aMesh)
+{
+	myEffect = aEffect;
+	AddMesh(aMesh);
+}
+
+Model::~Model()
 {
 }
 
-void GenericModel::SetTexture(std::shared_ptr<Texture> aTexture)
-{
-	myTexture = aTexture;
-}
-
-void GenericModel::Render() const
-{
-	if (myEffect != nullptr)
-	{
-		myEffect->Bind();
-	}
-	if (myTexture != nullptr)
-	{
-		myTexture->BindToPS(0);
-	}
-
-	myVertexBuffer->Bind(0);
-	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	myIndexBuffer->Bind();
-	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
-}
-
-void GenericModel::RenderInstanced(int aInstanceCount) const
+void Model::Render() const
 {
 	if (myEffect != nullptr)
 	{
 		myEffect->Bind();
 	}
-	if (myTexture != nullptr)
+
+	for (size_t i = 0; i < myMeshes.size(); i++)
 	{
-		myTexture->BindToPS(0);
+		myMeshes[i]->Render();
 	}
-
-	myVertexBuffer->Bind(0);
-	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	myIndexBuffer->Bind();
-	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexedInstanced(myIndexCount, aInstanceCount, 0, 0, 0);
 }
 
-std::shared_ptr<Texture> GenericModel::GetTexture()
+void Model::AddMesh(std::shared_ptr<GenericMesh> aMesh)
 {
-	return myTexture;
+	myMeshes.push_back(aMesh);
+
+	myBoundingBox.ExpandToContain(aMesh->GetBoundingBox());
 }
 
-void GenericModel::CreateModel(const void * aVertexData, int aVertexCount, int aVertexSizeInBytes, const unsigned int * aIndexData, int aIndexCount)
+const std::vector<std::shared_ptr<GenericMesh>> & Model::GetMeshes() const
 {
-	if (myVertexBuffer != nullptr)
-	{
-		Error("Model already created!");
-		return;
-	}
+	return myMeshes;
+}
 
-	myVertexBuffer = std::make_unique<GenericVertexBuffer>(aVertexData, aVertexCount * aVertexSizeInBytes, aVertexSizeInBytes);
-	myIndexBuffer = std::make_unique<IndexBuffer>(aIndexData, aIndexCount);
-
-	myVertexCount = aVertexCount;
-	myIndexCount = aIndexCount;
+const BoundingBoxf & Model::GetBoundingBox() const
+{
+	return myBoundingBox;
 }

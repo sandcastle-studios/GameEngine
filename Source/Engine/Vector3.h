@@ -60,6 +60,11 @@ public:
 		return aLeft *= aRight;
 	}
 
+	friend Vector3 operator *(const Vector3 aRight, Vector3 aLeft)
+	{
+		return aLeft *= aRight;
+	}
+
 	friend Vector3 operator /(const TYPE aRight, Vector3 aLeft)
 	{
 		return aLeft /= aRight;
@@ -109,6 +114,13 @@ public:
 		x *= aRight;
 		y *= aRight;
 		z *= aRight;
+		return *this;
+	}
+	Vector3 &operator *=(const Vector3 aRight)
+	{
+		x *= aRight.x;
+		y *= aRight.y;
+		z *= aRight.z;
 		return *this;
 	}
 

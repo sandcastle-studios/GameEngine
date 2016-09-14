@@ -7,6 +7,7 @@
 #include "Model.h"
 #include "DepthBuffer.h"
 #include "RenderTexture.h"
+#include "Mesh.h"
 
 
 TextureDebugger::TextureDebugger()
@@ -35,7 +36,7 @@ TextureDebugger::TextureDebugger()
 		2, 1, 3
 	};
 
-	myUnitQuad = std::make_unique<Model<SpriteVertex>>(myEffect, nullptr, vertices, indices);
+	myUnitQuad = std::make_unique<Model>(myEffect, std::make_unique<Mesh<SpriteVertex>>(nullptr, vertices, indices));
 }
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class GenericModel;
+class GenericMesh;
 template<typename T>
 class VertexBuffer;
 class ModelInstance;
@@ -15,13 +15,11 @@ public:
 	void RenderBuffer();
 
 private:
-	std::shared_ptr<const GenericModel> myCurrentlyScheduledModel;
+	std::shared_ptr<const GenericMesh> myCurrentlyScheduledModel;
 
 	std::vector<Matrix44f> myMatrices;
 	int myMatrixCounter;
 
 	std::vector<std::shared_ptr<VertexBuffer<Matrix44f>>> myVertexBuffers;
-
-	bool isInBatch;
 };
 

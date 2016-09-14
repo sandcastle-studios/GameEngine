@@ -1,6 +1,6 @@
 #pragma once
 
-class GenericModel;
+class Model;
 
 template<typename T>
 class ConstantBuffer;
@@ -8,7 +8,7 @@ class ConstantBuffer;
 class ModelInstance
 {
 public:
-	ModelInstance(std::shared_ptr<GenericModel> aModel);
+	ModelInstance(std::shared_ptr<Model> aModel);
 	~ModelInstance();
 
 	void Render() const;
@@ -18,11 +18,11 @@ public:
 
 	Vector3f GetPosition() const;
 
-	std::shared_ptr<GenericModel> GetModel();
-	std::shared_ptr<const GenericModel> GetModel() const;
+	std::shared_ptr<Model> GetModel();
+	std::shared_ptr<const Model> GetModel() const;
 
 private:
-	std::shared_ptr<GenericModel> myModel;
+	std::shared_ptr<Model> myModel;
 	// std::unique_ptr<ConstantBuffer<Matrix44f>> myWorldMatrixCB;
 	Matrix44f myWorldMatrix;
 };
@@ -37,12 +37,12 @@ inline Vector3f ModelInstance::GetPosition() const
 	return myWorldMatrix.GetPosition();
 }
 
-inline std::shared_ptr<GenericModel> ModelInstance::GetModel()
+inline std::shared_ptr<Model> ModelInstance::GetModel()
 {
 	return myModel;
 }
 
-inline std::shared_ptr<const GenericModel> ModelInstance::GetModel() const
+inline std::shared_ptr<const Model> ModelInstance::GetModel() const
 {
 	return myModel;
 }

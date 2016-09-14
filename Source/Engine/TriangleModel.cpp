@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "TriangleModel.h"
 #include "SimpleVertex.h"
+#include "Mesh.h"
 
 TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
-	: Model(aEffect, aTexture)
+	: Model(aEffect)
 {
 	std::array<SimpleVertex, 3> vertexData;
 
@@ -18,7 +19,7 @@ TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Te
 
 	std::array<unsigned int, 3> indexBuffer = { 0, 1, 2 };
 	
-	CreateModel(vertexData, indexBuffer);
+	AddMesh(std::make_unique<Mesh<SimpleVertex>>(aTexture, vertexData, indexBuffer));
 }
 
 TriangleModel::~TriangleModel()

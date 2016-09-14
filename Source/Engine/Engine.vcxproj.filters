@@ -48,6 +48,10 @@
     <ClInclude Include="ModelRenderer.h" />
     <ClInclude Include="ModelBatch.h" />
     <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="AssimpModel.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -81,5 +85,7 @@
     <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="ModelBatch.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="AssimpModel.cpp" />
+    <ClCompile Include="Mesh.cpp" />
   </ItemGroup>
 </Project>

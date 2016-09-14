@@ -3,8 +3,6 @@
 
 class Effect;
 class Texture;
-
-template<typename T>
 class Model;
 
 class TextureDebugger
@@ -20,6 +18,6 @@ public:
 private:
 	std::vector<std::shared_ptr<Texture>> myTexturesToDebug;
 	std::shared_ptr<Effect> myEffect;
-	std::unique_ptr<Model<SpriteVertex>> myUnitQuad;
+	std::unique_ptr<Model> myUnitQuad;
 };
 

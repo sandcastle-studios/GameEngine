@@ -255,3 +255,5 @@ paket-files/
 *.ipdb
 *.iobj
 *.exe
+
+!extlibs/**

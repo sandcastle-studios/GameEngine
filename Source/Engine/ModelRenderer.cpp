@@ -3,6 +3,7 @@
 #include "VertexBuffer.h"
 #include "ModelInstance.h"
 #include "Model.h"
+#include "mesh.h"
 #include "Stopwatch.h"
 
 ModelRenderer::ModelRenderer()
@@ -19,7 +20,12 @@ ModelRenderer::~ModelRenderer()
 
 void ModelRenderer::Render(const ModelInstance & aModelInstance)
 {
-	std::shared_ptr<const GenericModel> model = aModelInstance.GetModel();
+	myVertexBuffers[0]->UpdateData(&aModelInstance.GetMatrix(), 1, false);
+	myVertexBuffers[0]->Bind(1);
+
+	aModelInstance.GetModel()->Render();
+
+	/*std::shared_ptr<const GenericModel> model = aModelInstance.GetModel();
 	
 	if (model != myCurrentlyScheduledModel)
 	{
@@ -36,7 +42,7 @@ void ModelRenderer::Render(const ModelInstance & aModelInstance)
 	if (myMatrixCounter + 1 >= myMatrices.size())
 		myMatrices.resize(myMatrices.size() * 2);
 
-	myMatrices[myMatrixCounter++] = aModelInstance.GetMatrix();
+	myMatrices[myMatrixCounter++] = aModelInstance.GetMatrix();*/
 }
 
 void ModelRenderer::RenderBuffer()
@@ -55,7 +61,7 @@ void ModelRenderer::RenderBuffer()
 		{
 			c++;
 			
-			if (c >= myVertexBuffers.size())
+			if (c >= static_cast<int>(myVertexBuffers.size()))
 			{
 				myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, myVertexBuffers.back()->GetVertexCount() * 2, false));
 			}

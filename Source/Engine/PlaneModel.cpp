@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "PlaneModel.h"
 #include "VertexPosColUV.h"
+#include "Mesh.h"
 
 PlaneModel::PlaneModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture, int aTextureTileU, int aTextureTileV)
-	: Model(aEffect, aTexture)
+	: Model(aEffect)
 {
 	std::array<VertexPosColUV, 4> verticies;
 	std::array<unsigned int, 6> indicies =
@@ -28,7 +29,7 @@ PlaneModel::PlaneModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture>
 	verticies[3].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	verticies[3].uv = Vector2f(static_cast<float>(aTextureTileU), static_cast<float>(aTextureTileV));
 
-	CreateModel(verticies, indicies);
+	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
 }
 
 PlaneModel::~PlaneModel()

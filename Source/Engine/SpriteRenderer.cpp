@@ -5,6 +5,7 @@
 #include "SpriteVertex.h"
 #include "Model.h"
 #include "DXRenderer.h"
+#include "Mesh.h"
 
 SpriteRenderer::SpriteRenderer()
 {
@@ -32,16 +33,17 @@ SpriteRenderer::SpriteRenderer()
 		2, 1, 3
 	};
 
-	myUnitQuad = std::make_unique<Model<SpriteVertex>>(myEffect, nullptr, vertices, indices);
+	myUnitMesh = std::make_shared<Mesh<SpriteVertex>>(nullptr, vertices, indices);
+	myUnitModel = std::make_unique<Model>(myEffect, myUnitMesh);
 }
 
 
 void SpriteRenderer::RenderWholeTexture(std::shared_ptr<Texture> aTexture, const Vector2f &aTopLeft, const Vector2f &aSize)
 {
 	Engine::GetInstance().GetRenderer().SetViewport(aTopLeft, aSize);
-	myUnitQuad->SetTexture(aTexture);
-	myUnitQuad->Render();
-	myUnitQuad->SetTexture(nullptr);
+	myUnitMesh->SetTexture(aTexture);
+	myUnitModel->Render();
+	myUnitMesh->SetTexture(nullptr);
 
 	ID3D11ShaderResourceView * views[16] = { nullptr };
 	Engine::GetInstance().GetRenderer().GetContext()->PSSetShaderResources(0, 16, views);

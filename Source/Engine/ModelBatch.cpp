@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "ModelBatch.h"
-#include "ModelInstance.h"
+/*#include "ModelInstance.h"
 #include "VertexBuffer.h"
 #include "Model.h"
+#include "Mesh.h"
 
 ModelBatch::ModelBatch(const std::vector<std::shared_ptr<ModelInstance>> & aModelInstanceCollection)
 {
@@ -24,7 +25,7 @@ ModelBatch::ModelBatch(const std::vector<std::shared_ptr<ModelInstance>> & aMode
 	myMatrixVertexBuffer = std::make_unique<VertexBuffer<Matrix44f>>(&matrices[0], static_cast<int>(matrices.size()));
 }
 
-ModelBatch::ModelBatch(std::shared_ptr<GenericModel> aModel, std::vector<Matrix44f> & aMatrices)
+ModelBatch::ModelBatch(std::shared_ptr<GenericMesh> aModel, std::vector<Matrix44f> & aMatrices)
 {
 	if (aMatrices.size() == 0)
 	{
@@ -44,3 +45,4 @@ void ModelBatch::Render()
 ModelBatch::~ModelBatch()
 {
 }
+*/

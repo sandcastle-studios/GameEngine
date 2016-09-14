@@ -5,7 +5,7 @@
 #include "DXRenderer.h"
 #include "ModelRenderer.h"
 
-ModelInstance::ModelInstance(std::shared_ptr<GenericModel> aModel)
+ModelInstance::ModelInstance(std::shared_ptr<Model> aModel)
 {
 	myModel = aModel;
 	// myWorldMatrixCB = std::make_unique<ConstantBuffer<Matrix44f>>(Matrix44f::Identity);

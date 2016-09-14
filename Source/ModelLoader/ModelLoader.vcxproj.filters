@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="AssImp\Compiler\poppack1.h" />
+    <ClInclude Include="AssImp\Compiler\pstdint.h" />
+    <ClInclude Include="AssImp\Compiler\pushpack1.h" />
+    <ClInclude Include="AssImp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="AssImp\ai_assert.h" />
+    <ClInclude Include="AssImp\anim.h" />
+    <ClInclude Include="AssImp\camera.h" />
+    <ClInclude Include="AssImp\cexport.h" />
+    <ClInclude Include="AssImp\cfileio.h" />
+    <ClInclude Include="AssImp\cimport.h" />
+    <ClInclude Include="AssImp\color4.h" />
+    <ClInclude Include="AssImp\config.h" />
+    <ClInclude Include="AssImp\DefaultLogger.hpp" />
+    <ClInclude Include="AssImp\defs.h" />
+    <ClInclude Include="AssImp\Exporter.hpp" />
+    <ClInclude Include="AssImp\Importer.hpp" />
+    <ClInclude Include="AssImp\importerdesc.h" />
+    <ClInclude Include="AssImp\IOStream.hpp" />
+    <ClInclude Include="AssImp\IOSystem.hpp" />
+    <ClInclude Include="AssImp\light.h" />
+    <ClInclude Include="AssImp\Logger.hpp" />
+    <ClInclude Include="AssImp\LogStream.hpp" />
+    <ClInclude Include="AssImp\material.h" />
+    <ClInclude Include="AssImp\matrix3x3.h" />
+    <ClInclude Include="AssImp\matrix4x4.h" />
+    <ClInclude Include="AssImp\mesh.h" />
+    <ClInclude Include="AssImp\metadata.h" />
+    <ClInclude Include="AssImp\NullLogger.hpp" />
+    <ClInclude Include="AssImp\postprocess.h" />
+    <ClInclude Include="AssImp\ProgressHandler.hpp" />
+    <ClInclude Include="AssImp\quaternion.h" />
+    <ClInclude Include="AssImp\scene.h" />
+    <ClInclude Include="AssImp\texture.h" />
+    <ClInclude Include="AssImp\types.h" />
+    <ClInclude Include="AssImp\vector2.h" />
+    <ClInclude Include="AssImp\vector3.h" />
+    <ClInclude Include="AssImp\version.h" />
+    <ClInclude Include="FBXLoader.h" />
+    <ClInclude Include="VertexStructs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="FBXLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AssImp\.editorconfig" />
+    <None Include="AssImp\color4.inl" />
+    <None Include="AssImp\material.inl" />
+    <None Include="AssImp\matrix3x3.inl" />
+    <None Include="AssImp\matrix4x4.inl" />
+    <None Include="AssImp\quaternion.inl" />
+    <None Include="AssImp\vector2.inl" />
+    <None Include="AssImp\vector3.inl" />
+  </ItemGroup>
+</Project>

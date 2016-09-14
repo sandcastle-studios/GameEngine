@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Skybox.h"
 #include "VertexPosColUV.h"
+#include "Mesh.h"
 
 Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
-	: Model(aEffect, aTexture)
+	: Model(aEffect)
 {
 	const float skyboxSize = .5f;
 	Vector2f quadSize = Vector2f(0.25f, 0.25f);
@@ -85,7 +86,7 @@ Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTextur
 		indicies[i] = static_cast<unsigned int>(i);
 	}
 
-	CreateModel(verticies, indicies);
+	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
 }
 
 

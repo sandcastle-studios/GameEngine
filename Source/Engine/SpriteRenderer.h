@@ -2,9 +2,9 @@
 
 class Texture;
 struct SpriteVertex;
-template<typename T>
 class Model;
 class Effect;
+class GenericMesh;
 
 class SpriteRenderer
 {
@@ -15,6 +15,7 @@ public:
 
 private:
 	std::shared_ptr<Effect> myEffect;
-	std::unique_ptr<Model<SpriteVertex>> myUnitQuad;
+	std::unique_ptr<Model> myUnitModel;
+	std::shared_ptr<GenericMesh> myUnitMesh;
 };
 

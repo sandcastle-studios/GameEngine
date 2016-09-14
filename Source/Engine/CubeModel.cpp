@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "CubeModel.h"
+#include "VertexPosColUV.h"
+#include "Mesh.h"
 
 CubeModel::CubeModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
-	: Model(aEffect, aTexture)
+	: Model(aEffect)
 {
 	std::array<VertexPosColUV, 8> verticies;
 	std::array<unsigned int, 36> indicies;
@@ -161,7 +163,7 @@ CubeModel::CubeModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> a
 	indicies[34] = 1;
 	indicies[35] = 5;
 
-	CreateModel(verticies, indicies);
+	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
 }
 
 CubeModel::~CubeModel()

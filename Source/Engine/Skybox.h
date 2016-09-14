@@ -1,9 +1,9 @@
 #pragma once
 #include "Model.h"
 
-struct VertexPosColUV;
+class Texture;
 
-class Skybox : public Model<VertexPosColUV>
+class Skybox : public Model
 {
 public:
 	Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture);

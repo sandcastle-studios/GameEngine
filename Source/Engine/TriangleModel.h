@@ -1,7 +1,9 @@
 #pragma once
 #include "Model.h"
 
-class TriangleModel : public Model<SimpleVertex>
+class Texture;
+
+class TriangleModel : public Model
 {
 public:
 	TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture);
