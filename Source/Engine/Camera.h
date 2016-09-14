@@ -7,6 +7,7 @@ struct CameraCB
 {
 	Matrix44f view;
 	Matrix44f projection;
+	Vector4f cameraPosition;
 };
 
 class Camera

@@ -2,9 +2,6 @@
 
 class Model;
 
-template<typename T>
-class ConstantBuffer;
-
 class ModelInstance
 {
 public:
@@ -21,9 +18,10 @@ public:
 	std::shared_ptr<Model> GetModel();
 	std::shared_ptr<const Model> GetModel() const;
 
+	BoundingBoxf GetBoundingBox() const;
+
 private:
 	std::shared_ptr<Model> myModel;
-	// std::unique_ptr<ConstantBuffer<Matrix44f>> myWorldMatrixCB;
 	Matrix44f myWorldMatrix;
 };
 

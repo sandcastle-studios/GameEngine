@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "AssimpModel.h"
 #include <FBXLoader.h>
-#include "VertexPosColUV.h"
+#include "Vertex.h"
 #include "Texture.h"
 
 AssimpModel::AssimpModel(std::shared_ptr<Effect> aEffect, const std::string & aFilePath)
@@ -63,13 +63,11 @@ AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
 {
 	const char * meshVertices = reinterpret_cast<const char*>(aMesh->myVerticies);
 
-	std::vector<VertexPosColUV> vertices;
+	std::vector<Vertex> vertices;
 	vertices.resize(aMesh->myVertexCount);
 	size_t readOffset = 0;
 	for (size_t i = 0; i < vertices.size(); i++)
 	{
-		vertices[i].color = ::Vector4f(1.f, 1.f, 1.f, 1.f);
-
 		if ((aMesh->myShaderType & EModelBluePrint_Position) != 0)
 		{
 			vertices[i].position = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
@@ -82,23 +80,26 @@ AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
 
 		if ((aMesh->myShaderType & EModelBluePrint_Normal) != 0)
 		{
-			// vertices[i].position = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
+			vertices[i].normal = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
 			readOffset += sizeof(::Vector4f);
 		}
 		else
 		{
-			// vertices[i].position = ::Vector4f(0.f, 0.f, 0.f, 1.f);
+			vertices[i].normal = ::Vector4f(0.f, 0.f, 0.f, 0.f);
 		}
 
 		if ((aMesh->myShaderType & EModelBluePrint_BinormTan) != 0)
 		{
-			// vertices[i].position = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
+			vertices[i].tangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
 			readOffset += sizeof(::Vector4f);
+
+			vertices[i].bitangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
 			readOffset += sizeof(::Vector4f);
 		}
 		else
 		{
-			// vertices[i].position = ::Vector4f(0.f, 0.f, 0.f, 1.f);
+			vertices[i].tangent = ::Vector4f(0.f, 0.f, 0.f, 0.f);
+			vertices[i].bitangent = ::Vector4f(0.f, 0.f, 0.f, 0.f);
 		}
 
 		if ((aMesh->myShaderType & EModelBluePrint_UV) != 0)

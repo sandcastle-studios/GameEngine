@@ -117,3 +117,9 @@ ID3D11Texture2D* Texture::GetTexture()
 {
 	return myTexture;
 }
+
+void Texture::ReleaseResources()
+{
+	SAFE_RELEASE(myTextureView);
+	SAFE_RELEASE(myTexture);
+}

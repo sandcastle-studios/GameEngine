@@ -1,5 +1,0 @@
-Pin 2.12 kit 61147
-E:  DBG_TRACE: Unexpected debugging event: EXCEPTION_DEBUG_EVENT: ExceptionCode  = 0xc0000005, ExceptionAddress = 0x74dd1243, Instruction = 418b01a9f8fffeff0f85a80000002501
-E:  Incompatible operating system or incompatible software installed on the system
-A: Source\pin\winloader\injection_server_winloader.cpp:LEVEL_BASE::PIN_INJECTION_SERVER::Init:LEVEL_BASE::PIN_INJECTION_SERVER::Init:177: assertion failed: res == TRUE
-

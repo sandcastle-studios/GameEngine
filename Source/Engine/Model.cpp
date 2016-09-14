@@ -35,7 +35,12 @@ void Model::AddMesh(std::shared_ptr<GenericMesh> aMesh)
 {
 	myMeshes.push_back(aMesh);
 
-	myBoundingBox.ExpandToContain(aMesh->GetBoundingBox());
+	BoundingBoxf bb = aMesh->GetBoundingBox();
+	if (myMeshes.size() == 0)
+	{
+		myBoundingBox.SetToPosition(bb.GetCenter());
+	}
+	myBoundingBox.ExpandToContain(bb);
 }
 
 const std::vector<std::shared_ptr<GenericMesh>> & Model::GetMeshes() const

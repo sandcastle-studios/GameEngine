@@ -31,5 +31,7 @@ private:
 	ID3D11RenderTargetView * myRenderTargetView;
 	unsigned int myWidth;
 	unsigned int myHeight;
+public:
+	void ReleaseResources();
 };
 

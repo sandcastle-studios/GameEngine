@@ -100,3 +100,10 @@ ID3D11DepthStencilView * DepthBuffer::GetView()
 {
 	return myDepthStencilView;
 }
+
+void DepthBuffer::ReleaseResources()
+{
+	SAFE_RELEASE(myDepthStencilView);
+	SAFE_RELEASE(myDepthStencilBuffer);
+	SAFE_RELEASE(myResourceView);
+}

@@ -222,6 +222,10 @@ void DXRenderer::Present()
 void DXRenderer::Resize(int aNewWidth, int aNewHeight)
 {
 	myDeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
+	if (myBackbuffer)
+	{
+		myBackbuffer->ReleaseResources();
+	}
 	myBackbuffer = nullptr;
 
 		CheckDXError(

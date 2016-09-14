@@ -4,6 +4,7 @@
 
 class CLoaderMesh;
 class AssimpMesh;
+struct Vertex;
 
 class AssimpModel : public Model
 {
@@ -15,7 +16,7 @@ public:
 
 struct VertexPosColUV;
 
-class AssimpMesh : public Mesh<VertexPosColUV>
+class AssimpMesh : public Mesh<Vertex>
 {
 public: 
 	AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory);

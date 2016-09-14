@@ -36,6 +36,7 @@ void Camera::UpdateCB() const
 	cb.projection = myProjection;
 	cb.view = Matrix44f::CreateRotateAroundX(-myPitch) * Matrix44f::CreateRotateAroundY(myYaw) * Matrix44f::CreateTranslation(myPosition);
 	cb.view.Inverse();
+	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
 }
 
@@ -45,6 +46,7 @@ void Camera::ApplySkyboxMatrixToVS() const
 	cb.projection = myProjection;
 	cb.view = Matrix44f::CreateRotateAroundX(-myPitch) * Matrix44f::CreateRotateAroundY(myYaw);
 	cb.view.Inverse();
+	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
 }
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Skybox.h"
-#include "VertexPosColUV.h"
+#include "Vertex.h"
 #include "Mesh.h"
 
 Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
@@ -8,14 +8,9 @@ Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTextur
 {
 	const float skyboxSize = .5f;
 	Vector2f quadSize = Vector2f(0.25f, 0.25f);
-	std::array<VertexPosColUV, 36> verticies;
-	memset(&verticies[0], 0, verticies.size() * sizeof(VertexPosColUV));
-
-	for (size_t i = 0; i < verticies.size(); i++)
-	{
-		verticies[i].color = Vector4f(1.f, 1.f, 1.f, 1.f);
-	}
-
+	std::array<Vertex, 36> verticies;
+	memset(&verticies[0], 0, verticies.size() * sizeof(Vertex));
+	
 	Matrix44f m = Matrix44f::Identity;
 
 	for (size_t i = 0; i < 4; i++)
@@ -86,7 +81,7 @@ Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTextur
 		indicies[i] = static_cast<unsigned int>(i);
 	}
 
-	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
+	AddMesh(std::make_shared<Mesh<Vertex>>(aTexture, verticies, indicies));
 }
 
 
