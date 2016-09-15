@@ -3,7 +3,7 @@
 #include "VertexPosColUV.h"
 #include "Mesh.h"
 
-CubeModel::CubeModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
+CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
 	: Model(aEffect)
 {
 	std::array<VertexPosColUV, 8> verticies;

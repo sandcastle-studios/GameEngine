@@ -5,12 +5,12 @@
 #include "DXRenderer.h"
 #include "ModelRenderer.h"
 
-Model::Model(std::shared_ptr<Effect> aEffect)
+Model::Model(const std::shared_ptr<Effect> & aEffect)
 {
 	myEffect = aEffect;
 }
 
-Model::Model(std::shared_ptr<Effect> aEffect, std::shared_ptr<GenericMesh> aMesh)
+Model::Model(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<GenericMesh> & aMesh)
 {
 	myEffect = aEffect;
 	AddMesh(aMesh);
@@ -40,7 +40,7 @@ void Model::InstantRender(const Matrix44f & aWorldMatrix) const
 	}
 }
 
-void Model::AddMesh(std::shared_ptr<GenericMesh> aMesh)
+void Model::AddMesh(const std::shared_ptr<GenericMesh> & aMesh)
 {
 	aMesh->myEffect = myEffect;
 	myMeshes.push_back(aMesh);

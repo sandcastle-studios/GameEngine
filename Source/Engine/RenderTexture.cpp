@@ -74,12 +74,12 @@ unsigned int RenderTexture::GetHeight() const
 	return myHeight;
 }
 
-std::shared_ptr<Texture> RenderTexture::GetTexture()
+const std::shared_ptr<Texture> & RenderTexture::GetTexture()
 {
 	return myTexture;
 }
 
-std::shared_ptr<DepthBuffer> RenderTexture::GetDepthBuffer()
+const std::shared_ptr<DepthBuffer> & RenderTexture::GetDepthBuffer()
 {
 	return myDepthBuffer;
 }

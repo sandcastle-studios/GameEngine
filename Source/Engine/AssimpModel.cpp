@@ -4,7 +4,7 @@
 #include "Vertex.h"
 #include "Texture.h"
 
-AssimpModel::AssimpModel(std::shared_ptr<Effect> aEffect, const std::string & aFilePath)
+AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath)
 	: Model(aEffect)
 {
 	CFBXLoader loader;
@@ -49,7 +49,7 @@ AssimpModel::AssimpModel(std::shared_ptr<Effect> aEffect, const std::string & aF
 	delete model;
 }
 
-AssimpModel::AssimpModel(std::shared_ptr<Effect> aEffect, const char * aFilePath)
+AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath)
 	: AssimpModel(aEffect, std::string(aFilePath))
 {
 }

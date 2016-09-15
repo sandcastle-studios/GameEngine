@@ -20,9 +20,9 @@ public:
 	unsigned int GetWidth() const;
 	unsigned int GetHeight() const;
 
-	std::shared_ptr<Texture> GetTexture();
+	const std::shared_ptr<Texture> & GetTexture();
 
-	std::shared_ptr<DepthBuffer> GetDepthBuffer();
+	const std::shared_ptr<DepthBuffer> & GetDepthBuffer();
 	std::shared_ptr<const DepthBuffer> GetDepthBuffer() const;
 
 private:

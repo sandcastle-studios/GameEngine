@@ -15,7 +15,7 @@ class GenericMesh
 public:
 	virtual ~GenericMesh();
 
-	void SetTexture(std::shared_ptr<Texture> aTexture);
+	void SetTexture(const std::shared_ptr<Texture> & aTexture);
 
 	void Render() const;
 	void RenderInstanced(int aInstanceCount) const;
@@ -34,7 +34,7 @@ private:
 	// Only Mesh<TVertex> may inherit
 	template<typename TVertex>
 	friend class Mesh;
-	GenericMesh(std::shared_ptr<Texture> aTexture);
+	GenericMesh(const std::shared_ptr<Texture> & aTexture);
 	std::unique_ptr<GenericVertexBuffer> myVertexBuffer;
 	std::unique_ptr<IndexBuffer> myIndexBuffer;
 
@@ -54,11 +54,11 @@ template<typename TVertex>
 class Mesh : public GenericMesh
 {
 public:
-	Mesh(std::shared_ptr<Texture> aTexture);
-	Mesh(std::shared_ptr<Texture> aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
-	Mesh(std::shared_ptr<Texture> aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
+	Mesh(const std::shared_ptr<Texture> & aTexture);
+	Mesh(const std::shared_ptr<Texture> & aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
+	Mesh(const std::shared_ptr<Texture> & aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
 	template <size_t TVertexCount, size_t TIndexCount>
-	Mesh(std::shared_ptr<Texture> aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
+	Mesh(const std::shared_ptr<Texture> & aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
 
 	~Mesh();
 
@@ -69,28 +69,28 @@ public:
 };
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(std::shared_ptr<Texture> myTexture)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture)
 	: GenericMesh(myTexture)
 {
 
 }
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(std::shared_ptr<Texture> aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
 	: GenericMesh(aTexture)
 {
 	CreateMesh(aVertexData, aVertexCount, aIndexData, aIndexCount);
 }
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(std::shared_ptr<Texture> aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
 	: Mesh(aTexture, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 {
 }
 
 template<typename TVertex>
 template <size_t TVertexCount, size_t TIndexCount>
-Mesh<TVertex>::Mesh(std::shared_ptr<Texture> aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
 	: Mesh(aTexture, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 {
 }

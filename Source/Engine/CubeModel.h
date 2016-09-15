@@ -6,7 +6,7 @@ class Texture;
 class CubeModel : public Model
 {
 public:
-	CubeModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture);
+	CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture);
 	~CubeModel();
 };
 

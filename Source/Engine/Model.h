@@ -6,8 +6,8 @@ class Effect;
 class Model
 {
 public:
-	Model(std::shared_ptr<Effect> aEffect);
-	Model(std::shared_ptr<Effect> aEffect, std::shared_ptr<GenericMesh> aMesh);
+	Model(const std::shared_ptr<Effect> & aEffect);
+	Model(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<GenericMesh> & aMesh);
 	virtual ~Model();
 	
 	void Render(const Matrix44f & aMatrix) const;
@@ -20,7 +20,7 @@ public:
 	void SetEffect(const std::shared_ptr<Effect> & aEffect);
 
 protected:
-	void AddMesh(std::shared_ptr<GenericMesh> aMesh);
+	void AddMesh(const std::shared_ptr<GenericMesh> & aMesh);
 
 private:
 	std::vector<std::shared_ptr<GenericMesh>> myMeshes;

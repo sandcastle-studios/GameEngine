@@ -10,7 +10,7 @@
 #include "Texture.h"
 #include "ModelRenderer.h"
 
-GenericMesh::GenericMesh(std::shared_ptr<Texture> aTexture)
+GenericMesh::GenericMesh(const std::shared_ptr<Texture> & aTexture)
 {
 	myVertexCount = 0;
 	myIndexCount = 0;
@@ -41,7 +41,7 @@ GenericMesh::~GenericMesh()
 	}
 }
 
-void GenericMesh::SetTexture(std::shared_ptr<Texture> aTexture)
+void GenericMesh::SetTexture(const std::shared_ptr<Texture> & aTexture)
 {
 	myTexture = aTexture;
 }

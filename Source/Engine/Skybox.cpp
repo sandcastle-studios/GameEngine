@@ -3,7 +3,7 @@
 #include "Vertex.h"
 #include "Mesh.h"
 
-Skybox::Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
+Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
 	: Model(aEffect)
 {
 	const float skyboxSize = .5f;

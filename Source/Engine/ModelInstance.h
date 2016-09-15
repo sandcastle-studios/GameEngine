@@ -5,7 +5,7 @@ class Model;
 class ModelInstance
 {
 public:
-	ModelInstance(std::shared_ptr<Model> aModel);
+	ModelInstance(const std::shared_ptr<Model> & aModel);
 	~ModelInstance();
 
 	void Render() const;
@@ -16,8 +16,8 @@ public:
 
 	Vector3f GetPosition() const;
 
-	std::shared_ptr<Model> GetModel();
-	std::shared_ptr<const Model> GetModel() const;
+	const std::shared_ptr<Model> & GetModel();
+	const std::shared_ptr<const Model> & GetModel() const;
 
 	BoundingBoxf GetBoundingBox() const;
 
@@ -36,12 +36,12 @@ inline Vector3f ModelInstance::GetPosition() const
 	return myWorldMatrix.GetPosition();
 }
 
-inline std::shared_ptr<Model> ModelInstance::GetModel()
+inline const std::shared_ptr<Model> & ModelInstance::GetModel()
 {
 	return myModel;
 }
 
-inline std::shared_ptr<const Model> ModelInstance::GetModel() const
+inline const std::shared_ptr<const Model> & ModelInstance::GetModel() const
 {
 	return myModel;
 }

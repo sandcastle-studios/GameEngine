@@ -9,8 +9,8 @@ struct Vertex;
 class AssimpModel : public Model
 {
 public:
-	AssimpModel(std::shared_ptr<Effect> aEffect, const char * aFilePath);
-	AssimpModel(std::shared_ptr<Effect> aEffect, const std::string & aFilePath);
+	AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath);
+	AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath);
 	~AssimpModel();
 };
 

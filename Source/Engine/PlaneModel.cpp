@@ -3,7 +3,7 @@
 #include "VertexPosColUV.h"
 #include "Mesh.h"
 
-PlaneModel::PlaneModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture, int aTextureTileU, int aTextureTileV)
+PlaneModel::PlaneModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture, int aTextureTileU, int aTextureTileV)
 	: Model(aEffect)
 {
 	std::array<VertexPosColUV, 4> verticies;

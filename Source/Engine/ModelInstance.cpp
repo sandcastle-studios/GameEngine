@@ -5,7 +5,7 @@
 #include "DXRenderer.h"
 #include "ModelRenderer.h"
 
-ModelInstance::ModelInstance(std::shared_ptr<Model> aModel)
+ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
 {
 	myModel = aModel;
 }

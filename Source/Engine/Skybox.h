@@ -6,7 +6,7 @@ class Texture;
 class Skybox : public Model
 {
 public:
-	Skybox(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture);
+	Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture);
 	~Skybox();
 };
 
