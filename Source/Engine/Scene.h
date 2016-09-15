@@ -4,20 +4,18 @@ class ModelInstance;
 class Camera;
 class StandardEffect;
 
-class World
+class Scene
 {
 public:
-	World();
-	~World();
+	Scene(const char * aSkyboxPath = nullptr);
+	virtual ~Scene();
 
-	void Update(const Time &aDeltaTime);
-	void Render();
+	virtual void Update(const Time & aDeltaTime);
+	virtual void Render();
 
 	Camera & GetCamera();
 
-private:
-	void NextModel();
-
+protected:
 	std::vector<std::shared_ptr<ModelInstance>> myObjects;
 
 	std::unique_ptr<ModelInstance> mySkybox;
@@ -27,11 +25,5 @@ private:
 	std::shared_ptr<StandardEffect> myEffect;
 
 	Time myTime;
-	Time myCurrentModelTime;
-	Time myTimePerModel;
-	Time myModelTransitionTime;
-	Vector3f myCameraFrom;
-
-	size_t myCurrentModel;
 };
 

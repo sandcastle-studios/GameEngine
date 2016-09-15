@@ -8,17 +8,37 @@
 #include "IndexBuffer.h"
 #include "Effect.h"
 #include "Texture.h"
+#include "ModelRenderer.h"
 
 GenericMesh::GenericMesh(std::shared_ptr<Texture> aTexture)
 {
 	myVertexCount = 0;
 	myIndexCount = 0;
-
 	myTexture = aTexture;
+	myIdentifier = 0;
+}
+
+size_t GenericMesh::GetIdentifier() const
+{
+	return myIdentifier;
+}
+
+void GenericMesh::AssignIdentifier(size_t aIdentifier)
+{
+	if (myIdentifier != 0)
+	{
+		Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
+	}
+	myIdentifier = aIdentifier;
 }
 
 GenericMesh::~GenericMesh()
 {
+	if (myIdentifier != 0)
+	{
+		Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
+		myIdentifier = 0;
+	}
 }
 
 void GenericMesh::SetTexture(std::shared_ptr<Texture> aTexture)
@@ -45,6 +65,11 @@ void GenericMesh::RenderInstanced(int aInstanceCount) const
 	if (myTexture != nullptr)
 	{
 		myTexture->BindToPS(0);
+	}
+
+	if (myEffect != nullptr)
+	{
+		myEffect->Bind();
 	}
 
 	myVertexBuffer->Bind(0);

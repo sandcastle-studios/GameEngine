@@ -4,13 +4,13 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="CommonIncludes.h" />
-    <ClInclude Include="World.h" />
-    <ClInclude Include="StandardEffect.h" />
+    <ClInclude Include="SlideShowScene.h" />
+    <ClInclude Include="InstancedTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="StandardEffect.cpp" />
+    <ClCompile Include="SlideShowScene.cpp" />
+    <ClCompile Include="InstancedTestScene.cpp" />
   </ItemGroup>
 </Project>

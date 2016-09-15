@@ -23,7 +23,10 @@ public:
 	std::shared_ptr<Texture> GetTexture();
 
 	const BoundingBoxf & GetBoundingBox();
+
+	size_t GetIdentifier() const;
 	
+	void AssignIdentifier(size_t aIdentifier);
 protected:
 	void CreateMesh(const void * aVertexData, int aVertexCount, int aVertexSizeInBytes, const unsigned int * aIndexData, int aIndexCount);
 
@@ -39,6 +42,12 @@ private:
 	int myIndexCount;
 	std::shared_ptr<Texture> myTexture;
 	BoundingBoxf myBoundingBox;
+	size_t myIdentifier;
+
+	// Model must be able to assign an effect to Mesh
+	friend class Model;
+	// Changing does not guarantee effect will be used for rendering, must be set through parent model
+	std::shared_ptr<Effect> myEffect;
 };
 
 template<typename TVertex>

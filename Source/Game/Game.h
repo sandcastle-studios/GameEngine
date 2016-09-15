@@ -1,7 +1,7 @@
 #pragma once
 
 class Window;
-class World;
+class Scene;
 
 class Game
 {
@@ -13,7 +13,7 @@ public:
 
 private:
 	std::unique_ptr<Window> myWindow;
-	std::unique_ptr<World> myWorld;
+	std::unique_ptr<Scene> myScene;
 
 	void Initialize();
 	void ProcessMessages();

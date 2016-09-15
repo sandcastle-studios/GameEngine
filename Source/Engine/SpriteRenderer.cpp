@@ -42,7 +42,7 @@ void SpriteRenderer::RenderWholeTexture(std::shared_ptr<Texture> aTexture, const
 {
 	Engine::GetInstance().GetRenderer().SetViewport(aTopLeft, aSize);
 	myUnitMesh->SetTexture(aTexture);
-	myUnitModel->Render();
+	myUnitModel->Render(Matrix44f::Identity);
 	myUnitMesh->SetTexture(nullptr);
 
 	ID3D11ShaderResourceView * views[16] = { nullptr };

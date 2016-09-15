@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "StandardEffect.h"
-#include <InputLayout.h>
+#include "InputLayout.h"
 
 StandardEffect::StandardEffect()
 {

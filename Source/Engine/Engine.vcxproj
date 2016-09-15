@@ -261,6 +261,7 @@
     <ClInclude Include="PlaneModel.h" />
     <ClInclude Include="PlatformHelpers.h" />
     <ClInclude Include="RenderTexture.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderResourceBuffer.h" />
     <ClInclude Include="SimpleVertex.h" />
@@ -268,6 +269,7 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="SpriteVertex.h" />
+    <ClInclude Include="StandardEffect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stopwatch.h" />
     <ClInclude Include="Texture.h" />
@@ -307,10 +309,12 @@
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="PlaneModel.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderResourceBuffer.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="StandardEffect.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

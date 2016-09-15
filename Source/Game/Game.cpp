@@ -5,7 +5,9 @@
 #include <DXRenderer.h>
 #include <Camera.h>
 #include <Stopwatch.h>
-#include "World.h"
+#include <Scene.h>
+#include "SlideShowScene.h"
+#include "InstancedTestScene.h"
 
 Game::Game()
 {
@@ -42,6 +44,9 @@ void Game::Start()
 		Render();
 	}
 
+	// Destroy our world releasing it's resources allowing the engine to shut down
+	myScene = nullptr;
+
 	Engine::DestroyInstance();
 }
 
@@ -65,16 +70,16 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myWorld = std::make_unique<World>();
+	myScene = std::make_unique<InstancedTestScene>();
 
 	CreatePerspective();
 }
 
 void Game::Update(const Time &aDeltaTime)
 {
-	if (myWorld != nullptr)
+	if (myScene != nullptr)
 	{
-		myWorld->Update(aDeltaTime);
+		myScene->Update(aDeltaTime);
 	}
 }
 
@@ -82,9 +87,9 @@ void Game::Render()
 {
 	Engine::GetInstance().GetRenderer().ClearFrame();
 
-	if (myWorld != nullptr)
+	if (myScene != nullptr)
 	{
-		myWorld->Render();
+		myScene->Render();
 	}
 
 	Engine::GetInstance().GetRenderer().Present();
@@ -92,5 +97,5 @@ void Game::Render()
 
 void Game::CreatePerspective()
 {
-	myWorld->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 0.1f, 1000.f);
+	myScene->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 0.1f, 1000.f);
 }

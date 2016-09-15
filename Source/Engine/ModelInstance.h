@@ -9,6 +9,7 @@ public:
 	~ModelInstance();
 
 	void Render() const;
+	void InstantRender() const;
 
 	void SetMatrix(const Matrix44f & aMatrix);
 	const Matrix44f & GetMatrix() const;

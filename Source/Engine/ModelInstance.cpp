@@ -16,7 +16,12 @@ ModelInstance::~ModelInstance()
 
 void ModelInstance::Render() const
 {
-	Engine::GetInstance().GetRenderer().GetModelRenderer().Render(*this);
+	myModel->Render(myWorldMatrix);
+}
+
+void ModelInstance::InstantRender() const
+{
+	myModel->InstantRender(myWorldMatrix);
 }
 
 void ModelInstance::SetMatrix(const Matrix44f & aMatrix)

@@ -2,6 +2,8 @@
 #include "Model.h"
 #include "Effect.h"
 #include "Mesh.h"
+#include "DXRenderer.h"
+#include "ModelRenderer.h"
 
 Model::Model(std::shared_ptr<Effect> aEffect)
 {
@@ -18,21 +20,29 @@ Model::~Model()
 {
 }
 
-void Model::Render() const
+void Model::Render(const Matrix44f & aMatrix) const
 {
-	if (myEffect != nullptr)
+	ModelRenderer & modelRenderer = Engine::GetInstance().GetRenderer().GetModelRenderer();
+	for (size_t i = 0; i < myMeshes.size(); i++)
 	{
-		myEffect->Bind();
+		modelRenderer.Render(myMeshes[i], aMatrix);
 	}
+}
+
+void Model::InstantRender(const Matrix44f & aWorldMatrix) const
+{
+	ModelRenderer & modelRenderer = Engine::GetInstance().GetRenderer().GetModelRenderer();
+	modelRenderer.PrepareInstantRender(aWorldMatrix);
 
 	for (size_t i = 0; i < myMeshes.size(); i++)
 	{
-		myMeshes[i]->Render();
+		modelRenderer.InstantRender(myMeshes[i]);
 	}
 }
 
 void Model::AddMesh(std::shared_ptr<GenericMesh> aMesh)
 {
+	aMesh->myEffect = myEffect;
 	myMeshes.push_back(aMesh);
 
 	BoundingBoxf bb = aMesh->GetBoundingBox();
@@ -51,4 +61,14 @@ const std::vector<std::shared_ptr<GenericMesh>> & Model::GetMeshes() const
 const BoundingBoxf & Model::GetBoundingBox() const
 {
 	return myBoundingBox;
+}
+
+void Model::SetEffect(const std::shared_ptr<Effect> & aEffect)
+{
+	myEffect = aEffect;
+
+	for (size_t i = 0; i < myMeshes.size(); i++)
+	{
+		myMeshes[i]->myEffect = aEffect;
+	}
 }

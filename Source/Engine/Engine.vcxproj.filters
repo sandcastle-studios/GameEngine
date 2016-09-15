@@ -52,6 +52,8 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="StandardEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -87,5 +89,7 @@
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="AssimpModel.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="StandardEffect.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
 </Project>
