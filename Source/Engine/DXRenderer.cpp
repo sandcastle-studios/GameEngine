@@ -221,21 +221,25 @@ void DXRenderer::Present()
 
 void DXRenderer::Resize(int aNewWidth, int aNewHeight)
 {
-	myDeviceContext->OMSetRenderTargets(0, nullptr, nullptr);
-	if (myBackbuffer)
-	{
-		myBackbuffer->ReleaseResources();
-	}
+	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT] = { nullptr };
+	myDeviceContext->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, nullptr);
 	myBackbuffer = nullptr;
 
-		CheckDXError(
+
+	ID3D11Debug *myD3dDebug;
+	if (SUCCEEDED(myDevice->QueryInterface(__uuidof(ID3D11Debug), (void**)&myD3dDebug)))
+	{
+		myD3dDebug->ReportLiveDeviceObjects(D3D11_RLDO_FLAGS::D3D11_RLDO_DETAIL);
+	}
+
+	CheckDXError(
 		mySwapchain->ResizeBuffers(0, aNewWidth, aNewHeight, DXGI_FORMAT_UNKNOWN, 0);
 	);
 
 	CreateBuffers(aNewWidth, aNewHeight);
 }
 
-std::shared_ptr<RenderTexture> DXRenderer::GetBackBuffer()
+const std::shared_ptr<RenderTexture> & DXRenderer::GetBackBuffer()
 {
 	return myBackbuffer;
 }
@@ -270,7 +274,11 @@ void DXRenderer::CreateBuffers(int aWidth, int aHeight)
 	ID3D11ShaderResourceView * shaderResourceView;
 	CheckDXError(
 		myDevice->CreateShaderResourceView(texture, nullptr, &shaderResourceView);
-	)
+	);
+
+	SetD3DObjectName(texture, "Backbuffer texture");
+	SetD3DObjectName(backbuffer, "Backbuffer rendertargetview");
+	SetD3DObjectName(shaderResourceView, "Backbuffer shader resource view");
 
 	myBackbuffer = std::make_shared<RenderTexture>(texture, backbuffer, shaderResourceView, aWidth, aHeight, true);
 

@@ -34,7 +34,7 @@ public:
 	ID3D11Device * GetDevice();
 	ID3D11DeviceContext * GetContext();
 
-	std::shared_ptr<RenderTexture> GetBackBuffer();
+	const std::shared_ptr<RenderTexture> & GetBackBuffer();
 
 	TextureDebugger & GetTextureDebugger();
 	ModelRenderer & GetModelRenderer();

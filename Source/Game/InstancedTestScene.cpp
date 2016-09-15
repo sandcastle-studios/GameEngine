@@ -25,7 +25,7 @@ InstancedTestScene::InstancedTestScene()
 		}
 	}
 
-	myCamera->SetPosition(Vector3f(-size * offset * 1.f, size * offset * 1.f, -size * offset * 1.5f));
+	myCamera->SetPosition(Vector3f(-size * offset * 1.f, -size * offset * .5f, -size * offset * 1.5f));
 	myCamera->LookAt(Vector3f::Zero);
 }
 

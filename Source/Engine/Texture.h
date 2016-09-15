@@ -28,7 +28,5 @@ private:
 	ID3D11ShaderResourceView * myTextureView;
 	int myWidth;
 	int myHeight;
-public:
-	void ReleaseResources();
 };
 

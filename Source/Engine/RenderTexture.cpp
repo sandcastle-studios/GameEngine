@@ -89,13 +89,6 @@ std::shared_ptr<const DepthBuffer> RenderTexture::GetDepthBuffer() const
 	return myDepthBuffer;
 }
 
-void RenderTexture::ReleaseResources()
-{
-	SAFE_RELEASE(myRenderTargetView);
-	myTexture->ReleaseResources();
-	myDepthBuffer->ReleaseResources();
-}
-
 void RenderTexture::Clear(const Vector4f & aColor)
 {
 	Engine::GetInstance().GetRenderer().GetContext()->ClearRenderTargetView(myRenderTargetView, reinterpret_cast<const float*>(&aColor));

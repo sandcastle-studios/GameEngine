@@ -27,6 +27,4 @@ private:
 	ID3D11Texture2D * myDepthStencilBuffer;
 	ID3D11ShaderResourceView * myResourceView;
 	std::shared_ptr<Texture> myTexture;
-public:
-	void ReleaseResources();
 };
