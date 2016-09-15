@@ -80,7 +80,7 @@ AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
 
 		if ((aMesh->myShaderType & EModelBluePrint_Normal) != 0)
 		{
-			vertices[i].normal = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
+			vertices[i].normal = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
 			readOffset += sizeof(::Vector4f);
 		}
 		else
@@ -90,10 +90,10 @@ AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
 
 		if ((aMesh->myShaderType & EModelBluePrint_BinormTan) != 0)
 		{
-			vertices[i].tangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
+			vertices[i].tangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
 			readOffset += sizeof(::Vector4f);
 
-			vertices[i].bitangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
+			vertices[i].bitangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
 			readOffset += sizeof(::Vector4f);
 		}
 		else

@@ -43,8 +43,7 @@ PixelInputType VShader(VertexInputType input)
 	output.position = mul(toCamera, output.position);
 	output.position = mul(toProjection, output.position);
 	
-	//output.normal = normalize(mul(input.toWorld, input.position + input.normal) - output.worldPosition);
-	output.normal = float4(mul(input.normal.xyz, (float3x3)input.toWorld), 0.0f);
+	output.normal = float4(mul((float3x3)input.toWorld, input.normal.xyz), 0.0f);
 	output.uv = input.uv;
 	
     return output;
