@@ -2,22 +2,19 @@
 #include "CubeModel.h"
 #include "VertexPosColUV.h"
 #include "Mesh.h"
+#include "Vertex.h"
 
 CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
 	: Model(aEffect)
 {
-	std::array<VertexPosColUV, 8> verticies;
+	std::array<Vertex, 8> verticies;
+	memset(&verticies[0], 0, sizeof(Vertex) * verticies.size());
 	std::array<unsigned int, 36> indicies;
 
 	verticies[0].position.x = -0.5f;
 	verticies[0].position.y = 0.5f;
 	verticies[0].position.z = -0.5f;
 	verticies[0].position.w = 1.0f;
-
-	verticies[0].color.x = 1.0f;
-	verticies[0].color.y = 1.0f;
-	verticies[0].color.z = 1.0f;
-	verticies[0].color.w = 1.0f;
 
 	verticies[0].uv.x = 0.0f;
 	verticies[0].uv.y = 0.0f;
@@ -28,11 +25,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[1].position.z = 0.5f;
 	verticies[1].position.w = 1.0f;
 
-	verticies[1].color.x = 1.0f;
-	verticies[1].color.y = 1.0f;
-	verticies[1].color.z = 1.0f;
-	verticies[1].color.w = 1.0f;
-
 	verticies[1].uv.x = 1.0f;
 	verticies[1].uv.y = 0.0f;
 
@@ -41,11 +33,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[2].position.y = 0.5f;
 	verticies[2].position.z = 0.5f;
 	verticies[2].position.w = 1.0f;
-
-	verticies[2].color.x = 1.0f;
-	verticies[2].color.y = 1.0f;
-	verticies[2].color.z = 1.0f;
-	verticies[2].color.w = 1.0f;
 
 	verticies[2].uv.x = 0.0f;
 	verticies[2].uv.y = 0.0f;
@@ -56,11 +43,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[3].position.z = -0.5f;
 	verticies[3].position.w = 1.0f;
 
-	verticies[3].color.x = 1.0f;
-	verticies[3].color.y = 1.0f;
-	verticies[3].color.z = 1.0f;
-	verticies[3].color.w = 1.0f;
-
 	verticies[3].uv.x = 1.0f;
 	verticies[3].uv.y = 0.0f;
 
@@ -69,11 +51,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[4].position.y = -0.5f;
 	verticies[4].position.z = -0.5f;
 	verticies[4].position.w = 1.0f;
-
-	verticies[4].color.x = 1.0f;
-	verticies[4].color.y = 1.0f;
-	verticies[4].color.z = 1.0f;
-	verticies[4].color.w = 1.0f;
 
 	verticies[4].uv.x = 0.0f;
 	verticies[4].uv.y = 1.0f;
@@ -84,11 +61,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[5].position.z = 0.5f;
 	verticies[5].position.w = 1.0f;
 
-	verticies[5].color.x = 1.0f;
-	verticies[5].color.y = 1.0f;
-	verticies[5].color.z = 1.0f;
-	verticies[5].color.w = 1.0f;
-
 	verticies[5].uv.x = 1.0f;
 	verticies[5].uv.y = 1.0f;
 
@@ -97,11 +69,6 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[6].position.y = -0.5f;
 	verticies[6].position.z = 0.5f;
 	verticies[6].position.w = 1.0f;
-
-	verticies[6].color.x = 1.0f;
-	verticies[6].color.y = 1.0f;
-	verticies[6].color.z = 1.0f;
-	verticies[6].color.w = 1.0f;
 
 	verticies[6].uv.x = 0.0f;
 	verticies[6].uv.y = 1.0f;
@@ -112,14 +79,13 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	verticies[7].position.z = -0.5f;
 	verticies[7].position.w = 1.0f;
 
-	verticies[7].color.x = 1.0f;
-	verticies[7].color.y = 1.0f;
-	verticies[7].color.z = 1.0f;
-	verticies[7].color.w = 1.0f;
-
 	verticies[7].uv.x = 1.0f;
 	verticies[7].uv.y = 1.0f;
 	
+	for (size_t i = 0; i < verticies.size(); i++)
+	{
+		verticies[i].normal = verticies[i].position.GetNormalized();
+	}
 
 	indicies[0] = 0;
 	indicies[1] = 1;
@@ -163,7 +129,7 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	indicies[34] = 1;
 	indicies[35] = 5;
 
-	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
+	AddMesh(std::make_shared<Mesh<Vertex>>(aTexture, verticies, indicies));
 }
 
 CubeModel::~CubeModel()

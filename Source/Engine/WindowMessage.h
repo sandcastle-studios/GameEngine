@@ -4,6 +4,7 @@
 union WindowMessageData
 {
 	SizeChangedData resizeEvent;
+	KeyData keyEvent;
 
 	inline WindowMessageData();
 	inline ~WindowMessageData();

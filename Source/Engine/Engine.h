@@ -1,11 +1,13 @@
 #pragma once
 
 class DXRenderer;
+class FileChangeWatcher;
 
 class Engine
 {
 public:
 	DXRenderer & GetRenderer();
+	FileChangeWatcher & GetFileWatcher();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -16,6 +18,7 @@ private:
 	~Engine();
 
 	std::unique_ptr<DXRenderer> myRenderer;
+	std::unique_ptr<FileChangeWatcher> myFileWatcher;
 
 	static Engine * ourInstance;
 };
@@ -29,4 +32,9 @@ inline Engine & Engine::GetInstance()
 inline DXRenderer & Engine::GetRenderer()
 {
 	return *myRenderer;
+}
+
+inline FileChangeWatcher & Engine::GetFileWatcher()
+{
+	return *myFileWatcher;
 }

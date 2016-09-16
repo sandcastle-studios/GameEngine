@@ -8,6 +8,7 @@
 #include <Scene.h>
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
+#include "..\Engine\FileChangeWatcher.h"
 
 Game::Game()
 {
@@ -77,6 +78,12 @@ void Game::Initialize()
 
 void Game::Update(const Time &aDeltaTime)
 {
+	std::string changedFile;
+	while (Engine::GetInstance().GetFileWatcher().QueryFileChanges(changedFile))
+	{
+		std::cout << changedFile << " changed!" << std::endl;
+	}
+
 	if (myScene != nullptr)
 	{
 		myScene->Update(aDeltaTime);

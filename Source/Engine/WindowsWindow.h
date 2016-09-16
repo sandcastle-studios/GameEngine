@@ -33,6 +33,8 @@ public:
 	void ReceiveMessage(HWND aHwnd, UINT aMessage, WPARAM aWParam, LPARAM aLParam);
 
 private:
+	static KeyboardKey ConvertVirtualKey(const WPARAM & aVirtualKey);
+
 	HWND myHandle;
 	bool myIsOpen;
 	WNDCLASSEX myWindowClass;

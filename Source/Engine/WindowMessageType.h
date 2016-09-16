@@ -11,11 +11,19 @@ enum class WindowMessageType
 	ePaint,
 	eCreate,
 	eDestroy,
+	eKeyDown,
+	eKeyUp,
 
-	eCount
+	eCount,
 };
 
 struct SizeChangedData
 {
 	Size<int> newSize;
+};
+
+struct KeyData
+{
+	KeyboardKey key;
+	int repeatCount;
 };

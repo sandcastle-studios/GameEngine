@@ -230,10 +230,142 @@ void WindowsWindow::ReceiveMessage(HWND aHwnd, UINT aMessage, WPARAM aWParam, LP
 	case WM_DESTROY:
 		message.type = WindowMessageType::eDestroy;
 		break;
+	case WM_KEYDOWN:
+		message.type = WindowMessageType::eKeyDown;
+		message.data.keyEvent.key = ConvertVirtualKey(aWParam);
+		// Bit 0 - 15 is the repeat count
+		message.data.keyEvent.repeatCount = static_cast<int>(static_cast<uint16_t>(aLParam));
+		break;
+	case WM_KEYUP:
+		message.type = WindowMessageType::eKeyUp;
+		message.data.keyEvent.key = ConvertVirtualKey(aWParam);
 	default:
 		memset(&message, 0, sizeof(message));
 		break;
 	}
 
 	myMessageQueue.push(message);
+}
+
+KeyboardKey WindowsWindow::ConvertVirtualKey(const WPARAM & aVirtualKey)
+{
+	switch (aVirtualKey)
+	{
+	case 0x30:
+		return KeyboardKey::eNum0;
+	case 0x31:
+		return KeyboardKey::eNum1;
+	case 0x32:
+		return KeyboardKey::eNum2;
+	case 0x33:
+		return KeyboardKey::eNum3;
+	case 0x34:
+		return KeyboardKey::eNum4;
+	case 0x35:
+		return KeyboardKey::eNum5;
+	case 0x36:
+		return KeyboardKey::eNum6;
+	case 0x37:
+		return KeyboardKey::eNum7;
+	case 0x38:
+		return KeyboardKey::eNum8;
+	case 0x39:
+		return KeyboardKey::eNum9;
+	case 0x41:
+		return KeyboardKey::eA;
+	case 0x42:
+		return KeyboardKey::eB;
+	case 0x43:
+		return KeyboardKey::eC;
+	case 0x44:
+		return KeyboardKey::eD;
+	case 0x45:
+		return KeyboardKey::eE;
+	case 0x46:
+		return KeyboardKey::eF;
+	case 0x47:
+		return KeyboardKey::eG;
+	case 0x48:
+		return KeyboardKey::eH;
+	case 0x49:
+		return KeyboardKey::eI;
+	case 0x4A:
+		return KeyboardKey::eJ;
+	case 0x4B:
+		return KeyboardKey::eK;
+	case 0x4C:
+		return KeyboardKey::eL;
+	case 0x4D:
+		return KeyboardKey::eM;
+	case 0x4E:
+		return KeyboardKey::eN;
+	case 0x4F:
+		return KeyboardKey::eO;
+	case 0x50:
+		return KeyboardKey::eP;
+	case 0x51:
+		return KeyboardKey::eQ;
+	case 0x52:
+		return KeyboardKey::eR;
+	case 0x53:
+		return KeyboardKey::eS;
+	case 0x54:
+		return KeyboardKey::eT;
+	case 0x55:
+		return KeyboardKey::eU;
+	case 0x56:
+		return KeyboardKey::eV;
+	case 0x57:
+		return KeyboardKey::eW;
+	case 0x58:
+		return KeyboardKey::eX;
+	case 0x59:
+		return KeyboardKey::eY;
+	case 0x5A:
+		return KeyboardKey::eZ;
+	case VK_F1:
+		return KeyboardKey::eF1;
+	case VK_F2:
+		return KeyboardKey::eF2;
+	case VK_F3:
+		return KeyboardKey::eF3;
+	case VK_F4:
+		return KeyboardKey::eF4;
+	case VK_F5:
+		return KeyboardKey::eF5;
+	case VK_F6:
+		return KeyboardKey::eF6;
+	case VK_F7:
+		return KeyboardKey::eF7;
+	case VK_F8:
+		return KeyboardKey::eF8;
+	case VK_F9:
+		return KeyboardKey::eF9;
+	case VK_F10:
+		return KeyboardKey::eF10;
+	case VK_F11:
+		return KeyboardKey::eF11;
+	case VK_F12:
+		return KeyboardKey::eF12;
+	case VK_ESCAPE:
+		return KeyboardKey::eEscape;
+	case VK_RETURN:
+		return KeyboardKey::eReturn;
+	case VK_SPACE:
+		return KeyboardKey::eSpace;
+	case VK_CONTROL:
+		return KeyboardKey::eControl;
+	case VK_SHIFT:
+		return KeyboardKey::eShift;
+	case VK_LEFT:
+		return KeyboardKey::eLeft;
+	case VK_RIGHT:
+		return KeyboardKey::eRight;
+	case VK_UP:
+		return KeyboardKey::eUp;
+	case VK_DOWN:
+		return KeyboardKey::eDown;
+	default:
+		return KeyboardKey::eNone;
+	}
 }

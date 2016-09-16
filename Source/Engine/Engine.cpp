@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "Engine.h"
 #include "DXRenderer.h"
+#include "FileChangeWatcher.h"
 
 Engine * Engine::ourInstance = nullptr;
 
 Engine::Engine()
 {
 	myRenderer = std::make_unique<DXRenderer>();
+	myFileWatcher = std::make_unique<FileChangeWatcher>();
 }
 
 Engine::~Engine()

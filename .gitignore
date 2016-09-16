@@ -257,3 +257,4 @@ paket-files/
 *.exe
 
 !extlibs/**
+*.obj.enc
