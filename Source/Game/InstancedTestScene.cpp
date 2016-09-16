@@ -10,7 +10,7 @@ InstancedTestScene::InstancedTestScene()
 {
 	auto cube = std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
 
-	float size = 15.f;
+	float size = 5.f;
 	float offset = 4.5f;
 	for (float x = -size / 2.0f; x < size / 2.0f; x += 1.0f)
 	{

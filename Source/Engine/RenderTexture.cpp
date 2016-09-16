@@ -49,6 +49,19 @@ void RenderTexture::Bind(int aSlot, bool aUpdateViewport)
 	ID3D11DepthStencilView * depthStencilView;
 	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);
 
+	for (size_t i = 0; i < D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT; i++)
+	{
+		if (renderTargets[i])
+		{
+			renderTargets[i]->Release();
+		}
+	}
+
+	if (depthStencilView)
+	{
+		depthStencilView->Release();
+	}
+
 	renderTargets[aSlot] = myRenderTargetView;
 
 	if (myDepthBuffer != nullptr)
@@ -57,7 +70,7 @@ void RenderTexture::Bind(int aSlot, bool aUpdateViewport)
 	}
 
 	Engine::GetInstance().GetRenderer().GetContext()->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, depthStencilView);
-
+	
 	if (aUpdateViewport)
 	{
 		Engine::GetInstance().GetRenderer().SetViewport(Vector2f::Zero, Vector2f(static_cast<float>(myWidth), static_cast<float>(myHeight)));

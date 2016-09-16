@@ -7,10 +7,8 @@
 DepthBuffer::DepthBuffer(unsigned int aWidth, unsigned int aHeight)
 {
 	D3D11_TEXTURE2D_DESC depthBufferDesc;
-	// Initialize the description of the depth buffer.
-	ZeroMemory(&depthBufferDesc, sizeof(depthBufferDesc));
+	memset(&depthBufferDesc, 0, sizeof(depthBufferDesc));
 
-	// Set up the description of the depth buffer.
 	depthBufferDesc.Width = aWidth;
 	depthBufferDesc.Height = aHeight;
 	depthBufferDesc.MipLevels = 1;
@@ -23,14 +21,13 @@ DepthBuffer::DepthBuffer(unsigned int aWidth, unsigned int aHeight)
 	depthBufferDesc.CPUAccessFlags = 0;
 	depthBufferDesc.MiscFlags = 0;
 
-	// CreateInputLayout the texture for the depth buffer using the filled out description.
 	CheckDXError(
 		Engine::GetInstance().GetRenderer().GetDevice()->CreateTexture2D(&depthBufferDesc, NULL, &myDepthStencilBuffer)
 	);
 
 	// Initialize the depth stencil view.
 	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
-	ZeroMemory(&depthStencilViewDesc, sizeof(depthStencilViewDesc));
+	memset(&depthStencilViewDesc, 0, sizeof(depthStencilViewDesc));
 
 	// Set up the depth stencil view description.
 	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -70,6 +67,20 @@ void DepthBuffer::Bind()
 	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
 	ID3D11DepthStencilView * depthStencilView;
 	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);
+
+	for (size_t i = 0; i < D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT; i++)
+	{
+		if (renderTargets[i])
+		{
+			renderTargets[i]->Release();
+		}
+	}
+
+	if (depthStencilView)
+	{
+		depthStencilView->Release();
+	}
+
 	Engine::GetInstance().GetRenderer().GetContext()->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, myDepthStencilView);
 }
 
@@ -78,6 +89,20 @@ void DepthBuffer::Unbind()
 	struct ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
 	ID3D11DepthStencilView * depthStencilView;
 	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);
+
+	for (size_t i = 0; i < D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT; i++)
+	{
+		if (renderTargets[i])
+		{
+			renderTargets[i]->Release();
+		}
+	}
+
+	if (depthStencilView)
+	{
+		depthStencilView->Release();
+	}
+
 	Engine::GetInstance().GetRenderer().GetContext()->OMSetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, nullptr);
 }
 
