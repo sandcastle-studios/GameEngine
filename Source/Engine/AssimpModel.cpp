@@ -35,7 +35,7 @@ AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::str
 		if (model->myTextures[i].size() == 0)
 			continue;
 
-		std::shared_ptr<Texture> texture = std::make_shared<Texture>(modelDirectory + model->myTextures[i]);
+		std::shared_ptr<Texture> texture = Engine::GetResourceManager().Get<Texture>(modelDirectory + model->myTextures[i]);
 
 		for (size_t j = 0; j < GetMeshes().size(); j++)
 		{

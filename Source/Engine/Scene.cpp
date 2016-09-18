@@ -31,6 +31,8 @@ Scene::~Scene()
 
 void Scene::Update(const Time & aDeltaTime)
 {
+	Engine::GetResourceManager().Update();
+
 	myTime += aDeltaTime;
 }
 

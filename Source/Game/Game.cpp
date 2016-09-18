@@ -71,19 +71,13 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<InstancedTestScene>();
+	myScene = std::make_unique<SlideShowScene>();
 
 	CreatePerspective();
 }
 
 void Game::Update(const Time &aDeltaTime)
 {
-	std::string changedFile;
-	while (Engine::GetInstance().GetFileWatcher().QueryFileChanges(changedFile))
-	{
-		std::cout << changedFile << " changed!" << std::endl;
-	}
-
 	if (myScene != nullptr)
 	{
 		myScene->Update(aDeltaTime);

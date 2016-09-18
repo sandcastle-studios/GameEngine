@@ -5,6 +5,7 @@
 #include "dds.h"
 
 Texture::Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget)
+	: Resource("")
 {
 	myWidth = aWidth;
 	myHeight = aHeight;
@@ -31,38 +32,16 @@ Texture::Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget
 	);
 }
 
-Texture::Texture(const wchar_t * aPath)
-{
-	DirectX::DDS_HEADER header;
-
-	ID3D11Resource * texture;
-	CheckDXError(
-		DirectX::CreateDDSTextureFromFile(Engine::GetInstance().GetRenderer().GetDevice(), aPath, &texture, &myTextureView, &header)
-	);
-
-	myTexture = reinterpret_cast<ID3D11Texture2D*>(texture);
-	myWidth = header.width;
-	myHeight = header.height;
-
-	if (myTexture == nullptr)
-	{
-		Error("Only 2D-textures are supported!");
-		return;
-	}
-
-}
-
-Texture::Texture(const std::wstring & aPath)
-	: Texture(aPath.c_str())
-{
-}
-
 Texture::Texture(const std::string & aPath)
-	: Texture(std::wstring(aPath.begin(), aPath.end()))
+	: Resource(aPath)
 {
+	myTexture = nullptr;
+	myTextureView = nullptr;
+	Reload();
 }
 
 Texture::Texture(ID3D11Texture2D* aTexture, ID3D11ShaderResourceView* aResourceView, int aWidth, int aHeight)
+	: Resource("")
 {
 	myTexture = aTexture;
 	myTexture->AddRef();
@@ -70,11 +49,6 @@ Texture::Texture(ID3D11Texture2D* aTexture, ID3D11ShaderResourceView* aResourceV
 	myTextureView->AddRef();
 	myWidth = aWidth;
 	myHeight = aHeight;
-}
-
-Texture::Texture(const char * aPath)
-	: Texture(std::string(aPath))
-{
 }
 
 Texture::~Texture()
@@ -117,3 +91,32 @@ ID3D11Texture2D* Texture::GetTexture()
 {
 	return myTexture;
 }
+
+void Texture::Reload()
+{
+	SAFE_RELEASE(myTextureView);
+	SAFE_RELEASE(myTexture);
+	
+	DirectX::DDS_HEADER header;
+
+	const std::string & path = GetPath();
+
+	ID3D11Resource * texture;
+	CheckDXError(
+		DirectX::CreateDDSTextureFromFile(Engine::GetInstance().GetRenderer().GetDevice(), std::wstring(path.begin(), path.end()).c_str(), &texture, &myTextureView, &header)
+	);
+
+	CheckDXError(
+		texture->QueryInterface(__uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&myTexture));
+	);
+
+	myWidth = header.width;
+	myHeight = header.height;
+
+	if (myTexture == nullptr)
+	{
+		Error("Only 2D-textures are supported!");
+		return;
+	}
+}
+

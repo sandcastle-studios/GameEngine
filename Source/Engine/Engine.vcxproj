@@ -249,6 +249,7 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FileChangeWatcher.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InputLayout.h" />
     <ClInclude Include="KeyboardKey.h" />
@@ -263,6 +264,7 @@
     <ClInclude Include="PlaneModel.h" />
     <ClInclude Include="PlatformHelpers.h" />
     <ClInclude Include="RenderTexture.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderResourceBuffer.h" />
@@ -272,10 +274,12 @@
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="SpriteVertex.h" />
     <ClInclude Include="StandardEffect.h" />
+    <ClInclude Include="StateContainer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stopwatch.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureDebugger.h" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TriangleModel.h" />
     <ClInclude Include="Vector2.h" />
@@ -302,6 +306,7 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FileChangeWatcher.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -312,6 +317,7 @@
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="PlaneModel.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderResourceBuffer.cpp" />
@@ -329,6 +335,7 @@
     <ClCompile Include="Stopwatch.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureDebugger.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="TriangleModel.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />

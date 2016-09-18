@@ -56,6 +56,11 @@
     <ClInclude Include="StandardEffect.h" />
     <ClInclude Include="KeyboardKey.h" />
     <ClInclude Include="FileChangeWatcher.h" />
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -94,5 +99,15 @@
     <ClCompile Include="StandardEffect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="FileChangeWatcher.cpp" />
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{e575af88-297e-4af4-9aed-230f90652816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

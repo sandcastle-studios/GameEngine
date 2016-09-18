@@ -2,12 +2,14 @@
 
 class DXRenderer;
 class FileChangeWatcher;
+class ResourceManager;
 
 class Engine
 {
 public:
-	DXRenderer & GetRenderer();
-	FileChangeWatcher & GetFileWatcher();
+	static DXRenderer & GetRenderer();
+	static FileChangeWatcher & GetFileWatcher();
+	static ResourceManager & GetResourceManager();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -19,6 +21,7 @@ private:
 
 	std::unique_ptr<DXRenderer> myRenderer;
 	std::unique_ptr<FileChangeWatcher> myFileWatcher;
+	std::unique_ptr<ResourceManager> myResourceManager;
 
 	static Engine * ourInstance;
 };
@@ -31,10 +34,15 @@ inline Engine & Engine::GetInstance()
 
 inline DXRenderer & Engine::GetRenderer()
 {
-	return *myRenderer;
+	return *GetInstance().myRenderer;
 }
 
 inline FileChangeWatcher & Engine::GetFileWatcher()
 {
-	return *myFileWatcher;
+	return *GetInstance().myFileWatcher;
+}
+
+inline ResourceManager& Engine::GetResourceManager()
+{
+	return *GetInstance().myResourceManager;
 }

@@ -3,13 +3,10 @@
 struct ID3D11Texture2D;
 struct ID3D11ShaderResourceView;
 
-class Texture
+class Texture : public Resource
 {
 public:
 	Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget = false);
-	Texture(const wchar_t * aPath);
-	Texture(const std::wstring & aPath);
-	Texture(const char * aPath);
 	Texture(const std::string & aPath);
 	Texture(ID3D11Texture2D * aTexture, ID3D11ShaderResourceView * aResourceView, int aWidth, int aHeight);
 	~Texture();
@@ -22,6 +19,8 @@ public:
 	void BindToDS(int aSlot);
 
 	ID3D11Texture2D * GetTexture();
+
+	void Reload() override;
 
 private:
 	ID3D11Texture2D * myTexture;
