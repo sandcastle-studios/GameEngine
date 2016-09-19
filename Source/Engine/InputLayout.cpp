@@ -22,7 +22,7 @@ void InputLayout::Add(const char *aSemanticName, const int aSemanticIndex, const
 
 	desc.SemanticName = aSemanticName;
 	desc.SemanticIndex = aSemanticIndex;
-	desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	desc.Format = aFormat;
 	desc.InputSlot = aInputSlot;
 	desc.AlignedByteOffset = myDescription.size() > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
 	desc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
@@ -38,7 +38,7 @@ void InputLayout::AddPerInstance(const char *aSemanticName, const int aSemanticI
 
 	desc.SemanticName = aSemanticName;
 	desc.SemanticIndex = aSemanticIndex;
-	desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+	desc.Format = aFormat;
 	desc.InputSlot = aInputSlot;
 	desc.AlignedByteOffset = myPerInstanceCount > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
 	desc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;

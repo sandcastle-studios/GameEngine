@@ -36,7 +36,7 @@ void SlideShowScene::Update(const Time &aDeltaTime)
 
 	if (myCurrentModelTime > myTimePerModel)
 	{
-		// NextModel();
+		NextModel();
 	}
 
 	Vector3f nextModelPosition;

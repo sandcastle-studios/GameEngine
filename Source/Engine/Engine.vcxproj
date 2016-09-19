@@ -248,6 +248,7 @@
     <ClInclude Include="DXRenderer.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="FileChangedEvent.h" />
     <ClInclude Include="FileChangeWatcher.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexBuffer.h" />
@@ -263,6 +264,7 @@
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="PlaneModel.h" />
     <ClInclude Include="PlatformHelpers.h" />
+    <ClInclude Include="PostMaster.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -305,6 +307,7 @@
     <ClCompile Include="DXRenderer.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="FileChangedEvent.cpp" />
     <ClCompile Include="FileChangeWatcher.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />

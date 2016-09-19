@@ -4,35 +4,39 @@
 #include <d3d11.h>
 #include "InputLayout.h"
 
-VertexShader::VertexShader(const char * aFileName, const char * aEntryPoint)
+VertexShader::VertexShader(const std::string & aFileName, const char * aEntryPoint)
+	: Shader(aFileName)
 {
-	ID3D10Blob * blob = CreateShader(aFileName, aEntryPoint, "vs_5_0");
-	
-	CheckDXError(
-		Engine::GetInstance().GetRenderer().GetDevice()->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, &myShader);
-	);
+	myEntryPoint = aEntryPoint;
+	myShader = nullptr;
+	myBlob = nullptr;
 
-	myBlob = blob;
+	Reload();
 }
 
 VertexShader::~VertexShader()
 {
-	if (myShader)
-	{
-		myShader->Release();
-		myShader = nullptr;
-	}
-
-	if (myBlob)
-	{
-		myBlob->Release();
-		myBlob = nullptr;
-	}
+	SAFE_RELEASE(myShader);
+	SAFE_RELEASE(myBlob);
 }
 
 void VertexShader::Bind() const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->VSSetShader(myShader, nullptr, 0);
+}
+
+void VertexShader::Reload()
+{
+	SAFE_RELEASE(myShader);
+	SAFE_RELEASE(myBlob);
+
+	ID3D10Blob * blob = CreateShader(GetPath(), myEntryPoint.c_str(), "vs_5_0");
+
+	CheckDXError(
+		Engine::GetInstance().GetRenderer().GetDevice()->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, &myShader);
+	);
+
+	myBlob = blob;
 }
 
 ID3D11InputLayout * VertexShader::CreateLayout(const InputLayout & aLayoutDescription)

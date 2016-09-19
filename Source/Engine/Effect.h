@@ -12,8 +12,8 @@ public:
 	Effect();
 	~Effect();
 
-	void AttachVertexShader(const char * aFileName, const char * aEntryPoint);
-	void AttachPixelShader(const char * aFileName, const char * aEntryPoint);
+	void AttachVertexShader(const std::string & aFileName, const char * aEntryPoint);
+	void AttachPixelShader(const std::string & aFileName, const char * aEntryPoint);
 
 	void Link(const InputLayout & aLayout);
 

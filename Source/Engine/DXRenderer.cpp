@@ -72,6 +72,9 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 			&myDeviceContext)
 	);
 
+	UINT levels;
+	myDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM,  4, &levels);
+
 #ifdef _DEBUG
 	ID3D11Debug *myD3dDebug;
 	if (SUCCEEDED(myDevice->QueryInterface(__uuidof(ID3D11Debug), (void**)&myD3dDebug)))
@@ -94,7 +97,9 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 			filter.DenyList.pIDList = hide;
 			d3dInfoQueue->AddStorageFilterEntries(&filter);
 		}
+		SAFE_RELEASE(d3dInfoQueue);
 	}
+	SAFE_RELEASE(myD3dDebug);
 #endif
 
 	CreateBuffers(aWidth, aHeight);

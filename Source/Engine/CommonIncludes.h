@@ -70,6 +70,7 @@ static const float QuarterRotation = HalfPi;
 #include "Matrix44.h"
 #include "BoundingBox.h"
 #include "Time.h"
+#include "PostMaster.h"
 #include "KeyboardKey.h"
 #include "ResourceManager.h"
 #include "Texture.h"

@@ -42,15 +42,14 @@ FileChangeWatcher::~FileChangeWatcher()
 	}*/
 }
 
-bool FileChangeWatcher::QueryFileChanges(std::string & aFileName)
+bool FileChangeWatcher::PostChanges()
 {
 	std::lock_guard<std::mutex> lock(myMutex);
-	if (myQueuedChanges.empty() == true)
+	for (size_t i=0; i<myChanges.size(); i++)
 	{
-		return false;
+		PostMaster::Post(FileChangedEvent(myChanges[i]));
 	}
-	aFileName = myQueuedChanges.front();
-	myQueuedChanges.pop();
+	myChanges.clear();
 	return true;
 }
 
@@ -155,7 +154,7 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch)
 				{
 					std::lock_guard<std::mutex> lock(myMutex);
 
-					myQueuedChanges.push(fileName);
+					myChanges.push_back(fileName);
 
 					lastTime[fileName] = currentTime;
 				}

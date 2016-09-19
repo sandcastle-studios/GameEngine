@@ -13,16 +13,19 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::Update()
 {
-	std::string changedFile;
-	while (Engine::GetFileWatcher().QueryFileChanges(changedFile))
-	{
-		auto &&it = myLoadedResources.find(changedFile);
+	Engine::GetFileWatcher().PostChanges();
+}
 
-		if (it != myLoadedResources.end())
-		{
-			it->second->Get()->Reload();
-		}
+ReceiveResult ResourceManager::Receive(const FileChangedEvent & aMessage)
+{
+	auto &&it = myLoadedResources.find(aMessage.GetPath());
+
+	if (it != myLoadedResources.end())
+	{
+		it->second->Get()->Reload();
 	}
+
+	return ReceiveResult::eContinue;
 }
 
 Resource::Resource(const std::string & aFilePath)

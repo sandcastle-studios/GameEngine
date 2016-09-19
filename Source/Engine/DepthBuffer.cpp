@@ -31,7 +31,7 @@ DepthBuffer::DepthBuffer(unsigned int aWidth, unsigned int aHeight)
 
 	// Set up the depth stencil view description.
 	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D; // D3D11_DSV_DIMENSION_TEXTURE2DMS for multisample support;
 	depthStencilViewDesc.Texture2D.MipSlice = 0;
 
 	// CreateInputLayout the depth stencil view.
@@ -44,7 +44,7 @@ DepthBuffer::DepthBuffer(unsigned int aWidth, unsigned int aHeight)
 	D3D11_SHADER_RESOURCE_VIEW_DESC shaderResourceDesc;
 	memset(&shaderResourceDesc, 0, sizeof(shaderResourceDesc));
 	shaderResourceDesc.Format = DXGI_FORMAT_R24_UNORM_X8_TYPELESS;
-	shaderResourceDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	shaderResourceDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D; // D3D11_SRV_DIMENSION_TEXTURE2DMS for multisample support
 	shaderResourceDesc.Texture2D.MostDetailedMip = 0;
 	shaderResourceDesc.Texture2D.MipLevels = static_cast<UINT>(-1);
 

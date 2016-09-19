@@ -55,27 +55,18 @@ PixelOutputType PShader(PixelInputType input)
 	
 	float3 sampledColor = boundTexture.Sample(samplerState, input.uv).xyz;
 	
-	const float3 lightDirection = normalize(float3(-1.0f, -1.0f, 1.0f));
-	const float3 lightColor = float3(1.0f, 1.0f, 1.0f);
+	const float3 directionToLight = normalize(float3(1.0f, 1.0f, -1.0f));
+	const float3 lightColor = float3(1.0f, 1.0f, 1.0f) * 0.5f;
 	
-	float3 eyeDistance = cameraPosition.xyz - input.worldPosition.xyz;
-	eyeDistance += -lightDirection;
-	eyeDistance /= 2.0f;
-	float3 halfAngleVector = normalize(eyeDistance);
+	float3 toEye = cameraPosition.xyz - input.worldPosition.xyz;
+	float3 toEyeNormal = normalize(toEye);
 	
-	float normalLightDirDot = clamp(dot(input.normal.xyz, -lightDirection), 0.0f, 1.0f);
-	float3 diffuse = (sampledColor * normalLightDirDot) * lightColor;
+	float3 normal = normalize(input.normal.xyz);
 	
-	float halfVectorNormal = clamp(dot(halfAngleVector, input.normal.xyz), 0.0f, 1.0f);
-	float specularPower = 12.0f;
-	halfVectorNormal = pow(halfVectorNormal, specularPower);
+	float halfVector = normalize(directionToLight + toEyeNormal);
 	
-	float3 specular = lightColor * halfVectorNormal;
-	
-	output.color = float4(diffuse + specular, 1.0f);
-	output.color.r = clamp(output.color.r, 0.0f, 1.0f);
-	output.color.g = clamp(output.color.g, 0.0f, 1.0f);
-	output.color.b = clamp(output.color.b, 0.0f, 1.0f);
+	output.color = float4(	max(dot(normal, directionToLight), 0.0f) * sampledColor + 
+							pow(max(dot(normal, halfVector), 0.0f), 2.0f) * lightColor, 1.0f);
 	
 	const float globalIllumination = 0.2f;
 	output.color = output.color * (1.0f - globalIllumination) + float4(sampledColor, 1.0f) * globalIllumination;

@@ -1,4 +1,5 @@
 #pragma once
+#include "FileChangedEvent.h"
 
 enum class LoadError
 {
@@ -41,7 +42,7 @@ private:
 	std::weak_ptr<Resource> myResource;
 };
 
-class ResourceManager
+class ResourceManager : public Subscriber<FileChangedEvent>
 {
 public:
 	ResourceManager();
@@ -49,6 +50,8 @@ public:
 	void Update();
 	template <typename TResourceType>
 	std::shared_ptr<TResourceType> Get(const std::string &aPath, LoadError * aError = nullptr);
+
+	ReceiveResult Receive(const FileChangedEvent& aMessage) override;
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<LoadedResource>> myLoadedResources;

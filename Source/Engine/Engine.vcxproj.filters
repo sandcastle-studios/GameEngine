@@ -9,105 +9,268 @@
     <ClInclude Include="Size.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Engine.h" />
-    <ClInclude Include="DXRenderer.h" />
-    <ClInclude Include="VertexBuffer.h" />
-    <ClInclude Include="SimpleVertex.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="VertexShader.h" />
-    <ClInclude Include="PixelShader.h" />
-    <ClInclude Include="Effect.h" />
-    <ClInclude Include="InputLayout.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="Vector4.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Model.h" />
-    <ClInclude Include="TriangleModel.h" />
-    <ClInclude Include="ModelInstance.h" />
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="ConstantBuffer.h" />
-    <ClInclude Include="ShaderResourceBuffer.h" />
-    <ClInclude Include="Matrix33.h" />
-    <ClInclude Include="Matrix44.h" />
-    <ClInclude Include="IndexBuffer.h" />
-    <ClInclude Include="CubeModel.h" />
-    <ClInclude Include="VertexPosColUV.h" />
-    <ClInclude Include="Texture.h" />
-    <ClInclude Include="DDSTextureLoader.h" />
-    <ClInclude Include="DirectXHelpers.h" />
-    <ClInclude Include="PlatformHelpers.h" />
-    <ClInclude Include="dds.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Stopwatch.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="PlaneModel.h" />
-    <ClInclude Include="Skybox.h" />
-    <ClInclude Include="RenderTexture.h" />
-    <ClInclude Include="TextureDebugger.h" />
-    <ClInclude Include="SpriteVertex.h" />
-    <ClInclude Include="DepthBuffer.h" />
-    <ClInclude Include="ModelRenderer.h" />
-    <ClInclude Include="ModelBatch.h" />
-    <ClInclude Include="SpriteRenderer.h" />
-    <ClInclude Include="AssimpModel.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="BoundingBox.h" />
-    <ClInclude Include="Vertex.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="StandardEffect.h" />
     <ClInclude Include="KeyboardKey.h" />
     <ClInclude Include="FileChangeWatcher.h" />
     <ClInclude Include="GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="StateContainer.h" />
+    <ClInclude Include="AssimpModel.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeModel.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="dds.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DepthBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXHelpers.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DXRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelBatch.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelInstance.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneModel.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformHelpers.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTexture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderResourceBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleVertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteVertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardEffect.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureDebugger.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleModel.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexPosColUV.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix33.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix44.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Stopwatch.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="PostMaster.h">
+      <Filter>PostMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="FileChangedEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowsWindow.cpp" />
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="DXRenderer.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
-    <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="VertexShader.cpp" />
-    <ClCompile Include="PixelShader.cpp" />
-    <ClCompile Include="Effect.cpp" />
-    <ClCompile Include="InputLayout.cpp" />
-    <ClCompile Include="Model.cpp" />
-    <ClCompile Include="TriangleModel.cpp" />
-    <ClCompile Include="ModelInstance.cpp" />
-    <ClCompile Include="Buffer.cpp" />
-    <ClCompile Include="ConstantBuffer.cpp" />
-    <ClCompile Include="ShaderResourceBuffer.cpp" />
-    <ClCompile Include="IndexBuffer.cpp" />
-    <ClCompile Include="CubeModel.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Stopwatch.cpp" />
-    <ClCompile Include="PlaneModel.cpp" />
-    <ClCompile Include="Skybox.cpp" />
-    <ClCompile Include="RenderTexture.cpp" />
-    <ClCompile Include="TextureDebugger.cpp" />
-    <ClCompile Include="DepthBuffer.cpp" />
-    <ClCompile Include="ModelRenderer.cpp" />
-    <ClCompile Include="ModelBatch.cpp" />
-    <ClCompile Include="SpriteRenderer.cpp" />
-    <ClCompile Include="AssimpModel.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="StandardEffect.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="FileChangeWatcher.cpp" />
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="AssimpModel.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeModel.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DepthBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DXRenderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelBatch.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelInstance.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelRenderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneModel.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTexture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderResourceBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardEffect.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureDebugger.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleModel.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Stopwatch.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="FileChangedEvent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
       <UniqueIdentifier>{e575af88-297e-4af4-9aed-230f90652816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{5b128140-d6a3-4198-97da-6143e9d957db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{8bfdc100-5c8f-4ed3-8360-200107fc3fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostMaster">
+      <UniqueIdentifier>{5ede3819-4343-4daa-a253-5a7f1c85d57a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -30,14 +30,14 @@ Effect::~Effect()
 	}
 }
 
-void Effect::AttachVertexShader(const char * aFileName, const char * aEntryPoint)
+void Effect::AttachVertexShader(const std::string & aFileName, const char * aEntryPoint)
 {
 	assert("Effect already linked" && myIsLinked == false);
 	assert("Vertex shader already attached" && myVertexShader == nullptr);
 	myVertexShader = new VertexShader(aFileName, aEntryPoint);
 }
 
-void Effect::AttachPixelShader(const char * aFileName, const char * aEntryPoint)
+void Effect::AttachPixelShader(const std::string & aFileName, const char * aEntryPoint)
 {
 	assert("Effect already linked" && myIsLinked == false);
 	assert("Pixel shader already attached" && myPixelShader == nullptr);

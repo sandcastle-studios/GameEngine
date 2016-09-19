@@ -8,13 +8,16 @@ class InputLayout;
 class VertexShader : public Shader
 {
 public:
-	VertexShader(const char * aFileName, const char * aEntryPoint);
+	VertexShader(const std::string & aFileName, const char * aEntryPoint);
 	~VertexShader();
 	
-	virtual void Bind() const override;
+	void Bind() const override;
+	void Reload() override;
 
 	ID3D11InputLayout * CreateLayout(const InputLayout & aLayoutDescription);
+
 private:
+	std::string myEntryPoint;
 	ID3D11VertexShader * myShader;
 	ID3D10Blob * myBlob;
 };

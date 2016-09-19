@@ -14,7 +14,7 @@ public:
 	FileChangeWatcher(const wchar_t * aDirectory = nullptr, FileChangeWatcherNotificationFormat aFormat = FileChangeWatcherNotificationFormat::eForwardSlashes, float aMinimumTimeDifference = 0.1f);
 	~FileChangeWatcher();
 
-	bool QueryFileChanges(std::string & aFileName);
+	bool PostChanges();
 
 private:
 	void ThreadFunction(std::wstring aDirectoryToWatch);
@@ -25,7 +25,7 @@ private:
 	std::unordered_map<std::string, float> lastTime;
 
 	std::mutex myMutex;
-	std::queue<std::string> myQueuedChanges;
+	std::vector<std::string> myChanges;
 
 	float myMinimumTimeDifference;
 };

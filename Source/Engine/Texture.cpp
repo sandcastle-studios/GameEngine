@@ -110,6 +110,9 @@ void Texture::Reload()
 		texture->QueryInterface(__uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&myTexture));
 	);
 
+	// QueryInterface calls AddRef, get rid of our old reference
+	SAFE_RELEASE(texture);
+
 	myWidth = header.width;
 	myHeight = header.height;
 
