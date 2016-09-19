@@ -27,7 +27,6 @@ public:
 	static void Distribute(const TMessageType & aMessageType);
 
 private:
-
 	static std::vector<SubscriptionContainer<TMessageType>> ourSubscribers;
 	static size_t ourEnumerationCounter;
 };
@@ -47,7 +46,7 @@ void MessageCollection<TMessageType>::AddSubscriber(Subscriber<TMessageType> & a
 	container.subscriber = &aSubscriber;
 
 	// Insert subscriber before first element that has the same or greater priority than it resulting in it being called last
-	auto it = std::lower_bound(ourSubscribers.begin(), ourSubscribers.end(), container, [&](const SubscriptionContainer<TMessageType> & aLeft, const SubscriptionContainer<TMessageType> & aRight) -> bool
+	auto it = std::lower_bound(ourSubscribers.begin(), ourSubscribers.end(), container, [](const SubscriptionContainer<TMessageType> & aLeft, const SubscriptionContainer<TMessageType> & aRight) -> bool
 	{
 		return aLeft.priority < aRight.priority;
 	});
@@ -62,7 +61,7 @@ void MessageCollection<TMessageType>::RemoveSubscriber(const Subscriber<TMessage
 	SubscriptionContainer<TMessageType> referenceContainer;
 	referenceContainer.priority = aSubscriber.GetPriority();
 
-	auto it = std::lower_bound(ourSubscribers.begin(), ourSubscribers.end(), referenceContainer, [&] (const SubscriptionContainer<TMessageType> & aLeft, const SubscriptionContainer<TMessageType> & aRight) -> bool
+	auto it = std::lower_bound(ourSubscribers.begin(), ourSubscribers.end(), referenceContainer, [] (const SubscriptionContainer<TMessageType> & aLeft, const SubscriptionContainer<TMessageType> & aRight) -> bool
 	{
 		return aLeft.priority < aRight.priority;
 	});
@@ -97,8 +96,9 @@ void MessageCollection<TMessageType>::Distribute(const TMessageType& aMessageTyp
 
 	for (int i=static_cast<int>(ourSubscribers.size()) - 1; i >= 0; i--)
 	{
-		if (ourSubscribers[i].isRemoved)
+		if (ourSubscribers[i].isRemoved == true)
 		{
+			// We can only safely remove components when we know we're the only function iterating
 			if (ourEnumerationCounter == 1)
 			{
 				ourSubscribers.erase(ourSubscribers.begin() + i);

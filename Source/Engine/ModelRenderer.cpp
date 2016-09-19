@@ -153,7 +153,7 @@ bool BatchEntry::IsScheduled()
 
 void BatchEntry::AddInstance(const Matrix44f & aMatrix)
 {
-	if (myMatrixCounter + 1 >= myMatrices.size())
+	if (myMatrixCounter + 1 >= static_cast<int>(myMatrices.size()))
 	{
 		myMatrices.resize(myMatrices.size() * 2);
 	}
