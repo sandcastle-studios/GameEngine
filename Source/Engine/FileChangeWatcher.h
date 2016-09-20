@@ -17,11 +17,11 @@ public:
 	bool PostChanges();
 
 private:
-	void ThreadFunction(std::wstring aDirectoryToWatch);
+	void ThreadFunction(std::wstring aDirectoryToWatch, std::atomic<bool> *stopThreadFlag);
 
 	std::thread * myThread;
 	FileChangeWatcherNotificationFormat myFormat;
-	std::atomic<bool> myStopThread;
+	std::atomic<bool> *myStopThread;
 	std::unordered_map<std::string, float> lastTime;
 
 	std::mutex myMutex;

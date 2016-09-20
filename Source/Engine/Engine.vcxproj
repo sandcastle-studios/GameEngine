@@ -242,11 +242,13 @@
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CommandLineParameters.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="CubeModel.h" />
     <ClInclude Include="dds.h" />
     <ClInclude Include="DDSTextureLoader.h" />
+    <ClInclude Include="DebugLogger.h" />
     <ClInclude Include="DepthBuffer.h" />
     <ClInclude Include="DirectXHelpers.h" />
     <ClInclude Include="DXRenderer.h" />
@@ -283,6 +285,7 @@
     <ClInclude Include="StateContainer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Stopwatch.h" />
+    <ClInclude Include="StringFormatter.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureDebugger.h" />
     <ClInclude Include="TextureLoader.h" />
@@ -304,9 +307,11 @@
     <ClCompile Include="AssimpModel.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CommandLineParameters.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="CubeModel.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
+    <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="DepthBuffer.cpp" />
     <ClCompile Include="DXRenderer.cpp" />
     <ClCompile Include="Effect.cpp" />

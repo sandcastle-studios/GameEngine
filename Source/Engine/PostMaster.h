@@ -117,7 +117,7 @@ void MessageCollection<TMessageType>::Distribute(const TMessageType& aMessageTyp
 	ourEnumerationCounter--;
 }
 
-template<typename TMessageType>
+template<typename TMessageType = void>
 class Subscriber
 {
 public:

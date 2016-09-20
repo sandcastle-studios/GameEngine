@@ -3,6 +3,7 @@
 class DXRenderer;
 class FileChangeWatcher;
 class ResourceManager;
+class DebugLogger;
 
 class Engine
 {
@@ -10,6 +11,7 @@ public:
 	static DXRenderer & GetRenderer();
 	static FileChangeWatcher & GetFileWatcher();
 	static ResourceManager & GetResourceManager();
+	static DebugLogger & GetLogger();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -22,6 +24,7 @@ private:
 	std::unique_ptr<DXRenderer> myRenderer;
 	std::unique_ptr<FileChangeWatcher> myFileWatcher;
 	std::unique_ptr<ResourceManager> myResourceManager;
+	std::unique_ptr<DebugLogger> myDebugLogger;
 
 	static Engine * ourInstance;
 };
@@ -45,4 +48,9 @@ inline FileChangeWatcher & Engine::GetFileWatcher()
 inline ResourceManager& Engine::GetResourceManager()
 {
 	return *GetInstance().myResourceManager;
+}
+
+inline DebugLogger& Engine::GetLogger()
+{
+	return *GetInstance().myDebugLogger;
 }

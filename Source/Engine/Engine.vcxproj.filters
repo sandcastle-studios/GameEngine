@@ -154,6 +154,9 @@
       <Filter>PostMaster</Filter>
     </ClInclude>
     <ClInclude Include="FileChangedEvent.h" />
+    <ClInclude Include="DebugLogger.h" />
+    <ClInclude Include="StringFormatter.h" />
+    <ClInclude Include="CommandLineParameters.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -258,6 +261,8 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="FileChangedEvent.cpp" />
+    <ClCompile Include="DebugLogger.cpp" />
+    <ClCompile Include="CommandLineParameters.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

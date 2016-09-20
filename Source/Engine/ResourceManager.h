@@ -85,6 +85,7 @@ std::shared_ptr<TResourceType> ResourceManager::Get(const std::string& aPath, Lo
 
 	if (resourceContainer == nullptr)
 	{
+		Stopwatch watch;
 		LoadError error = LoadError::aSuccess;
 		LoadError & errorToSet = aError != nullptr ? *aError : error;
 		resource = ResourceLoader<TResourceType>::Load(aPath, errorToSet);
@@ -105,6 +106,8 @@ std::shared_ptr<TResourceType> ResourceManager::Get(const std::string& aPath, Lo
 				Error(std::string("Could not load resource \"") + aPath + std::string("\". Unknown error (") + std::to_string(static_cast<int>(errorToSet)) + std::string(")."));
 			}
 		}
+
+		Engine::GetLogger().LogResource("Resource \"{0}\" loaded in {1}ms", aPath, watch.GetElapsedTime().InMilliseconds());
 
 		myLoadedResources.emplace(aPath, std::make_shared<LoadedResource>(resource, aPath));
 	}

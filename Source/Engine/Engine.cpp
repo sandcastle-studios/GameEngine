@@ -10,6 +10,7 @@ Engine::Engine()
 	myRenderer = std::make_unique<DXRenderer>();
 	myFileWatcher = std::make_unique<FileChangeWatcher>();
 	myResourceManager = std::make_unique<ResourceManager>();
+	myDebugLogger = std::make_unique<DebugLogger>();
 }
 
 Engine::~Engine()

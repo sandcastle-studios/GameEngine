@@ -4,7 +4,6 @@
 
 FileChangeWatcher::FileChangeWatcher(const wchar_t * aDirectory, FileChangeWatcherNotificationFormat aFormat, float aMinimumTimeDifference)
 {
-	myStopThread.store(false);
 	myFormat = aFormat;
 	myMinimumTimeDifference = aMinimumTimeDifference;
 
@@ -26,16 +25,19 @@ FileChangeWatcher::FileChangeWatcher(const wchar_t * aDirectory, FileChangeWatch
 		directoryToWatch = aDirectory;
 	}
 
-	myThread = new std::thread(std::bind(&FileChangeWatcher::ThreadFunction, this, directoryToWatch));
+	myStopThread = new std::atomic<bool>();
+	myStopThread->store(false);
+	myThread = new std::thread(std::bind(&FileChangeWatcher::ThreadFunction, this, directoryToWatch, myStopThread));
 }
 
 FileChangeWatcher::~FileChangeWatcher()
 {
+	myStopThread->store(true);
+
 	/* =(
 	
 	if (myThread != nullptr)
 	{
-		myStopThread.store(true);
 		myThread->join();
 		delete myThread;
 		myThread = nullptr;
@@ -54,7 +56,7 @@ bool FileChangeWatcher::PostChanges()
 }
 
 
-void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch)
+void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch, std::atomic<bool> *stopThreadFlag)
 {
 	HANDLE directory = CreateFile(aDirectoryToWatch.c_str(), FILE_LIST_DIRECTORY, FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE, nullptr,
 		OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr);
@@ -64,8 +66,6 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch)
 		Warning("FileChangeWatcher failed, you will not be notified of changes to the directory.");
 		return;
 	}
-
-	std::cout << "FileChangeWatcher 1.0 is now watching over your directories" << std::endl;
 
 	/*HANDLE waitHandle = FindFirstChangeNotification(aDirectoryToWatch.c_str(), true, FILE_NOTIFY_CHANGE_LAST_WRITE);
 
@@ -78,7 +78,7 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch)
 	FILE_NOTIFY_INFORMATION notifications[255];
 	Stopwatch watch;
 
-	while (myStopThread.load() == false)
+	while (stopThreadFlag->load() == false)
 	{
 		/*DWORD waitStatus = WaitForSingleObject(waitHandle, 250);
 
@@ -106,6 +106,11 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch)
 
 		if (ReadDirectoryChangesW(directory, notifications, sizeof(notifications), true, FILE_NOTIFY_CHANGE_LAST_WRITE, &bytesReturned, nullptr, nullptr))
 		{
+			if (stopThreadFlag->load() == true)
+			{
+				return;
+			}
+
 			for (;;)
 			{
 				std::vector<wchar_t> data;

@@ -36,10 +36,12 @@ __forceinline T min(T a, T b)
 #include <atomic>
 #include <mutex>
 
-#include "../ModelLoader/CommonIncludes.h"
-
 #define Error(e) { std::cout << e << std::endl; abort(); }
 #define Warning(e) { std::cout << e << std::endl; }
+
+#include "StringFormatter.h"
+
+#include "../ModelLoader/CommonIncludes.h"
 
 #ifdef WINDOWS
 	#include <Windows.h>
@@ -70,7 +72,9 @@ static const float QuarterRotation = HalfPi;
 #include "Matrix44.h"
 #include "BoundingBox.h"
 #include "Time.h"
+#include "Stopwatch.h"
 #include "PostMaster.h"
+#include "DebugLogger.h"
 #include "KeyboardKey.h"
 #include "ResourceManager.h"
 #include "Texture.h"
