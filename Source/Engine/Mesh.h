@@ -15,12 +15,12 @@ class GenericMesh
 public:
 	virtual ~GenericMesh();
 
-	void SetTexture(const std::shared_ptr<Texture> & aTexture);
+	void SetTexture(int aIndex, const std::shared_ptr<Texture> & aTexture);
 
 	void Render() const;
 	void RenderInstanced(int aInstanceCount) const;
 
-	std::shared_ptr<Texture> GetTexture();
+	std::shared_ptr<Texture> GetTexture(int aIndex);
 
 	const BoundingBoxf & GetBoundingBox();
 
@@ -40,7 +40,7 @@ private:
 
 	int myVertexCount;
 	int myIndexCount;
-	std::shared_ptr<Texture> myTexture;
+	std::array<std::shared_ptr<Texture>, 11> myTexture;
 	BoundingBoxf myBoundingBox;
 	size_t myIdentifier;
 
@@ -70,7 +70,7 @@ public:
 
 template<typename TVertex>
 Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture)
-	: GenericMesh(myTexture)
+	: GenericMesh(aTexture)
 {
 
 }

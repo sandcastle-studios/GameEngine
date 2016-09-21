@@ -1,9 +1,13 @@
 #pragma once
+#include "LightConstantBufferData.h"
 
 class GenericMesh;
 template<typename T>
 class VertexBuffer;
 class ModelInstance;
+
+template <typename T>
+class ConstantBuffer;
 
 class BatchEntry
 {
@@ -43,12 +47,18 @@ public:
 	size_t GenerateBatchIdentifier(const std::shared_ptr<GenericMesh> & aMesh);
 	void ReturnBatchIdentifier(size_t aBatchIdentifier);
 
+	void SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor);
+
 private:
 	std::vector<BatchEntry*> myCurrentlyScheduledBatches;
 	std::vector<std::unique_ptr<BatchEntry>> myMeshes;
 	std::stack<size_t> myReturnedBatchIdentifiers;
 	std::vector<std::shared_ptr<VertexBuffer<Matrix44f>>> myVertexBuffers;
 
+	std::shared_ptr<ConstantBuffer<LightConstantBufferData>> myLightingBuffer;
+	LightConstantBufferData myLightingData;
+
 	bool myIsInstantRendering;
+	void UpdateAndBindLightingBuffer();
 };
 

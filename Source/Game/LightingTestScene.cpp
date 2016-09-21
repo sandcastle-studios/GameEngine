@@ -4,30 +4,33 @@
 #include <ModelInstance.h>
 #include <StandardEffect.h>
 #include <Camera.h>
-#include "..\Engine\ConstantBuffer.h"
+#include <DXRenderer.h>
+#include <ModelRenderer.h>
 
 LightingTestScene::LightingTestScene()
 {
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
-	std::shared_ptr<ModelInstance> instance = std::make_shared<ModelInstance>(model);
-	myObjects.push_back(instance);
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	myHead = std::make_shared<ModelInstance>(model);
+	myObjects.push_back(myHead);
 
-	GetCamera().SetPosition(Vector3f(-1.f, 1.f, -1.f) * 3.f);
+	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 	GetCamera().LookAt(Vector3f::Zero);
 
-	myConstantBuffer = std::make_unique<ConstantBuffer<BlendCBuffer>>();
+	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, 0.f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
 }
 
 LightingTestScene::~LightingTestScene()
 {
 }
 
+void LightingTestScene::Update(const Time & aDeltaTime)
+{
+	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()));
+
+	Scene::Update(aDeltaTime);
+}
+
 void LightingTestScene::Render()
 {
-	myConstantBuffer->UpdateData(BlendCBuffer
-	{
-		Vector4f(1.f, 0.f, 0.f, 1.f)
-	});
-	myConstantBuffer->BindToPS(1);
 	Scene::Render();
 }

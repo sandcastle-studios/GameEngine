@@ -41,9 +41,9 @@ SpriteRenderer::SpriteRenderer()
 void SpriteRenderer::RenderWholeTexture(std::shared_ptr<Texture> aTexture, const Vector2f &aTopLeft, const Vector2f &aSize)
 {
 	Engine::GetInstance().GetRenderer().SetViewport(aTopLeft, aSize);
-	myUnitMesh->SetTexture(aTexture);
+	myUnitMesh->SetTexture(0, aTexture);
 	myUnitModel->Render(Matrix44f::Identity);
-	myUnitMesh->SetTexture(nullptr);
+	myUnitMesh->SetTexture(0, nullptr);
 
 	ID3D11ShaderResourceView * views[16] = { nullptr };
 	Engine::GetInstance().GetRenderer().GetContext()->PSSetShaderResources(0, 16, views);

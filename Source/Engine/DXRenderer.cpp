@@ -214,7 +214,7 @@ void DXRenderer::ClearFrame()
 {
 	myBackbuffer->Bind(0);
 
-	myBackbuffer->Clear(Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
+	myBackbuffer->Clear(Vector4f(0.f, 0.f, 0.f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
 }
 
 void DXRenderer::Present()

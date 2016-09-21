@@ -157,6 +157,7 @@
     <ClInclude Include="DebugLogger.h" />
     <ClInclude Include="StringFormatter.h" />
     <ClInclude Include="CommandLineParameters.h" />
+    <ClInclude Include="LightConstantBufferData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

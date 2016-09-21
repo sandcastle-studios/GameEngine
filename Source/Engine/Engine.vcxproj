@@ -260,6 +260,7 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InputLayout.h" />
     <ClInclude Include="KeyboardKey.h" />
+    <ClInclude Include="LightConstantBufferData.h" />
     <ClInclude Include="Matrix33.h" />
     <ClInclude Include="Matrix44.h" />
     <ClInclude Include="Mesh.h" />

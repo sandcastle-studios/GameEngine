@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "mesh.h"
 #include "DXRenderer.h"
+#include "ConstantBuffer.h"
 
 ModelRenderer::ModelRenderer()
 {
@@ -13,6 +14,10 @@ ModelRenderer::ModelRenderer()
 	myIsInstantRendering = false;
 
 	myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, 1, false));
+	myLightingBuffer = std::make_shared<ConstantBuffer<LightConstantBufferData>>();
+
+	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
+	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
 }
 
 ModelRenderer::~ModelRenderer()
@@ -47,6 +52,8 @@ void ModelRenderer::Render(const std::shared_ptr<GenericMesh> & aMesh, const Mat
 void ModelRenderer::RenderBuffer()
 {
 	myIsInstantRendering = false;
+
+	UpdateAndBindLightingBuffer();
 
 	for (size_t i=0; i<myCurrentlyScheduledBatches.size(); i++)
 	{
@@ -110,6 +117,18 @@ void ModelRenderer::ReturnBatchIdentifier(size_t aBatchIdentifier)
 	myReturnedBatchIdentifiers.push(aBatchIdentifier);
 }
 
+void ModelRenderer::SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor)
+{
+	myLightingData.directionLight[aIndex].direction = Vector4f(aLightDirection.GetNormalized(), 1.f);
+	myLightingData.directionLight[aIndex].color = aLightColor;
+}
+
+void ModelRenderer::UpdateAndBindLightingBuffer()
+{
+	myLightingBuffer->UpdateData(myLightingData);
+	myLightingBuffer->BindToPS(1);
+}
+
 void ModelRenderer::InstantRender(const std::shared_ptr<GenericMesh> & myMesh)
 {
 	if (myIsInstantRendering == false)
@@ -126,6 +145,8 @@ void ModelRenderer::PrepareInstantRender(const Matrix44f & aWorldMatrix)
 
 	myVertexBuffers[0]->UpdateData(&aWorldMatrix, 1, false);
 	myVertexBuffers[0]->Bind(1);
+
+	UpdateAndBindLightingBuffer();
 }
 
 BatchEntry::BatchEntry(const std::shared_ptr<const GenericMesh> & aMesh)
