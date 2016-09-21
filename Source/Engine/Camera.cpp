@@ -5,8 +5,6 @@
 Camera::Camera()
 {
 	myCameraCB = std::make_unique<ConstantBuffer<CameraCB>>();
-	myYaw = 0.f;
-	myPitch = 0.f;
 }
 
 Camera::~Camera()
@@ -32,9 +30,13 @@ void Camera::ApplyToVS() const
 
 void Camera::UpdateCB() const
 {
+	Quaternion rotation = myRotation;
+	rotation.Normalize();
+	auto rotationMatrix = rotation.GenerateMatrix();
+
 	CameraCB cb;
 	cb.projection = myProjection;
-	cb.view = Matrix44f::CreateRotateAroundX(-myPitch) * Matrix44f::CreateRotateAroundY(myYaw) * Matrix44f::CreateTranslation(myPosition);
+	cb.view = rotationMatrix * Matrix44f::CreateTranslation(myPosition);
 	cb.view.Inverse();
 	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
@@ -42,9 +44,12 @@ void Camera::UpdateCB() const
 
 void Camera::ApplySkyboxMatrixToVS() const
 {
+	Quaternion rotation = myRotation;
+	rotation.Normalize();
+
 	CameraCB cb;
 	cb.projection = myProjection;
-	cb.view = Matrix44f::CreateRotateAroundX(-myPitch) * Matrix44f::CreateRotateAroundY(myYaw);
+	cb.view = rotation.GenerateMatrix();
 	cb.view.Inverse();
 	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
@@ -52,8 +57,6 @@ void Camera::ApplySkyboxMatrixToVS() const
 
 void Camera::LookAt(const Vector3f & aLookAt)
 {
-	Vector3f delta = aLookAt - GetPosition();
-	Vector3f unit = delta.GetNormalized();
-	myYaw = HalfPi - std::atan2f(delta.z, delta.x);
-	myPitch = std::asinf(unit.y);
+	Vector3f normal = (aLookAt - GetPosition()).GetNormalized();
+	myRotation = Quaternion(normal.x, normal.y, normal.z);
 }

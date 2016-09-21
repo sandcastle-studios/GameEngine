@@ -57,6 +57,7 @@ enum class KeyboardKey
 
 	eControl,
 	eShift,
+	eAlt,
 
 	eLeft,
 	eRight,

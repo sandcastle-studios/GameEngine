@@ -22,29 +22,23 @@ public:
 	void AddPosition(const Vector3f & aPositionToAdd);
 	const Vector3f & GetPosition() const;
 
-	void SetPitch(float aPitch);
-	void AddPitch(float aPitchToAdd);
-	float GetPitch() const;
-
-	void SetYaw(float aPitch);
-	void AddYaw(float aYawToAdd);
-	float GetYaw() const;
 	void LookAt(const Vector3f & aLookAt);
+
+	Quaternion& GetRototation();
+	const Quaternion& GetRototation() const;
 
 	const ConstantBuffer<CameraCB> & GetCameraConstantBuffer() const;
 
 	void ApplyToVS() const;
+	void ApplySkyboxMatrixToVS() const;
 
 	void UpdateCB() const;
 
 private:
 	std::unique_ptr<ConstantBuffer<CameraCB>> myCameraCB;
 	Vector3f myPosition;
-	float myYaw;
-	float myPitch;
+	Quaternion myRotation;
 	Matrix44f myProjection;
-public:
-	void ApplySkyboxMatrixToVS() const;
 };
 
 
@@ -63,32 +57,12 @@ inline const Vector3f & Camera::GetPosition() const
 	return myPosition;
 }
 
-inline void Camera::SetPitch(float aPitch)
+inline Quaternion & Camera::GetRototation()
 {
-	myPitch = aPitch;
+	return myRotation;
 }
 
-inline void Camera::AddPitch(float aPitchToAdd)
+inline const Quaternion & Camera::GetRototation() const
 {
-	myPitch += aPitchToAdd;
-}
-
-inline float Camera::GetPitch() const
-{
-	return myPitch;
-}
-
-inline void Camera::SetYaw(float aYaw)
-{
-	myYaw = aYaw;
-}
-
-inline void Camera::AddYaw(float aYawToAdd)
-{
-	myYaw += aYawToAdd;
-}
-
-inline float Camera::GetYaw() const
-{
-	return myYaw;
+	return myRotation;
 }

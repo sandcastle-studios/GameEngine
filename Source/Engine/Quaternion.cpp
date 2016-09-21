@@ -3,40 +3,35 @@
 
 Quaternion::Quaternion(float aX, float aY, float aZ, float aW)
 {
-	myRotation.x = aX;
-	myRotation.y = aY;
-	myRotation.z = aZ;
-	myRotationAmount = aW;
-
-	Normalize();
+	float magnitude = Vector4f(aX, aY, aZ, aW).Length();
+	x = aX / magnitude;
+	y = aY / magnitude;
+	z = aZ / magnitude;
+	w = aW / magnitude;
 }
 
 void Quaternion::Normalize()
 {
-	float magnitude = myRotation.Length();
-	
-	myRotation.x /= magnitude;
-	myRotation.y /= magnitude;
-	myRotation.z /= magnitude;
-	myRotationAmount /= magnitude;
+	*this = GetNormalized();
+}
+
+Quaternion Quaternion::GetNormalized() const
+{
+	return Quaternion(x, y, z, w);
 }
 
 void Quaternion::RotateAlongAxis(const Vector3f &aAxis, float aRotationAmount)
 {
-	/*
-	local_rotation.x = axis.x * sinf(fAngle / 2)
-	local_rotation.y = axis.y * sinf(fAngle / 2)
-	local_rotation.z = axis.z * sinf(fAngle / 2)
-	local_rotation.w = cosf(fAngle / 2)
-	*/
+	float halfAngle = sinf(aRotationAmount / 2.f);
 
 	Quaternion localRotation;
-	localRotation.myRotation.x = aAxis.x * sinf(aRotationAmount / 2.f);
-	localRotation.myRotation.y = aAxis.y * sinf(aRotationAmount / 2.f);
-	localRotation.myRotation.z = aAxis.z * sinf(aRotationAmount / 2.f);
-	localRotation.myRotationAmount = cosf(aRotationAmount / 2.f);
+	localRotation.x = aAxis.x * halfAngle;
+	localRotation.y = aAxis.y * halfAngle;
+	localRotation.z = aAxis.z * halfAngle;
+	localRotation.w = cosf(aRotationAmount / 2.f);
 
 	*this = localRotation * *this;
+	Normalize();
 }
 
 void Quaternion::Rotate(const Vector3f& aRotationAmount)
@@ -64,22 +59,12 @@ void Quaternion::RotateZ(float aRotationAmount)
 
 Quaternion Quaternion::operator*(const Quaternion& aRight) const
 {
-	/*
-	(Q1 * Q2).x = (w1*x2 + x1*w2 + y1*z2 - z1*y2)
-	(Q1 * Q2).y = (w1*y2 - x1*z2 + y1*w2 + z1*x2)
-	(Q1 * Q2).z = (w1*z2 + x1*y2 - y1*x2 + z1*w2)
-	(Q1 * Q2).w = (w1*w2 - x1*x2 - y1*y2 - z1*z2)
-	*/
-
 	Quaternion returnValue;
-	returnValue.myRotation.x = myRotationAmount * aRight.myRotation.x + myRotation.x * aRight.myRotationAmount  + myRotation.y * aRight.myRotation.z - myRotation.z * aRight.myRotation.y;
-
-	returnValue.myRotation.y = myRotationAmount * aRight.myRotation.y - myRotation.x * aRight.myRotation.z + myRotation.y * aRight.myRotationAmount + myRotation.z * aRight.myRotation.x;
-
-	returnValue.myRotation.z = myRotationAmount * aRight.myRotation.z + myRotation.x * aRight.myRotation.y - myRotation.y * aRight.myRotation.x + myRotation.z * aRight.myRotationAmount;
-
-	returnValue.myRotationAmount = myRotationAmount * aRight.myRotationAmount - myRotation.x * aRight.myRotation.x - myRotation.y * aRight.myRotation.y - myRotation.z * aRight.myRotation.z;
-
+	returnValue.x = w * aRight.x + x * aRight.w  + y * aRight.z - z * aRight.y;
+	returnValue.y = w * aRight.y - x * aRight.z + y * aRight.w + z * aRight.x;
+	returnValue.z = w * aRight.z + x * aRight.y - y * aRight.x + z * aRight.w;
+	returnValue.w = w * aRight.w - x * aRight.x - y * aRight.y - z * aRight.z;
+	returnValue.Normalize();
 	return returnValue;
 }
 
@@ -91,10 +76,10 @@ Quaternion& Quaternion::operator*=(const Quaternion& aRight)
 Matrix44f Quaternion::GenerateMatrix() const
 {
 	//Shamefully stolen from http://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
-	float X = myRotation.x;
-	float Y = myRotation.y;
-	float Z = myRotation.z;
-	float W = myRotationAmount;
+	float X = x;
+	float Y = y;
+	float Z = z;
+	float W = w;
 	float xx = X * X;
 	float xy = X * Y;
 	float xz = X * Z;
@@ -122,4 +107,34 @@ Matrix44f Quaternion::GenerateMatrix() const
 	returnValue.m44 = 1;
 
 	return returnValue;
+}
+
+Vector3f Quaternion::GetLeft() const
+{
+	return -GetRight();
+}
+
+Vector3f Quaternion::GetRight() const
+{
+	return Vector3f(1.f, 0.f, 0.f) * *this;
+}
+
+Vector3f Quaternion::GetForward() const
+{
+	return Vector3f(0.f, 0.f, 1.f) * *this;
+}
+
+Vector3f Quaternion::GetBackward() const
+{
+	return -GetForward();
+}
+
+Vector3f Quaternion::GetUpward() const
+{
+	return Vector3f(0.f, 1.f, 0.f) * *this;
+}
+
+Vector3f Quaternion::GetDownward() const
+{
+	return -GetUpward();
 }

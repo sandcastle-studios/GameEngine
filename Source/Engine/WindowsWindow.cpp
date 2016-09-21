@@ -363,6 +363,9 @@ void PostKeyboardMessage(KeyboardKey aKey, const TArguments &...args)
 	case KeyboardKey::eControl:
 		PostMaster::Post<TMessageType<KeyboardKey::eControl>>(TMessageType<KeyboardKey::eControl>(args...));
 		break;
+	case KeyboardKey::eAlt:
+		PostMaster::Post<TMessageType<KeyboardKey::eAlt>>(TMessageType<KeyboardKey::eAlt>(args...));
+		break;
 	case KeyboardKey::eShift:
 		PostMaster::Post<TMessageType<KeyboardKey::eShift>>(TMessageType<KeyboardKey::eShift>(args...));
 		break;
@@ -378,6 +381,9 @@ void PostKeyboardMessage(KeyboardKey aKey, const TArguments &...args)
 		break;
 	case KeyboardKey::eDown:
 		PostMaster::Post<TMessageType<KeyboardKey::eDown>>(TMessageType<KeyboardKey::eDown>(args...));
+		break;
+
+	case KeyboardKey::eNone:
 		break;
 
 	default:
@@ -420,10 +426,10 @@ void WindowsWindow::ReceiveMessage(HWND aHwnd, UINT aMessage, WPARAM aWParam, LP
 		message.data.keyEvent.key = ConvertVirtualKey(aWParam);
 		// Bit 0 - 15 is the repeat count
 		message.data.keyEvent.repeatCount = static_cast<int>(static_cast<uint16_t>(aLParam));
-		if (message.data.keyEvent.repeatCount == 0)
+		if (message.data.keyEvent.repeatCount == 1)
 		{
 			PostKeyboardMessage<KeyDownMessage>(message.data.keyEvent.key, message.data.keyEvent.key);
-			PostMaster::Post(AnyKeyDownMessage(KeyboardKey::eNone));
+			PostMaster::Post(AnyKeyDownMessage(message.data.keyEvent.key));
 		}
 		PostKeyboardMessage<KeyRepeatMessage>(message.data.keyEvent.key, message.data.keyEvent.key, message.data.keyEvent.repeatCount);
 		PostMaster::Post(AnyKeyRepeatMessage(message.data.keyEvent.key, message.data.keyEvent.repeatCount));
@@ -559,6 +565,8 @@ KeyboardKey WindowsWindow::ConvertVirtualKey(const WPARAM & aVirtualKey)
 		return KeyboardKey::eUp;
 	case VK_DOWN:
 		return KeyboardKey::eDown;
+	case VK_LMENU:
+		return KeyboardKey::eAlt;
 	default:
 		return KeyboardKey::eNone;
 	}
