@@ -6,11 +6,27 @@
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="SlideShowScene.h" />
     <ClInclude Include="InstancedTestScene.h" />
+    <ClInclude Include="PostMasterSample.h">
+      <Filter>Samples</Filter>
+    </ClInclude>
+    <ClInclude Include="LightingTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="SlideShowScene.cpp" />
     <ClCompile Include="InstancedTestScene.cpp" />
+    <ClCompile Include="PostMasterSample.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="LightingTestScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Samples">
+      <UniqueIdentifier>{1b727af7-3b68-415d-a128-862d4f2bfff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{6bf06b4f-4876-4253-8838-0167811395a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

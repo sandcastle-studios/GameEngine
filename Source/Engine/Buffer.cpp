@@ -84,6 +84,6 @@ void Buffer::CreateBuffer(const void *aData, int aSizeInBytes)
 
 	// CreateInputLayout the vertex buffer.
 	CheckDXError(
-		Engine::GetInstance().GetRenderer().GetDevice()->CreateBuffer(&bufferDesc, aData == nullptr ? nullptr : &initialData, &myBuffer)
+		Engine::GetRenderer().GetDevice()->CreateBuffer(&bufferDesc, aData == nullptr ? nullptr : &initialData, &myBuffer)
 	);
 }

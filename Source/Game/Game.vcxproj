@@ -241,12 +241,16 @@
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InstancedTestScene.h" />
+    <ClInclude Include="LightingTestScene.h" />
+    <ClInclude Include="PostMasterSample.h" />
     <ClInclude Include="SlideShowScene.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InstancedTestScene.cpp" />
+    <ClCompile Include="LightingTestScene.cpp" />
+    <ClCompile Include="PostMasterSample.cpp" />
     <ClCompile Include="SlideShowScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

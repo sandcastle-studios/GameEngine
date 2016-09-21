@@ -30,6 +30,11 @@ cbuffer CameraCBuffer : register(b0)
 	float4 cameraPosition;
 }
 
+cbuffer BlendCBuffer : register(b1)
+{
+	float4 blendColor;
+}
+
 Texture2D boundTexture : register( t0 );
 SamplerState samplerState;
 
@@ -63,13 +68,7 @@ PixelOutputType PShader(PixelInputType input)
 	
 	float3 normal = normalize(input.normal.xyz);
 	
-	float halfVector = normalize(directionToLight + toEyeNormal);
-	
-	output.color = float4(	max(dot(normal, directionToLight), 0.0f) * sampledColor + 
-							pow(max(dot(normal, halfVector), 0.0f), 2.0f) * lightColor, 1.0f);
-	
-	const float globalIllumination = 0.2f;
-	output.color = output.color * (1.0f - globalIllumination) + float4(sampledColor, 1.0f) * globalIllumination;
+	output.color = float4(sampledColor.xyz, 1.0f);
 	
 	return output;
 }
