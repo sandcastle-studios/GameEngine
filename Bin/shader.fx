@@ -68,7 +68,7 @@ PixelOutputType PShader(PixelInputType input)
 	
 	float3 normal = normalize(input.normal.xyz);
 	
-	output.color = float4(sampledColor.xyz, 1.0f);
+	output.color = float4(sampledColor.xyz, 1.0f) * blendColor;
 	
 	return output;
 }
