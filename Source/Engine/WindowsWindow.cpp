@@ -200,6 +200,191 @@ void * WindowsWindow::GetHandle() const
 	return myHandle;
 }
 
+template <template<KeyboardKey> typename TMessageType, typename ...TArguments>
+void PostKeyboardMessage(KeyboardKey aKey, const TArguments &...args)
+{
+	switch (aKey)
+	{
+	case KeyboardKey::eSpace:
+		PostMaster::Post<TMessageType<KeyboardKey::eSpace>>(TMessageType<KeyboardKey::eSpace>(args...));
+		break;
+	case KeyboardKey::eEscape:
+		PostMaster::Post<TMessageType<KeyboardKey::eEscape>>(TMessageType<KeyboardKey::eEscape>(args...));
+		break;
+	case KeyboardKey::eReturn:
+		PostMaster::Post<TMessageType<KeyboardKey::eReturn>>(TMessageType<KeyboardKey::eReturn>(args...));
+		break;
+	case KeyboardKey::eNum0:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum0>>(TMessageType<KeyboardKey::eNum0>(args...));
+		break;
+	case KeyboardKey::eNum1:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum1>>(TMessageType<KeyboardKey::eNum1>(args...));
+		break;
+	case KeyboardKey::eNum2:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum2>>(TMessageType<KeyboardKey::eNum2>(args...));
+		break;
+	case KeyboardKey::eNum3:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum3>>(TMessageType<KeyboardKey::eNum3>(args...));
+		break;
+	case KeyboardKey::eNum4:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum4>>(TMessageType<KeyboardKey::eNum4>(args...));
+		break;
+	case KeyboardKey::eNum5:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum5>>(TMessageType<KeyboardKey::eNum5>(args...));
+		break;
+	case KeyboardKey::eNum6:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum6>>(TMessageType<KeyboardKey::eNum6>(args...));
+		break;
+	case KeyboardKey::eNum7:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum7>>(TMessageType<KeyboardKey::eNum7>(args...));
+		break;
+	case KeyboardKey::eNum8:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum8>>(TMessageType<KeyboardKey::eNum8>(args...));
+		break;
+	case KeyboardKey::eNum9:
+		PostMaster::Post<TMessageType<KeyboardKey::eNum9>>(TMessageType<KeyboardKey::eNum9>(args...));
+		break;
+	case KeyboardKey::eA:
+		PostMaster::Post<TMessageType<KeyboardKey::eA>>(TMessageType<KeyboardKey::eA>(args...));
+		break;
+	case KeyboardKey::eB:
+		PostMaster::Post<TMessageType<KeyboardKey::eB>>(TMessageType<KeyboardKey::eB>(args...));
+		break;
+	case KeyboardKey::eC:
+		PostMaster::Post<TMessageType<KeyboardKey::eC>>(TMessageType<KeyboardKey::eC>(args...));
+		break;
+	case KeyboardKey::eD:
+		PostMaster::Post<TMessageType<KeyboardKey::eD>>(TMessageType<KeyboardKey::eD>(args...));
+		break;
+	case KeyboardKey::eE:
+		PostMaster::Post<TMessageType<KeyboardKey::eE>>(TMessageType<KeyboardKey::eE>(args...));
+		break;
+	case KeyboardKey::eF:
+		PostMaster::Post<TMessageType<KeyboardKey::eF>>(TMessageType<KeyboardKey::eF>(args...));
+		break;
+	case KeyboardKey::eG:
+		PostMaster::Post<TMessageType<KeyboardKey::eG>>(TMessageType<KeyboardKey::eG>(args...));
+		break;
+	case KeyboardKey::eH:
+		PostMaster::Post<TMessageType<KeyboardKey::eH>>(TMessageType<KeyboardKey::eH>(args...));
+		break;
+	case KeyboardKey::eI:
+		PostMaster::Post<TMessageType<KeyboardKey::eI>>(TMessageType<KeyboardKey::eI>(args...));
+		break;
+	case KeyboardKey::eJ:
+		PostMaster::Post<TMessageType<KeyboardKey::eJ>>(TMessageType<KeyboardKey::eJ>(args...));
+		break;
+	case KeyboardKey::eK:
+		PostMaster::Post<TMessageType<KeyboardKey::eK>>(TMessageType<KeyboardKey::eK>(args...));
+		break;
+	case KeyboardKey::eL:
+		PostMaster::Post<TMessageType<KeyboardKey::eL>>(TMessageType<KeyboardKey::eL>(args...));
+		break;
+	case KeyboardKey::eM:
+		PostMaster::Post<TMessageType<KeyboardKey::eM>>(TMessageType<KeyboardKey::eM>(args...));
+		break;
+	case KeyboardKey::eN:
+		PostMaster::Post<TMessageType<KeyboardKey::eN>>(TMessageType<KeyboardKey::eN>(args...));
+		break;
+	case KeyboardKey::eO:
+		PostMaster::Post<TMessageType<KeyboardKey::eO>>(TMessageType<KeyboardKey::eO>(args...));
+		break;
+	case KeyboardKey::eP:
+		PostMaster::Post<TMessageType<KeyboardKey::eP>>(TMessageType<KeyboardKey::eP>(args...));
+		break;
+	case KeyboardKey::eQ:
+		PostMaster::Post<TMessageType<KeyboardKey::eQ>>(TMessageType<KeyboardKey::eQ>(args...));
+		break;
+	case KeyboardKey::eR:
+		PostMaster::Post<TMessageType<KeyboardKey::eR>>(TMessageType<KeyboardKey::eR>(args...));
+		break;
+	case KeyboardKey::eS:
+		PostMaster::Post<TMessageType<KeyboardKey::eS>>(TMessageType<KeyboardKey::eS>(args...));
+		break;
+	case KeyboardKey::eT:
+		PostMaster::Post<TMessageType<KeyboardKey::eT>>(TMessageType<KeyboardKey::eT>(args...));
+		break;
+	case KeyboardKey::eU:
+		PostMaster::Post<TMessageType<KeyboardKey::eU>>(TMessageType<KeyboardKey::eU>(args...));
+		break;
+	case KeyboardKey::eV:
+		PostMaster::Post<TMessageType<KeyboardKey::eV>>(TMessageType<KeyboardKey::eV>(args...));
+		break;
+	case KeyboardKey::eW:
+		PostMaster::Post<TMessageType<KeyboardKey::eW>>(TMessageType<KeyboardKey::eW>(args...));
+		break;
+	case KeyboardKey::eX:
+		PostMaster::Post<TMessageType<KeyboardKey::eX>>(TMessageType<KeyboardKey::eX>(args...));
+		break;
+	case KeyboardKey::eY:
+		PostMaster::Post<TMessageType<KeyboardKey::eY>>(TMessageType<KeyboardKey::eY>(args...));
+		break;
+	case KeyboardKey::eZ:
+		PostMaster::Post<TMessageType<KeyboardKey::eZ>>(TMessageType<KeyboardKey::eZ>(args...));
+		break;
+
+	case KeyboardKey::eF1:
+		PostMaster::Post<TMessageType<KeyboardKey::eF1>>(TMessageType<KeyboardKey::eF1>(args...));
+		break;
+	case KeyboardKey::eF2:
+		PostMaster::Post<TMessageType<KeyboardKey::eF2>>(TMessageType<KeyboardKey::eF2>(args...));
+		break;
+	case KeyboardKey::eF3:
+		PostMaster::Post<TMessageType<KeyboardKey::eF3>>(TMessageType<KeyboardKey::eF3>(args...));
+		break;
+	case KeyboardKey::eF4:
+		PostMaster::Post<TMessageType<KeyboardKey::eF4>>(TMessageType<KeyboardKey::eF4>(args...));
+		break;
+	case KeyboardKey::eF5:
+		PostMaster::Post<TMessageType<KeyboardKey::eF5>>(TMessageType<KeyboardKey::eF5>(args...));
+		break;
+	case KeyboardKey::eF6:
+		PostMaster::Post<TMessageType<KeyboardKey::eF6>>(TMessageType<KeyboardKey::eF6>(args...));
+		break;
+	case KeyboardKey::eF7:
+		PostMaster::Post<TMessageType<KeyboardKey::eF7>>(TMessageType<KeyboardKey::eF7>(args...));
+		break;
+	case KeyboardKey::eF8:
+		PostMaster::Post<TMessageType<KeyboardKey::eF8>>(TMessageType<KeyboardKey::eF8>(args...));
+		break;
+	case KeyboardKey::eF9:
+		PostMaster::Post<TMessageType<KeyboardKey::eF9>>(TMessageType<KeyboardKey::eF9>(args...));
+		break;
+	case KeyboardKey::eF10:
+		PostMaster::Post<TMessageType<KeyboardKey::eF10>>(TMessageType<KeyboardKey::eF10>(args...));
+		break;
+	case KeyboardKey::eF11:
+		PostMaster::Post<TMessageType<KeyboardKey::eF11>>(TMessageType<KeyboardKey::eF11>(args...));
+		break;
+	case KeyboardKey::eF12:
+		PostMaster::Post<TMessageType<KeyboardKey::eF12>>(TMessageType<KeyboardKey::eF12>(args...));
+		break;
+
+	case KeyboardKey::eControl:
+		PostMaster::Post<TMessageType<KeyboardKey::eControl>>(TMessageType<KeyboardKey::eControl>(args...));
+		break;
+	case KeyboardKey::eShift:
+		PostMaster::Post<TMessageType<KeyboardKey::eShift>>(TMessageType<KeyboardKey::eShift>(args...));
+		break;
+
+	case KeyboardKey::eLeft:
+		PostMaster::Post<TMessageType<KeyboardKey::eLeft>>(TMessageType<KeyboardKey::eLeft>(args...));
+		break;
+	case KeyboardKey::eRight:
+		PostMaster::Post<TMessageType<KeyboardKey::eRight>>(TMessageType<KeyboardKey::eRight>(args...));
+		break;
+	case KeyboardKey::eUp:
+		PostMaster::Post<TMessageType<KeyboardKey::eUp>>(TMessageType<KeyboardKey::eUp>(args...));
+		break;
+	case KeyboardKey::eDown:
+		PostMaster::Post<TMessageType<KeyboardKey::eDown>>(TMessageType<KeyboardKey::eDown>(args...));
+		break;
+
+	default:
+		Error(FormatString("Invalid key passed to PostKeyboardMessage (WindowsWindow) {0})", static_cast<int>(aKey)));
+	}
+}
+
 void WindowsWindow::ReceiveMessage(HWND aHwnd, UINT aMessage, WPARAM aWParam, LPARAM aLParam)
 {
 	WindowMessage message;
@@ -235,10 +420,19 @@ void WindowsWindow::ReceiveMessage(HWND aHwnd, UINT aMessage, WPARAM aWParam, LP
 		message.data.keyEvent.key = ConvertVirtualKey(aWParam);
 		// Bit 0 - 15 is the repeat count
 		message.data.keyEvent.repeatCount = static_cast<int>(static_cast<uint16_t>(aLParam));
+		if (message.data.keyEvent.repeatCount == 0)
+		{
+			PostKeyboardMessage<KeyDownMessage>(message.data.keyEvent.key, message.data.keyEvent.key);
+			PostMaster::Post(AnyKeyDownMessage(KeyboardKey::eNone));
+		}
+		PostKeyboardMessage<KeyRepeatMessage>(message.data.keyEvent.key, message.data.keyEvent.key, message.data.keyEvent.repeatCount);
+		PostMaster::Post(AnyKeyRepeatMessage(message.data.keyEvent.key, message.data.keyEvent.repeatCount));
 		break;
 	case WM_KEYUP:
 		message.type = WindowMessageType::eKeyUp;
 		message.data.keyEvent.key = ConvertVirtualKey(aWParam);
+		PostKeyboardMessage<KeyUpMessage>(message.data.keyEvent.key, message.data.keyEvent.key);
+		PostMaster::Post(AnyKeyUpMessage(message.data.keyEvent.key));
 	default:
 		memset(&message, 0, sizeof(message));
 		break;

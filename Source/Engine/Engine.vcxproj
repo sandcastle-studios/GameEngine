@@ -260,6 +260,7 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InputLayout.h" />
     <ClInclude Include="KeyboardKey.h" />
+    <ClInclude Include="KeyMessages.h" />
     <ClInclude Include="LightConstantBufferData.h" />
     <ClInclude Include="Matrix33.h" />
     <ClInclude Include="Matrix44.h" />
@@ -272,6 +273,7 @@
     <ClInclude Include="PlaneModel.h" />
     <ClInclude Include="PlatformHelpers.h" />
     <ClInclude Include="PostMaster.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -329,6 +331,7 @@
     <ClCompile Include="ModelRenderer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="PlaneModel.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />

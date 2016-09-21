@@ -158,6 +158,10 @@
     <ClInclude Include="StringFormatter.h" />
     <ClInclude Include="CommandLineParameters.h" />
     <ClInclude Include="LightConstantBufferData.h" />
+    <ClInclude Include="Quaternion.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMessages.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -264,6 +268,9 @@
     <ClCompile Include="FileChangedEvent.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="CommandLineParameters.cpp" />
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

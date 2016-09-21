@@ -76,6 +76,7 @@ static const float QuarterRotation = HalfPi;
 #include "PostMaster.h"
 #include "DebugLogger.h"
 #include "KeyboardKey.h"
+#include "KeyMessages.h"
 #include "ResourceManager.h"
 #include "Texture.h"
 #include "TextureLoader.h"
