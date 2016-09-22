@@ -246,6 +246,7 @@
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Buffer\ConstantBuffer.h" />
     <ClInclude Include="Model\CubeModel.h" />
+    <ClInclude Include="SplashScreenScene.h" />
     <ClInclude Include="Texture\dds.h" />
     <ClInclude Include="Texture\DDSTextureLoader.h" />
     <ClInclude Include="DebugLogger.h" />
@@ -285,7 +286,6 @@
     <ClInclude Include="Rendering\SpriteRenderer.h" />
     <ClInclude Include="SpriteVertex.h" />
     <ClInclude Include="Effect\StandardEffect.h" />
-    <ClInclude Include="StateContainer.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Time\Stopwatch.h" />
     <ClInclude Include="StringFormatter.h" />
@@ -313,6 +313,7 @@
     <ClCompile Include="CommandLineParameters.cpp" />
     <ClCompile Include="Buffer\ConstantBuffer.cpp" />
     <ClCompile Include="Model\CubeModel.cpp" />
+    <ClCompile Include="SplashScreenScene.cpp" />
     <ClCompile Include="Texture\DDSTextureLoader.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="Buffer\DepthBuffer.cpp" />

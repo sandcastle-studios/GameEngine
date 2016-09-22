@@ -16,6 +16,7 @@ public:
 	virtual ~GenericMesh();
 
 	void SetTexture(int aIndex, const std::shared_ptr<Texture> & aTexture);
+	void SetEffect(const std::shared_ptr<Effect> & aEffect);
 
 	void Render() const;
 	void RenderInstanced(int aInstanceCount) const;

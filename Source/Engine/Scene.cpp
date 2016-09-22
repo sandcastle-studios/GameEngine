@@ -14,7 +14,7 @@ Scene::Scene(const char * aSkyboxPath)
 	myCamera = std::make_unique<Camera>();
 
 	myEffect = std::make_shared<StandardEffect>();
-
+	 
 	if (aSkyboxPath != nullptr)
 	{
 		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(myEffect, std::make_shared<Texture>(aSkyboxPath)));

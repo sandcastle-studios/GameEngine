@@ -12,7 +12,6 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="StateContainer.h" />
     <ClInclude Include="DirectXHelpers.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -162,6 +161,7 @@
     <ClInclude Include="Time\Stopwatch.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="SplashScreenScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -271,6 +271,7 @@
     <ClCompile Include="Time\Stopwatch.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="SplashScreenScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

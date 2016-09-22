@@ -10,6 +10,7 @@
 #include "InstancedTestScene.h"
 #include <FileChanger\FileChangeWatcher.h>
 #include "LightingTestScene.h"
+#include <SplashScreenScene.h>
 
 Game::Game()
 {

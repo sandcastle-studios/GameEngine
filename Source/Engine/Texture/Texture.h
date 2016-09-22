@@ -22,6 +22,8 @@ public:
 
 	void Reload() override;
 
+	Vector2f GetSize() const;
+
 private:
 	ID3D11Texture2D * myTexture;
 	ID3D11ShaderResourceView * myTextureView;
@@ -29,3 +31,7 @@ private:
 	int myHeight;
 };
 
+inline Vector2f Texture::GetSize() const
+{
+	return Vector2f(static_cast<float>(myWidth), static_cast<float>(myHeight));
+}

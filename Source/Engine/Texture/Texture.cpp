@@ -107,7 +107,7 @@ void Texture::Reload()
 	);
 
 	CheckDXError(
-		texture->QueryInterface(__uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&myTexture));
+		texture->QueryInterface(__uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&myTexture))
 	);
 
 	// QueryInterface calls AddRef, get rid of our old reference

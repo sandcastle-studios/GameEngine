@@ -46,6 +46,11 @@ void GenericMesh::SetTexture(int aIndex, const std::shared_ptr<Texture> & aTextu
 	myTexture[aIndex] = aTexture;
 }
 
+void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
+{
+	myEffect = aEffect;
+}
+
 void GenericMesh::Render() const
 {
 	for (int i = 0; i < static_cast<int>(myTexture.size()); i++)
