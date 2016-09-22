@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "VertexBuffer.h"
-#include "Engine.h"
+#include "..\Engine.h"
 #include <d3d11.h>
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 
 GenericVertexBuffer::GenericVertexBuffer(const void *aData, int aSizeInBytes, int aVertexSize, bool aIsImmutable)
 	: Buffer(D3D11_BIND_VERTEX_BUFFER, aIsImmutable ? D3D11_USAGE_IMMUTABLE : D3D11_USAGE_DYNAMIC, aIsImmutable ? 0 : D3D11_CPU_ACCESS_WRITE, 0, aData, aSizeInBytes)

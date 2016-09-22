@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ConstantBuffer.h"
 #include <d3d11.h>
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 
 GenericConstantBuffer::GenericConstantBuffer(const void * aData, int aSizeInBytes)
 	: ShaderResourceBuffer(D3D11_BIND_CONSTANT_BUFFER, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE, 0, aData, aSizeInBytes)

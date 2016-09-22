@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "SpriteRenderer.h"
-#include "Effect.h"
-#include "InputLayout.h"
-#include "SpriteVertex.h"
-#include "Model.h"
+#include "..\Effect\Effect.h"
+#include "..\Effect\InputLayout.h"
+#include "..\SpriteVertex.h"
+#include "..\Model\Model.h"
 #include "DXRenderer.h"
-#include "Mesh.h"
+#include "..\Model\Mesh.h"
 
 SpriteRenderer::SpriteRenderer()
 {

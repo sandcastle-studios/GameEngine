@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "TextureDebugger.h"
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 #include "Texture.h"
-#include "Effect.h"
-#include "InputLayout.h"
-#include "Model.h"
-#include "DepthBuffer.h"
-#include "RenderTexture.h"
-#include "Mesh.h"
+#include "..\Effect\Effect.h"
+#include "..\Effect\InputLayout.h"
+#include "..\Model\Model.h"
+#include "..\Buffer\DepthBuffer.h"
+#include "..\RenderTexture.h"
+#include "..\Model\Mesh.h"
 
 
 TextureDebugger::TextureDebugger()

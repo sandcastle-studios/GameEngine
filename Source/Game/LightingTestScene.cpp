@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "LightingTestScene.h"
-#include <AssimpModel.h>
-#include <ModelInstance.h>
-#include <StandardEffect.h>
+#include <Model\AssimpModel.h>
+#include <Model\ModelInstance.h>
+#include <Effect\StandardEffect.h>
 #include <Camera.h>
-#include <DXRenderer.h>
-#include <ModelRenderer.h>
+#include <Rendering\DXRenderer.h>
+#include <Rendering\ModelRenderer.h>
 
 LightingTestScene::LightingTestScene()
 {

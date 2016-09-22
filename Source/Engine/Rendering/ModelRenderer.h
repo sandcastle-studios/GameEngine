@@ -1,5 +1,5 @@
 #pragma once
-#include "LightConstantBufferData.h"
+#include "..\LightConstantBufferData.h"
 
 class GenericMesh;
 template<typename T>

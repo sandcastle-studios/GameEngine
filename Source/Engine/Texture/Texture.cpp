@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Texture.h"
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 #include "DDSTextureLoader.h"
 #include "dds.h"
 

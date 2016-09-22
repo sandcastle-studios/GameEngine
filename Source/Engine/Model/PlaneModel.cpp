@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PlaneModel.h"
-#include "VertexPosColUV.h"
+#include "..\VertexPosColUV.h"
 #include "Mesh.h"
 
 PlaneModel::PlaneModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture, int aTextureTileU, int aTextureTileV)

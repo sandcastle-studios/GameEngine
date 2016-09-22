@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "ModelInstance.h"
 #include "Model.h"
-#include "ConstantBuffer.h"
-#include "DXRenderer.h"
-#include "ModelRenderer.h"
+#include "..\Buffer\ConstantBuffer.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\Rendering\ModelRenderer.h"
 
 ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
 {

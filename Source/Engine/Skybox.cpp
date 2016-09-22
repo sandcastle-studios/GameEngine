@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Skybox.h"
 #include "Vertex.h"
-#include "Mesh.h"
+#include "Model\Mesh.h"
 
 Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
 	: Model(aEffect)

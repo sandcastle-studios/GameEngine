@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "RenderTexture.h"
-#include "Texture.h"
-#include "DXRenderer.h"
+#include "Texture\Texture.h"
+#include "Rendering\DXRenderer.h"
 #include <d3d11.h>
-#include "DepthBuffer.h"
+#include "Buffer\DepthBuffer.h"
 
 RenderTexture::RenderTexture(unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer)
 {

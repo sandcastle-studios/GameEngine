@@ -2,9 +2,9 @@
 #include "DXRenderer.h"
 #include <d3d11.h>
 #include <dxgi.h>
-#include "RenderTexture.h"
-#include "TextureDebugger.h"
-#include "DepthBuffer.h"
+#include "..\RenderTexture.h"
+#include "..\Texture\TextureDebugger.h"
+#include "..\Buffer\DepthBuffer.h"
 #include "ModelRenderer.h"
 #include "SpriteRenderer.h"
 

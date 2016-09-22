@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TriangleModel.h"
-#include "SimpleVertex.h"
+#include "..\SimpleVertex.h"
 #include "Mesh.h"
 
 TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)

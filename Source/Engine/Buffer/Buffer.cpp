@@ -2,7 +2,7 @@
 #include "Buffer.h"
 #include <d3d11.h>
 #include <D3Dcommon.h>
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 
 Buffer::Buffer(UINT aBindFlags, D3D11_USAGE aUsage, UINT aCpuAccessFlags, UINT aMiscFlags, const void * aData, int aSizeInBytes)
 {

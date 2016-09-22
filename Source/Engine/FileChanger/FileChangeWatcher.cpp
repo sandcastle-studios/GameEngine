@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "FileChangeWatcher.h"
-#include "Stopwatch.h"
+#include "..\Time\Stopwatch.h"
 
 FileChangeWatcher::FileChangeWatcher(const wchar_t * aDirectory, FileChangeWatcherNotificationFormat aFormat, float aMinimumTimeDifference)
 {

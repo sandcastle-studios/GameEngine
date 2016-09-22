@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PixelShader.h"
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 #include <d3d11.h>
 
 PixelShader::PixelShader(const std::string & aFileName, const char * aEntryPoint)

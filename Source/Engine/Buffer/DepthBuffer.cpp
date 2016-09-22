@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "DepthBuffer.h"
 #include <d3d11.h>
-#include "DXRenderer.h"
-#include "Texture.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\Texture\Texture.h"
 
 DepthBuffer::DepthBuffer(unsigned int aWidth, unsigned int aHeight)
 {

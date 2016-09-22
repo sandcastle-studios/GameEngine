@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IndexBuffer.h"
 #include <d3d11.h>
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 
 IndexBuffer::IndexBuffer(const unsigned int * aFirstIndex, unsigned int aIndexCount)
 	: Buffer(D3D11_BIND_INDEX_BUFFER, D3D11_USAGE_IMMUTABLE, 0, 0, aFirstIndex, aIndexCount * sizeof(unsigned int))

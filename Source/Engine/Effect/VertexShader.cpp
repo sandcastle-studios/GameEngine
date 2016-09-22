@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "VertexShader.h"
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 #include <d3d11.h>
 #include "InputLayout.h"
 

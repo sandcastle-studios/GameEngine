@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Camera.h"
-#include "ConstantBuffer.h"
+#include "Buffer\ConstantBuffer.h"
 
 Camera::Camera()
 {

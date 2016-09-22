@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include <d3d11.h>
 #include "Effect.h"
-#include "DXRenderer.h"
+#include "..\Rendering\DXRenderer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
-#include "Engine.h"
+#include "..\Engine.h"
 #include "InputLayout.h"
 
 Effect::Effect()

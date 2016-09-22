@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "ModelRenderer.h"
-#include "VertexBuffer.h"
-#include "ModelInstance.h"
-#include "Model.h"
-#include "mesh.h"
+#include "..\Buffer\VertexBuffer.h"
+#include "..\Model\ModelInstance.h"
+#include "..\Model\Model.h"
+#include "..\Model\Mesh.h"
 #include "DXRenderer.h"
-#include "ConstantBuffer.h"
+#include "..\Buffer\ConstantBuffer.h"
 
 ModelRenderer::ModelRenderer()
 {

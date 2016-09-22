@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Model.h"
-#include "Effect.h"
+#include "..\Effect\Effect.h"
 #include "Mesh.h"
-#include "DXRenderer.h"
-#include "ModelRenderer.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\Rendering\ModelRenderer.h"
 
 Model::Model(const std::shared_ptr<Effect> & aEffect)
 {

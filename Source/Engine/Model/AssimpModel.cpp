@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "AssimpModel.h"
 #include <FBXLoader.h>
-#include "Vertex.h"
-#include "Texture.h"
+#include "..\Vertex.h"
+#include "..\Texture\Texture.h"
 
 AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath)
 	: Model(aEffect)

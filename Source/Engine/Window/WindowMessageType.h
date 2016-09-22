@@ -1,5 +1,5 @@
 #pragma once
-#include "Size.h"
+#include "..\Size.h"
 
 enum class WindowMessageType
 {

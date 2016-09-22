@@ -2,13 +2,13 @@
 #include "Mesh.h"
 #include <d3dcommon.h>
 #include <d3d11.h>
-#include "SimpleVertex.h"
-#include "VertexBuffer.h"
-#include "DXRenderer.h"
-#include "IndexBuffer.h"
-#include "Effect.h"
-#include "Texture.h"
-#include "ModelRenderer.h"
+#include "..\SimpleVertex.h"
+#include "..\Buffer\VertexBuffer.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\Buffer\IndexBuffer.h"
+#include "..\Effect\Effect.h"
+#include "..\Texture\Texture.h"
+#include "..\Rendering\ModelRenderer.h"
 
 GenericMesh::GenericMesh(const std::shared_ptr<Texture> & aTexture)
 {
