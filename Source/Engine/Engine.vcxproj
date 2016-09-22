@@ -239,6 +239,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AssimpModel.h" />
+    <ClInclude Include="AwaitableSignal.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
@@ -292,6 +293,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureDebugger.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="TriangleModel.h" />
     <ClInclude Include="Vector2.h" />
@@ -305,9 +307,11 @@
     <ClInclude Include="WindowMessage.h" />
     <ClInclude Include="WindowMessageType.h" />
     <ClInclude Include="WindowsWindow.h" />
+    <ClInclude Include="WorkItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssimpModel.cpp" />
+    <ClCompile Include="AwaitableSignal.cpp" />
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CommandLineParameters.cpp" />
@@ -352,11 +356,13 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureDebugger.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="TriangleModel.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowsWindow.cpp" />
+    <ClCompile Include="WorkItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelLoader\ModelLoader.vcxproj">

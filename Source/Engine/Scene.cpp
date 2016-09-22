@@ -23,6 +23,9 @@ Scene::Scene(const char * aSkyboxPath)
 	{
 		mySkybox = nullptr;
 	}
+
+	myLoadDistance = 100.f;
+	myRenderDistance = 80.f;
 }
 
 Scene::~Scene()
@@ -49,7 +52,32 @@ void Scene::Render()
 
 	for (size_t i = 0; i < myObjects.size(); i++)
 	{
-		myObjects[i]->Render();
+		Vector3f center = myObjects[i]->GetBoundingBox().GetCenter();
+		Vector3f toObject = (center - myCamera->GetPosition());
+		float distanceToObject = toObject.Length();
+
+		if (distanceToObject < myLoadDistance)
+		{
+			switch (myObjects[i]->GetModel()->GetStatus())
+			{
+			case ModelStatus::eNotReady:
+			case ModelStatus::ePreparing:
+				if (myObjects[i]->GetModel()->Prepare(true))
+				{
+					if (distanceToObject < myRenderDistance)
+					{
+						myObjects[i]->Render();
+					}
+				}
+				break;
+			case ModelStatus::eReady:
+				if (distanceToObject < myRenderDistance)
+				{
+					myObjects[i]->Render();
+				}
+				break;
+			}
+		}
 	}
 }
 

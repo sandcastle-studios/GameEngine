@@ -162,6 +162,9 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="KeyMessages.h" />
+    <ClInclude Include="AwaitableSignal.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="WorkItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -271,6 +274,9 @@
     <ClCompile Include="Quaternion.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="WorkItem.cpp" />
+    <ClCompile Include="AwaitableSignal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

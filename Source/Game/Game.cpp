@@ -6,10 +6,7 @@
 #include <Camera.h>
 #include <Stopwatch.h>
 #include <Scene.h>
-#include "SlideShowScene.h"
-#include "InstancedTestScene.h"
-#include <FileChangeWatcher.h>
-#include "LightingTestScene.h"
+#include "AsynchronousLoadingTestScene.h"
 
 Game::Game()
 {
@@ -72,7 +69,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<LightingTestScene>();
+	myScene = std::make_unique<AsynchronousLoadingTestScene>();
 
 	CreatePerspective();
 }

@@ -7,18 +7,72 @@
 AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath)
 	: Model(aEffect)
 {
+	myFinishedLoadingFlag.store(false);
+	myPath = aFilePath;
+	SetStatus(ModelStatus::eNotReady);
+}
+
+AssimpModel::~AssimpModel()
+{
+	if (GetStatus() == ModelStatus::ePreparing)
+	{
+		while (myFinishedLoadingFlag.load() == false)
+		{
+			Sleep(1);
+		}
+	}
+}
+
+bool AssimpModel::Prepare(bool aAsynchronous)
+{
+	if (GetStatus() == ModelStatus::eReady)
+	{
+		return true;
+	}
+
+	if (GetStatus() == ModelStatus::ePreparing)
+	{
+		if (myFinishedLoadingFlag.load() == true)
+		{
+			SetStatus(ModelStatus::eReady);
+			return true;
+		}
+		return false;
+	}
+
+	if (aAsynchronous)
+	{
+		SetStatus(ModelStatus::ePreparing);
+		Engine::GetThreadPool().QueueWorkItem(std::function<void()>([this] { this->LoadModel(); myFinishedLoadingFlag.store(true); }));
+		return false;
+	}
+	else
+	{
+		LoadModel();
+		SetStatus(ModelStatus::eReady);
+		myFinishedLoadingFlag.store(true);
+		return true;
+	}
+}
+
+void AssimpModel::LoadModel()
+{
+	Stopwatch loadWatch;
+
+	Engine::GetLogger().LogResource("Beginning to load model {0}", myPath);
+
 	CFBXLoader loader;
-	CLoaderModel * model = loader.LoadModel(aFilePath.c_str());
-	
+	CLoaderModel * model = loader.LoadModel(myPath.c_str());
+
 	std::string modelDirectory;
-	size_t lastSlash = aFilePath.find_last_of("\\/");
+	size_t lastSlash = myPath.find_last_of("\\/");
 	if (lastSlash == std::string::npos)
 	{
 		modelDirectory = "";
 	}
 	else
 	{
-		modelDirectory = aFilePath.substr(0, lastSlash + 1);
+		modelDirectory = myPath.substr(0, lastSlash + 1);
 	}
 
 	for (size_t i = 0; i < model->myMeshes.size(); i++)
@@ -32,7 +86,7 @@ AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::str
 	int indices[numTextures] = { 0, 5 };
 	int slotIndices[numTextures] = { 0, 1 };
 
-	for (size_t i=0; i<numTextures; i++)
+	for (size_t i = 0; i < numTextures; i++)
 	{
 		if (model->myTextures[indices[i]].size() == 0)
 			continue;
@@ -46,15 +100,8 @@ AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::str
 	}
 
 	delete model;
-}
 
-AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath)
-	: AssimpModel(aEffect, std::string(aFilePath))
-{
-}
-
-AssimpModel::~AssimpModel()
-{
+	Engine::GetLogger().LogResource("Finished loading model {0} in {1}ms.", myPath, loadWatch.GetElapsedTime().InMilliseconds());
 }
 
 AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)

@@ -4,6 +4,7 @@ class DXRenderer;
 class FileChangeWatcher;
 class ResourceManager;
 class DebugLogger;
+class ThreadPool;
 
 class Engine
 {
@@ -12,6 +13,7 @@ public:
 	static FileChangeWatcher & GetFileWatcher();
 	static ResourceManager & GetResourceManager();
 	static DebugLogger & GetLogger();
+	static ThreadPool & GetThreadPool();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -25,6 +27,7 @@ private:
 	std::unique_ptr<FileChangeWatcher> myFileWatcher;
 	std::unique_ptr<ResourceManager> myResourceManager;
 	std::unique_ptr<DebugLogger> myDebugLogger;
+	std::unique_ptr<ThreadPool> myThreadPool;
 
 	static Engine * ourInstance;
 };
@@ -53,4 +56,9 @@ inline ResourceManager& Engine::GetResourceManager()
 inline DebugLogger& Engine::GetLogger()
 {
 	return *GetInstance().myDebugLogger;
+}
+
+inline ThreadPool& Engine::GetThreadPool()
+{
+	return *GetInstance().myThreadPool;
 }

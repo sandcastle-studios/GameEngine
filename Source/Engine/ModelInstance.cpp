@@ -5,9 +5,10 @@
 #include "DXRenderer.h"
 #include "ModelRenderer.h"
 
-ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
+ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel, const Matrix44f & aMatrix)
 {
 	myModel = aModel;
+	SetMatrix(aMatrix);
 }
 
 ModelInstance::~ModelInstance()

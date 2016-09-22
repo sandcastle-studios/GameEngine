@@ -9,6 +9,8 @@ class ModelInstance;
 template <typename T>
 class ConstantBuffer;
 
+class Camera;
+
 class BatchEntry
 {
 public:

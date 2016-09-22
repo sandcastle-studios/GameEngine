@@ -87,7 +87,7 @@ PixelOutputType PShader(PixelInputType input)
 	float lambert = saturate(dot(normal, directionToLight));
 	float3 directDiffuse = sampledColor * directionLight[0].color * lambert.xxx;
 
-	float ambientAmount = 0.001f;
+	float ambientAmount = 0.1f;
 
 	output.color = float4(directDiffuse * (1.0f - ambientAmount) + sampledColor * ambientAmount, 1.0f);
 

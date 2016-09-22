@@ -35,6 +35,8 @@ __forceinline T min(T a, T b)
 #include <array>
 #include <atomic>
 #include <mutex>
+#include <future>
+#include <condition_variable>
 
 #define Error(e) { std::cout << e << std::endl; abort(); }
 #define Warning(e) { std::cout << e << std::endl; }
@@ -70,6 +72,9 @@ static const float QuarterRotation = HalfPi;
 #include "Vector4.h"
 #include "Matrix33.h"
 #include "Matrix44.h"
+#include "ThreadPool.h"
+#include "AwaitableSignal.h"
+#include "WorkItem.h"
 #include "Quaternion.h"
 #include "BoundingBox.h"
 #include "Time.h"

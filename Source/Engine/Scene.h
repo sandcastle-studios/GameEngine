@@ -25,5 +25,8 @@ protected:
 	std::shared_ptr<StandardEffect> myEffect;
 
 	Time myTime;
+
+	float myLoadDistance;
+	float myRenderDistance;
 };
 

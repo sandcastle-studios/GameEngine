@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Camera.h"
 #include "ConstantBuffer.h"
+#include "DXRenderer.h"
+#include "ModelRenderer.h"
 
 Camera::Camera()
 {

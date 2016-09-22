@@ -5,7 +5,7 @@ class Model;
 class ModelInstance
 {
 public:
-	ModelInstance(const std::shared_ptr<Model> & aModel);
+	ModelInstance(const std::shared_ptr<Model> & aModel, const Matrix44f & aMatrix = Matrix44f::Identity);
 	~ModelInstance();
 
 	void Render() const;

@@ -11,6 +11,7 @@ Engine::Engine()
 	myFileWatcher = std::make_unique<FileChangeWatcher>();
 	myResourceManager = std::make_unique<ResourceManager>();
 	myDebugLogger = std::make_unique<DebugLogger>();
+	myThreadPool = std::make_unique<ThreadPool>();
 }
 
 Engine::~Engine()

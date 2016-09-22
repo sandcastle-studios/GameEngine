@@ -238,6 +238,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AsynchronousLoadingTestScene.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InstancedTestScene.h" />
@@ -247,6 +248,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AsynchronousLoadingTestScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InstancedTestScene.cpp" />
     <ClCompile Include="LightingTestScene.cpp" />
