@@ -283,11 +283,11 @@
     <ClInclude Include="Engine\Scene\Scene.h" />
     <ClInclude Include="Engine\Effect\Shader.h" />
     <ClInclude Include="Engine\Buffer\ShaderResourceBuffer.h" />
-    <ClInclude Include="Engine\SimpleVertex.h" />
+    <ClInclude Include="Engine\Vertex\SimpleVertex.h" />
     <ClInclude Include="Engine\Size.h" />
     <ClInclude Include="Engine\Camera\Skybox.h" />
     <ClInclude Include="Engine\Rendering\SpriteRenderer.h" />
-    <ClInclude Include="Engine\SpriteVertex.h" />
+    <ClInclude Include="Engine\Vertex\SpriteVertex.h" />
     <ClInclude Include="Engine\Effect\StandardEffect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
@@ -297,9 +297,9 @@
     <ClInclude Include="Engine\Texture\TextureLoader.h" />
     <ClInclude Include="Engine\Time\Time.h" />
     <ClInclude Include="Engine\Model\TriangleModel.h" />
-    <ClInclude Include="Engine\Vertex.h" />
+    <ClInclude Include="Engine\Vertex\Vertex.h" />
     <ClInclude Include="Engine\Buffer\VertexBuffer.h" />
-    <ClInclude Include="Engine\VertexPosColUV.h" />
+    <ClInclude Include="Engine\Vertex\VertexPosColUV.h" />
     <ClInclude Include="Engine\Effect\VertexShader.h" />
     <ClInclude Include="Engine\Window\Window.h" />
     <ClInclude Include="Engine\Window\WindowMessage.h" />

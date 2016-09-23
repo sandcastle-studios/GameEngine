@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Engine\Model\CubeModel.h"
-#include "Engine\VertexPosColUV.h"
+#include "Engine\Vertex\VertexPosColUV.h"
 #include "Engine\Model\Mesh.h"
-#include "Engine\Vertex.h"
+#include "Engine\Vertex\Vertex.h"
 
 CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
 	: Model(aEffect)

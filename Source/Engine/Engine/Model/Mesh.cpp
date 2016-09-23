@@ -2,7 +2,7 @@
 #include "Engine\Model\Mesh.h"
 #include <d3dcommon.h>
 #include <d3d11.h>
-#include "Engine\SimpleVertex.h"
+#include "Engine\Vertex\SimpleVertex.h"
 #include "Engine\Buffer\VertexBuffer.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Buffer\IndexBuffer.h"

@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine\SpriteVertex.h"
+#include "Engine\Vertex\SpriteVertex.h"
 
 class Effect;
 class Texture;

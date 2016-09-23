@@ -2,12 +2,12 @@
 #include "Engine\Rendering\SpriteRenderer.h"
 #include "Engine\Effect\Effect.h"
 #include "Engine\Effect\InputLayout.h"
-#include "Engine\SpriteVertex.h"
+#include "Engine\Vertex\SpriteVertex.h"
 #include "Engine\Model\Model.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Model\Mesh.h"
 #include "Engine\Rendering\ModelRenderer.h"
-#include "Engine\Vertex.h"
+#include "Engine\Vertex\Vertex.h"
 
 SpriteRenderer::SpriteRenderer()
 {

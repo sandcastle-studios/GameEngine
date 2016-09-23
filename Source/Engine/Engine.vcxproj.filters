@@ -110,20 +110,8 @@
     <ClInclude Include="Engine\PostMaster.h">
       <Filter>PostMaster</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\SimpleVertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Size.h" />
-    <ClInclude Include="Engine\SpriteVertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\StringFormatter.h" />
-    <ClInclude Include="Engine\Vertex.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\VertexPosColUV.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Resources\ResourceManager.h" />
     <ClInclude Include="Engine\FileWatcher\FileChangedEvent.h" />
@@ -144,6 +132,18 @@
     </ClInclude>
     <ClInclude Include="Engine\Debugging\CommandLineParameters.h" />
     <ClInclude Include="Engine\Debugging\DebugLogger.h" />
+    <ClInclude Include="Engine\Vertex\SimpleVertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vertex\SpriteVertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vertex\Vertex.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Vertex\VertexPosColUV.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">

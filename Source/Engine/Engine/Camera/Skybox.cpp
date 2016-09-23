@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Engine\Camera\Skybox.h"
-#include "Engine\Vertex.h"
+#include "Engine\Vertex\Vertex.h"
 #include "Engine\Model\Mesh.h"
 
 Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
