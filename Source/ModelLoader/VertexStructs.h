@@ -2,8 +2,6 @@
 #include <assert.h>
 #include <memory.h>
 #include <vector>
-#include "..\Engine\Math\Vector4.h"
-#include "..\Engine\Math\Vector2.h"
 
 // SIMPLE Wrappers
 //namespace FBXLoader

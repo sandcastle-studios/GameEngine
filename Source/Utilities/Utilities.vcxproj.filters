@@ -2,9 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="Utilities\Math\Matrix33.h" />
+    <ClInclude Include="Utilities\Math\Matrix44.h" />
+    <ClInclude Include="Utilities\Math\Quaternion.h" />
+    <ClInclude Include="Utilities\Math\Vector2.h" />
+    <ClInclude Include="Utilities\Math\Vector3.h" />
+    <ClInclude Include="Utilities\Math\Vector4.h" />
+    <ClInclude Include="Utilities\CommonIncludes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Utilities\Math\Quaternion.cpp" />
   </ItemGroup>
 </Project>

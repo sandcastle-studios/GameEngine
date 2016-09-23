@@ -2,7 +2,6 @@
 #include "VertexStructs.h"
 #include <vector>
 #include <map>
-#include "..\Engine\Math\Matrix44.h"
 
 struct BoneInfo
 {

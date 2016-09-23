@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "InstancedTestScene.h"
-#include <Model\AssimpModel.h>
-#include <Model\ModelInstance.h>
-#include <Effect\StandardEffect.h>
-#include <Camera\Camera.h>
-#include <Model\CubeModel.h>
-#include <Texture\Texture.h>
+#include <Engine\Model\AssimpModel.h>
+#include <Engine\Model\ModelInstance.h>
+#include <Engine\Effect\StandardEffect.h>
+#include <Engine\Camera\Camera.h>
+#include <Engine\Model\CubeModel.h>
+#include <Engine\Texture\Texture.h>
 
 InstancedTestScene::InstancedTestScene()
 	: Scene("skybox.dds")

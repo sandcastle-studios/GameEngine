@@ -1,5 +1,5 @@
 #pragma once
-#include <Scene\Scene.h>
+#include <Engine\Scene\Scene.h>
 
 class LightingTestScene : public Scene, public Subscriber<AnyKeyDownMessage>, public Subscriber<AnyKeyUpMessage>
 {
