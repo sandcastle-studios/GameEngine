@@ -104,20 +104,9 @@
     <ClInclude Include="Engine\BoundingBox.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\CommandLineParameters.h" />
     <ClInclude Include="Engine\CommonIncludes.h" />
-    <ClInclude Include="Engine\DebugLogger.h" />
-    <ClInclude Include="Engine\DirectXHelpers.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Engine.h" />
-    <ClInclude Include="Engine\GameObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\LightConstantBufferData.h" />
-    <ClInclude Include="Engine\PlatformHelpers.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\PostMaster.h">
       <Filter>PostMaster</Filter>
     </ClInclude>
@@ -143,6 +132,17 @@
     <ClInclude Include="Engine\Input\KeyMessages.h" />
     <ClInclude Include="Engine\Texture\RenderTexture.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debug\CommandLineParameters.h" />
+    <ClInclude Include="Engine\Debug\DebugLogger.h" />
+    <ClInclude Include="Engine\DXHelpers\DirectXHelpers.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DXHelpers\PlatformHelpers.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject\GameObject.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -238,18 +238,18 @@
     </ClCompile>
     <ClCompile Include="Engine\Window\Window.cpp" />
     <ClCompile Include="Engine\Window\WindowsWindow.cpp" />
-    <ClCompile Include="Engine\CommandLineParameters.cpp" />
-    <ClCompile Include="Engine\DebugLogger.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
-    <ClCompile Include="Engine\GameObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Engine\Resources\ResourceManager.cpp" />
     <ClCompile Include="Engine\FileWatcher\FileChangedEvent.cpp" />
     <ClCompile Include="Engine\FileWatcher\FileChangeWatcher.cpp" />
     <ClCompile Include="Engine\Texture\RenderTexture.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debug\CommandLineParameters.cpp" />
+    <ClCompile Include="Engine\Debug\DebugLogger.cpp" />
+    <ClCompile Include="Engine\GameObject\GameObject.cpp">
+      <Filter>GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

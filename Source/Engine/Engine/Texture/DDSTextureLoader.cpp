@@ -22,8 +22,8 @@
 #include "Engine\Texture\DDSTextureLoader.h"
 
 #include "Engine\Texture\dds.h"
-#include "Engine\DirectXHelpers.h"
-#include "Engine\PlatformHelpers.h"
+#include "Engine\DXHelpers\DirectXHelpers.h"
+#include "Engine\DXHelpers\PlatformHelpers.h"
 #include <assert.h>
 #include <algorithm>
 

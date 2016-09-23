@@ -14,7 +14,7 @@
 #include "Engine\Time\Time.h"
 #include "Engine\Time\Stopwatch.h"
 #include "Engine\PostMaster.h"
-#include "Engine\DebugLogger.h"
+#include "Engine\Debug\DebugLogger.h"
 #include "Engine\Input\KeyboardKey.h"
 #include "Engine\Input\KeyMessages.h"
 #include "Engine\Resources\ResourceManager.h"
