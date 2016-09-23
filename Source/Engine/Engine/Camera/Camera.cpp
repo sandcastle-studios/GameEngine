@@ -57,6 +57,24 @@ void Camera::ApplySkyboxMatrixToVS() const
 
 void Camera::LookAt(const Vector3f & aLookAt)
 {
-	Vector3f normal = (aLookAt - GetPosition()).GetNormalized();
-	myRotation = Quaternion(normal.x, normal.y, normal.z);
+	Vector3f forwardVector = Vector3f(aLookAt - myPosition).GetNormalized();
+
+	float dot = Vector3f::Dot(Vector3f(0.f, 0.f, 1.f), forwardVector);
+
+	if (abs(dot - (-1.0f)) < 0.000001f)
+	{
+		myRotation = Quaternion(0.f, 1.f, 0.f, Pi);
+		return;
+	}
+	if (abs(dot - (1.0f)) < 0.000001f)
+	{
+		myRotation = Quaternion();
+		return;
+	}
+
+	float rotAngle = acosf(dot);
+	Vector3f rotAxis = Vector3f::Cross(Vector3f(0.f, 0.f, 1.f), forwardVector);
+	rotAxis.Normalize();
+	myRotation = Quaternion();
+	myRotation.RotateAlongAxis(rotAxis, rotAngle);
 }
