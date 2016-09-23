@@ -13,7 +13,6 @@
 //#include "Model.h"
 
 #include <memory.h>
-
 // Change to your path
 #ifdef _DEBUG
 #pragma comment (lib, "..\\..\\extlibs\\assimp-vc140-mtd.lib")
@@ -36,10 +35,10 @@ Matrix44f ConvertToEngineMatrix33(const aiMatrix3x3& AssimpMatrix)
 {
 
 	Matrix44f mat;
-	mat.myMatrix[0][0] = AssimpMatrix.a1;	mat.myMatrix[0][1] = AssimpMatrix.a2;	mat.myMatrix[0][2] = AssimpMatrix.a3;	mat.myMatrix[0][3] = 0.0f;
-	mat.myMatrix[1][0] = AssimpMatrix.b1;	mat.myMatrix[1][1] = AssimpMatrix.b2;	mat.myMatrix[1][2] = AssimpMatrix.b3;	mat.myMatrix[1][3] = 0.0f;
-	mat.myMatrix[2][0] = AssimpMatrix.c1;	mat.myMatrix[2][1] = AssimpMatrix.c2;	mat.myMatrix[2][2] = AssimpMatrix.c3;	mat.myMatrix[2][3] = 0.0f;
-	mat.myMatrix[3][0] = 0.0f;				mat.myMatrix[3][1] = 0.0f;				mat.myMatrix[3][2] = 0.0f;				mat.myMatrix[3][3] = 1.0f;
+	mat.m11 = AssimpMatrix.a1;	mat.m12 = AssimpMatrix.a2;	mat.m13 = AssimpMatrix.a3;	mat.m14 = 0.0f;
+	mat.m21 = AssimpMatrix.b1;	mat.m22 = AssimpMatrix.b2;	mat.m23 = AssimpMatrix.b3;	mat.m24 = 0.0f;
+	mat.m31 = AssimpMatrix.c1;	mat.m32 = AssimpMatrix.c2;	mat.m33 = AssimpMatrix.c3;	mat.m34 = 0.0f;
+	mat.m41 = 0.0f;				mat.m42 = 0.0f;				mat.m43 = 0.0f;				mat.m44 = 1.0f;
 	return mat;
 }
 
@@ -47,10 +46,10 @@ Matrix44f ConvertToEngineMatrix33(const aiMatrix3x3& AssimpMatrix)
 Matrix44f ConvertToEngineMatrix44(const aiMatrix4x4& AssimpMatrix)
 {
 	Matrix44f mat;
-	mat.myMatrix[0][0] = AssimpMatrix.a1; mat.myMatrix[0][1] = AssimpMatrix.a2; mat.myMatrix[0][2] = AssimpMatrix.a3; mat.myMatrix[0][3] = AssimpMatrix.a4;
-	mat.myMatrix[1][0] = AssimpMatrix.b1; mat.myMatrix[1][1] = AssimpMatrix.b2; mat.myMatrix[1][2] = AssimpMatrix.b3; mat.myMatrix[1][3] = AssimpMatrix.b4;
-	mat.myMatrix[2][0] = AssimpMatrix.c1; mat.myMatrix[2][1] = AssimpMatrix.c2; mat.myMatrix[2][2] = AssimpMatrix.c3; mat.myMatrix[2][3] = AssimpMatrix.c4;
-	mat.myMatrix[3][0] = AssimpMatrix.d1; mat.myMatrix[3][1] = AssimpMatrix.d2; mat.myMatrix[3][2] = AssimpMatrix.d3; mat.myMatrix[3][3] = AssimpMatrix.d4;
+	mat.m11 = AssimpMatrix.a1; mat.m12 = AssimpMatrix.a2; mat.m13 = AssimpMatrix.a3; mat.m14 = AssimpMatrix.a4;
+	mat.m21 = AssimpMatrix.b1; mat.m22 = AssimpMatrix.b2; mat.m23 = AssimpMatrix.b3; mat.m24 = AssimpMatrix.b4;
+	mat.m31 = AssimpMatrix.c1; mat.m32 = AssimpMatrix.c2; mat.m33 = AssimpMatrix.c3; mat.m34 = AssimpMatrix.c4;
+	mat.m41 = AssimpMatrix.d1; mat.m42 = AssimpMatrix.d2; mat.m43 = AssimpMatrix.d3; mat.m44 = AssimpMatrix.d4;
 	return mat;
 }
 

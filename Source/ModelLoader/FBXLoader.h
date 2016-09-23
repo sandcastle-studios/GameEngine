@@ -2,12 +2,12 @@
 #include "VertexStructs.h"
 #include <vector>
 #include <map>
+#include "..\Engine\Math\Matrix44.h"
 
-using namespace FBXLoader;
 struct BoneInfo
 {
-	FBXLoader::Matrix44f BoneOffset;
-	FBXLoader::Matrix44f FinalTransformation;
+	Matrix44f BoneOffset;
+	Matrix44f FinalTransformation;
 
 	BoneInfo()
 	{
@@ -42,7 +42,7 @@ public:
 	std::string myModelPath;
 	float myAnimationDuration;
 	const struct aiScene* myScene;
-	FBXLoader::Matrix44f myGlobalInverseTransform;
+	Matrix44f myGlobalInverseTransform;
 	bool myIsLoaded;
 	std::vector<std::string> myTextures;
 	// Animation data
