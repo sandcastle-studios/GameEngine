@@ -1,5 +1,4 @@
 #pragma once
-#pragma message (__FILE__ " compiled")
 struct ID3D11Texture2D;
 struct ID3D11RenderTargetView;
 struct ID3D11ShaderResourceView;

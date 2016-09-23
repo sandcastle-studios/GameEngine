@@ -1,6 +1,5 @@
 #pragma once
 #include "Engine\FileWatcher\FileChangedEvent.h"
-#pragma message (__FILE__ " compiled")
 enum class LoadError
 {
 	aSuccess,
