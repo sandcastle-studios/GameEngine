@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Engine\Debug\CommandLineParameters.h"
+#include "Engine\Debugging\CommandLineParameters.h"
 CommandLineParameters * CommandLineParameters::ourInstance = nullptr;
 
 CommandLineParameters::CommandLineParameters()

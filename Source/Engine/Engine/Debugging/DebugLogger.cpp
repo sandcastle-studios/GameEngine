@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "Engine\Debug\DebugLogger.h"
+#include "Engine\Debugging\DebugLogger.h"
 #include <fstream>
-#include "Engine\Debug\CommandLineParameters.h"
+#include "Engine\Debugging\CommandLineParameters.h"
 
 DebugLogger::DebugLogger()
 {

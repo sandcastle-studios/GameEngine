@@ -133,8 +133,6 @@
     <ClInclude Include="Engine\Texture\RenderTexture.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Debug\CommandLineParameters.h" />
-    <ClInclude Include="Engine\Debug\DebugLogger.h" />
     <ClInclude Include="Engine\DXHelpers\DirectXHelpers.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -144,6 +142,8 @@
     <ClInclude Include="Engine\GameObject\GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Debugging\CommandLineParameters.h" />
+    <ClInclude Include="Engine\Debugging\DebugLogger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -246,11 +246,11 @@
     <ClCompile Include="Engine\Texture\RenderTexture.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Debug\CommandLineParameters.cpp" />
-    <ClCompile Include="Engine\Debug\DebugLogger.cpp" />
     <ClCompile Include="Engine\GameObject\GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Debugging\CommandLineParameters.cpp" />
+    <ClCompile Include="Engine\Debugging\DebugLogger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
