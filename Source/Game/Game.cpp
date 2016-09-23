@@ -8,7 +8,7 @@
 #include <Engine\Scene\Scene.h>
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
-#include <Engine\FileChanger\FileChangeWatcher.h>
+#include <Engine\FileWatcher\FileChangeWatcher.h>
 #include "LightingTestScene.h"
 #include <Engine\Scene\SplashScreenScene.h>
 

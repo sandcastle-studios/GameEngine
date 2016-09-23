@@ -5,7 +5,7 @@
 #include "Engine\Camera\Skybox.h"
 #include "Engine\Camera\Camera.h"
 #include "Engine\Rendering\DXRenderer.h"
-#include "Engine\RenderTexture.h"
+#include "Engine\Texture\RenderTexture.h"
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
 

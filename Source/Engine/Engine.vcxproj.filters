@@ -41,8 +41,6 @@
     <ClInclude Include="Engine\Effect\VertexShader.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\FileChanger\FileChangedEvent.h" />
-    <ClInclude Include="Engine\FileChanger\FileChangeWatcher.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -116,8 +114,6 @@
     <ClInclude Include="Engine\GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\KeyboardKey.h" />
-    <ClInclude Include="Engine\KeyMessages.h" />
     <ClInclude Include="Engine\LightConstantBufferData.h" />
     <ClInclude Include="Engine\PlatformHelpers.h">
       <Filter>Rendering</Filter>
@@ -125,10 +121,6 @@
     <ClInclude Include="Engine\PostMaster.h">
       <Filter>PostMaster</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\RenderTexture.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\ResourceManager.h" />
     <ClInclude Include="Engine\SimpleVertex.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -144,6 +136,14 @@
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Engine\Resources\ResourceManager.h" />
+    <ClInclude Include="Engine\FileWatcher\FileChangedEvent.h" />
+    <ClInclude Include="Engine\FileWatcher\FileChangeWatcher.h" />
+    <ClInclude Include="Engine\Input\KeyboardKey.h" />
+    <ClInclude Include="Engine\Input\KeyMessages.h" />
+    <ClInclude Include="Engine\Texture\RenderTexture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -186,8 +186,6 @@
     <ClCompile Include="Engine\Effect\VertexShader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\FileChanger\FileChangedEvent.cpp" />
-    <ClCompile Include="Engine\FileChanger\FileChangeWatcher.cpp" />
     <ClCompile Include="Engine\Model\AssimpModel.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
@@ -246,11 +244,13 @@
     <ClCompile Include="Engine\GameObject.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\RenderTexture.cpp">
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Engine\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Engine\FileWatcher\FileChangedEvent.cpp" />
+    <ClCompile Include="Engine\FileWatcher\FileChangeWatcher.cpp" />
+    <ClCompile Include="Engine\Texture\RenderTexture.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\ResourceManager.cpp" />
-    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

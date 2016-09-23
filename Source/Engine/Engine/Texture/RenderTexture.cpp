@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Engine\RenderTexture.h"
+#include "Engine\Texture\RenderTexture.h"
 #include "Engine\Texture\Texture.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include <d3d11.h>

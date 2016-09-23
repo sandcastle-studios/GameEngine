@@ -6,7 +6,7 @@
 #include "Engine\Effect\InputLayout.h"
 #include "Engine\Model\Model.h"
 #include "Engine\Buffer\DepthBuffer.h"
-#include "Engine\RenderTexture.h"
+#include "Engine\Texture\RenderTexture.h"
 #include "Engine\Model\Mesh.h"
 
 

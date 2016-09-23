@@ -2,7 +2,7 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include <d3d11.h>
 #include <dxgi.h>
-#include "Engine\RenderTexture.h"
+#include "Engine\Texture\RenderTexture.h"
 #include "Engine\Texture\TextureDebugger.h"
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Rendering\ModelRenderer.h"

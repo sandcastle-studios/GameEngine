@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Engine\Engine.h"
 #include "Engine\Rendering\DXRenderer.h"
-#include "Engine\FileChanger\FileChangeWatcher.h"
+#include "Engine\FileWatcher\FileChangeWatcher.h"
 
 Engine * Engine::ourInstance = nullptr;
 

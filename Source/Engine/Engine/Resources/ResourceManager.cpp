@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "Engine\ResourceManager.h"
-#include "Engine\FileChanger\FileChangeWatcher.h"
+#include "Engine\Resources\ResourceManager.h"
+#include "Engine\FileWatcher\FileChangeWatcher.h"
 
 ResourceManager::ResourceManager()
 {
