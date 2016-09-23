@@ -3,14 +3,14 @@
 #include <Window\WindowsWindow.h>
 #include <Window\WindowMessage.h>
 #include <Rendering\DXRenderer.h>
-#include <Camera.h>
+#include <Camera\Camera.h>
 #include <Time\Stopwatch.h>
-#include <Scene.h>
+#include <Scene\Scene.h>
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
 #include <FileChanger\FileChangeWatcher.h>
 #include "LightingTestScene.h"
-#include <SplashScreenScene.h>
+#include <Scene\SplashScreenScene.h>
 
 Game::Game()
 {

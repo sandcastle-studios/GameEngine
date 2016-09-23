@@ -2,7 +2,7 @@
 #include "SlideShowScene.h"
 #include <Model\AssimpModel.h>
 #include <Model\ModelInstance.h>
-#include <Camera.h>
+#include <Camera\Camera.h>
 #include <Effect\StandardEffect.h>
 
 SlideShowScene::SlideShowScene()

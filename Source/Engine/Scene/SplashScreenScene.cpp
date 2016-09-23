@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "SplashScreenScene.h"
-#include "Buffer\ConstantBuffer.h"
-#include "Texture\Texture.h"
-#include "Rendering\DXRenderer.h"
-#include "Rendering\SpriteRenderer.h"
-#include "Effect\InputLayout.h"
-#include "Effect\Effect.h"
+#include "..\Buffer\ConstantBuffer.h"
+#include "..\Texture\Texture.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\Rendering\SpriteRenderer.h"
+#include "..\Effect\InputLayout.h"
+#include "..\Effect\Effect.h"
 #include <dxgiformat.h>
 
 SplashScreenScene::SplashScreenScene()

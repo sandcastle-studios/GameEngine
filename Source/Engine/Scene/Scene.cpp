@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "Scene.h"
-#include "Model\ModelInstance.h"
-#include "Texture\Texture.h"
-#include "Skybox.h"
-#include "Camera.h"
-#include "Rendering\DXRenderer.h"
-#include "RenderTexture.h"
-#include "Buffer\DepthBuffer.h"
-#include "Effect\StandardEffect.h"
+#include "..\Model\ModelInstance.h"
+#include "..\Texture\Texture.h"
+#include "..\Camera\Skybox.h"
+#include "..\Camera\Camera.h"
+#include "..\Rendering\DXRenderer.h"
+#include "..\RenderTexture.h"
+#include "..\Buffer\DepthBuffer.h"
+#include "..\Effect\StandardEffect.h"
 
 Scene::Scene(const char * aSkyboxPath)
 {

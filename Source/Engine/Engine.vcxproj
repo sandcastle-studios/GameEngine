@@ -241,12 +241,12 @@
     <ClInclude Include="Model\AssimpModel.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Buffer\Buffer.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="CommandLineParameters.h" />
     <ClInclude Include="CommonIncludes.h" />
     <ClInclude Include="Buffer\ConstantBuffer.h" />
     <ClInclude Include="Model\CubeModel.h" />
-    <ClInclude Include="SplashScreenScene.h" />
+    <ClInclude Include="Scene\SplashScreenScene.h" />
     <ClInclude Include="Texture\dds.h" />
     <ClInclude Include="Texture\DDSTextureLoader.h" />
     <ClInclude Include="DebugLogger.h" />
@@ -277,12 +277,12 @@
     <ClInclude Include="Math\Quaternion.h" />
     <ClInclude Include="RenderTexture.h" />
     <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Effect\Shader.h" />
     <ClInclude Include="Buffer\ShaderResourceBuffer.h" />
     <ClInclude Include="SimpleVertex.h" />
     <ClInclude Include="Size.h" />
-    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Camera\Skybox.h" />
     <ClInclude Include="Rendering\SpriteRenderer.h" />
     <ClInclude Include="SpriteVertex.h" />
     <ClInclude Include="Effect\StandardEffect.h" />
@@ -309,11 +309,11 @@
   <ItemGroup>
     <ClCompile Include="Model\AssimpModel.cpp" />
     <ClCompile Include="Buffer\Buffer.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="CommandLineParameters.cpp" />
     <ClCompile Include="Buffer\ConstantBuffer.cpp" />
     <ClCompile Include="Model\CubeModel.cpp" />
-    <ClCompile Include="SplashScreenScene.cpp" />
+    <ClCompile Include="Scene\SplashScreenScene.cpp" />
     <ClCompile Include="Texture\DDSTextureLoader.cpp" />
     <ClCompile Include="DebugLogger.cpp" />
     <ClCompile Include="Buffer\DepthBuffer.cpp" />
@@ -335,10 +335,10 @@
     <ClCompile Include="Math\Quaternion.cpp" />
     <ClCompile Include="RenderTexture.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Effect\Shader.cpp" />
     <ClCompile Include="Buffer\ShaderResourceBuffer.cpp" />
-    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Camera\Skybox.cpp" />
     <ClCompile Include="Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Effect\StandardEffect.cpp" />
     <ClCompile Include="stdafx.cpp">

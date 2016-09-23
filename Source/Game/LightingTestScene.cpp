@@ -3,7 +3,7 @@
 #include <Model\AssimpModel.h>
 #include <Model\ModelInstance.h>
 #include <Effect\StandardEffect.h>
-#include <Camera.h>
+#include <Camera\Camera.h>
 #include <Rendering\DXRenderer.h>
 #include <Rendering\ModelRenderer.h>
 
