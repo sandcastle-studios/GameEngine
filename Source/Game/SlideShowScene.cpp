@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "SlideShowScene.h"
-#include <Model\AssimpModel.h>
-#include <Model\ModelInstance.h>
-#include <Camera\Camera.h>
-#include <Effect\StandardEffect.h>
+#include <Engine\Model\AssimpModel.h>
+#include <Engine\Model\ModelInstance.h>
+#include <Engine\Camera\Camera.h>
+#include <Engine\Effect\StandardEffect.h>
 
 SlideShowScene::SlideShowScene()
 	: Scene("skybox.dds")

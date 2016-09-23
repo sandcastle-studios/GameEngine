@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "Game.h"
-#include <Window\WindowsWindow.h>
-#include <Window\WindowMessage.h>
-#include <Rendering\DXRenderer.h>
-#include <Camera\Camera.h>
-#include <Time\Stopwatch.h>
-#include <Scene\Scene.h>
+#include <Engine\Window\WindowsWindow.h>
+#include <Engine\Window\WindowMessage.h>
+#include <Engine\Rendering\DXRenderer.h>
+#include <Engine\Camera\Camera.h>
+#include <Engine\Time\Stopwatch.h>
+#include <Engine\Scene\Scene.h>
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
-#include <FileChanger\FileChangeWatcher.h>
+#include <Engine\FileChanger\FileChangeWatcher.h>
 #include "LightingTestScene.h"
-#include <Scene\SplashScreenScene.h>
+#include <Engine\Scene\SplashScreenScene.h>
 
 Game::Game()
 {
