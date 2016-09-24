@@ -9,7 +9,10 @@ void Surface::BindToPS() const
 
 void Surface::BindSlotToPS(int aIndex) const
 {
-	myTextures[aIndex]->BindToPS(aIndex);
+	if (myTextures[aIndex] != nullptr)
+	{
+		myTextures[aIndex]->BindToPS(aIndex);
+	}
 }
 
 void Surface::SetSlot(const SurfaceTextureIndex aSlot, const std::shared_ptr<Texture> & aTexture)

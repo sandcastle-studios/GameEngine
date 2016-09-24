@@ -75,7 +75,6 @@
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Scene\Scene.h" />
-    <ClInclude Include="Engine\Scene\SplashScreenScene.h" />
     <ClInclude Include="Engine\Texture\dds.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -149,6 +148,10 @@
     <ClInclude Include="Engine\Sprite\SpriteEffect.h" />
     <ClInclude Include="Engine\Sprite\Sprite.h" />
     <ClInclude Include="Engine\Sprite\QuadSpriteShape.h" />
+    <ClInclude Include="Engine\SplashScreen\SplashScreenEffect.h" />
+    <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
+    <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="Engine\Debugging\Debugger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -225,7 +228,6 @@
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Scene\Scene.cpp" />
-    <ClCompile Include="Engine\Scene\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Texture\DDSTextureLoader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
@@ -261,6 +263,10 @@
     <ClCompile Include="Engine\Sprite\SpriteEffect.cpp" />
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
     <ClCompile Include="Engine\Sprite\QuadSpriteShape.cpp" />
+    <ClCompile Include="Engine\SplashScreen\SplashScreenEffect.cpp" />
+    <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
+    <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Engine\Debugging\Debugger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

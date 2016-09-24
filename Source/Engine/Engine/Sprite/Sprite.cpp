@@ -73,9 +73,18 @@ Matrix44f Sprite::GenerateMatrix() const
 	Vector2f textureSize = myTexture->GetSize();
 
 	return Matrix44f::CreateScale(textureSize.x, textureSize.y, 1.f)
-		* Matrix44f::CreateTranslation(myPosition.x, myPosition.y, 0.f)
-		* Matrix44f::CreateTranslation(-myOrigin.x, -myOrigin.y, 0.f)
+		* Matrix44f::CreateTranslation(myPosition.x - myOrigin.x - renderSize.x / 2.f, myPosition.y - myOrigin.y - renderSize.y / 2.f, 0.f)
 		* Matrix44f::CreateScale(myScale.x, myScale.y, 1.f)
 		* Matrix44f::CreateRotateAroundZ(myRotation)
 		* Matrix44f::CreateScale(2.0f / renderSize.x, -2.0f / renderSize.y, 1.f);
+}
+
+void Sprite::SetEffect(const std::shared_ptr<const Effect> & aEffect)
+{
+	myEffect = aEffect;
+}
+
+const std::shared_ptr<const Effect> & Sprite::GetEffect() const
+{
+	return myEffect;
 }

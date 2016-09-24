@@ -3,6 +3,7 @@
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dcompiler.lib")
 #pragma comment( lib, "dxguid.lib")
+#pragma comment( lib, "../../extlibs/imgui/lib/imgui.lib")
 
 #include "Utilities/CommonIncludes.h"
 #include "../ModelLoader/CommonIncludes.h"
@@ -32,3 +33,4 @@
 #include "Engine\Model\Mesh.h"
 #include "Engine\Model\Model.h"
 #include "Engine\Sprite\Sprite.h"
+#include "Engine\Debugging\Debugger.h"

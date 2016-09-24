@@ -2,9 +2,14 @@
 #include "SpriteEffect.h"
 
 SpriteEffect::SpriteEffect()
+	: SpriteEffect("shaders/sprite/sprite.fx", "VShader", "shaders/sprite/sprite.fx", "PShader")
 {
-	AttachVertexShader("shaders/sprite.fx", "VShader");
-	AttachPixelShader("shaders/sprite.fx", "PShader");
+}
+
+SpriteEffect::SpriteEffect(const char * aVertexFile, const char * aVertexEntryPoint, const char * aPixelFile, const char * aPixelEntryPoint)
+{
+	AttachVertexShader(aVertexFile, aVertexEntryPoint);
+	AttachPixelShader(aPixelFile, aPixelEntryPoint);
 
 	InputLayout layout;
 	layout.Add("POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);

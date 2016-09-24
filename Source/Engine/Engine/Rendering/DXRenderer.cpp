@@ -136,7 +136,15 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA; // D3D11_BLEND_ZERO;
 	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = 0x0f;
+	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	/*blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;*/
 
 	CheckDXError(
 		myDevice->CreateBlendState(&blendStateDescription, &myAlphaBlendingState)
@@ -183,7 +191,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 	// Set up the description of the stencil state.
 	depthStencilDesc.DepthEnable = true;
 	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-	depthStencilDesc.DepthFunc = D3D11_COMPARISON_GREATER;
+	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
 	
 	depthStencilDesc.StencilEnable = true;
 	depthStencilDesc.StencilReadMask = 0xFF;
@@ -203,7 +211,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 		myDevice->CreateDepthStencilState(&depthStencilDesc, &myDepthStencilState)
 	);
 
-	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 1);
+	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 0);
 
 	myTextureDebugger = std::make_unique<TextureDebugger>();
 	myModelRenderer = std::make_unique<ModelRenderer>();

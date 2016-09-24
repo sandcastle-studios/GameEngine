@@ -56,7 +56,7 @@ void Effect::Link(const InputLayout & aLayoutDescription)
 	myIsLinked = true;
 }
 
-void Effect::Bind()
+void Effect::Bind() const
 {
 	if (myVertexShader != nullptr)
 	{

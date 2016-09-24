@@ -4,6 +4,7 @@ class DXRenderer;
 class FileChangeWatcher;
 class ResourceManager;
 class DebugLogger;
+class Debugger;
 
 class Engine
 {
@@ -12,10 +13,13 @@ public:
 	static FileChangeWatcher & GetFileWatcher();
 	static ResourceManager & GetResourceManager();
 	static DebugLogger & GetLogger();
+	static Debugger & GetDebugger();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
 	static void DestroyInstance();
+
+	void AttachDebugger(const std::shared_ptr<Debugger> & aDebugger);
 
 private:
 	Engine();
@@ -25,6 +29,7 @@ private:
 	FileChangeWatcher * myFileWatcher;
 	std::unique_ptr<ResourceManager> myResourceManager;
 	std::unique_ptr<DebugLogger> myDebugLogger;
+	std::shared_ptr<Debugger> myDebugger;
 
 	static Engine * ourInstance;
 };
@@ -35,8 +40,7 @@ inline Engine & Engine::GetInstance()
 	return *ourInstance;
 }
 
-inline DXRenderer & Engine::GetRenderer()
-{
+inline DXRenderer & Engine::GetRenderer(){
 	return *GetInstance().myRenderer;
 }
 
@@ -53,4 +57,13 @@ inline ResourceManager& Engine::GetResourceManager()
 inline DebugLogger& Engine::GetLogger()
 {
 	return *GetInstance().myDebugLogger;
+}
+
+inline Debugger & Engine::GetDebugger()
+{
+	if (GetInstance().myDebugger == nullptr)
+	{
+		Error("No debugger is attached!");
+	}
+	return *GetInstance().myDebugger;
 }

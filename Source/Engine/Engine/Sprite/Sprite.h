@@ -26,10 +26,15 @@ public:
 	void SetScale(const Vector2f & aScale);
 	const Vector2f & GetScale() const;
 
+	void SetEffect(const std::shared_ptr<const Effect> & aEffect);
+	const std::shared_ptr<const Effect> & GetEffect() const;
+
 	Matrix44f GenerateMatrix() const;
 
 private:
 	std::shared_ptr<const Texture> myTexture;
+	std::shared_ptr<const Effect> myEffect;
+
 	Vector4f myColor;
 	Vector2f myPosition;
 	Vector2f myOrigin;

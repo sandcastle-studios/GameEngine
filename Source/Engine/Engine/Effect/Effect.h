@@ -17,7 +17,7 @@ public:
 
 	void Link(const InputLayout & aLayout);
 
-	void Bind();
+	void Bind() const;
 
 private:
 	VertexShader *myVertexShader;

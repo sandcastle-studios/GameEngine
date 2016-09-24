@@ -2,6 +2,7 @@
 #include "Engine\Engine.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\FileWatcher\FileChangeWatcher.h"
+#include "Debugging\Debugger.h"
 
 Engine * Engine::ourInstance = nullptr;
 
@@ -30,4 +31,9 @@ void Engine::DestroyInstance()
 
 	delete ourInstance;
 	ourInstance = nullptr;
+}
+
+void Engine::AttachDebugger(const std::shared_ptr<Debugger> & aDebugger)
+{
+	myDebugger = aDebugger;
 }

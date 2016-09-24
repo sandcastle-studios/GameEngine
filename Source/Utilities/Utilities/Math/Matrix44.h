@@ -184,7 +184,7 @@ public:     // Constant to avoid using magic numbers
 
 	static Matrix44 CreateProjection(float aFovInDegrees, float aProjectionWidth, float aProjectionHeight, float aNearPlane, float aFarPlane)
 	{
-		TYPE fov = aFovInDegrees / 180.f * Pi;
+		/*TYPE fov = aFovInDegrees / 180.f * Pi;
 		TYPE height = cosf(fov / 2.f) / sinf(fov / 2.f);
 		TYPE aspectRatio = aProjectionWidth / aProjectionHeight;
 		const TYPE scaling = aFarPlane / (aFarPlane - aNearPlane);
@@ -192,7 +192,32 @@ public:     // Constant to avoid using magic numbers
 		return Matrix44(height / aspectRatio, 0.f, 0.f, 0.f,
 			0.f, height, 0.f, 0.f,
 			0.f, 0.f, scaling, 1.f,
-			0.f, 0.f, -scaling * aNearPlane, 0.f);
+			0.f, 0.f, -scaling * aNearPlane, 0.f);*/
+
+		Matrix44 temp;
+		TYPE    SinFov;
+		TYPE    CosFov;
+		TYPE    Height;
+		TYPE    Width;
+
+		float aAspectRatio = aProjectionWidth / aProjectionHeight;
+
+		SinFov = sin(0.5f * (aFovInDegrees / 180.f * Pi));
+		CosFov = cos(0.5f * (aFovInDegrees / 180.f * Pi));
+
+		Height = CosFov / SinFov;
+		Width = Height / aAspectRatio;
+
+		TYPE scaling = aFarPlane / (aFarPlane - aNearPlane);
+
+		temp.myMatrix[0] = Width;
+		temp.myMatrix[5] = Height;
+		temp.myMatrix[10] = scaling;
+		temp.myMatrix[11] = 1.f;
+		temp.myMatrix[14] = -scaling * aNearPlane;
+		temp.myMatrix[15] = 0;
+
+		return temp;
 	}
 
 	// Creates a transformation matrix for rotating anAngle rad around the x-axis

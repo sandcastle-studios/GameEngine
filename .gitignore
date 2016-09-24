@@ -258,3 +258,4 @@ paket-files/
 
 !extlibs/**
 *.obj.enc
+Bin/imgui.ini

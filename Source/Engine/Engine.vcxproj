@@ -101,37 +101,37 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -244,6 +244,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h" />
     <ClInclude Include="Engine\BoundingBox.h" />
     <ClInclude Include="Engine\Buffer\Buffer.h" />
@@ -253,7 +255,7 @@
     <ClInclude Include="Engine\Buffer\ConstantBuffer.h" />
     <ClInclude Include="Engine\Model\CubeModel.h" />
     <ClInclude Include="Engine\Model\Surface.h" />
-    <ClInclude Include="Engine\Scene\SplashScreenScene.h" />
+    <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Texture\dds.h" />
     <ClInclude Include="Engine\Texture\DDSTextureLoader.h" />
     <ClInclude Include="Engine\Debugging\DebugLogger.h" />
@@ -294,6 +296,7 @@
     <ClInclude Include="Engine\Sprite\SpriteEffect.h" />
     <ClInclude Include="Engine\Sprite\QuadSpriteShape.h" />
     <ClInclude Include="Engine\Sprite\Sprite.h" />
+    <ClInclude Include="Engine\SplashScreen\SplashScreenEffect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -312,6 +315,8 @@
     <ClInclude Include="Engine\Window\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Model\AssimpModel.cpp" />
     <ClCompile Include="Engine\Buffer\Buffer.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />
@@ -319,7 +324,7 @@
     <ClCompile Include="Engine\Buffer\ConstantBuffer.cpp" />
     <ClCompile Include="Engine\Model\CubeModel.cpp" />
     <ClCompile Include="Engine\Model\Surface.cpp" />
-    <ClCompile Include="Engine\Scene\SplashScreenScene.cpp" />
+    <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Texture\DDSTextureLoader.cpp" />
     <ClCompile Include="Engine\Debugging\DebugLogger.cpp" />
     <ClCompile Include="Engine\Buffer\DepthBuffer.cpp" />
@@ -350,6 +355,7 @@
     <ClCompile Include="Engine\Sprite\SpriteEffect.cpp" />
     <ClCompile Include="Engine\Sprite\QuadSpriteShape.cpp" />
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
+    <ClCompile Include="Engine\SplashScreen\SplashScreenEffect.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

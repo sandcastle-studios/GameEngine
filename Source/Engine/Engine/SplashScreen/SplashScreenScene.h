@@ -3,8 +3,7 @@
 
 template<typename T>
 class ConstantBuffer;
-class Texture;
-class Effect;
+class SplashScreenEffect;
 
 struct SplashScreenCBuffer
 {
@@ -22,7 +21,7 @@ public:
 
 private:
 	std::unique_ptr<ConstantBuffer<SplashScreenCBuffer>> myConstantBuffer;
-	std::shared_ptr<Texture> myTexture;
-	std::shared_ptr<Effect> mySplashScreenEffect;
+	std::shared_ptr<SplashScreenEffect> mySplashScreenEffect;
+	Sprite mySprite;
 };
 

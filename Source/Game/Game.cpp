@@ -10,7 +10,7 @@
 #include "InstancedTestScene.h"
 #include <Engine\FileWatcher\FileChangeWatcher.h>
 #include "LightingTestScene.h"
-#include <Engine\Scene\SplashScreenScene.h>
+#include <Engine\SplashScreen\SplashScreenScene.h>
 
 Game::Game()
 {
@@ -31,6 +31,8 @@ void Game::Start()
 
 	Engine::GetInstance().GetRenderer().Initialize(myWindow->GetHandle(), myWindow->GetSize().width, myWindow->GetSize().height, false);
 
+	Engine::GetInstance().AttachDebugger(std::make_shared<Debugger>(myWindow->GetHandle()));
+
 	Initialize();
 
 	Stopwatch watch;
@@ -39,6 +41,8 @@ void Game::Start()
 	{
 		Time deltaTime = watch.GetElapsedTime();
 		watch.Restart();
+
+		Engine::GetDebugger().NewFrame();
 
 		ProcessMessages();
 
@@ -95,10 +99,12 @@ void Game::Render()
 		myScene->Render();
 	}
 
+	Engine::GetDebugger().RenderFrame();
+
 	Engine::GetInstance().GetRenderer().Present();
 }
 
 void Game::CreatePerspective()
 {
-	myScene->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 0.1f, 1000.f);
+	myScene->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
 }

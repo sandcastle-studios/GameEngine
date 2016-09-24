@@ -32,7 +32,7 @@ cbuffer CameraCBuffer : register(b0)
 	matrix toCamera;
 	matrix toProjection;
 	float4 cameraPosition;
-}
+};
 
 cbuffer LightConstantBuffer : register(b1)
 {

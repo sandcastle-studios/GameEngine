@@ -8,7 +8,6 @@
 SpriteRenderer::SpriteRenderer()
 {
 	mySpriteEffect = std::make_shared<SpriteEffect>();
-	myCurrentEffect = mySpriteEffect;
 	myInstanceBuffer = std::make_unique<VertexBuffer<SpriteInstanceData>>(nullptr, 1, false);
 	myQuad = std::make_unique<QuadSpriteShape>();
 }
@@ -19,7 +18,16 @@ SpriteRenderer::~SpriteRenderer()
 
 void SpriteRenderer::Render(const Sprite &aSprite)
 {
-	myCurrentEffect->Bind();
+	const std::shared_ptr<const Effect> & effect = aSprite.GetEffect();
+	if (effect != nullptr)
+	{
+		effect->Bind();
+	}
+	else
+	{
+		mySpriteEffect->Bind();
+	}
+
 
 	SpriteInstanceData data;
 	data.toWorld = aSprite.GenerateMatrix();

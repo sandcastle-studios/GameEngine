@@ -2,9 +2,14 @@
 #include "Engine\Window\WindowsWindow.h"
 #include "Engine\Window\WindowMessage.h"
 #include <iostream>
+#include <imgui.h>
+
+extern IMGUI_API LRESULT ImGui_ImplDX11_WndProcHandler(HWND, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT CALLBACK WindowProc(HWND aHwnd, UINT aMessage, WPARAM aWParam, LPARAM aLParam)
 {
+	ImGui_ImplDX11_WndProcHandler(aHwnd, aMessage, aWParam, aLParam);
+
 	WindowsWindow *wnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(aHwnd, GWLP_USERDATA));
 	
 	if (wnd != nullptr)

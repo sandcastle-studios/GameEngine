@@ -24,7 +24,6 @@ public:
 
 private:
 	std::shared_ptr<SpriteEffect> mySpriteEffect;
-	std::shared_ptr<Effect> myCurrentEffect;
 	std::unique_ptr<VertexBuffer<SpriteInstanceData>> myInstanceBuffer;
 	std::unique_ptr<QuadSpriteShape> myQuad;
 };

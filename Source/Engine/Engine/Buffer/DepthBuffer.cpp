@@ -108,7 +108,7 @@ void DepthBuffer::Unbind()
 
 void DepthBuffer::Clear()
 {
-	Engine::GetInstance().GetRenderer().GetContext()->ClearDepthStencilView(myDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.f, 0);
+	Engine::GetInstance().GetRenderer().GetContext()->ClearDepthStencilView(myDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 }
 
 void DepthBuffer::Clear(UINT aFlags, FLOAT aDepth, UINT8 aStencilMask)
