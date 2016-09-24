@@ -183,6 +183,12 @@ public:
 		return *this;
 	}
 
+	template <typename TNewType>
+	Vector2<TNewType> As() const
+	{
+		return Vector2<TNewType>(static_cast<TNewType>(x), static_cast<TNewType>(y));
+	}
+
 	TYPE x,
 		y;
 

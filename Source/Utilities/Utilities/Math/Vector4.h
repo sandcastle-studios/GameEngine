@@ -169,6 +169,12 @@ public:
 		return *this;
 	}
 
+	template <typename TNewType>
+	Vector4<TNewType> As() const
+	{
+		return Vector4<TNewType>(static_cast<TNewType>(x), static_cast<TNewType>(y), static_cast<TNewType>(z), , static_cast<TNewType>(w));
+	}
+
 	TYPE x,
 		y,
 		z,

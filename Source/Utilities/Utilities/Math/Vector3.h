@@ -168,6 +168,12 @@ public:
 		y,
 		z;
 
+	template <typename TNewType>
+	Vector3<TNewType> As() const
+	{
+		return Vector3<TNewType>(static_cast<TNewType>(x), static_cast<TNewType>(y), static_cast<TNewType>(z));
+	}
+
 	static TYPE Dot(const Vector3 &aLeft, const Vector3 &aRight)
 	{
 		return aLeft.Dot(aRight);
