@@ -27,7 +27,7 @@ int GenericVertexBuffer::GetVertexSize() const
 	return myVertexSize;
 }
 
-int GenericVertexBuffer::GetVertexCount() const
+int GenericVertexBuffer::GetCount() const
 {
 	return GetSizeInBytes() / GetVertexSize();
 }

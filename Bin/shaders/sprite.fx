@@ -1,13 +1,17 @@
 struct VertexInputType
 {
     float4 position : POSITION;
-	float4 uv : TEXCOORD0;
+	float2 uv : TEXCOORD0;
+	
+	matrix toWorld : INSTANCE_MATRIX;
+	float4 color : INSTANCE_COLOR;
 };
 
 struct PixelInputType
 {
     float4 position : SV_POSITION;
-    float4 uv : TEXCOORD0;
+	float4 color : COLOR0;
+    float2 uv : TEXCOORD0;
 };
 
 struct PixelOutputType
@@ -23,7 +27,8 @@ PixelInputType VShader(VertexInputType input)
 {
     PixelInputType output;
 	
-	output.position = input.position;
+	output.position = mul(input.toWorld, input.position);
+	output.color = input.color;
 	output.uv = input.uv;
 	
     return output;
@@ -32,6 +37,6 @@ PixelInputType VShader(VertexInputType input)
 PixelOutputType PShader(PixelInputType input)
 {
 	PixelOutputType output;
-	output.color = boundTexture.Sample(samplerState, input.uv);
+	output.color = boundTexture.Sample(samplerState, input.uv) * input.color;
 	return output;
 }

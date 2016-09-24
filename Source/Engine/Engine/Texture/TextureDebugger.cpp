@@ -8,10 +8,11 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Texture\RenderTexture.h"
 #include "Engine\Model\Mesh.h"
-
+#include "Engine/Sprite/SpriteVertex.h"
 
 TextureDebugger::TextureDebugger()
 {
+	/*
 	myEffect = std::make_shared<Effect>();
 	myEffect->AttachVertexShader("sprite.fx", "VShader");
 	myEffect->AttachPixelShader("sprite.fx", "PShader");
@@ -24,10 +25,10 @@ TextureDebugger::TextureDebugger()
 
 	std::array<SpriteVertex, 4> vertices = 
 	{
-		SpriteVertex { Vector4f(-1.f, 1.f, 0.5f, 1.f), Vector4f(0.f, 0.f, 0.f, 0.f) },
-		SpriteVertex { Vector4f(1.f, 1.f, 0.5f, 1.f), Vector4f(1.f, 0.f, 0.f, 0.f) },
-		SpriteVertex { Vector4f(-1.f, -1.f, 0.5f, 1.f), Vector4f(0.f, 1.f, 0.f, 0.f) },
-		SpriteVertex { Vector4f(1.f, -1.f, 0.5f, 1.f), Vector4f(1.f, 1.f, 0.f, 0.f) }
+		SpriteVertex { Vector4f(-1.f, 1.f, 0.5f, 1.f), Vector2f(0.f, 0.f) },
+		SpriteVertex { Vector4f(1.f, 1.f, 0.5f, 1.f), Vector2f(1.f, 0.f) },
+		SpriteVertex { Vector4f(-1.f, -1.f, 0.5f, 1.f), Vector2f(0.f, 1.f) },
+		SpriteVertex { Vector4f(1.f, -1.f, 0.5f, 1.f), Vector2f(1.f, 1.f) }
 	};
 
 	std::array<unsigned int, 6> indices =
@@ -37,6 +38,7 @@ TextureDebugger::TextureDebugger()
 	};
 
 	myUnitQuad = std::make_unique<Model>(std::make_unique<Mesh<SpriteVertex>>(nullptr, Surface(), vertices, indices));
+	*/
 }
 
 
@@ -46,7 +48,7 @@ TextureDebugger::~TextureDebugger()
 
 void TextureDebugger::Render()
 {
-	myEffect->Bind();
+	/*myEffect->Bind();
 
 	float height = Engine::GetInstance().GetRenderer().GetBackBuffer()->GetHeight() * 0.25f;
 	float width = height;
@@ -64,7 +66,7 @@ void TextureDebugger::Render()
 
 	Engine::GetInstance().GetRenderer().ResetViewport();
 
-	myTexturesToDebug.clear();
+	myTexturesToDebug.clear();*/
 }
 
 void TextureDebugger::QueueRender(std::shared_ptr<Texture> aTextureToView)

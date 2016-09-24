@@ -3,7 +3,7 @@
 struct SpriteVertex
 {
 	Vector4f position;
-	Vector4f uv;
+	Vector2f uv;
 
 	Vector3f GetPosition() const
 	{

@@ -8,5 +8,7 @@ public:
 	IndexBuffer(const std::vector<unsigned int> & aIndices);
 	void Bind();
 	~IndexBuffer();
+
+	int GetCount() const;
 };
 

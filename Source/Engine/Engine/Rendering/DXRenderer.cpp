@@ -214,7 +214,7 @@ void DXRenderer::ClearFrame()
 {
 	myBackbuffer->Bind(0);
 
-	myBackbuffer->Clear(Vector4f(0.f, 0.f, 0.f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
+	myBackbuffer->Clear(Vector4f(1.f, .5f, .5f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
 }
 
 void DXRenderer::Present()
@@ -305,4 +305,14 @@ void DXRenderer::SetViewport(const Vector2f & aTopLeft, const Vector2f & aSize)
 void DXRenderer::ResetViewport()
 {
 	SetViewport(Vector2f::Zero, Vector2f(static_cast<float>(myBackbuffer->GetWidth()), static_cast<float>(myBackbuffer->GetHeight())));
+}
+
+void DXRenderer::StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution)
+{
+	myCurrentRenderTargetResolution = aRenderTargetResolution;
+}
+
+const Vector2f & DXRenderer::GetRenderTargetResolution() const
+{
+	return myCurrentRenderTargetResolution;
 }

@@ -8,7 +8,8 @@ public:
 	~GenericVertexBuffer();
 
 	int GetVertexSize() const;
-	int GetVertexCount() const;
+	int GetCount() const;
+	
 	void Bind(int aSlot) const;
 
 private:

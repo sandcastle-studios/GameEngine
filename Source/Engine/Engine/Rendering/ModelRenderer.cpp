@@ -15,7 +15,7 @@ ModelRenderer::ModelRenderer()
 
 	myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, 1, false));
 	myLightingBuffer = std::make_shared<ConstantBuffer<LightConstantBufferData>>();
-
+	
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
 }
@@ -63,13 +63,13 @@ void ModelRenderer::RenderBuffer()
 		auto vertexBuffer = myVertexBuffers[0];
 
 		int c = 0;
-		while (matricesCount >= vertexBuffer->GetVertexCount())
+		while (matricesCount >= vertexBuffer->GetCount())
 		{
 			c++;
 			
 			if (c >= static_cast<int>(myVertexBuffers.size()))
 			{
-				myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, myVertexBuffers.back()->GetVertexCount() * 2, false));
+				myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, myVertexBuffers.back()->GetCount() * 2, false));
 			}
 
 			vertexBuffer = myVertexBuffers[c];

@@ -42,6 +42,9 @@ public:
 	void SetViewport(const Vector2f& aTopLeft, const Vector2f& aSize);
 	void ResetViewport();
 
+	void StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution);
+	const Vector2f & GetRenderTargetResolution() const;
+
 private:
 	void CreateBuffers(int aWidth, int aHeight);
 
@@ -58,6 +61,8 @@ private:
 	std::unique_ptr<TextureDebugger> myTextureDebugger;
 	std::unique_ptr<ModelRenderer> myModelRenderer;
 	std::unique_ptr<SpriteRenderer> mySpriteRenderer;
+
+	Vector2f myCurrentRenderTargetResolution;
 };
 
 inline ID3D11Device * DXRenderer::GetDevice()

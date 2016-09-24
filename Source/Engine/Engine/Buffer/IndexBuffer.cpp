@@ -18,6 +18,11 @@ void IndexBuffer::Bind()
 	Engine::GetInstance().GetRenderer().GetContext()->IASetIndexBuffer(GetBuffer(), DXGI_FORMAT_R32_UINT, 0);
 }
 
+int IndexBuffer::GetCount() const
+{
+	return GetSizeInBytes() / sizeof(unsigned int);
+}
+
 IndexBuffer::~IndexBuffer()
 {
 }

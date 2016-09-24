@@ -288,8 +288,12 @@
     <ClInclude Include="Engine\Size.h" />
     <ClInclude Include="Engine\Camera\Skybox.h" />
     <ClInclude Include="Engine\Rendering\SpriteRenderer.h" />
-    <ClInclude Include="Engine\Vertex\SpriteVertex.h" />
+    <ClInclude Include="Engine\Sprite\SpriteVertex.h" />
     <ClInclude Include="Engine\Effect\StandardEffect.h" />
+    <ClInclude Include="Engine\Sprite\SpriteShape.h" />
+    <ClInclude Include="Engine\Sprite\SpriteEffect.h" />
+    <ClInclude Include="Engine\Sprite\QuadSpriteShape.h" />
+    <ClInclude Include="Engine\Sprite\Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -342,6 +346,10 @@
     <ClCompile Include="Engine\Camera\Skybox.cpp" />
     <ClCompile Include="Engine\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Effect\StandardEffect.cpp" />
+    <ClCompile Include="Engine\Sprite\SpriteShape.cpp" />
+    <ClCompile Include="Engine\Sprite\SpriteEffect.cpp" />
+    <ClCompile Include="Engine\Sprite\QuadSpriteShape.cpp" />
+    <ClCompile Include="Engine\Sprite\Sprite.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

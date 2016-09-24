@@ -45,6 +45,8 @@ RenderTexture::~RenderTexture()
 
 void RenderTexture::Bind(int aSlot, bool aUpdateViewport)
 {
+	Engine::GetRenderer().StoreRenderTargetResolution(Vector2f(static_cast<float>(myWidth), static_cast<float>(myHeight)));
+
 	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
 	ID3D11DepthStencilView * depthStencilView;
 	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);

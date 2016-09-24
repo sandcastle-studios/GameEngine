@@ -31,5 +31,4 @@
 #include "Engine\Effect\Effect.h"
 #include "Engine\Model\Mesh.h"
 #include "Engine\Model\Model.h"
-
-
+#include "Engine\Sprite\Sprite.h"
