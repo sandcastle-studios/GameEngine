@@ -5,14 +5,12 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Rendering\ModelRenderer.h"
 
-Model::Model(const std::shared_ptr<Effect> & aEffect)
+Model::Model()
 {
-	myEffect = aEffect;
 }
 
-Model::Model(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<GenericMesh> & aMesh)
+Model::Model(const std::shared_ptr<GenericMesh> & aMesh)
 {
-	myEffect = aEffect;
 	AddMesh(aMesh);
 }
 
@@ -42,7 +40,6 @@ void Model::InstantRender(const Matrix44f & aWorldMatrix) const
 
 void Model::AddMesh(const std::shared_ptr<GenericMesh> & aMesh)
 {
-	aMesh->myEffect = myEffect;
 	myMeshes.push_back(aMesh);
 
 	BoundingBoxf bb = aMesh->GetBoundingBox();
@@ -61,14 +58,4 @@ const std::vector<std::shared_ptr<GenericMesh>> & Model::GetMeshes() const
 const BoundingBoxf & Model::GetBoundingBox() const
 {
 	return myBoundingBox;
-}
-
-void Model::SetEffect(const std::shared_ptr<Effect> & aEffect)
-{
-	myEffect = aEffect;
-
-	for (size_t i = 0; i < myMeshes.size(); i++)
-	{
-		myMeshes[i]->myEffect = aEffect;
-	}
 }

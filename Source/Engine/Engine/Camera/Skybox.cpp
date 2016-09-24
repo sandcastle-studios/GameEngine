@@ -4,7 +4,6 @@
 #include "Engine\Model\Mesh.h"
 
 Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
-	: Model(aEffect)
 {
 	const float skyboxSize = .5f;
 	Vector2f quadSize = Vector2f(0.25f, 0.25f);
@@ -81,7 +80,10 @@ Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Te
 		indicies[i] = static_cast<unsigned int>(i);
 	}
 
-	AddMesh(std::make_shared<Mesh<Vertex>>(aTexture, verticies, indicies));
+	Surface surface;
+	surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
+
+	AddMesh(std::make_shared<Mesh<Vertex>>(aEffect, surface, verticies, indicies));
 }
 
 

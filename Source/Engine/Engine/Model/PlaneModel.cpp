@@ -4,7 +4,6 @@
 #include "Engine\Model\Mesh.h"
 
 PlaneModel::PlaneModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture, int aTextureTileU, int aTextureTileV)
-	: Model(aEffect)
 {
 	std::array<VertexPosColUV, 4> verticies;
 	std::array<unsigned int, 6> indicies =
@@ -29,7 +28,10 @@ PlaneModel::PlaneModel(const std::shared_ptr<Effect> & aEffect, const std::share
 	verticies[3].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	verticies[3].uv = Vector2f(static_cast<float>(aTextureTileU), static_cast<float>(aTextureTileV));
 
-	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aTexture, verticies, indicies));
+	Surface surface;
+	surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
+
+	AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aEffect, surface, verticies, indicies));
 }
 
 PlaneModel::~PlaneModel()

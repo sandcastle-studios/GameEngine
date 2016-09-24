@@ -57,32 +57,32 @@ Texture::~Texture()
 	SAFE_RELEASE(myTexture);
 }
 
-void Texture::BindToVS(int aSlot)
+void Texture::BindToVS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->VSSetShaderResources(aSlot, 1, &myTextureView);
 }
 
-void Texture::BindToPS(int aSlot)
+void Texture::BindToPS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->PSSetShaderResources(aSlot, 1, &myTextureView);
 }
 
-void Texture::BindToGS(int aSlot)
+void Texture::BindToGS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->GSSetShaderResources(aSlot, 1, &myTextureView);
 }
 
-void Texture::BindToCS(int aSlot)
+void Texture::BindToCS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->CSSetShaderResources(aSlot, 1, &myTextureView);
 }
 
-void Texture::BindToHS(int aSlot)
+void Texture::BindToHS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->HSSetShaderResources(aSlot, 1, &myTextureView);
 }
 
-void Texture::BindToDS(int aSlot)
+void Texture::BindToDS(int aSlot) const
 {
 	Engine::GetInstance().GetRenderer().GetContext()->DSSetShaderResources(aSlot, 1, &myTextureView);
 }

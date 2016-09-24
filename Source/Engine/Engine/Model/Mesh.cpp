@@ -10,11 +10,12 @@
 #include "Engine\Texture\Texture.h"
 #include "Engine\Rendering\ModelRenderer.h"
 
-GenericMesh::GenericMesh(const std::shared_ptr<Texture> & aTexture)
+GenericMesh::GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
 {
 	myVertexCount = 0;
 	myIndexCount = 0;
-	myTexture[0] = aTexture;
+	myEffect = aEffect;
+	mySurface = aSurface;
 	myIdentifier = 0;
 }
 
@@ -41,9 +42,9 @@ GenericMesh::~GenericMesh()
 	}
 }
 
-void GenericMesh::SetTexture(int aIndex, const std::shared_ptr<Texture> & aTexture)
+void GenericMesh::SetSurface(const Surface & aSurface)
 {
-	myTexture[aIndex] = aTexture;
+	mySurface = aSurface;
 }
 
 void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
@@ -53,13 +54,7 @@ void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
 
 void GenericMesh::Render() const
 {
-	for (int i = 0; i < static_cast<int>(myTexture.size()); i++)
-	{
-		if (myTexture[i] != nullptr)
-		{
-			myTexture[i]->BindToPS(i);
-		}
-	}
+	mySurface.BindToPS();
 
 	myVertexBuffer->Bind(0);
 	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -70,13 +65,7 @@ void GenericMesh::Render() const
 
 void GenericMesh::RenderInstanced(int aInstanceCount) const
 {
-	for (int i = 0; i < static_cast<int>(myTexture.size()); i++)
-	{
-		if (myTexture[i] != nullptr)
-		{
-			myTexture[i]->BindToPS(i);
-		}
-	}
+	mySurface.BindToPS();
 
 	if (myEffect != nullptr)
 	{
@@ -88,11 +77,6 @@ void GenericMesh::RenderInstanced(int aInstanceCount) const
 
 	myIndexBuffer->Bind();
 	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexedInstanced(myIndexCount, aInstanceCount, 0, 0, 0);
-}
-
-std::shared_ptr<Texture> GenericMesh::GetTexture(int aIndex)
-{
-	return myTexture[aIndex];
 }
 
 const BoundingBoxf & GenericMesh::GetBoundingBox()

@@ -25,14 +25,14 @@ SpriteRenderer::SpriteRenderer()
 		2, 1, 3
 	};
 
-	myUnitMesh = std::make_shared<Mesh<Vertex>>(nullptr, vertices, indices);
-	myUnitModel = std::make_unique<Model>(nullptr, myUnitMesh);
+	myUnitMesh = std::make_shared<Mesh<Vertex>>(nullptr, Surface(), vertices, indices);
+	myUnitModel = std::make_unique<Model>(myUnitMesh);
 }
 
 
 void SpriteRenderer::RenderWholeTexture(std::shared_ptr<Texture> aTexture, const Vector2f &aTopLeft, const Vector2f &aSize, const std::shared_ptr<Effect> * aEffect)
 {
-	Engine::GetInstance().GetRenderer().SetViewport(aTopLeft, aSize);
+	/*Engine::GetInstance().GetRenderer().SetViewport(aTopLeft, aSize);
 	myUnitMesh->SetTexture(0, aTexture);
 
 	if (aEffect != nullptr)
@@ -42,7 +42,7 @@ void SpriteRenderer::RenderWholeTexture(std::shared_ptr<Texture> aTexture, const
 
 	myUnitModel->InstantRender(Matrix44f::Identity);
 	
-	myUnitMesh->SetTexture(0, nullptr);
+	myUnitMesh->SetTexture(0, nullptr);*/
 }
 
 SpriteRenderer::~SpriteRenderer()

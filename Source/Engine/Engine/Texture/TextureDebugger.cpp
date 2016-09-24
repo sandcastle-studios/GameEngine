@@ -36,7 +36,7 @@ TextureDebugger::TextureDebugger()
 		2, 1, 3
 	};
 
-	myUnitQuad = std::make_unique<Model>(myEffect, std::make_unique<Mesh<SpriteVertex>>(nullptr, vertices, indices));
+	myUnitQuad = std::make_unique<Model>(std::make_unique<Mesh<SpriteVertex>>(nullptr, Surface(), vertices, indices));
 }
 
 

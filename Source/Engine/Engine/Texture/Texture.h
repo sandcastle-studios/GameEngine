@@ -11,12 +11,12 @@ public:
 	Texture(ID3D11Texture2D * aTexture, ID3D11ShaderResourceView * aResourceView, int aWidth, int aHeight);
 	~Texture();
 
-	void BindToVS(int aSlot);
-	void BindToPS(int aSlot);
-	void BindToGS(int aSlot);
-	void BindToCS(int aSlot);
-	void BindToHS(int aSlot);
-	void BindToDS(int aSlot);
+	void BindToVS(int aSlot) const;
+	void BindToPS(int aSlot) const;
+	void BindToGS(int aSlot) const;
+	void BindToCS(int aSlot) const;
+	void BindToHS(int aSlot) const;
+	void BindToDS(int aSlot) const;
 
 	ID3D11Texture2D * GetTexture();
 

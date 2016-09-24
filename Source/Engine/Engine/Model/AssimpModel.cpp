@@ -5,7 +5,6 @@
 #include "Engine\Texture\Texture.h"
 
 AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath)
-	: Model(aEffect)
 {
 	CFBXLoader loader;
 	CLoaderModel * model = loader.LoadModel(aFilePath.c_str());
@@ -25,24 +24,20 @@ AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::str
 	{
 		CLoaderMesh * mesh = model->myMeshes[i];
 
-		AddMesh(std::make_shared<AssimpMesh>(mesh, modelDirectory));
+		AddMesh(std::make_shared<AssimpMesh>(aEffect, mesh, modelDirectory));
 	}
 
-	const int numTextures = 2;
-	int indices[numTextures] = { 0, 5 };
-	int slotIndices[numTextures] = { 0, 1 };
+	Surface surface;
 
-	for (size_t i=0; i<numTextures; i++)
+	const int diffuseSlot = 0;
+	const int normalSlot = 5;
+
+	TryLoadTexture(*model, surface, modelDirectory, diffuseSlot, SurfaceTextureIndex::eDiffuse);
+	TryLoadTexture(*model, surface, modelDirectory, normalSlot, SurfaceTextureIndex::eNormal);
+
+	for (size_t j = 0; j < GetMeshes().size(); j++)
 	{
-		if (model->myTextures[indices[i]].size() == 0)
-			continue;
-
-		std::shared_ptr<Texture> texture = Engine::GetResourceManager().Get<Texture>(modelDirectory + model->myTextures[indices[i]]);
-
-		for (size_t j = 0; j < GetMeshes().size(); j++)
-		{
-			GetMeshes()[j]->SetTexture(slotIndices[i], texture);
-		}
+		GetMeshes()[j]->SetSurface(surface);
 	}
 
 	delete model;
@@ -57,8 +52,16 @@ AssimpModel::~AssimpModel()
 {
 }
 
-AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
-	: Mesh(nullptr)
+void AssimpModel::TryLoadTexture(const CLoaderModel & model, Surface & surface, const std::string & aModelDirectory, const int aLoadFromSlot, const SurfaceTextureIndex aLoadIntoSlot)
+{
+	if (model.myTextures[aLoadFromSlot].length() > 0)
+	{
+		surface.SetSlot(aLoadIntoSlot, Engine::GetResourceManager().Get<Texture>(aModelDirectory + model.myTextures[aLoadFromSlot]));
+	}
+}
+
+AssimpMesh::AssimpMesh(const std::shared_ptr<Effect> & aEffect, CLoaderMesh * aMesh, const std::string & aModelDirectory)
+	: Mesh(aEffect, Surface())
 {
 	const char * meshVertices = reinterpret_cast<const char*>(aMesh->myVerticies);
 

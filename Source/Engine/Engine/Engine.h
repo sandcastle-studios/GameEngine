@@ -22,7 +22,7 @@ private:
 	~Engine();
 
 	std::unique_ptr<DXRenderer> myRenderer;
-	std::unique_ptr<FileChangeWatcher> myFileWatcher;
+	FileChangeWatcher * myFileWatcher;
 	std::unique_ptr<ResourceManager> myResourceManager;
 	std::unique_ptr<DebugLogger> myDebugLogger;
 

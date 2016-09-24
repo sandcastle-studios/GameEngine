@@ -144,6 +144,7 @@
     <ClInclude Include="Engine\Vertex\VertexPosColUV.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Model\Surface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -251,6 +252,7 @@
     </ClCompile>
     <ClCompile Include="Engine\Debugging\CommandLineParameters.cpp" />
     <ClCompile Include="Engine\Debugging\DebugLogger.cpp" />
+    <ClCompile Include="Engine\Model\Surface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

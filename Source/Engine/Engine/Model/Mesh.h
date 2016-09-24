@@ -1,4 +1,5 @@
 #pragma once
+#include "Surface.h"
 
 class GenericVertexBuffer;
 class IndexBuffer;
@@ -15,13 +16,11 @@ class GenericMesh
 public:
 	virtual ~GenericMesh();
 
-	void SetTexture(int aIndex, const std::shared_ptr<Texture> & aTexture);
+	void SetSurface(const Surface & aSurface);
 	void SetEffect(const std::shared_ptr<Effect> & aEffect);
 
 	void Render() const;
 	void RenderInstanced(int aInstanceCount) const;
-
-	std::shared_ptr<Texture> GetTexture(int aIndex);
 
 	const BoundingBoxf & GetBoundingBox();
 
@@ -35,19 +34,16 @@ private:
 	// Only Mesh<TVertex> may inherit
 	template<typename TVertex>
 	friend class Mesh;
-	GenericMesh(const std::shared_ptr<Texture> & aTexture);
+	GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface);
 	std::unique_ptr<GenericVertexBuffer> myVertexBuffer;
 	std::unique_ptr<IndexBuffer> myIndexBuffer;
 
 	int myVertexCount;
 	int myIndexCount;
-	std::array<std::shared_ptr<Texture>, 11> myTexture;
+	Surface mySurface;
 	BoundingBoxf myBoundingBox;
 	size_t myIdentifier;
 
-	// Model must be able to assign an effect to Mesh
-	friend class Model;
-	// Changing does not guarantee effect will be used for rendering, must be set through parent model
 	std::shared_ptr<Effect> myEffect;
 };
 
@@ -55,11 +51,11 @@ template<typename TVertex>
 class Mesh : public GenericMesh
 {
 public:
-	Mesh(const std::shared_ptr<Texture> & aTexture);
-	Mesh(const std::shared_ptr<Texture> & aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
-	Mesh(const std::shared_ptr<Texture> & aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
+	Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface);
+	Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
+	Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
 	template <size_t TVertexCount, size_t TIndexCount>
-	Mesh(const std::shared_ptr<Texture> & aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
+	Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
 
 	~Mesh();
 
@@ -70,29 +66,29 @@ public:
 };
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture)
-	: GenericMesh(aTexture)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
+	: GenericMesh(aEffect, aSurface)
 {
 
 }
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
-	: GenericMesh(aTexture)
+Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
+	: GenericMesh(aEffect, aSurface)
 {
 	CreateMesh(aVertexData, aVertexCount, aIndexData, aIndexCount);
 }
 
 template<typename TVertex>
-Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
-	: Mesh(aTexture, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
+Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
+	: Mesh(aEffect, aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 {
 }
 
 template<typename TVertex>
 template <size_t TVertexCount, size_t TIndexCount>
-Mesh<TVertex>::Mesh(const std::shared_ptr<Texture> & aTexture, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
-	: Mesh(aTexture, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
+Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
+	: Mesh(aEffect, aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 {
 }
 

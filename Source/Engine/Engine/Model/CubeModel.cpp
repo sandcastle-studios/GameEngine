@@ -5,7 +5,6 @@
 #include "Engine\Vertex\Vertex.h"
 
 CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
-	: Model(aEffect)
 {
 	std::array<Vertex, 8> verticies;
 	memset(&verticies[0], 0, sizeof(Vertex) * verticies.size());
@@ -129,7 +128,11 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	indicies[34] = 1;
 	indicies[35] = 5;
 
-	AddMesh(std::make_shared<Mesh<Vertex>>(aTexture, verticies, indicies));
+	Surface surface;
+	surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
+
+
+	AddMesh(std::make_shared<Mesh<Vertex>>(aEffect, surface, verticies, indicies));
 }
 
 CubeModel::~CubeModel()

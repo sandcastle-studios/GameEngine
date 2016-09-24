@@ -4,7 +4,6 @@
 #include "Engine\Model\Mesh.h"
 
 TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
-	: Model(aEffect)
 {
 	std::array<SimpleVertex, 3> vertexData;
 
@@ -19,7 +18,10 @@ TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Te
 
 	std::array<unsigned int, 3> indexBuffer = { 0, 1, 2 };
 	
-	AddMesh(std::make_unique<Mesh<SimpleVertex>>(aTexture, vertexData, indexBuffer));
+	Surface surface;
+	surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
+
+	AddMesh(std::make_unique<Mesh<SimpleVertex>>(aEffect, surface, vertexData, indexBuffer));
 }
 
 TriangleModel::~TriangleModel()
