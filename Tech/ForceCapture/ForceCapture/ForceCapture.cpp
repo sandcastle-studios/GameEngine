@@ -3,6 +3,9 @@
 #include <iostream>
 #include <stack>
 #include <memory>
+#include <dxgi.h>
+#include <d3d11.h>
+#include <vector>
 
 struct d3dcontext
 {
@@ -19,6 +22,9 @@ public:
 	virtual void Pop() = 0
 	{
 	}
+	virtual void Activate() = 0
+	{
+	}
 };
 
 class BindingContext
@@ -30,6 +36,12 @@ public:
 	}
 
 	BindingContext(BindingContext && aCopy)
+	{
+		myFunction = aCopy.myFunction;
+		aCopy.myFunction = nullptr;
+	}
+
+	BindingContext(BindingContext & aCopy)
 	{
 		myFunction = aCopy.myFunction;
 		aCopy.myFunction = nullptr;
@@ -75,64 +87,71 @@ private:
 	bool myIsRead;
 };
 
+class PipelineWrapper;
+
 template <typename TFunctionSignature, typename TState>
 class PipelineFunction : public IPipelineFunction
 {
 public:
-	PipelineFunction(d3dcontext * aContext, TFunctionSignature aFunction)
+	PipelineFunction(PipelineWrapper & aWrapper, d3dcontext * aContext, TFunctionSignature aFunction)
 	{
 		myContext = aContext;
 		myFunction = aFunction;
-		myStateStack = new std::stack<TState>();
+		myIsModified = false;
+		myWrapper = &aWrapper;
 	}
 
 	~PipelineFunction()
 	{
-		delete myStateStack;
-		myStateStack = nullptr;
 	}
 	
-	template <typename ...TArgs>
-	ReturnContainer operator()(const TArgs & ...args)
+	PipelineFunction & Push(const TState & aState)
 	{
-		Push(TState(args...));
+		if (memcmp(&myCurrentState, &aState, sizeof(aState)) != 0)
+		{
+			QueueModification();
+		}
+		myStateStack.push(aState);
 		return *this;
-	}
-
-	void Push(const TState & aState)
-	{
-		if (myStateStack->empty() == false)
-		{
-			if (memcmp(&myStateStack->top(), &aState, sizeof(aState)) != 0)
-			{
-				aState.Activate(myContext, myFunction);
-			}
-		}
-		else
-		{
-			aState.Activate(myContext, myFunction);
-		}
-		myStateStack->push(aState);
 	}
 
 	void Pop() override final
 	{
-		auto previousState = myStateStack->top();
-		myStateStack->pop();
-
-		if (myStateStack->empty() == false)
+		TState oldState = myStateStack.top();
+		myStateStack.pop();
+		if (memcmp(&myStateStack.top(), &oldState, sizeof(oldState)) != 0)
 		{
-			if (memcmp(&myStateStack->top(), &previousState, sizeof(previousState)) != 0)
-			{
-				myStateStack->top().Activate(myContext, myFunction);
-			}
+			QueueModification();
+		}
+	}
+
+	void Activate() override final
+	{
+		myIsModified = false;
+		auto && state = myStateStack.top();
+		if (memcmp(&state, &myCurrentState, sizeof(state)) != 0)
+		{
+			myCurrentState = state;
+			myCurrentState.Activate(myContext, myFunction);
 		}
 	}
 	
 private:
+	void QueueModification()
+	{
+		if (myIsModified == false)
+		{
+			myWrapper->QueueModification(*this);
+			myIsModified = true;
+		}
+	}
+
+	std::stack<TState> myStateStack;
+	TState myCurrentState;
 	d3dcontext * myContext;
 	TFunctionSignature myFunction;
-	std::stack<TState> * myStateStack;
+	PipelineWrapper * myWrapper;
+	bool myIsModified;
 };
 
 
@@ -142,14 +161,13 @@ struct BindShaderResourceData
 
 	int index;
 
-	BindShaderResourceData(int aIndex)
-	{
-		index = aIndex;
-	}
+	BindShaderResourceData() {}
+	BindShaderResourceData(int aIndex) { index = aIndex; }
 
 	void Activate(d3dcontext * aContext, FunctionSignature aSignature) const
 	{
-		((*aContext).*(aSignature))(index);
+		int returnValue = ((*aContext).*(aSignature))(index);
+		// Check return for error
 	}
 };
 
@@ -159,13 +177,50 @@ class PipelineWrapper
 {
 public:
 	PipelineWrapper(d3dcontext * context)
-		: BindToPS(context, &d3dcontext::BindToPS),
-		BindToVS(context, &d3dcontext::BindToVS)
+		: myBindToPS(*this, context, &d3dcontext::BindToPS),
+		myBindToVS(*this, context, &d3dcontext::BindToVS)
 	{
 	}
 
-	BindShaderResourceFunction BindToPS;
-	BindShaderResourceFunction BindToVS;
+	void Draw()
+	{
+		InvokeChanges();
+	}
+
+	void Dispatch()
+	{
+		InvokeChanges();
+	}
+
+	ReturnContainer BindToVS(int aSlot)
+	{
+		return myBindToVS.Push(BindShaderResourceData(aSlot));
+	}
+
+	ReturnContainer BindToPS(int aSlot)
+	{
+		return myBindToPS.Push(BindShaderResourceData(aSlot));
+	}
+
+	void QueueModification(IPipelineFunction & aFunction)
+	{
+		myChangedFunctions.push_back(&aFunction);
+	}
+
+private:
+	void InvokeChanges()
+	{
+		for (size_t i=0; i<myChangedFunctions.size(); i++)
+		{
+			myChangedFunctions[i]->Activate();
+		}
+		myChangedFunctions.clear();
+	}
+
+	std::vector<IPipelineFunction*> myChangedFunctions;
+
+	BindShaderResourceFunction myBindToPS;
+	BindShaderResourceFunction myBindToVS;
 };
 
 int main()
@@ -173,17 +228,21 @@ int main()
 	d3dcontext context;
 	PipelineWrapper pipeline(&context);
 
-	BindingContext ba = pipeline.BindToPS(0);
-	BindingContext ba2 = pipeline.BindToVS(0);
+	BindingContext ba = pipeline.BindToPS(1);
+	BindingContext ba2 = pipeline.BindToVS(2);
+
+	pipeline.Draw();
 
 	{
-		BindingContext b = pipeline.BindToPS(BindShaderResourceData());
-		BindingContext b2 = pipeline.BindToVS(2);
+		BindingContext b = pipeline.BindToPS(4);
+		BindingContext b2 = pipeline.BindToVS(3);
+		pipeline.Draw();
 
-		BindingContext b3 = pipeline.BindToPS(1);
-		pipeline.BindToVS(2);
-
+		BindingContext b3 = pipeline.BindToPS(4);
+		BindingContext b4 = pipeline.BindToVS(3);
 	}
+
+	pipeline.Draw();
 
 	std::cin.get();
     return 0;
