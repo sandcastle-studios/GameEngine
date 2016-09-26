@@ -20,7 +20,7 @@ public:
 	virtual void Render() override;
 
 private:
-	GrowingArray<std::shared_ptr<TComponentType>> myComponents;
+	GrowingArray<std::shared_ptr<TComponentType>, size_t> myComponents;
 };
 
 template <typename TComponentType>

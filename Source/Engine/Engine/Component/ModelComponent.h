@@ -9,7 +9,12 @@ public:
 	ModelComponent();
 	~ModelComponent();
 
-	void Lol() { int lol = 1; lol; lol; lol; }
+	virtual void Update(const Time & aDeltaTime) override;
+
+	virtual void Render() const override;
+
+	void SetModel(std::shared_ptr<ModelInstance> aModel);
+
 private:
 	std::shared_ptr<ModelInstance> myModel;
 
