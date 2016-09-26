@@ -28,7 +28,7 @@ cbuffer CameraCBuffer : register(b0)
 	float4 cameraPosition;
 };
 
-cbuffer DeferredCBuffer : register(b1)
+cbuffer DeferredCBuffer : register(b2)
 {
 	float3 pointLightCenter;
 	float pointLightRadius;
@@ -36,7 +36,7 @@ cbuffer DeferredCBuffer : register(b1)
 	float pointLightIntensity;
 };
 
-Texture2D boundDepth : register(t2);
+// Texture2D boundDepth : register(t2);
 Texture2D boundNormal : register(t3);
 Texture2D boundPosition : register(t4);
 
@@ -66,12 +66,13 @@ PixelOutputType PShader(PixelInputType input)
 
 	float3 normal = boundNormal.Sample(samplerState, uv).xyz;
 
-	/*
-	float sampledDepth = boundDepth.Sample(samplerState, uv).x;
-	float3 projectionSpace = float3(input.projectionPosition.xy, sampledDepth);
-	float3 worldPositionToShade = mul(projectionInverse, float4(projectionSpace, 1.0f)).xyz;
-	*/
 	
+	/*float sampledDepth = boundDepth.Sample(samplerState, uv).x;
+	float3 projectionSpace = float3(input.projectionPosition.xy, sampledDepth);
+	float4 worldPos = mul(projectionInverse, float4(projectionSpace, 1.0f));
+	
+	float3 worldPositionToShade = worldPos.xyz / worldPos.w;*/
+
 	float3 worldPositionToShade = boundPosition.Sample(samplerState, uv).xyz;
 	
 	float3 toLight = pointLightCenter - worldPositionToShade;
@@ -81,10 +82,10 @@ PixelOutputType PShader(PixelInputType input)
 	float lambert = saturate(dot(normal, directionToLight));
 	float attenuation = saturate(1.f - (distance / pointLightRadius));
 
-	output.lambert.w = distance < pointLightRadius ? 1.0f : 0.0f;
-	output.lambert = float4(saturate(pointLightColor * lambert.xxx * attenuation * pointLightIntensity), output.lambert.w);
+	// output.lambert.w = distance < pointLightRadius ? 1.0f : 0.0f;
+	output.lambert = float4(saturate(pointLightColor * lambert.xxx * attenuation * pointLightIntensity), 1.0f);
 	// output.lambert.xyz = float3(1.0f, 1.0f, 1.0f) * 0.1f;
-	output.lambert = float4(attenuation.xxx, 1.0f);
+	// output.lambert = float4(worldPositionToShade, 1.0f);
 
 	return output;
 }

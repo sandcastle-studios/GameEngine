@@ -122,7 +122,7 @@ void LightingTestScene::Render()
 {
 	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Bind();
 	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Clear();
-	Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->Clear(Vector4f(0.f, 0.f, 0.f, 0.f));
+	Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.0f));
 
 	Scene::Render();
 

@@ -35,7 +35,10 @@ void SpriteRenderer::Render(const Sprite &aSprite)
 	myInstanceBuffer->UpdateData(&data, 1);
 	myInstanceBuffer->Bind(1);
 
-	aSprite.GetTexture()->BindToPS(0);
+	if (aSprite.GetTexture() != nullptr)
+	{
+		aSprite.GetTexture()->BindToPS(0);
+	}
 	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	myQuad->RenderInstanced(1);
 }

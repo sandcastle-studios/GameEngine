@@ -12,6 +12,7 @@
 #include "Engine\Texture\RenderTexture.h"
 #include "Engine\Effect\Effect.h"
 #include "..\RenderingConfiguration\BlendState.h"
+#include <Engine/Sprite/SpriteEffect.h>
 
 ModelRenderer::ModelRenderer()
 {
@@ -52,6 +53,10 @@ ModelRenderer::ModelRenderer()
 
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
+	
+	myLambertRenderingEffect = std::make_shared<SpriteEffect>("shaders/lambert_render.fx", "VShader", "shaders/lambert_render.fx", "PShader");
+	myFullscreenQuad.SetPosition(Vector2f::Zero);
+	myFullscreenQuad.SetEffect(myLambertRenderingEffect);
 }
 
 ModelRenderer::~ModelRenderer()
@@ -200,11 +205,11 @@ void ModelRenderer::RenderLights()
 
 	myDeferredTextures->GetDepthBuffer()->Bind();
 
-	myDeferredTextures->GetDepthBuffer()->GetTexture()->BindToPS(2);
+	// myDeferredTextures->GetDepthBuffer()->GetTexture()->BindToPS(2);
 	myDeferredTextures->GetRenderTextures()[1]->GetTexture()->BindToPS(3);
 	myDeferredTextures->GetRenderTextures()[2]->GetTexture()->BindToPS(4);
 
-	myPointLightBuffer->BindToPS(1);
+	myPointLightBuffer->BindToPS(2);
 
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -219,7 +224,7 @@ void ModelRenderer::RenderLights()
 
 		ModelInstance inst(mySphereModel);
 
-		inst.SetMatrix(Matrix44f::CreateScale(0.01f * lightData.radius, 0.01f * lightData.radius, 0.01f * lightData.radius)
+		inst.SetMatrix(Matrix44f::CreateScale(0.01f * lightData.radius * 2.f, 0.01f * lightData.radius * 2.f, 0.01f * lightData.radius * 2.f)
 			* Matrix44f::CreateTranslation(lightData.position));
 
 		inst.InstantRender();
@@ -227,6 +232,13 @@ void ModelRenderer::RenderLights()
 
 	Engine::GetRenderer().GetAlphaBlendState()->Bind();
 	Engine::GetRenderer().GetBackBuffer()->Bind(0);
+
+	myDeferredTextures->GetRenderTextures()[0]->GetTexture()->BindToPS(0);
+	myLambertBuffer->GetTexture()->BindToPS(1);
+
+	myFullscreenQuad.SetScale(Engine::GetRenderer().GetRenderTargetResolution());
+	myFullscreenQuad.Render();
+
 	Engine::GetRenderer().EnableDepthWrite();
 }
 

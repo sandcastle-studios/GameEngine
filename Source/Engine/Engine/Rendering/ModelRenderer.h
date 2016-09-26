@@ -83,5 +83,8 @@ private:
 	void UpdateAndBindLightingBuffer();
 
 	std::shared_ptr<Model> mySphereModel;
+
+	Sprite myFullscreenQuad;
+	std::shared_ptr<Effect> myLambertRenderingEffect;
 };
 
