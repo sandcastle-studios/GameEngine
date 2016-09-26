@@ -2,7 +2,7 @@
 
 
 
-template <typename TYPE>
+template <typename TIDType>
 class UniqeIdentifier
 {
 public:
@@ -17,5 +17,5 @@ public:
 	}
 };
 
-template <typename TYPE>
-size_t UniqeIdentifier::nextTypeIndex = 1;
+template <typename TIDType>
+size_t UniqeIdentifier<TIDType>::nextTypeIndex = 0;

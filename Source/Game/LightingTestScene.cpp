@@ -215,6 +215,11 @@ ReceiveResult LightingTestScene::Receive(const AnyKeyUpMessage& aMessage)
 
 void LightingTestScene::CreateFactories()
 {
-	std::shared_ptr<ComponentFactory<ModelComponent>> modelFactory = std::make_shared<ComponentFactory<ModelComponent>>();
-	myFactories.Add(modelFactory);
+
+	AddFactory<ComponentFactory<ModelComponent>>();
+
+
+
+
+
 }

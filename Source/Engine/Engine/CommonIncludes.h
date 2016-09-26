@@ -9,7 +9,7 @@
 #include "../ModelLoader/CommonIncludes.h"
 
 #include "Engine\StringFormatter.h"
-
+#include <Utilities\UniqeIdentifier.h>
 
 #include "Engine\BoundingBox.h"
 #include "Engine\Time\Time.h"

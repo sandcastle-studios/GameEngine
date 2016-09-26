@@ -10,6 +10,7 @@
     <ClInclude Include="Utilities\Math\Vector4.h" />
     <ClInclude Include="Utilities\CommonIncludes.h" />
     <ClInclude Include="Utilities\Container\GrowingArray.h" />
+    <ClInclude Include="Utilities\UniqeIdentifier.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
