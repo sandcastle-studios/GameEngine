@@ -1,0 +1,9 @@
+Event	ID	Name			Wwise Object Path	Notes
+	2270376495	Play_Laser			\Default Work Unit\Play_Laser	
+	2362094225	Play_Derp			\Default Work Unit\Play_Derp	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	345062463	adam	C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\.cache\Windows\SFX\adam_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\adam		979008
+	544884412	mega_mob_incoming	C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\.cache\Windows\SFX\mega_mob_incoming_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\mega_mob_incoming		1111384
+	818493151	laserMachineGun	C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\.cache\Windows\SFX\laserMachineGun_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\laserMachineGun		380412
+

@@ -10,6 +10,7 @@
       <Filter>Samples</Filter>
     </ClInclude>
     <ClInclude Include="LightingTestScene.h" />
+    <ClInclude Include="SoundTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -20,6 +21,7 @@
       <Filter>Samples</Filter>
     </ClCompile>
     <ClCompile Include="LightingTestScene.cpp" />
+    <ClCompile Include="SoundTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">

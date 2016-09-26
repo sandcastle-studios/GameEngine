@@ -244,6 +244,7 @@
     <ClInclude Include="LightingTestScene.h" />
     <ClInclude Include="PostMasterSample.h" />
     <ClInclude Include="SlideShowScene.h" />
+    <ClInclude Include="SoundTestScene.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +253,7 @@
     <ClCompile Include="LightingTestScene.cpp" />
     <ClCompile Include="PostMasterSample.cpp" />
     <ClCompile Include="SlideShowScene.cpp" />
+    <ClCompile Include="SoundTestScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -262,6 +264,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Audio\Audio\Audio.vcxproj">
+      <Project>{b5915c8f-2aef-4137-bcbe-152f819860cd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{fe8f8bde-c4e9-4f36-bdfc-ec51d159ee3f}</Project>
     </ProjectReference>
