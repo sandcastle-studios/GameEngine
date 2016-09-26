@@ -3,6 +3,9 @@
 
 class ModelInstance;
 class BaseComponentFactory;
+
+template <typename TComponentFactoryType>class ComponentFactory;
+
 class Camera;
 class StandardEffect;
 
@@ -17,14 +20,16 @@ public:
 
 	Camera & GetCamera();
 
-	template <typename TComponentFactoryType>
-	void AddFactory();
+	template <typename TComponentType>
+	void AddComponentFactory();
 
 protected:
 
-	template <typename TComponentFactoryType>
-	std::shared_ptr<TComponentFactoryType> GetComponentFactory();
+	template <typename TComponentType>
+	std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory();
 
+	template <typename TComponentType>
+	const std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory()const;
 
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponentFactory>, size_t> myFactories;
@@ -40,29 +45,36 @@ protected:
 	Time myTime;
 };
 
-template<typename TComponentFactoryType>
-inline void Scene::AddFactory()
+template<typename TComponentType>
+inline void Scene::AddComponentFactory()
 {
-	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::GetID<TComponentFactoryType>();
+	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::GetID<TComponentType>();
 	size_t nextID = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::nextTypeIndex;
 	if (myFactories.Size() < nextID)
 	{
 		myFactories.Resize(nextID);
 	}
-	myFactories[id] = std::make_shared<TComponentFactoryType>();
+	myFactories[id] = std::make_shared<ComponentFactory<TComponentType>>();
 }
 
 
-template <typename TComponentFactoryType>
-std::shared_ptr<TComponentFactoryType> Scene::GetComponentFactory()
+template <typename TComponentType>
+std::shared_ptr<ComponentFactory<TComponentType>> Scene::GetComponentFactory()
 {
-	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::GetID<TComponentFactoryType>();
-
-	if (id >= UniqeIdentifier<BaseComponentFactory>::nextTypeIndex)
+	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::GetID<TComponentType>();
+	size_t nextID = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::nextTypeIndex;
+	if (myFactories.Size() < nextID || myFactories[id] == nullptr)
 	{
-		myFactories.Resize(id);
-		myFactories[id] = std::make_shared<TComponentFactoryType>();
+		AddComponentFactory<TComponentType>();
 	}
-	return myFactories[id];
+	return std::static_pointer_cast<ComponentFactory<TComponentType>>(myFactories[id]);
+}
+
+template <typename TComponentType>
+const std::shared_ptr<ComponentFactory<TComponentType>> Scene::GetComponentFactory() const
+{
+	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponentFactory>>::GetID<TComponentType>();
+	return std::static_pointer_cast<ComponentFactory<TComponentType>>(myFactories[id]);
+
 }
 

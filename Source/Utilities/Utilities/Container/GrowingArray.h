@@ -81,8 +81,8 @@
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
 		myNrOfItems = 0;
-		myArray = nullptr;
-		myRecommendedNrOfItems = 0;
+		myRecommendedNrOfItems = 2;
+		myArray = new ObjectType[myRecommendedNrOfItems];
 		mySafeModeFlag = true;
 		*this = aGrowingArray;
 	}
@@ -436,15 +436,17 @@
 			myRecommendedNrOfItems = aReservedSize;
 
 		}
-		else
-		{
-			myRecommendedNrOfItems = aReservedSize;
-		}
+		
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
 	void GrowingArray<ObjectType, SizeType>::Resize(SizeType aNewSize)
 	{
 		Reserve(aNewSize);
+
+		if (aNewSize >= myRecommendedNrOfItems)
+		{
+			myRecommendedNrOfItems = aNewSize;
+		}
 		myNrOfItems = aNewSize;
 	}

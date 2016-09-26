@@ -156,6 +156,7 @@
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
+    <ClInclude Include="Engine\Component\LightComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -273,6 +274,7 @@
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
+    <ClCompile Include="Engine\Component\LightComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

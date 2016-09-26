@@ -301,6 +301,7 @@
     <ClInclude Include="Engine\SplashScreen\SplashScreenEffect.h" />
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
+    <ClInclude Include="Engine\Component\LightComponent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -362,6 +363,7 @@
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
     <ClCompile Include="Engine\SplashScreen\SplashScreenEffect.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
+    <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

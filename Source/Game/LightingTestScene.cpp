@@ -7,8 +7,12 @@
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
 #include <imgui.h>
-#include "..\Engine\Engine\Component\Factory\ComponentFactory.h"
-#include "..\Engine\Engine\Component\ModelComponent.h"
+#include <Engine\Component\Factory\ComponentFactory.h>
+
+
+#include <Engine\Component\ModelComponent.h>
+#include <Engine\Component\LightComponent.h>
+#include "..\Engine\Engine\GameObject\GameObject.h"
 
 LightingTestScene::LightingTestScene()
 {
@@ -216,10 +220,10 @@ ReceiveResult LightingTestScene::Receive(const AnyKeyUpMessage& aMessage)
 void LightingTestScene::CreateFactories()
 {
 
-	AddFactory<ComponentFactory<ModelComponent>>();
+	AddComponentFactory<ModelComponent>();
+	AddComponentFactory<LightComponent>();
 
+	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
-
-
-
+	enemy->AddComponent<std::shared_ptr<ModelComponent>>(GetComponentFactory<ModelComponent>()->CreateComponent());
 }

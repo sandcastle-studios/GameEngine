@@ -10,6 +10,7 @@
 
 #include "Engine\StringFormatter.h"
 #include <Utilities\UniqeIdentifier.h>
+#include <Utilities\Container\GrowingArray.h>
 
 #include "Engine\BoundingBox.h"
 #include "Engine\Time\Time.h"

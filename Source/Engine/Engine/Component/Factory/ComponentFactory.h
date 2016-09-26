@@ -9,9 +9,18 @@ public:
 	ComponentFactory();
 	~ComponentFactory();
 
+	std::shared_ptr<TComponentType> CreateComponent();
+
 private:
-	GrowingArray<TComponentType> myComponents;
+	GrowingArray<std::shared_ptr<TComponentType>> myComponents;
 };
+
+template <typename TComponentType>
+std::shared_ptr<TComponentType> ComponentFactory<TComponentType>::CreateComponent()
+{
+	myComponents.Add(std::make_shared<TComponentType>());
+	return myComponents.GetLast();
+}
 
 template <typename TComponentType>
 ComponentFactory<TComponentType>::ComponentFactory()

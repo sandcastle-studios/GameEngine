@@ -23,6 +23,8 @@ Scene::Scene(const char * aSkyboxPath)
 	{
 		mySkybox = nullptr;
 	}
+
+	myFactories.Reserve(8);
 }
 
 Scene::~Scene()
