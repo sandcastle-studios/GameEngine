@@ -1,18 +1,29 @@
 #pragma once
 
+class Time;
+
 class BaseComponentFactory
 {
 public:
 	BaseComponentFactory();
-	~BaseComponentFactory();
+	virtual ~BaseComponentFactory();
+
+	virtual void Update(const Time & aDeltaTime);
+	virtual void Render();
 };
 
-BaseComponentFactory::BaseComponentFactory()
+inline BaseComponentFactory::BaseComponentFactory()
 {
-
 }
 
-BaseComponentFactory::~BaseComponentFactory()
+inline BaseComponentFactory::~BaseComponentFactory()
 {
+}
 
+inline void BaseComponentFactory::Update(const Time & aDeltaTime)
+{
+}
+
+inline void BaseComponentFactory::Render()
+{
 }

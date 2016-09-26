@@ -6,30 +6,37 @@ template <typename TComponentType>
 class ComponentFactory : public BaseComponentFactory
 {
 public:
-	ComponentFactory();
-	~ComponentFactory();
+	ComponentFactory() {};
+	~ComponentFactory() {};
 
-	std::shared_ptr<TComponentType> CreateComponent();
+	std::shared_ptr<TComponentType> CreateComponent()
+	{
+		myComponents.Add(std::make_shared<TComponentType>());
+		return myComponents.GetLast();
+	}
+
+	virtual void Update(const Time & aDeltaTime) override;
+
+	virtual void Render() override;
 
 private:
 	GrowingArray<std::shared_ptr<TComponentType>> myComponents;
 };
 
 template <typename TComponentType>
-std::shared_ptr<TComponentType> ComponentFactory<TComponentType>::CreateComponent()
+inline void ComponentFactory<TComponentType>::Update(const Time & aDeltaTime)
 {
-	myComponents.Add(std::make_shared<TComponentType>());
-	return myComponents.GetLast();
+	for (size_t iComponent = 0; iComponent < myComponents.Size(); ++iComponent)
+	{
+		myComponents[iComponent]->Update(aDeltaTime);
+	}
 }
 
 template <typename TComponentType>
-ComponentFactory<TComponentType>::ComponentFactory()
+inline void ComponentFactory<TComponentType>::Render()
 {
-
-}
-
-template <typename TComponentType>
-ComponentFactory<TComponentType>::~ComponentFactory()
-{
-
+	for (size_t iComponent = 0; iComponent < myComponents.Size(); ++iComponent)
+	{
+		myComponents[iComponent]->Render();
+	}
 }

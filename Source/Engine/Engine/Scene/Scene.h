@@ -1,7 +1,7 @@
 #pragma once
 #include "Utilities\Container\GrowingArray.h"
 
-class ModelInstance;
+class GameObject;
 class BaseComponentFactory;
 
 template <typename TComponentFactoryType>class ComponentFactory;
@@ -34,7 +34,7 @@ protected:
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponentFactory>, size_t> myFactories;
 
-	std::vector<std::shared_ptr<ModelInstance>> myObjects;
+	std::vector<std::shared_ptr<GameObject>> myObjects;
 
 	std::unique_ptr<ModelInstance> mySkybox;
 

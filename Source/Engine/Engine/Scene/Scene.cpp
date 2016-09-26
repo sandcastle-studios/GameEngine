@@ -8,6 +8,7 @@
 #include "Engine\Texture\RenderTexture.h"
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
+#include "Engine\Component\Factory\BaseComponentFactory.h"
 
 Scene::Scene(const char * aSkyboxPath)
 {
@@ -33,7 +34,13 @@ Scene::~Scene()
 
 void Scene::Update(const Time & aDeltaTime)
 {
-	Engine::GetResourceManager().Update();
+	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
+	{
+		if (myFactories[iFactory] != nullptr)
+		{
+			myFactories[iFactory]->Update(aDeltaTime);
+		}
+	}
 
 	myTime += aDeltaTime;
 }
@@ -49,9 +56,12 @@ void Scene::Render()
 
 	myCamera->ApplyToVS();
 
-	for (size_t i = 0; i < myObjects.size(); i++)
+	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 	{
-		myObjects[i]->Render();
+		if (myFactories[iFactory] != nullptr)
+		{
+			myFactories[iFactory]->Render();
+		}
 	}
 }
 

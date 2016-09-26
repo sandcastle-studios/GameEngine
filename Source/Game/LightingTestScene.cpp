@@ -14,8 +14,8 @@ LightingTestScene::LightingTestScene()
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
 	myHead = std::make_shared<ModelInstance>(model);
-	myObjects.push_back(myHead);
-	myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx")));
+	//myObjects.push_back(myHead);
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx")));
 
 	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 

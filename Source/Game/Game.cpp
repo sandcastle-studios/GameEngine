@@ -85,6 +85,9 @@ void Game::Initialize()
 
 void Game::Update(const Time &aDeltaTime)
 {
+	Engine::GetResourceManager().Update();
+	Engine::GetFileWatcher().PostChanges();
+
 	if (myScene != nullptr)
 	{
 		myScene->Update(aDeltaTime);

@@ -26,10 +26,10 @@ void EnemyTestScene::Render()
 
 void EnemyTestScene::CreateFactories()
 {
-	AddComponentFactory<ModelComponent>();
-	AddComponentFactory<LightComponent>();
+	//AddComponentFactory<ModelComponent>();
+	//AddComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+	//std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
-	enemy->AddComponent<std::shared_ptr<ModelComponent>>(GetComponentFactory<ModelComponent>()->CreateComponent());
+	//enemy->AddComponent<std::shared_ptr<ModelComponent>>(GetComponentFactory<ModelComponent>()->CreateComponent());
 }
