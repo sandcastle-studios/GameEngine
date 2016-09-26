@@ -14,8 +14,6 @@ public:
 	ReceiveResult Receive(const AnyKeyUpMessage & aMessage) override;
 
 private:
-	void CreateFactories();
-
 	std::shared_ptr<ModelInstance> myHead;
 	bool myRotateLeft;
 	bool myRotateRight;

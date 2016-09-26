@@ -9,8 +9,9 @@
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
 #include <Engine\FileWatcher\FileChangeWatcher.h>
-#include "LightingTestScene.h"
-#include <Engine\SplashScreen\SplashScreenScene.h>
+//#include "LightingTestScene.h"
+//#include <Engine\SplashScreen\SplashScreenScene.h>
+#include "EnemyTestScene.h"
 
 Game::Game()
 {
@@ -77,7 +78,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<LightingTestScene>();
+	myScene = std::make_unique<EnemyTestScene>();
 
 	CreatePerspective();
 }

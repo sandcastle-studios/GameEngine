@@ -239,6 +239,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="EnemyTestScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InstancedTestScene.h" />
     <ClInclude Include="LightingTestScene.h" />
@@ -247,6 +248,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyTestScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InstancedTestScene.cpp" />
     <ClCompile Include="LightingTestScene.cpp" />

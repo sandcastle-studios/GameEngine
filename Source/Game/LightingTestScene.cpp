@@ -7,12 +7,7 @@
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
 #include <imgui.h>
-#include <Engine\Component\Factory\ComponentFactory.h>
 
-
-#include <Engine\Component\ModelComponent.h>
-#include <Engine\Component\LightComponent.h>
-#include "..\Engine\Engine\GameObject\GameObject.h"
 
 LightingTestScene::LightingTestScene()
 {
@@ -30,8 +25,6 @@ LightingTestScene::LightingTestScene()
 	// GetCamera().LookAt(Vector3f::Zero);
 
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
-
-	CreateFactories();
 }
 
 LightingTestScene::~LightingTestScene()
@@ -215,15 +208,4 @@ ReceiveResult LightingTestScene::Receive(const AnyKeyUpMessage& aMessage)
 		break;
 	}
 	return ReceiveResult::eContinue;
-}
-
-void LightingTestScene::CreateFactories()
-{
-
-	AddComponentFactory<ModelComponent>();
-	AddComponentFactory<LightComponent>();
-
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
-
-	enemy->AddComponent<std::shared_ptr<ModelComponent>>(GetComponentFactory<ModelComponent>()->CreateComponent());
 }
