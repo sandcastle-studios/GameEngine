@@ -41,6 +41,14 @@ cbuffer LightConstantBuffer : register(b1)
 		float4 direction;
 		float4 color;
 	} directionLight[1];
+
+	struct PointLight
+	{
+		float3 position;
+		float radius;
+		float3 color;
+		float intensity;
+	} pointLights[8];
 };
 
 Texture2D boundTexture : register( t0 );
@@ -79,18 +87,30 @@ PixelOutputType PShader(PixelInputType input)
 		normalize(input.tangent.xyz),
 		normalize(input.normal.xyz)
 	);
-	
+
+	float3 directDiffuse = 0.0f.xxx;	
 	float3 normal = mul(sampledNormal, tangentSpaceMatrix);
-
-	const float3 directionToLight = -directionLight[0].direction;
 	
-	float lambert = saturate(dot(normal, directionToLight));
-	float3 directDiffuse = sampledColor * directionLight[0].color * lambert.xxx;
+	{
+		const float3 directionToLight = -directionLight[0].direction.xyz;
 
-	float ambientAmount = 0.001f;
+		float lambert = saturate(dot(normal, directionToLight));
+		directDiffuse += sampledColor * directionLight[0].color * lambert.xxx;
+	}
 
+	for (int i = 0; i < 8; i++)
+	{
+		PointLight light = pointLights[i];
+		const float3 toLight = light.position - input.worldPosition.xyz;
+		const float distance = length(toLight);
+		const float3 directionToLight = normalize(toLight);
+		float lambert = saturate(dot(normal, directionToLight));
+		float attenuation = saturate(1.0f - (distance / light.radius));
+		directDiffuse += saturate(sampledColor * light.color * lambert.xxx * attenuation * light.intensity);
+	}
+
+	float ambientAmount = 0.01f;
 	output.color = float4(directDiffuse * (1.0f - ambientAmount) + sampledColor * ambientAmount, 1.0f);
-
 
 	return output;
 }

@@ -222,13 +222,13 @@ void DXRenderer::ClearFrame()
 {
 	myBackbuffer->Bind(0);
 
-	myBackbuffer->Clear(Vector4f(1.f, .5f, .5f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
+	myBackbuffer->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
 }
 
 void DXRenderer::Present()
 {
 	myModelRenderer->RenderBuffer();
-
+	
 	myTextureDebugger->Render();
 
 	mySwapchain->Present(0, 0);

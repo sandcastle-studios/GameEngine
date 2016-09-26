@@ -49,6 +49,10 @@ public:
 
 	void SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor);
 
+	void SetPointLight(int aIndex, const Vector3f & aLightPosition, const Vector3f & aLightColor, const float aLightRadius, const float aLightIntensity);
+
+	const LightConstantBufferData & GetLightData() const;
+
 private:
 	std::vector<BatchEntry*> myCurrentlyScheduledBatches;
 	std::vector<std::unique_ptr<BatchEntry>> myMeshes;

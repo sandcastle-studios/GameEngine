@@ -5,9 +5,15 @@ class LightingTestScene : public Scene, public Subscriber<AnyKeyDownMessage>, pu
 {
 public:
 	LightingTestScene();
+
+	void RandomizeLights();
+
 	~LightingTestScene();
 	
 	virtual void Update(const Time & aDeltaTime) override;
+
+	void CameraMovement(const Time &aDeltaTime);
+
 	virtual void Render() override;
 
 	ReceiveResult Receive(const AnyKeyDownMessage & aMessage) override;
@@ -15,6 +21,9 @@ public:
 
 private:
 	std::shared_ptr<ModelInstance> myHead;
+
+	std::array<Vector2f, 8> myLightRotationAxises;
+
 	bool myRotateLeft;
 	bool myRotateRight;
 	bool myMoveLeft;
@@ -28,4 +37,9 @@ private:
 	bool myRollRight;
 	bool myMoveDown;
 	bool myMoveUp;
+
+	int myLightCount;
+	float myMinSpeed;
+	float myMaxSpeed;
+	float myDirectionalLightIntensity;
 };

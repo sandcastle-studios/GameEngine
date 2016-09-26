@@ -7,4 +7,12 @@ struct LightConstantBufferData
 		Vector4f direction;
 		Vector4f color;
 	} directionLight[1];
+
+	struct PointLight
+	{
+		Vector3f position;
+		float radius;
+		Vector3f color;
+		float intensity;
+	} pointLight[8];
 };

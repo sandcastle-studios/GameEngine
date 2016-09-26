@@ -8,22 +8,50 @@
 #include <Engine\Rendering\ModelRenderer.h>
 #include <imgui.h>
 
+float RandomFloat(const float aMin = 0.f, const float aMax = 1.0f)
+{
+	return aMin + (static_cast<float>(rand()) / static_cast<float>(RAND_MAX)) * (aMax - aMin);
+}
+
 LightingTestScene::LightingTestScene()
 {
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
+	
 	myHead = std::make_shared<ModelInstance>(model);
 	myObjects.push_back(myHead);
-	myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx")));
+	auto boundingBox = myHead->GetBoundingBox();
+	GetCamera().SetPosition(boundingBox.GetCenter() + Vector3f(0.f, 0.f, -boundingBox.GetSize().z * 1.5f));
+	
+	myLightCount = 4;
+	myMinSpeed = 0.3f;
+	myMaxSpeed = 0.7f;
+	myDirectionalLightIntensity = 0.1f;
+	RandomizeLights();
+}
 
-	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+void LightingTestScene::RandomizeLights()
+{
+	BoundingBoxf boundingBox = myHead->GetBoundingBox();
 
-	auto bb = myHead->GetBoundingBox();
+	for (int i = 0; i < 8; i++)
+	{
+		if (i < myLightCount)
+		{
+			Vector3f position(boundingBox.GetCenter());
+			const float pitch = RandomFloat() * TwoPi;
+			const float yaw = RandomFloat() * TwoPi;
+			position += Vector4f(boundingBox.GetMaximumRadius() * .25f, 0.f, 0.f, 1.f) * (Matrix44f::CreateRotateAroundY(yaw) * Matrix44f::CreateRotateAroundZ(pitch));
+			Vector3f color(RandomFloat(), RandomFloat(), RandomFloat());
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
-	// GetCamera().LookAt(Vector3f::Zero);
+			myLightRotationAxises[i] = Vector2f(myMinSpeed + RandomFloat() * (myMaxSpeed - myMinSpeed), myMinSpeed + RandomFloat() * (myMaxSpeed - myMinSpeed)) * 3.f;
 
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
+			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, position, color, 0.2f + RandomFloat() * 0.8f, 1.0f);
+		}
+		else
+		{
+			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, Vector3f::Zero, Vector3f::Zero, 1.0f, 0.0f);
+		}
+	}
 }
 
 LightingTestScene::~LightingTestScene()
@@ -32,20 +60,55 @@ LightingTestScene::~LightingTestScene()
 
 void LightingTestScene::Update(const Time & aDeltaTime)
 {
-	ImGui::SetNextWindowPos({ 16, 16 }, ImGuiSetCond_Once);
-	ImGui::SetNextWindowSize({ 375, 400 }, ImGuiSetCond_Once);
-	ImGui::SetNextWindowCollapsed(true, ImGuiSetCond_Once);
-
-	if (ImGui::Begin("Debug Window"))
+	ImGui::SetNextWindowCollapsed(false, ImGuiSetCond_Once);
+	ImGui::SetNextWindowPos(ImVec2(16.f, 16.f), ImGuiSetCond_Once);
+	//ImGui::SetNextWindowSize(ImVec2(300.f, 110.f), ImGuiSetCond_Once);
+	
+	if (ImGui::Begin("Lights", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
-		static bool checked;
-		ImGui::Checkbox("Checked", &checked);
+		ImGui::SliderFloat("Direction light intensity", &myDirectionalLightIntensity, 0.f, 1.f);
+		Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(myDirectionalLightIntensity, myDirectionalLightIntensity, myDirectionalLightIntensity, 1.f));
+		
+
+		ImGui::SliderInt("Light count", &myLightCount, 0, 8);
+
+		ImGui::DragFloatRange2("Light Speed", &myMinSpeed, &myMaxSpeed, 0.05f, -10.f, 10.f);
+
+		if (ImGui::Button("Recreate lights"))
+		{
+			RandomizeLights();
+		}
 	}
 
 	ImGui::End();
 
-	// myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()));
+	{
+		const LightConstantBufferData & lightData = Engine::GetRenderer().GetModelRenderer().GetLightData();
 
+		for (int i = 0; i < 8; i++)
+		{
+			Vector3f pos = lightData.pointLight[i].position;
+			pos = Vector4f(pos - myHead->GetBoundingBox().GetCenter(), 1.0f)
+				* Matrix44f::CreateRotateAroundY(myLightRotationAxises[i].y * aDeltaTime.InSeconds())
+				* Matrix44f::CreateRotateAroundX(myLightRotationAxises[i].x * aDeltaTime.InSeconds())
+				+ Vector4f(myHead->GetBoundingBox().GetCenter(), 1.0f);
+
+			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, pos, lightData.pointLight[i].color, lightData.pointLight[i].radius, lightData.pointLight[i].intensity);
+		}
+	}
+
+	CameraMovement(aDeltaTime);
+
+	Scene::Update(aDeltaTime);
+}
+
+void LightingTestScene::Render()
+{
+	Scene::Render();
+}
+
+void LightingTestScene::CameraMovement(const Time &aDeltaTime)
+{
 	if (myRollLeft)
 	{
 		myCamera->GetRototation().RotateZ(-aDeltaTime.InSeconds());
@@ -102,15 +165,7 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 	{
 		myCamera->GetRototation().RotateY(-rotateSpeed * aDeltaTime.InSeconds());
 	}
-
-	Scene::Update(aDeltaTime);
 }
-
-void LightingTestScene::Render()
-{
-	Scene::Render();
-}
-
 ReceiveResult LightingTestScene::Receive(const AnyKeyDownMessage& aMessage)
 {
 	switch (aMessage.key)

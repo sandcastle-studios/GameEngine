@@ -11,6 +11,7 @@
 #include <Engine\FileWatcher\FileChangeWatcher.h>
 #include "LightingTestScene.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
+#include "..\Engine\Engine\Rendering\ModelRenderer.h"
 
 Game::Game()
 {
@@ -98,6 +99,9 @@ void Game::Render()
 	{
 		myScene->Render();
 	}
+
+	// Empty the model buffer so the debug interface appears above models
+	Engine::GetRenderer().GetModelRenderer().RenderBuffer();
 
 	Engine::GetDebugger().RenderFrame();
 
