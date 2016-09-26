@@ -47,23 +47,8 @@ void RenderTexture::Bind(int aSlot, bool aUpdateViewport)
 {
 	Engine::GetRenderer().StoreRenderTargetResolution(Vector2f(static_cast<float>(myWidth), static_cast<float>(myHeight)));
 
-	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT];
-	ID3D11DepthStencilView * depthStencilView;
-	Engine::GetInstance().GetRenderer().GetContext()->OMGetRenderTargets(D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT, renderTargets, &depthStencilView);
-
-	for (size_t i = 0; i < D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT; i++)
-	{
-		if (renderTargets[i])
-		{
-			renderTargets[i]->Release();
-		}
-	}
-
-	if (depthStencilView)
-	{
-		depthStencilView->Release();
-	}
-
+	ID3D11RenderTargetView * renderTargets[D3D11_SIMULTANEOUS_RENDER_TARGET_COUNT] = { nullptr };
+	ID3D11DepthStencilView * depthStencilView = nullptr;
 	renderTargets[aSlot] = myRenderTargetView;
 
 	if (myDepthBuffer != nullptr)
@@ -102,6 +87,11 @@ const std::shared_ptr<DepthBuffer> & RenderTexture::GetDepthBuffer()
 std::shared_ptr<const DepthBuffer> RenderTexture::GetDepthBuffer() const
 {
 	return myDepthBuffer;
+}
+
+ID3D11RenderTargetView * RenderTexture::GetView() const
+{
+	return myRenderTargetView;
 }
 
 void RenderTexture::Clear(const Vector4f & aColor)

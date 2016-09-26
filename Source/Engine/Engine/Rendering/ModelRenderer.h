@@ -9,6 +9,10 @@ class ModelInstance;
 template <typename T>
 class ConstantBuffer;
 
+class Effect;
+class Model;
+class MultiRenderTexture;
+
 class BatchEntry
 {
 public:
@@ -53,6 +57,11 @@ public:
 
 	const LightConstantBufferData & GetLightData() const;
 
+	const std::shared_ptr<MultiRenderTexture> & GetDeferredTexture() const;
+	const std::shared_ptr<RenderTexture> & GetLambertTexture() const;
+
+	void RenderLights();
+
 private:
 	std::vector<BatchEntry*> myCurrentlyScheduledBatches;
 	std::vector<std::unique_ptr<BatchEntry>> myMeshes;
@@ -62,7 +71,17 @@ private:
 	std::shared_ptr<ConstantBuffer<LightConstantBufferData>> myLightingBuffer;
 	LightConstantBufferData myLightingData;
 
+	std::shared_ptr<ConstantBuffer<PointLight>> myPointLightBuffer;
+
+	std::shared_ptr<Effect> myEffect;
+	std::shared_ptr<Effect> myLambertEffect;
+
+	std::shared_ptr<MultiRenderTexture> myDeferredTextures;
+	std::shared_ptr<RenderTexture> myLambertBuffer;
+
 	bool myIsInstantRendering;
 	void UpdateAndBindLightingBuffer();
+
+	std::shared_ptr<Model> mySphereModel;
 };
 

@@ -16,6 +16,7 @@ class DepthBuffer;
 class TextureDebugger;
 class ModelRenderer;
 class SpriteRenderer;
+class BlendState;
 
 class DXRenderer
 {
@@ -45,6 +46,12 @@ public:
 	void StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution);
 	const Vector2f & GetRenderTargetResolution() const;
 
+	const std::shared_ptr<BlendState> & GetAlphaBlendState() const;
+	const std::shared_ptr<BlendState> & GetAdditiveBlendState() const;
+
+	void EnableDepthWrite();
+	void DisableDepthWrite();
+
 private:
 	void CreateBuffers(int aWidth, int aHeight);
 
@@ -53,9 +60,11 @@ private:
 	ID3D11DeviceContext * myDeviceContext;
 	ID3D11SamplerState * mySamplerState;
 	ID3D11RasterizerState * myRasterState;
-	ID3D11BlendState * myAlphaBlendingState;
 	ID3D11DepthStencilState* myDepthStencilState;
+	ID3D11DepthStencilState* myDepthStencilStateDisableWrite;
 
+	std::shared_ptr<BlendState> myAlphaBlendState;
+	std::shared_ptr<BlendState> myAdditiveBlendState;
 	std::shared_ptr<RenderTexture> myBackbuffer;
 
 	std::unique_ptr<TextureDebugger> myTextureDebugger;

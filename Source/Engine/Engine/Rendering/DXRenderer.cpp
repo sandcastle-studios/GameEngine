@@ -7,6 +7,7 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Rendering\ModelRenderer.h"
 #include "Engine\Rendering\SpriteRenderer.h"
+#include "..\RenderingConfiguration\BlendState.h"
 
 DXRenderer::DXRenderer()
 {
@@ -15,7 +16,6 @@ DXRenderer::DXRenderer()
 	myDeviceContext = nullptr;
 	mySamplerState = nullptr;
 	myRasterState = nullptr;
-	myAlphaBlendingState = nullptr;
 	myDepthStencilState = nullptr;
 }
 
@@ -26,7 +26,6 @@ DXRenderer::~DXRenderer()
 	SAFE_RELEASE(myDeviceContext);
 	SAFE_RELEASE(mySamplerState);
 	SAFE_RELEASE(myRasterState);
-	SAFE_RELEASE(myAlphaBlendingState);
 	SAFE_RELEASE(myDepthStencilState);
 }
 
@@ -125,41 +124,13 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 	myDeviceContext->RSSetState(myRasterState);
 
-	D3D11_BLEND_DESC blendStateDescription;
-	// Clear the blend state description.
-	ZeroMemory(&blendStateDescription, sizeof(D3D11_BLEND_DESC));
-	// CreateInputLayout an alpha enabled blend state description.
-	blendStateDescription.RenderTarget[0].BlendEnable = TRUE;
-	blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA; // D3D11_BLEND_ZERO;
-	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	myAlphaBlendState = std::make_shared<BlendState>(BlendStateDescription());
+	myAlphaBlendState->Bind();
 
-	/*blendStateDescription.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	blendStateDescription.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	blendStateDescription.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	blendStateDescription.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	blendStateDescription.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-	blendStateDescription.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	blendStateDescription.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;*/
-
-	CheckDXError(
-		myDevice->CreateBlendState(&blendStateDescription, &myAlphaBlendingState)
-	);
-	
-	float blendFactor[4];
-
-	// Setup the blend factor.
-	blendFactor[0] = 0.0f;
-	blendFactor[1] = 0.0f;
-	blendFactor[2] = 0.0f;
-	blendFactor[3] = 0.0f;
-
-	// Turn on the alpha blending.
-	myDeviceContext->OMSetBlendState(myAlphaBlendingState, blendFactor, 0xffffffff);
+	BlendStateDescription additive;
+	additive.renderTarget[0].destinationBlend = BlendFactor::eOne;
+	additive.renderTarget[0].sourceBlend = BlendFactor::eOne;
+	myAdditiveBlendState = std::make_shared<BlendState>(additive);
 
 	// Create sampler
 	D3D11_SAMPLER_DESC samplerDesc;
@@ -191,7 +162,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 	// Set up the description of the stencil state.
 	depthStencilDesc.DepthEnable = true;
 	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS;
+	depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
 	
 	depthStencilDesc.StencilEnable = true;
 	depthStencilDesc.StencilReadMask = 0xFF;
@@ -211,6 +182,12 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 		myDevice->CreateDepthStencilState(&depthStencilDesc, &myDepthStencilState)
 	);
 
+	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+
+	CheckDXError(
+		myDevice->CreateDepthStencilState(&depthStencilDesc, &myDepthStencilStateDisableWrite)
+	);
+
 	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 0);
 
 	myTextureDebugger = std::make_unique<TextureDebugger>();
@@ -220,6 +197,8 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 void DXRenderer::ClearFrame()
 {
+	ID3D11ShaderResourceView * views[8] = { nullptr };
+	myDeviceContext->PSSetShaderResources(0, 8, views);
 	myBackbuffer->Bind(0);
 
 	myBackbuffer->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
@@ -323,4 +302,24 @@ void DXRenderer::StoreRenderTargetResolution(const Vector2f & aRenderTargetResol
 const Vector2f & DXRenderer::GetRenderTargetResolution() const
 {
 	return myCurrentRenderTargetResolution;
+}
+
+const std::shared_ptr<BlendState> & DXRenderer::GetAlphaBlendState() const
+{
+	return myAlphaBlendState;
+}
+
+const std::shared_ptr<BlendState> & DXRenderer::GetAdditiveBlendState() const
+{
+	return myAdditiveBlendState;
+}
+
+void DXRenderer::EnableDepthWrite()
+{
+	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 0);
+}
+
+void DXRenderer::DisableDepthWrite()
+{
+	myDeviceContext->OMSetDepthStencilState(myDepthStencilStateDisableWrite, 0);
 }

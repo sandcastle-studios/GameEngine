@@ -7,6 +7,7 @@ struct CameraCB
 {
 	Matrix44f view;
 	Matrix44f projection;
+	Matrix44f projectionInverse;
 	Vector4f cameraPosition;
 };
 

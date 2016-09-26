@@ -259,3 +259,5 @@ paket-files/
 !extlibs/**
 *.obj.enc
 Bin/imgui.ini
+Temp/**
+*.lib.lastcodeanalysissucceeded

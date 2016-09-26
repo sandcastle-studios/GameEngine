@@ -1,8 +1,6 @@
 #pragma once
 
-class Effect;
 class Texture;
-class Model;
 
 class TextureDebugger
 {
@@ -16,7 +14,6 @@ public:
 
 private:
 	std::vector<std::shared_ptr<Texture>> myTexturesToDebug;
-	std::shared_ptr<Effect> myEffect;
-	std::unique_ptr<Model> myUnitQuad;
+	Sprite mySprite;
 };
 

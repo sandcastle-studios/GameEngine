@@ -24,6 +24,8 @@ public:
 	const std::shared_ptr<DepthBuffer> & GetDepthBuffer();
 	std::shared_ptr<const DepthBuffer> GetDepthBuffer() const;
 
+	ID3D11RenderTargetView * GetView() const;
+
 private:
 	std::shared_ptr<Texture> myTexture;
 	std::shared_ptr<DepthBuffer> myDepthBuffer;

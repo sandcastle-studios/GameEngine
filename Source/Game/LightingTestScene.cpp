@@ -7,6 +7,10 @@
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
 #include <imgui.h>
+#include <Engine\Texture\TextureDebugger.h>
+#include <Engine\Texture\MultiRenderTexture.h>
+#include <Engine\Texture\RenderTexture.h>
+#include "..\Engine\Engine\RenderingConfiguration\BlendState.h"
 
 float RandomFloat(const float aMin = 0.f, const float aMax = 1.0f)
 {
@@ -15,7 +19,7 @@ float RandomFloat(const float aMin = 0.f, const float aMax = 1.0f)
 
 LightingTestScene::LightingTestScene()
 {
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(nullptr, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	
 	myHead = std::make_shared<ModelInstance>(model);
 	myObjects.push_back(myHead);
@@ -27,13 +31,15 @@ LightingTestScene::LightingTestScene()
 	myMaxSpeed = 0.7f;
 	myDirectionalLightIntensity = 0.1f;
 	RandomizeLights();
+
+	myTexture = Engine::GetResourceManager().Get<Texture>("grass.dds");
 }
 
 void LightingTestScene::RandomizeLights()
 {
 	BoundingBoxf boundingBox = myHead->GetBoundingBox();
 
-	for (int i = 0; i < 8; i++)
+	/*for (int i = 0; i < 8; i++)
 	{
 		if (i < myLightCount)
 		{
@@ -42,6 +48,7 @@ void LightingTestScene::RandomizeLights()
 			const float yaw = RandomFloat() * TwoPi;
 			position += Vector4f(boundingBox.GetMaximumRadius() * .25f, 0.f, 0.f, 1.f) * (Matrix44f::CreateRotateAroundY(yaw) * Matrix44f::CreateRotateAroundZ(pitch));
 			Vector3f color(RandomFloat(), RandomFloat(), RandomFloat());
+			color = Vector3f(1.f, 1.f, 1.f);
 
 			myLightRotationAxises[i] = Vector2f(myMinSpeed + RandomFloat() * (myMaxSpeed - myMinSpeed), myMinSpeed + RandomFloat() * (myMaxSpeed - myMinSpeed)) * 3.f;
 
@@ -51,7 +58,9 @@ void LightingTestScene::RandomizeLights()
 		{
 			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, Vector3f::Zero, Vector3f::Zero, 1.0f, 0.0f);
 		}
-	}
+	}*/
+
+	Engine::GetRenderer().GetModelRenderer().SetPointLight(0, boundingBox.GetCenter() + Vector3f(0.f, 0.f, -boundingBox.GetSize().z * 0.75f), Vector3f::One, 1.0f, 1.0f);
 }
 
 LightingTestScene::~LightingTestScene()
@@ -82,7 +91,14 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 
 	ImGui::End();
 
+	for (auto && texture : Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->GetRenderTextures())
 	{
+		Engine::GetRenderer().GetTextureDebugger().QueueRender(texture->GetTexture());
+	}
+	Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->GetTexture());
+	Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->GetDepthBuffer()->GetTexture());
+
+	/*{
 		const LightConstantBufferData & lightData = Engine::GetRenderer().GetModelRenderer().GetLightData();
 
 		for (int i = 0; i < 8; i++)
@@ -95,7 +111,7 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 
 			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, pos, lightData.pointLight[i].color, lightData.pointLight[i].radius, lightData.pointLight[i].intensity);
 		}
-	}
+	}*/
 
 	CameraMovement(aDeltaTime);
 
@@ -104,7 +120,16 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 
 void LightingTestScene::Render()
 {
+	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Bind();
+	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Clear();
+	Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->Clear(Vector4f(0.f, 0.f, 0.f, 0.f));
+
 	Scene::Render();
+
+	Engine::GetRenderer().GetModelRenderer().RenderLights();
+
+	myEffect->Bind();
+	Engine::GetRenderer().GetBackBuffer()->Bind(0, true);
 }
 
 void LightingTestScene::CameraMovement(const Time &aDeltaTime)

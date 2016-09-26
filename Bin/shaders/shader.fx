@@ -23,32 +23,17 @@ struct PixelInputType
 
 struct PixelOutputType
 {
-	float4 color : SV_TARGET;
+	float4 diffuse : SV_TARGET0;
+	float4 normal : SV_TARGET1;
+	float4 worldPosition : SV_TARGET2;
 };
-
 
 cbuffer CameraCBuffer : register(b0)
 {
 	matrix toCamera;
 	matrix toProjection;
+	matrix projectionInverse;
 	float4 cameraPosition;
-};
-
-cbuffer LightConstantBuffer : register(b1)
-{
-	struct DirectionLight
-	{
-		float4 direction;
-		float4 color;
-	} directionLight[1];
-
-	struct PointLight
-	{
-		float3 position;
-		float radius;
-		float3 color;
-		float intensity;
-	} pointLights[8];
 };
 
 Texture2D boundTexture : register( t0 );
@@ -79,7 +64,8 @@ PixelOutputType PShader(PixelInputType input)
 {
 	PixelOutputType output;
 	
-	float3 sampledColor = boundTexture.Sample(samplerState, input.uv).xyz;
+	output.diffuse = boundTexture.Sample(samplerState, input.uv);
+	
 	float3 sampledNormal = (boundNormalMap.Sample(samplerState, input.uv).xyz * 2.f) - (1.f).xxx;
 	
 	float3x3 tangentSpaceMatrix = float3x3(
@@ -87,30 +73,10 @@ PixelOutputType PShader(PixelInputType input)
 		normalize(input.tangent.xyz),
 		normalize(input.normal.xyz)
 	);
-
-	float3 directDiffuse = 0.0f.xxx;	
-	float3 normal = mul(sampledNormal, tangentSpaceMatrix);
 	
-	{
-		const float3 directionToLight = -directionLight[0].direction.xyz;
-
-		float lambert = saturate(dot(normal, directionToLight));
-		directDiffuse += sampledColor * directionLight[0].color * lambert.xxx;
-	}
-
-	for (int i = 0; i < 8; i++)
-	{
-		PointLight light = pointLights[i];
-		const float3 toLight = light.position - input.worldPosition.xyz;
-		const float distance = length(toLight);
-		const float3 directionToLight = normalize(toLight);
-		float lambert = saturate(dot(normal, directionToLight));
-		float attenuation = saturate(1.0f - (distance / light.radius));
-		directDiffuse += saturate(sampledColor * light.color * lambert.xxx * attenuation * light.intensity);
-	}
-
-	float ambientAmount = 0.01f;
-	output.color = float4(directDiffuse * (1.0f - ambientAmount) + sampledColor * ambientAmount, 1.0f);
-
+	output.normal = float4(mul(sampledNormal, tangentSpaceMatrix).xyz, 1.f);
+	
+	output.worldPosition = input.worldPosition;
+	
 	return output;
 }

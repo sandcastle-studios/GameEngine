@@ -6,6 +6,12 @@
 #include "Engine\Model\Mesh.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Buffer\ConstantBuffer.h"
+#include "Engine\Effect\StandardEffect.h"
+#include "Engine\Texture\MultiRenderTexture.h"
+#include "Engine\Model\AssimpModel.h"
+#include "Engine\Texture\RenderTexture.h"
+#include "Engine\Effect\Effect.h"
+#include "..\RenderingConfiguration\BlendState.h"
 
 ModelRenderer::ModelRenderer()
 {
@@ -15,6 +21,32 @@ ModelRenderer::ModelRenderer()
 
 	myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, 1, false));
 	myLightingBuffer = std::make_shared<ConstantBuffer<LightConstantBufferData>>();
+
+	myEffect = std::make_shared<StandardEffect>();
+
+	myPointLightBuffer = std::make_shared<ConstantBuffer<PointLight>>();
+	myDeferredTextures = std::make_shared<MultiRenderTexture>(3, 1280, 720, true);
+	myLambertBuffer = std::make_shared<RenderTexture>(1280, 720, false);
+
+	myLambertEffect = std::make_shared<Effect>();
+	myLambertEffect->AttachVertexShader("shaders/lambert.fx", "VShader");
+	myLambertEffect->AttachPixelShader("shaders/lambert.fx", "PShader");
+
+	InputLayout layout;
+	layout.Add("POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);
+	layout.Add("NORMAL", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);
+	layout.Add("TANGENT", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);
+	layout.Add("BITANGENT", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);
+	layout.Add("TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT);
+
+	layout.AddPerInstance("INSTANCE_MATRIX", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 1);
+	layout.AddPerInstance("INSTANCE_MATRIX", 1, DXGI_FORMAT_R32G32B32A32_FLOAT, 1);
+	layout.AddPerInstance("INSTANCE_MATRIX", 2, DXGI_FORMAT_R32G32B32A32_FLOAT, 1);
+	layout.AddPerInstance("INSTANCE_MATRIX", 3, DXGI_FORMAT_R32G32B32A32_FLOAT, 1);
+
+	myLambertEffect->Link(layout);
+
+	mySphereModel = std::make_shared<AssimpModel>(nullptr, "models/unitsphere/sphere.fbx");
 
 	memset(&myLightingData, 0, sizeof(myLightingData));
 
@@ -79,6 +111,9 @@ void ModelRenderer::RenderBuffer()
 
 		vertexBuffer->UpdateData(matrices, matricesCount, false);
 		vertexBuffer->Bind(1);
+		
+		myEffect->Bind();
+		
 		myCurrentlyScheduledBatches[i]->GetMesh().RenderInstanced(matricesCount);
 
 		myCurrentlyScheduledBatches[i]->FinishedRendering();
@@ -138,10 +173,61 @@ const LightConstantBufferData & ModelRenderer::GetLightData() const
 	return myLightingData;
 }
 
+const std::shared_ptr<MultiRenderTexture> & ModelRenderer::GetDeferredTexture() const
+{
+	return myDeferredTextures;
+}
+
+const std::shared_ptr<RenderTexture> & ModelRenderer::GetLambertTexture() const
+{
+	return myLambertBuffer;
+}
+
 void ModelRenderer::UpdateAndBindLightingBuffer()
 {
 	myLightingBuffer->UpdateData(myLightingData);
 	myLightingBuffer->BindToPS(1);
+}
+
+void ModelRenderer::RenderLights()
+{
+	myDeferredTextures->Bind();
+	RenderBuffer();
+	myLambertBuffer->Bind(0, false);
+	myLambertEffect->Bind();
+	Engine::GetRenderer().GetAdditiveBlendState()->Bind();
+	Engine::GetRenderer().DisableDepthWrite();
+
+	myDeferredTextures->GetDepthBuffer()->Bind();
+
+	myDeferredTextures->GetDepthBuffer()->GetTexture()->BindToPS(2);
+	myDeferredTextures->GetRenderTextures()[1]->GetTexture()->BindToPS(3);
+	myDeferredTextures->GetRenderTextures()[2]->GetTexture()->BindToPS(4);
+
+	myPointLightBuffer->BindToPS(1);
+
+	for (size_t i = 0; i < 8; i++)
+	{
+		auto &&lightData = myLightingData.pointLight[i];
+		
+		if (lightData.intensity == 0.f)
+		{
+			continue;
+		}
+
+		myPointLightBuffer->UpdateData(lightData);
+
+		ModelInstance inst(mySphereModel);
+
+		inst.SetMatrix(Matrix44f::CreateScale(0.01f * lightData.radius, 0.01f * lightData.radius, 0.01f * lightData.radius)
+			* Matrix44f::CreateTranslation(lightData.position));
+
+		inst.InstantRender();
+	}
+
+	Engine::GetRenderer().GetAlphaBlendState()->Bind();
+	Engine::GetRenderer().GetBackBuffer()->Bind(0);
+	Engine::GetRenderer().EnableDepthWrite();
 }
 
 void ModelRenderer::InstantRender(const std::shared_ptr<GenericMesh> & myMesh)

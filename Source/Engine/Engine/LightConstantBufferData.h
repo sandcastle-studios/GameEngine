@@ -1,5 +1,13 @@
 #pragma once
 
+struct PointLight
+{
+	Vector3f position;
+	float radius;
+	Vector3f color;
+	float intensity;
+};
+
 struct LightConstantBufferData
 {
 	struct DirectionLight
@@ -8,11 +16,5 @@ struct LightConstantBufferData
 		Vector4f color;
 	} directionLight[1];
 
-	struct PointLight
-	{
-		Vector3f position;
-		float radius;
-		Vector3f color;
-		float intensity;
-	} pointLight[8];
+	PointLight pointLight[8];
 };

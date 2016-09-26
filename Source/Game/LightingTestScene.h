@@ -42,4 +42,5 @@ private:
 	float myMinSpeed;
 	float myMaxSpeed;
 	float myDirectionalLightIntensity;
+	std::shared_ptr<Texture> myTexture;
 };

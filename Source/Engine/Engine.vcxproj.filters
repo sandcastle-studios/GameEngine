@@ -152,6 +152,8 @@
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\RenderingConfiguration\BlendState.h" />
+    <ClInclude Include="Engine\Texture\MultiRenderTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -267,6 +269,8 @@
     <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\RenderingConfiguration\BlendState.cpp" />
+    <ClCompile Include="Engine\Texture\MultiRenderTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

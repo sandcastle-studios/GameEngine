@@ -244,6 +244,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\RenderingConfiguration\BlendState.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h" />
@@ -297,6 +298,7 @@
     <ClInclude Include="Engine\Sprite\QuadSpriteShape.h" />
     <ClInclude Include="Engine\Sprite\Sprite.h" />
     <ClInclude Include="Engine\SplashScreen\SplashScreenEffect.h" />
+    <ClInclude Include="Engine\Texture\MultiRenderTexture.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -315,6 +317,7 @@
     <ClInclude Include="Engine\Window\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\RenderingConfiguration\BlendState.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Model\AssimpModel.cpp" />
@@ -356,6 +359,7 @@
     <ClCompile Include="Engine\Sprite\QuadSpriteShape.cpp" />
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
     <ClCompile Include="Engine\SplashScreen\SplashScreenEffect.cpp" />
+    <ClCompile Include="Engine\Texture\MultiRenderTexture.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
