@@ -17,6 +17,9 @@ public:
 	template <typename TStateType>
 	const TStateType & GetState() const;
 
+	
+
+
 private:
 	Scene * myScene;
 };
@@ -29,4 +32,16 @@ inline Scene & GameObject::GetScene()
 inline const Scene & GameObject::GetScene() const
 {
 	return *myScene;
+}
+
+template <typename TStateType>
+TStateType & GameObject::GetState()
+{
+
+}
+
+template <typename TStateType>
+const TStateType & GameObject::GetState() const
+{
+
 }

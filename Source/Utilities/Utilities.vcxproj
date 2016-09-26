@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\CommonIncludes.h" />
+    <ClInclude Include="Utilities\Container\GrowingArray.h" />
     <ClInclude Include="Utilities\Math\Matrix33.h" />
     <ClInclude Include="Utilities\Math\Matrix44.h" />
     <ClInclude Include="Utilities\Math\Quaternion.h" />

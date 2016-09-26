@@ -152,6 +152,10 @@
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\Component\BaseComponent.h" />
+    <ClInclude Include="Engine\Component\ModelComponent.h" />
+    <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
+    <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -267,6 +271,8 @@
     <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\Component\BaseComponent.cpp" />
+    <ClCompile Include="Engine\Component\ModelComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

@@ -1,6 +1,8 @@
 #pragma once
+#include "Utilities\Container\GrowingArray.h"
 
 class ModelInstance;
+class BaseComponentFactory;
 class Camera;
 class StandardEffect;
 
@@ -16,6 +18,10 @@ public:
 	Camera & GetCamera();
 
 protected:
+
+	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
+	GrowingArray<std::shared_ptr<BaseComponentFactory>> myFactories;
+
 	std::vector<std::shared_ptr<ModelInstance>> myObjects;
 
 	std::unique_ptr<ModelInstance> mySkybox;
