@@ -11,9 +11,11 @@
 #ifndef _AK_FILE_HELPERS_H_
 #define _AK_FILE_HELPERS_H_
 
-#include <AK/Tools/Common/AkAssert.h>
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>
+#include "AK/Tools/Common/AkAssert.h"
+#include "AK/SoundEngine/Common/IAkStreamMgr.h"
 #include <sys/stat.h>
+#include <stdio.h>
+#include "AK/SoundEngine/Platforms/Windows/AkTypes.h"
 
 class CAkFileHelpers
 {

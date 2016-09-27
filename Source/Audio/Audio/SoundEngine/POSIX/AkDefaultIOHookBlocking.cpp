@@ -33,6 +33,8 @@
 #include "AkDefaultIOHookBlocking.h"
 #include "AkFileHelpers.h"
 #include <sys/stat.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
+#include "AK/SoundEngine/Platforms/Windows/AkTypes.h"
 
 
 #define POSIX_BLOCKING_DEVICE_NAME		AKTEXT("POSIX Blocking")	// Default blocking device name.

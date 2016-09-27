@@ -6,7 +6,8 @@
 #include <Engine\Camera\Camera.h>
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
-#include "..\Audio\Audio\AudioInterface.h"
+#include <Engine\SoundManager\SoundManager.h>
+#include <Engine\Engine.h>
 
 void ErrorCallback(const char* aError)
 {
@@ -17,19 +18,18 @@ void ErrorCallback(const char* aError)
 
 SoundTestScene::SoundTestScene()
 {
-	bool success;
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	myObjects.push_back(std::make_shared<ModelInstance>(model));
-	GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
+	//bool success;
+	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	//myObjects.push_back(std::make_shared<ModelInstance>(model));
+	//GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
 
-	CAudioInterface::CreateInstance();
-	success = CAudioInterface::GetInstance()->Init("Audio/SoundBanks/Init.bnk");
-	CAudioInterface::GetInstance()->SetErrorCallBack(ErrorCallback);
+	//success = Engine::GetInstance().GetSoundManager()/*->Init("Audio/SoundBanks/Init.bnk");*/
+	//CAudioInterface::GetInstance()->SetErrorCallBack(ErrorCallback);
 
-	success = CAudioInterface::GetInstance()->LoadBank("Audio/SoundBanks/level1.bnk");
-	success;
-	CAudioInterface::GetInstance()->PostEvent("Play_Derp");
-	myPlaying = false;
+	//success = SoundManager::GetInstance()->LoadBank("Audio/SoundBanks/level1.bnk");
+	//success;
+	//SoundManager::GetInstance()->PostEvent("Play_Derp");
+	//myPlaying = false;
 }
 
 
@@ -39,23 +39,23 @@ SoundTestScene::~SoundTestScene()
 
 void SoundTestScene::Update(const Time & aDeltaTime)
 {
-	if (mySoundLoop> 1.0f)
-	{
-		myPlaying = false;
-		mySoundLoop = 0.0f;
-	}
-	if (!myPlaying)
-	{
-		CAudioInterface::GetInstance()->PostEvent("Play_Derp");
-		myPlaying = true;
-	}
-	CAudioInterface::GetInstance()->Update();
-	mySoundLoop += 0.0008f;
+	//if (mySoundLoop> 1.0f)
+	//{
+	//	myPlaying = false;
+	//	mySoundLoop = 0.0f;
+	//}
+	//if (!myPlaying)
+	//{
+	//	SoundManager::GetInstance()->PostEvent("Play_Derp");
+	//	myPlaying = true;
+	//}
+	//SoundManager::GetInstance()->Update();
+	//mySoundLoop += 0.0008f;
 
 
 
-	myObjects[0]->SetMatrix(myObjects[0]->GetMatrix()*Matrix44f::CreateRotateAroundY(0.7f * aDeltaTime.InSeconds()));
-	Scene::Update(aDeltaTime);
+	//myObjects[0]->SetMatrix(myObjects[0]->GetMatrix()*Matrix44f::CreateRotateAroundY(0.7f * aDeltaTime.InSeconds()));
+	//Scene::Update(aDeltaTime);
 }
 
 void SoundTestScene::Render()

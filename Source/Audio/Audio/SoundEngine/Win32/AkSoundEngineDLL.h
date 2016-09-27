@@ -7,10 +7,10 @@
 #ifndef AK_SOUND_ENGINE_DLL_H_
 #define AK_SOUND_ENGINE_DLL_H_
 
-#include <AK/SoundEngine/Common/AkSoundEngine.h>
-#include <AK/MusicEngine/Common/AkMusicEngine.h>
-#include <AK/SoundEngine/Common/AkModule.h>
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+#include "AK/SoundEngine/Common/AkSoundEngine.h"
+#include "AK/MusicEngine/Common/AkMusicEngine.h"
+#include "AK/SoundEngine/Common/AkModule.h"
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
 
 #include "AkSoundEngineExports.h"
 

@@ -30,11 +30,29 @@
     <ClCompile Include="SoundEngine\Common\AkFilePackageLUT.cpp">
       <Filter>Source Files\External</Filter>
     </ClCompile>
-    <ClCompile Include="AudioInterface.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="WwiseManager.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\Common\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\POSIX\AkDefaultIOHookBlocking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\POSIX\AkDefaultIOHookDeferred.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\POSIX\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\Win32\AkDefaultIOHookDeferred.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\Win32\AkSoundEngineDLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEngine\Win32\stdafx.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,14 +68,474 @@
     <ClInclude Include="SoundEngine\Common\AkFilePackageLUT.h">
       <Filter>Source Files\External</Filter>
     </ClInclude>
-    <ClInclude Include="AudioInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="WwiseManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AudioCommon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundEngine\Common\AkDefaultLowLevelIODispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Common\AkFilePackageLowLevelIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Common\AkMultipleFileLocation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\AkDefaultIOHookBlocking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\AkDefaultIOHookDeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\AkFileHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\AkFilePackageLowLevelIOBlocking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\POSIX\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkDefaultIOHookDeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkFileHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkFilePackageLowLevelIOBlocking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkFilePackageLowLevelIODeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkSoundEngineDLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\AkSoundEngineExports.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEngine\Win32\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Comm\AkCommunication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\Generic\AkDelayLineMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\Generic\AkDelayLineMemoryStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\AkApplyGain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\AkDelayLineMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\AkDelayLineMemoryStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\AkModulatorProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\DSP\AkVolAutomation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\MotionEngine\Common\AkMotionEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\MotionEngine\Common\IAkMotionMixBus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\MusicEngine\Common\AkMusicEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkFXDurationHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkFXParameterChangeHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkFXTailHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkMixerInputMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkValueRamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\PluginServices\AkVectorValueRamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkAudioInputSourceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkCompressorFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkConvolutionReverbFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkDelayFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkExpanderFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkFlangerFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkGainFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkGuitarDistortionFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkHarmonizerFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkMatrixReverbFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkMeterFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkMotionGeneratorFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkMP3SourceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkParametricEQFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkPeakLimiterFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkPitchShifterFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkRecorderFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkRoomVerbFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkRumbleFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSilenceSourceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSineSourceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSinkFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSoundSeedImpactFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSoundSeedWindFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSoundSeedWooshFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkStereoDelayFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkSynthOneFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkTimeStretchFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkToneSourceFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkTremoloFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AkVorbisFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AllPluginsFactories.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AllPluginsRegistrationHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AstoundSoundExpanderFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AstoundSoundFolddownFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AstoundSoundRTIFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AuroHeadphoneFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\AuroPannerMixerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\CrankcaseAudioREVModelPlayerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\IOSONOProximityMixerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZHybridReverbFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashBoxModelerFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashDelayFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashDistortionFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashDynamicsFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashFiltersFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\iZTrashMultibandDistortionFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\McDSPFutzBoxFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Plugin\McDSPLimiterFXFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\akcommondefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkDynamicDialogue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkDynamicSequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkFPUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\akmemorymgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkMidiTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkQueryParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\aksimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\aksoundengine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\aksoundengineexport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\akspeakerconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\akspeakervolumes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\AkStreamMgrModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\aktypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\iakplugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\iakpluginmemalloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\IAkProcessorFeatures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\iakrtpcsubscriber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Common\IAkStreamMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\arm_neon\AkSimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\arm_neon\AkSimdShuffle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\Generic\AkSimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\Generic\akspeakervolumes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\POSIX\AkTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\SSE\aksimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\Windows\aksimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\Windows\AkTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundEngine\Platforms\Windows\AkWinSoundEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundFrame\SF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\SoundFrame\SFObjects.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\akassert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkAutoLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkBankReadHelpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkFNVHash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkKeyArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkKeyDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkListBare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkListBareLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkMonitorError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\akplatformfuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkSmartPtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Common\AkSyncCaller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\POSIX\AkLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\POSIX\AkPlatformFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Win32\AkLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Tools\Win32\akplatformfuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\SourceControl\ISourceControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\SourceControl\ISourceControlDialogBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\SourceControl\ISourceControlOperationProgress.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\SourceControl\ISourceControlUtilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\SourceControl\SourceControlContainers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\AudioPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\IXmlTextReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\IXmlTextWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\MotionPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\PlatformID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\TargetVer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\Undo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\Wwise\Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\akplatforms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\AkWwiseSDKVersion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AK\IBytes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SoundEngine\Common\AkFilePackageLowLevelIO.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="SoundEngine\Common\AkMultipleFileLocation.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SoundEngine\Win32\AkSoundEngineDLL.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

@@ -16,9 +16,9 @@
 
 struct AkFileSystemFlags;
 
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
-#include <AK/Tools/Common/AkListBareLight.h>
+#include "AK/SoundEngine/Common/IAkStreamMgr.h"
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
+#include "AK/Tools/Common/AkListBareLight.h"
 
 
 // This file location class supports multiple base paths for Wwise file access.

@@ -6,18 +6,18 @@
 
 #include "stdafx.h"
 #include "AkSoundEngineDLL.h"
-#include <AK/Tools/Common/AkAssert.h>
+#include "AK/Tools/Common/AkAssert.h"
 #include <malloc.h>
 
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>
+#include "AK/SoundEngine/Common/AkMemoryMgr.h"
+#include "AK/SoundEngine/Common/IAkStreamMgr.h"
 #include "AkDefaultIOHookBlocking.h"
 #ifndef AK_OPTIMIZED
-#include <AK/Comm/AkCommunication.h>
+#include "AK/Comm/AkCommunication.h"
 #endif
 
 // Plug-ins
-#include <AK/Plugin/AllPluginsRegistrationHelpers.h>
+#include "AK/Plugin/AllPluginsRegistrationHelpers.h"
 
 // Defines.
 

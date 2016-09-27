@@ -39,7 +39,7 @@
 #ifndef _AK_FILE_PACKAGE_LOW_LEVEL_IO_H_
 #define _AK_FILE_PACKAGE_LOW_LEVEL_IO_H_
 
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
 #include "AkFilePackage.h"
 
 //-----------------------------------------------------------------------------

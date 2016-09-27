@@ -25,7 +25,9 @@
 #ifndef _AK_DEFAULT_LOW_LEVEL_IO_DISPATCHER_H_
 #define _AK_DEFAULT_LOW_LEVEL_IO_DISPATCHER_H_
 
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+//#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
+
 
 #define AK_MAX_IO_DEVICES	(3)
 

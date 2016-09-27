@@ -1,8 +1,6 @@
 #include "WwiseManager.h"
 
 
-
-
 #define GAME_OBJECT_POSTEST 100
 #define DEMO_DEFAULT_POOL_SIZE 2*1024*1024
 #define DEMO_LENGINE_DEFAULT_POOL_SIZE 2*1024*1024

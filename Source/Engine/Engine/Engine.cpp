@@ -3,6 +3,7 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\FileWatcher\FileChangeWatcher.h"
 #include "Debugging\Debugger.h"
+#include "SoundManager\SoundManager.h"
 
 Engine * Engine::ourInstance = nullptr;
 
@@ -12,6 +13,7 @@ Engine::Engine()
 	myFileWatcher = new FileChangeWatcher();
 	myResourceManager = std::make_unique<ResourceManager>();
 	myDebugLogger = std::make_unique<DebugLogger>();
+	mySoundManager = std::make_unique<SoundManager>();
 }
 
 Engine::~Engine()

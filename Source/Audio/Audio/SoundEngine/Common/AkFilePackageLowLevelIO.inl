@@ -38,7 +38,7 @@
 #include <stdio.h>
 #include "AkFilePackageLowLevelIO.h"
 #include "..\Win32\AkFileHelpers.h"
-#include <AK/Tools/Common/AkPlatformFuncs.h>
+#include "AK/Tools/Common/AkPlatformFuncs.h"
 
 template <class T_LLIOHOOK_FILELOC, class T_PACKAGE>
 CAkFilePackageLowLevelIO<T_LLIOHOOK_FILELOC,T_PACKAGE>::CAkFilePackageLowLevelIO()

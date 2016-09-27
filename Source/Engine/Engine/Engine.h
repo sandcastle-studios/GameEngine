@@ -5,6 +5,7 @@ class FileChangeWatcher;
 class ResourceManager;
 class DebugLogger;
 class Debugger;
+class SoundManager;
 
 class Engine
 {
@@ -14,6 +15,7 @@ public:
 	static ResourceManager & GetResourceManager();
 	static DebugLogger & GetLogger();
 	static Debugger & GetDebugger();
+	static SoundManager & GetSoundManager();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -30,6 +32,7 @@ private:
 	std::unique_ptr<ResourceManager> myResourceManager;
 	std::unique_ptr<DebugLogger> myDebugLogger;
 	std::shared_ptr<Debugger> myDebugger;
+	std::shared_ptr<SoundManager> mySoundManager;
 
 	static Engine * ourInstance;
 };
@@ -67,3 +70,8 @@ inline Debugger & Engine::GetDebugger()
 	}
 	return *GetInstance().myDebugger;
 }
+inline SoundManager & Engine::GetSoundManager()
+{
+	return *GetInstance().mySoundManager;
+}
+

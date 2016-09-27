@@ -22,10 +22,10 @@
 
 
 #include "AkFilePackageLUT.h"
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
-#include <AK/SoundEngine/Common/AkSoundEngine.h>	// For string hash.
-#include <AK/Tools/Common/AkPlatformFuncs.h>
-#include <AK/Tools/Common/AkFNVHash.h>
+#include "AK/SoundEngine/Common/AkMemoryMgr.h"
+#include "AK/SoundEngine/Common/AkSoundEngine.h"	// For string hash.
+#include "AK/Tools/Common/AkPlatformFuncs.h"
+#include "AK/Tools/Common/AkFNVHash.h"
 
 #ifdef _DEBUG
 	template<bool> struct AkCompileTimeAssert;

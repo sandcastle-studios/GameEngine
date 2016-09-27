@@ -14,16 +14,16 @@
 
 #include "AkFileLocationBase.h"
 
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
 #ifdef AK_WIN
-#include <AK/Plugin/AkMP3SourceFactory.h> // For MP3 Codec ID.
+#include "AK/Plugin/AkMP3SourceFactory.h" // For MP3 Codec ID.
 #endif
-#include <AK/Tools/Common/AkPlatformFuncs.h>
+#include "AK/Tools/Common/AkPlatformFuncs.h"
 #ifdef AK_SUPPORT_WCHAR
 #include <wchar.h>
 #endif //AK_SUPPORT_WCHAR
 #include <stdio.h>
-#include <AK/Tools/Common/AkAssert.h>
+#include "AK/Tools/Common/AkAssert.h"
 
 #include "..\Win32\AkFileHelpers.h"
 

@@ -77,13 +77,13 @@
 #ifndef _AK_DEFAULT_IO_HOOK_DEFERRED_H_
 #define _AK_DEFAULT_IO_HOOK_DEFERRED_H_
 
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
 #include "AkFileHelpers.h"
 
-#include <AK/Tools/Common/AkLock.h>
-#include <AK/Tools/Common/AkAutoLock.h>
+#include "AK/Tools/Common/AkLock.h"
+#include "AK/Tools/Common/AkAutoLock.h"
 #include <sys/stat.h>
-#include <AK/Tools/Common/AkAssert.h>
+#include "AK/Tools/Common/AkAssert.h"
 
 #define AK_MAX_MOUNT_POINT_STRLENGTH	(12)
 

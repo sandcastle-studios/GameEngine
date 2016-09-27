@@ -79,9 +79,9 @@
 #ifndef _AK_DEFAULT_IO_HOOK_DEFERRED_H_
 #define _AK_DEFAULT_IO_HOOK_DEFERRED_H_
 
-#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
-#include "../Common/AkFileLocationBase.h"
-#include <AK/Tools/Common/AkAssert.h>
+#include "AK/SoundEngine/Common/AkStreamMgrModule.h"
+#include "SoundEngine/Common/AkFileLocationBase.h"
+#include "AK/Tools/Common/AkAssert.h"
 
 //-----------------------------------------------------------------------------
 // Name: class CAkDefaultIOHookDeferred.

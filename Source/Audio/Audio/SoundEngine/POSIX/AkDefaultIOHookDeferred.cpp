@@ -31,7 +31,8 @@
 
 #include "stdafx.h"
 #include "AkDefaultIOHookDeferred.h"
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include "AK/SoundEngine/Common/AkMemoryMgr.h"
+
 #include "AkFileHelpers.h"
 
 
