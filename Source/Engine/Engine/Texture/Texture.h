@@ -6,7 +6,7 @@ struct ID3D11ShaderResourceView;
 class Texture : public Resource
 {
 public:
-	Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget = false);
+	Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget = false, bool aIsFloatingPoint = false);
 	Texture(const std::string & aPath);
 	Texture(ID3D11Texture2D * aTexture, ID3D11ShaderResourceView * aResourceView, int aWidth, int aHeight);
 	~Texture();

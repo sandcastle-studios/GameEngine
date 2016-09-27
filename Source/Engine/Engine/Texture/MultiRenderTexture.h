@@ -3,7 +3,7 @@
 class MultiRenderTexture
 {
 public:
-	MultiRenderTexture(int aBufferCount, int aWidth, int aHeight, bool aGenerateDepthBuffer);
+	MultiRenderTexture(int aBufferCount, int aWidth, int aHeight, bool aGenerateDepthBuffer, bool isFloatingPoint[]);
 	~MultiRenderTexture();
 
 	void Bind();

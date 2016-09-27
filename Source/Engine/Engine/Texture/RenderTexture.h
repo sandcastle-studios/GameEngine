@@ -8,7 +8,7 @@ class DepthBuffer;
 class RenderTexture
 {
 public:
-	RenderTexture(unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer);
+	RenderTexture(unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer, bool aIsFloatingPoint = false);
 	RenderTexture(ID3D11Texture2D * aTexture, ID3D11RenderTargetView * aRenderTarget, ID3D11ShaderResourceView * aShaderResourceView, unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer);
 	~RenderTexture();
 

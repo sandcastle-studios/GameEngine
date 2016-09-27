@@ -3,11 +3,11 @@
 #include "Engine\Texture\RenderTexture.h"
 #include "Engine\Buffer\DepthBuffer.h"
 
-MultiRenderTexture::MultiRenderTexture(int aBufferCount, int aWidth, int aHeight, bool aGenerateDepthBuffer)
+MultiRenderTexture::MultiRenderTexture(int aBufferCount, int aWidth, int aHeight, bool aGenerateDepthBuffer, bool isFloatingPoint[])
 {
 	for (int i = 0; i < aBufferCount; i++)
 	{
-		myRenderTextures.push_back(std::make_shared<RenderTexture>(aWidth, aHeight, false));
+		myRenderTextures.push_back(std::make_shared<RenderTexture>(aWidth, aHeight, false, isFloatingPoint[i]));
 	}
 
 	if (aGenerateDepthBuffer)

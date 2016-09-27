@@ -19,6 +19,18 @@ float RandomFloat(const float aMin = 0.f, const float aMax = 1.0f)
 
 LightingTestScene::LightingTestScene()
 {
+	std::shared_ptr<AssimpModel> sphereModel = std::make_shared<AssimpModel>(nullptr, "models/unitsphere/sphere.fbx");
+	float numSpheres = 10.f;
+	for (float x = -numSpheres / 2.0f; x < numSpheres / 2.f; x++)
+	{
+		for (float y = -numSpheres / 2.0f; y < numSpheres / 2.0f; y++)
+		{
+			auto inst = std::make_shared<ModelInstance>(sphereModel);
+			inst->SetMatrix(Matrix44f::CreateScale(0.01f, 0.01f, 0.01f)
+				* Matrix44f::CreateTranslation(x * 0.75f, y * 0.75f, .5f));
+			myObjects.push_back(inst);
+		}
+	}
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(nullptr, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	
 	myHead = std::make_shared<ModelInstance>(model);
@@ -59,8 +71,6 @@ void LightingTestScene::RandomizeLights()
 			Engine::GetRenderer().GetModelRenderer().SetPointLight(i, Vector3f::Zero, Vector3f::Zero, 1.0f, 0.0f);
 		}
 	}*/
-
-	Engine::GetRenderer().GetModelRenderer().SetPointLight(0, boundingBox.GetCenter() + Vector3f(0.f, 0.f, -boundingBox.GetSize().z * 0.75f), Vector3f::One, 1.0f, 1.0f);
 }
 
 LightingTestScene::~LightingTestScene()
@@ -97,6 +107,11 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 	}
 	// Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->GetTexture());
 	Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->GetDepthBuffer()->GetTexture());
+
+	for (int i = 0; i < 8; i++)
+	{
+		Engine::GetRenderer().GetModelRenderer().SetPointLight(i, Vector3f(-4.f + fmod(myTime.InSeconds() + static_cast<float>(i), 8.f), cosf(myTime.InSeconds() + i) * 3.f, -1.5f), Vector3f::One, 2.0f, 1.0f);
+	}
 
 	/*{
 		const LightConstantBufferData & lightData = Engine::GetRenderer().GetModelRenderer().GetLightData();

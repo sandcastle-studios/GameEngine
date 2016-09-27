@@ -5,9 +5,9 @@
 #include <d3d11.h>
 #include "Engine\Buffer\DepthBuffer.h"
 
-RenderTexture::RenderTexture(unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer)
+RenderTexture::RenderTexture(unsigned int aWidth, unsigned int aHeight, bool aGenerateDepthBuffer, bool aIsFloatingPoint)
 {
-	myTexture = std::make_shared<Texture>(aWidth, aHeight, true);
+	myTexture = std::make_shared<Texture>(aWidth, aHeight, true, aIsFloatingPoint);
 
 	if (aGenerateDepthBuffer)
 	{

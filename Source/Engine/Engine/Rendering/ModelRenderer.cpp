@@ -27,7 +27,8 @@ ModelRenderer::ModelRenderer()
 	myEffect = std::make_shared<StandardEffect>();
 
 	myPointLightBuffer = std::make_shared<ConstantBuffer<PointLight>>();
-	myDeferredTextures = std::make_shared<MultiRenderTexture>(3, 1280, 720, true);
+	bool isFloatingPoint[3] { false, true, true };
+	myDeferredTextures = std::make_shared<MultiRenderTexture>(3, 1280, 720, true, isFloatingPoint);
 	// myLambertBuffer = std::make_shared<RenderTexture>(1280, 720, false);
 
 	myLambertEffect = std::make_shared<Effect>();

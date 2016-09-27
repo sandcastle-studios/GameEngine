@@ -4,7 +4,7 @@
 #include "Engine\Texture\DDSTextureLoader.h"
 #include "Engine\Texture\dds.h"
 
-Texture::Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget)
+Texture::Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget, bool aIsFloatingPoint)
 	: Resource("")
 {
 	myWidth = aWidth;
@@ -15,7 +15,7 @@ Texture::Texture(unsigned int aWidth, unsigned int aHeight, bool aIsRenderTarget
 	textureDesc.Height = aHeight;
 	textureDesc.MipLevels = 1;
 	textureDesc.ArraySize = 1;
-	textureDesc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; // DXGI_FORMAT_R8G8B8A8_UINT;
+	textureDesc.Format = aIsFloatingPoint ? DXGI_FORMAT_R32G32B32A32_FLOAT : DXGI_FORMAT_R8G8B8A8_UNORM; // DXGI_FORMAT_R32G32B32A32_FLOAT; // DXGI_FORMAT_R8G8B8A8_UINT;
 	textureDesc.SampleDesc.Count = 1;
 	textureDesc.SampleDesc.Quality = 0;
 	textureDesc.Usage = D3D11_USAGE_DEFAULT; // D3D11_USAGE_DEFAULT;
