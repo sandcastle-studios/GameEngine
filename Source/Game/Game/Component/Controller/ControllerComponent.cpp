@@ -2,11 +2,9 @@
 #include "ControllerComponent.h"
 
 
-ControllerComponent::ControllerComponent()
-{
-}
 
 
-ControllerComponent::~ControllerComponent()
+void ControllerComponent::Update(const Time & aDeltaTime)
 {
+	
 }

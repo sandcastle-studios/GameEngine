@@ -10,3 +10,8 @@ AIControllerComponent::AIControllerComponent()
 AIControllerComponent::~AIControllerComponent()
 {
 }
+
+void AIControllerComponent::Update(const Time & aDeltaTime)
+{
+	
+}

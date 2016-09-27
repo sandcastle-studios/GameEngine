@@ -11,7 +11,8 @@
     <ClInclude Include="Utilities\CommonIncludes.h" />
     <ClInclude Include="Utilities\Container\GrowingArray.h" />
     <ClInclude Include="Utilities\UniqeIdentifier.h" />
-    <ClInclude Include="Utilities\Container\SharedPtrGA.h" />
+    <ClInclude Include="Utilities\Pointer\SharedPtr.h" />
+    <ClInclude Include="Utilities\Container\Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

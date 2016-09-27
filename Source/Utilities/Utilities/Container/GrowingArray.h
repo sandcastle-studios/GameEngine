@@ -51,7 +51,7 @@
 		ObjectType * myArray;
 
 		bool mySafeModeFlag;
-		SizeType myRecommendedNrOfItems;
+		SizeType myCapacity;
 		SizeType myNrOfItems;
 	};
 
@@ -61,8 +61,8 @@
 	GrowingArray<ObjectType, SizeType>::GrowingArray()
 	{
 		myNrOfItems = 0;
-		myRecommendedNrOfItems = 2;
-		myArray = new ObjectType[myRecommendedNrOfItems];
+		myCapacity = 2;
+		myArray = new ObjectType[myCapacity];
 		mySafeModeFlag = true;
 	}
 
@@ -70,10 +70,10 @@
 	GrowingArray<ObjectType, SizeType>::GrowingArray(SizeType aNrOfRecommendedItems, bool aUseSafeModeFlag = true)
 	{
 		myNrOfItems = 0;
-		myRecommendedNrOfItems = aNrOfRecommendedItems;
+		myCapacity = aNrOfRecommendedItems;
 		mySafeModeFlag = aUseSafeModeFlag;
 		
-		myArray = new ObjectType[myRecommendedNrOfItems];
+		myArray = new ObjectType[myCapacity];
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
@@ -81,8 +81,8 @@
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
 		myNrOfItems = 0;
-		myRecommendedNrOfItems = 2;
-		myArray = new ObjectType[myRecommendedNrOfItems];
+		myCapacity = 2;
+		myArray = new ObjectType[myCapacity];
 		mySafeModeFlag = true;
 		*this = aGrowingArray;
 	}
@@ -91,7 +91,7 @@
 	GrowingArray<ObjectType, SizeType>::GrowingArray(GrowingArray&& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		myRecommendedNrOfItems = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myRecommendedNrOfItems;
 		mySafeModeFlag = aGrowingArray.mySafeModeFlag;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		myArray = aGrowingArray.myArray;
@@ -110,7 +110,7 @@
 	GrowingArray<ObjectType,SizeType>& GrowingArray<ObjectType, SizeType>::operator=(const GrowingArray& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		if (myRecommendedNrOfItems != aGrowingArray.myRecommendedNrOfItems)
+		if (myCapacity != aGrowingArray.myRecommendedNrOfItems)
 		{
 			delete[] myArray;
 			myArray = new ObjectType[aGrowingArray.myRecommendedNrOfItems];
@@ -127,7 +127,7 @@
 		{
 			memcpy(myArray, aGrowingArray.myArray, sizeof(ObjectType)*aGrowingArray.Size());
 		}
-		myRecommendedNrOfItems = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myRecommendedNrOfItems;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		return *this;
 	}
@@ -135,7 +135,7 @@
 	GrowingArray<ObjectType, SizeType>& GrowingArray<ObjectType, SizeType>::operator=(GrowingArray&& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		myRecommendedNrOfItems = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myRecommendedNrOfItems;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		myArray = aGrowingArray.myArray;
 		aGrowingArray.myArray = nullptr;
@@ -146,7 +146,7 @@
 	void GrowingArray<ObjectType, SizeType>::ReInit(SizeType aNrOfRecomendedItems, bool aUseSafeModeFlag = true)
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
-		myRecommendedNrOfItems = aNrOfRecomendedItems;
+		myCapacity = aNrOfRecomendedItems;
 		mySafeModeFlag = aUseSafeModeFlag;
 		myNrOfItems = 0;
 
@@ -175,9 +175,9 @@
 	void GrowingArray<ObjectType, SizeType>::Add(const ObjectType& aObject)
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
-		if (myNrOfItems >= myRecommendedNrOfItems)
+		if (myNrOfItems >= myCapacity)
 		{			
-			Resize(myRecommendedNrOfItems * 2);
+			Reserve(myCapacity * 2);
 		}
 		
 		myArray[myNrOfItems++] = aObject;
@@ -188,9 +188,9 @@
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
 		assert((aIndex >= 0 && aIndex < myNrOfItems) && "INDEX OUT OF BOUNDS!");
-		if (++myNrOfItems >= myRecommendedNrOfItems)
+		if (++myNrOfItems >= myCapacity)
 		{
-			Resize(myRecommendedNrOfItems * 2);
+			Reserve(myCapacity * 2);
 		}
 		for (SizeType i = myNrOfItems - 1; i > aIndex; i--)
 		{
@@ -407,7 +407,7 @@
 		delete[]myArray;
 		myArray = tempArray;
 		tempArray = nullptr;
-		myRecommendedNrOfItems = myNrOfItems;
+		myCapacity = myNrOfItems;
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
@@ -421,7 +421,7 @@
 	void GrowingArray<ObjectType, SizeType>::Reserve(SizeType aReservedSize)
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
-		if (aReservedSize > myRecommendedNrOfItems)
+		if (aReservedSize > myCapacity)
 		{
 			ObjectType *tempArray = new ObjectType[aReservedSize];
 
@@ -433,7 +433,7 @@
 			delete[]myArray;
 			myArray = tempArray;
 			tempArray = nullptr;
-			myRecommendedNrOfItems = aReservedSize;
+			myCapacity = aReservedSize;
 
 		}
 		
@@ -444,9 +444,9 @@
 	{
 		Reserve(aNewSize);
 
-		if (aNewSize >= myRecommendedNrOfItems)
+		if (aNewSize >= myCapacity)
 		{
-			myRecommendedNrOfItems = aNewSize;
+			myCapacity = aNewSize;
 		}
 		myNrOfItems = aNewSize;
 	}

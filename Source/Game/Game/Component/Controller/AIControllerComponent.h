@@ -5,6 +5,9 @@ class AIControllerComponent :
 {
 public:
 	AIControllerComponent();
-	~AIControllerComponent();
+	virtual ~AIControllerComponent() override;
+
+	virtual void Update(const Time & aDeltaTime) override;
+
 };
 

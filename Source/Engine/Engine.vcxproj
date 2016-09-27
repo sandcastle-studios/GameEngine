@@ -246,6 +246,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
+    <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h" />

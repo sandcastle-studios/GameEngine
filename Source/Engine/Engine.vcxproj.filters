@@ -157,6 +157,7 @@
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
     <ClInclude Include="Engine\Component\LightComponent.h" />
+    <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">

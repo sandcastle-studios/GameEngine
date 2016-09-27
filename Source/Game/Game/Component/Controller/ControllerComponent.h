@@ -1,10 +1,15 @@
 #pragma once
-class ControllerComponent
+
+
+class ControllerComponent : public BaseComponent
 {
 public:
 	ControllerComponent();
-	~ControllerComponent();
+	virtual ~ControllerComponent() = 0;
 
 	
+
+	virtual void Update(const Time & aDeltaTime) override;
+
 };
 

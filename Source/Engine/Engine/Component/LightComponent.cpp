@@ -10,3 +10,11 @@ LightComponent::LightComponent()
 LightComponent::~LightComponent()
 {
 }
+
+void LightComponent::Construct()
+{
+}
+
+void LightComponent::Destruct()
+{
+}
