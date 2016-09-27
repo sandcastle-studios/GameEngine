@@ -73,25 +73,25 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -212,6 +212,11 @@
     <None Include="AssImp\quaternion.inl" />
     <None Include="AssImp\vector2.inl" />
     <None Include="AssImp\vector3.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
+      <Project>{92d34133-88e5-4fe3-bfe2-96e8a9b316f3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

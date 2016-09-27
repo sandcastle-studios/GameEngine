@@ -100,42 +100,42 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
