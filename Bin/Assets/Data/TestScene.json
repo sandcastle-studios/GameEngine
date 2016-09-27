@@ -10,7 +10,8 @@
   "hierarchy": [
     {
       "name": "companion",
-      "components": [
+      "components": 
+	  [
         {
           "localPosition": [
             3.4,
@@ -97,7 +98,7 @@
               ],
               "localScale": [
                 1.0,
-                1.0
+                1.0,
                 1.0
               ],
               "name": null,

@@ -3,10 +3,19 @@
 class Scene;
 class BaseComponent;
 
+struct GameObjectData
+{
+	std::string myID;
+	Quaternion myRotation;
+	Vector3f myPosition;
+	std::shared_ptr<Scene> myScene;
+};
+
 class GameObject
 {
 public:
 	GameObject();
+	GameObject(const GameObjectData& aData);
 	~GameObject();
 
 	Scene & GetScene();
@@ -31,9 +40,22 @@ public:
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponent>, size_t> myComponents;
 
+	inline const Vector3f& GetPosition() const
+	{
+		return myPosition;
+	}
+	inline const Quaternion& GetRotation() const
+	{
+		return myRotation;
+	}
+
+	void SetData(const GameObjectData& aData);
 
 private:
-	Scene * myScene;
+	std::string myID;
+	Quaternion myRotation;
+	Vector3f myPosition;
+	std::shared_ptr<Scene> myScene;
 };
 
 inline Scene & GameObject::GetScene()

@@ -1,7 +1,8 @@
 #pragma once
 #include "rapidjson\document.h"
 
-typedef rapidjson::Document& DataNode;
+typedef rapidjson::Document DataDocument;
+typedef rapidjson::Value& DataNode;
 
 namespace DataParser
 {

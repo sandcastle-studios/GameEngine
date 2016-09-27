@@ -2,6 +2,7 @@
 #include "Utilities\Container\GrowingArray.h"
 
 class GameObject;
+struct GameObjectData;
 class BaseComponentFactory;
 
 template <typename TComponentFactoryType>class ComponentFactory;
@@ -12,7 +13,7 @@ class StandardEffect;
 class Scene
 {
 public:
-	Scene(const char * aSkyboxPath = nullptr);
+	Scene(const char* aName = "", const char* aSkyboxPath = nullptr);
 	virtual ~Scene();
 
 	virtual void Update(const Time & aDeltaTime);
@@ -22,6 +23,9 @@ public:
 
 	template <typename TComponentType>
 	void AddComponentFactory();
+
+	void CreateGameObjectBuffer(const unsigned short aObjectCount);
+	void CreateGameObject(const GameObjectData& aData);
 
 protected:
 
@@ -43,6 +47,8 @@ protected:
 	std::shared_ptr<StandardEffect> myEffect;
 
 	Time myTime;
+	std::string myName;
+
 };
 
 template<typename TComponentType>
