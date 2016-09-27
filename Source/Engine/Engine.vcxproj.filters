@@ -188,6 +188,9 @@
     <ClInclude Include="Engine\DataParser\rapidjson\reader.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
+    <ClInclude Include="Engine\Scripting\Script.h" />
+    <ClInclude Include="Engine\Scripting\ScriptLoader.h" />
+    <ClInclude Include="Engine\Scripting\ScriptFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -307,6 +310,9 @@
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
+    <ClCompile Include="Engine\Scripting\Script.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptLoader.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

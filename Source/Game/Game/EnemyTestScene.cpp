@@ -8,11 +8,13 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+#include <Engine/Scripting/ScriptFile.h>
+
 EnemyTestScene::EnemyTestScene()
 {
 	CreateFactories();
 
-
+	myScript = Engine::GetResourceManager().Get<ScriptFile>("Assets/Scripts/Components/TestComponent.lua")->Execute();
 }
 
 EnemyTestScene::~EnemyTestScene()

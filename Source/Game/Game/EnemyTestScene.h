@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine/Scene/Scene.h>
 
+class Script;
+
 class EnemyTestScene : public Scene
 {
 public:
@@ -13,6 +15,6 @@ public:
 private:
 	void CreateFactories();
 
-
+	std::shared_ptr<Script> myScript;
 };
 
