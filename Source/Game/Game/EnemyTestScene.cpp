@@ -42,7 +42,7 @@ void EnemyTestScene::CreateFactories()
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
 	
-	//SharedPtrGA<ModelComponent> ssss = GetComponentFactory<ModelComponent>()->GetComponent(0);
+	SharedPtrGA<ModelComponent> ssss = GetComponentFactory<ModelComponent>()->GetComponent(0);
 
 	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 	

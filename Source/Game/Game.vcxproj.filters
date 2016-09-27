@@ -2,26 +2,30 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="CommonIncludes.h" />
-    <ClInclude Include="SlideShowScene.h" />
-    <ClInclude Include="InstancedTestScene.h" />
-    <ClInclude Include="PostMasterSample.h">
+    <ClInclude Include="Game\SlideShowScene.h" />
+    <ClInclude Include="Game\EnemyTestScene.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\InstancedTestScene.h" />
+    <ClInclude Include="Game\LightingTestScene.h" />
+    <ClInclude Include="Game\PostMasterSample.h">
       <Filter>Samples</Filter>
     </ClInclude>
-    <ClInclude Include="LightingTestScene.h" />
-    <ClInclude Include="EnemyTestScene.h" />
+    <ClInclude Include="Game\CommonIncludes.h" />
+    <ClInclude Include="Game\Component\Controller\AIControllerComponent.h" />
+    <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="SlideShowScene.cpp" />
-    <ClCompile Include="InstancedTestScene.cpp" />
-    <ClCompile Include="PostMasterSample.cpp">
+    <ClCompile Include="Game\EnemyTestScene.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\InstancedTestScene.cpp" />
+    <ClCompile Include="Game\LightingTestScene.cpp" />
+    <ClCompile Include="Game\PostMasterSample.cpp">
       <Filter>Samples</Filter>
     </ClCompile>
-    <ClCompile Include="LightingTestScene.cpp" />
-    <ClCompile Include="EnemyTestScene.cpp" />
+    <ClCompile Include="Game\SlideShowScene.cpp" />
+    <ClCompile Include="Game\Component\Controller\AIControllerComponent.cpp" />
+    <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">

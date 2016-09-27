@@ -11,7 +11,7 @@ public:
 	~ComponentFactory() {};
 
 	SharedPtrGA<TComponentType> ComponentFactory<TComponentType>::CreateComponent();
-	SharedPtrGA<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex)const;
+	SharedPtrGA<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex);
 
 	virtual void Update(const Time & aDeltaTime) override;
 
@@ -22,7 +22,7 @@ private:
 };
 
 template <typename TComponentType>
-SharedPtrGA<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex)const
+SharedPtrGA<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex)
 {
 	//SharedPtrGA<TComponentType> component(myComponents, myComponents.GetLast());
 	return SharedPtrGA<TComponentType> (myComponents, myComponents.GetLast());
