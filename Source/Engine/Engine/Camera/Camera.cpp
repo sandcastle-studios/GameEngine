@@ -21,7 +21,7 @@ const ConstantBuffer<CameraCB> & Camera::GetCameraConstantBuffer() const
 	return *myCameraCB;
 }
 
-void Camera::ApplyToVS() const
+void Camera::Apply() const
 {
 	UpdateCB();
 
@@ -42,9 +42,11 @@ void Camera::UpdateCB() const
 	cb.view.Inverse();
 	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
+
+	Engine::GetRenderer().GetModelRenderer().SetCameraReferencePosition(myPosition);
 }
 
-void Camera::ApplySkyboxMatrixToVS() const
+void Camera::ApplyForSkybox() const
 {
 	Quaternion rotation = myRotation;
 	rotation.Normalize();
@@ -59,6 +61,8 @@ void Camera::ApplySkyboxMatrixToVS() const
 
 	myCameraCB->BindToVS(0);
 	myCameraCB->BindToPS(0);
+
+	Engine::GetRenderer().GetModelRenderer().SetCameraReferencePosition(myPosition);
 }
 
 void Camera::LookAt(const Vector3f & aLookAt)

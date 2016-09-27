@@ -201,7 +201,7 @@ void DXRenderer::ClearFrame()
 	myDeviceContext->PSSetShaderResources(0, 8, views);
 	myBackbuffer->Bind(0);
 
-	myBackbuffer->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
+	myBackbuffer->Clear(Vector4f(0.0f, 0.0f, 0.0f, 1.f)); // Vector4f(100.f / 255.f, 149.f / 255.f, 237.f / 255.f, 1.f));
 }
 
 void DXRenderer::Present()

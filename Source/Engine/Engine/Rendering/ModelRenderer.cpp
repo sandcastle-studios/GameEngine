@@ -13,6 +13,7 @@
 #include "Engine\Effect\Effect.h"
 #include "..\RenderingConfiguration\BlendState.h"
 #include <Engine/Sprite/SpriteEffect.h>
+#include <imgui.h>
 
 ModelRenderer::ModelRenderer()
 {
@@ -27,7 +28,7 @@ ModelRenderer::ModelRenderer()
 
 	myPointLightBuffer = std::make_shared<ConstantBuffer<PointLight>>();
 	myDeferredTextures = std::make_shared<MultiRenderTexture>(3, 1280, 720, true);
-	myLambertBuffer = std::make_shared<RenderTexture>(1280, 720, false);
+	// myLambertBuffer = std::make_shared<RenderTexture>(1280, 720, false);
 
 	myLambertEffect = std::make_shared<Effect>();
 	myLambertEffect->AttachVertexShader("shaders/lambert.fx", "VShader");
@@ -47,16 +48,27 @@ ModelRenderer::ModelRenderer()
 
 	myLambertEffect->Link(layout);
 
-	mySphereModel = std::make_shared<AssimpModel>(nullptr, "models/unitsphere/sphere.fbx");
+	myLightModels.push_back(std::make_shared<AssimpModel>(nullptr, "models/lightspheres/lightsphere_1.fbx"));
+	myLightModelsMinDistances.push_back(7.0f);
+	myLightModels.push_back(std::make_shared<AssimpModel>(nullptr, "models/lightspheres/lightsphere_2.fbx"));
+	myLightModelsMinDistances.push_back(6.0f);
+	myLightModels.push_back(std::make_shared<AssimpModel>(nullptr, "models/lightspheres/lightsphere_3.fbx"));
+	myLightModelsMinDistances.push_back(5.0f);
+	myLightModels.push_back(std::make_shared<AssimpModel>(nullptr, "models/lightspheres/lightsphere_4.fbx"));
+	myLightModelsMinDistances.push_back(4.0f);
+	myLightModels.push_back(std::make_shared<AssimpModel>(nullptr, "models/lightspheres/lightsphere_5.fbx"));
+	myLightModelsMinDistances.push_back(2.0f);
 
 	memset(&myLightingData, 0, sizeof(myLightingData));
 
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
 	
+	/*
 	myLambertRenderingEffect = std::make_shared<SpriteEffect>("shaders/lambert_render.fx", "VShader", "shaders/lambert_render.fx", "PShader");
 	myFullscreenQuad.SetPosition(Vector2f::Zero);
 	myFullscreenQuad.SetEffect(myLambertRenderingEffect);
+	*/
 }
 
 ModelRenderer::~ModelRenderer()
@@ -183,10 +195,10 @@ const std::shared_ptr<MultiRenderTexture> & ModelRenderer::GetDeferredTexture() 
 	return myDeferredTextures;
 }
 
-const std::shared_ptr<RenderTexture> & ModelRenderer::GetLambertTexture() const
+/*const std::shared_ptr<RenderTexture> & ModelRenderer::GetLambertTexture() const
 {
 	return myLambertBuffer;
-}
+}*/
 
 void ModelRenderer::UpdateAndBindLightingBuffer()
 {
@@ -198,16 +210,17 @@ void ModelRenderer::RenderLights()
 {
 	myDeferredTextures->Bind();
 	RenderBuffer();
-	myLambertBuffer->Bind(0, false);
+	// myLambertBuffer->Bind(0, false);
+	Engine::GetRenderer().GetBackBuffer()->Bind(0);
 	myLambertEffect->Bind();
 	Engine::GetRenderer().GetAdditiveBlendState()->Bind();
 	Engine::GetRenderer().DisableDepthWrite();
 
 	myDeferredTextures->GetDepthBuffer()->Bind();
-
-	// myDeferredTextures->GetDepthBuffer()->GetTexture()->BindToPS(2);
-	myDeferredTextures->GetRenderTextures()[1]->GetTexture()->BindToPS(3);
-	myDeferredTextures->GetRenderTextures()[2]->GetTexture()->BindToPS(4);
+	
+	myDeferredTextures->GetRenderTextures()[0]->GetTexture()->BindToPS(0);
+	myDeferredTextures->GetRenderTextures()[1]->GetTexture()->BindToPS(1);
+	myDeferredTextures->GetRenderTextures()[2]->GetTexture()->BindToPS(2);
 
 	myPointLightBuffer->BindToPS(2);
 
@@ -222,24 +235,54 @@ void ModelRenderer::RenderLights()
 
 		myPointLightBuffer->UpdateData(lightData);
 
-		ModelInstance inst(mySphereModel);
+		ModelInstance inst(nullptr);
 
-		inst.SetMatrix(Matrix44f::CreateScale(0.01f * lightData.radius * 2.f, 0.01f * lightData.radius * 2.f, 0.01f * lightData.radius * 2.f)
-			* Matrix44f::CreateTranslation(lightData.position));
+		float distance = (lightData.position - myCameraPosition).Length();
 
-		inst.InstantRender();
+		for (int j=0; j<myLightModels.size(); j++)
+		{
+			if (distance > myLightModelsMinDistances[j] * lightData.radius)
+			{
+				if (ImGui::Begin("Light Level", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+				{
+					ImGui::Text(FormatString("Current Light LOD: {0}\nCurrent Distance: {1}", j, distance).c_str());
+				}
+				ImGui::End();
+				inst = ModelInstance(myLightModels[j]);
+				break;
+			}
+		}
+
+		if (inst.GetModel() == nullptr)
+		{
+			// Fullscreen quad
+		}
+		else
+		{
+			Vector3f size = inst.GetBoundingBox().GetSize();
+
+			inst.SetMatrix(Matrix44f::CreateScale(lightData.radius, lightData.radius, lightData.radius)
+				* Matrix44f::CreateTranslation(lightData.position));
+
+			inst.InstantRender();
+		}
 	}
 
 	Engine::GetRenderer().GetAlphaBlendState()->Bind();
-	Engine::GetRenderer().GetBackBuffer()->Bind(0);
+	/*Engine::GetRenderer().GetBackBuffer()->Bind(0);
 
 	myDeferredTextures->GetRenderTextures()[0]->GetTexture()->BindToPS(0);
 	myLambertBuffer->GetTexture()->BindToPS(1);
 
 	myFullscreenQuad.SetScale(Engine::GetRenderer().GetRenderTargetResolution());
-	myFullscreenQuad.Render();
+	myFullscreenQuad.Render();*/
 
 	Engine::GetRenderer().EnableDepthWrite();
+}
+
+void ModelRenderer::SetCameraReferencePosition(const Vector3f& aCameraPosition)
+{
+	myCameraPosition = aCameraPosition;
 }
 
 void ModelRenderer::InstantRender(const std::shared_ptr<GenericMesh> & myMesh)

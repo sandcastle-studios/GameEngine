@@ -58,10 +58,11 @@ public:
 	const LightConstantBufferData & GetLightData() const;
 
 	const std::shared_ptr<MultiRenderTexture> & GetDeferredTexture() const;
-	const std::shared_ptr<RenderTexture> & GetLambertTexture() const;
+	// const std::shared_ptr<RenderTexture> & GetLambertTexture() const;
 
 	void RenderLights();
 
+	void SetCameraReferencePosition(const Vector3f & aCameraPosition);
 private:
 	std::vector<BatchEntry*> myCurrentlyScheduledBatches;
 	std::vector<std::unique_ptr<BatchEntry>> myMeshes;
@@ -77,14 +78,17 @@ private:
 	std::shared_ptr<Effect> myLambertEffect;
 
 	std::shared_ptr<MultiRenderTexture> myDeferredTextures;
-	std::shared_ptr<RenderTexture> myLambertBuffer;
+	/// std::shared_ptr<RenderTexture> myLambertBuffer;
 
 	bool myIsInstantRendering;
 	void UpdateAndBindLightingBuffer();
 
-	std::shared_ptr<Model> mySphereModel;
+	std::vector<std::shared_ptr<Model>> myLightModels;
+	std::vector<float> myLightModelsMinDistances;
 
-	Sprite myFullscreenQuad;
-	std::shared_ptr<Effect> myLambertRenderingEffect;
+	// Sprite myFullscreenQuad;
+	// std::shared_ptr<Effect> myLambertRenderingEffect;
+
+	Vector3f myCameraPosition;
 };
 

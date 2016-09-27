@@ -40,12 +40,12 @@ void Scene::Render()
 {
 	if (mySkybox != nullptr)
 	{
-		myCamera->ApplySkyboxMatrixToVS();
+		myCamera->ApplyForSkybox();
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
 	}
 
-	myCamera->ApplyToVS();
+	myCamera->Apply();
 
 	for (size_t i = 0; i < myObjects.size(); i++)
 	{

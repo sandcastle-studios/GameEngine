@@ -24,7 +24,7 @@ LightingTestScene::LightingTestScene()
 	myHead = std::make_shared<ModelInstance>(model);
 	myObjects.push_back(myHead);
 	auto boundingBox = myHead->GetBoundingBox();
-	GetCamera().SetPosition(boundingBox.GetCenter() + Vector3f(0.f, 0.f, -boundingBox.GetSize().z * 1.5f));
+	GetCamera().SetPosition(boundingBox.GetCenter() + Vector3f(0.f, 0.f, -boundingBox.GetSize().z * 2.5f));
 	
 	myLightCount = 4;
 	myMinSpeed = 0.3f;
@@ -69,7 +69,7 @@ LightingTestScene::~LightingTestScene()
 
 void LightingTestScene::Update(const Time & aDeltaTime)
 {
-	ImGui::SetNextWindowCollapsed(false, ImGuiSetCond_Once);
+	/*ImGui::SetNextWindowCollapsed(false, ImGuiSetCond_Once);
 	ImGui::SetNextWindowPos(ImVec2(16.f, 16.f), ImGuiSetCond_Once);
 	//ImGui::SetNextWindowSize(ImVec2(300.f, 110.f), ImGuiSetCond_Once);
 	
@@ -89,13 +89,13 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 		}
 	}
 
-	ImGui::End();
+	ImGui::End();*/
 
 	for (auto && texture : Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->GetRenderTextures())
 	{
 		Engine::GetRenderer().GetTextureDebugger().QueueRender(texture->GetTexture());
 	}
-	Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->GetTexture());
+	// Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->GetTexture());
 	Engine::GetRenderer().GetTextureDebugger().QueueRender(Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->GetDepthBuffer()->GetTexture());
 
 	/*{
@@ -122,7 +122,7 @@ void LightingTestScene::Render()
 {
 	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Bind();
 	Engine::GetRenderer().GetModelRenderer().GetDeferredTexture()->Clear();
-	Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.0f));
+	// Engine::GetRenderer().GetModelRenderer().GetLambertTexture()->Clear(Vector4f(0.1f, 0.1f, 0.1f, 1.0f));
 
 	Scene::Render();
 
