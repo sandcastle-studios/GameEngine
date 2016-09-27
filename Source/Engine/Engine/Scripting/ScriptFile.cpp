@@ -79,8 +79,6 @@ void ScriptFile::Reload()
 	ourFunction += ReadFile(GetPath().c_str());
 	ourFunction += "\n\nreturn self";
 
-	std::cout << ourFunction << std::endl;
-
 	if (luaL_loadstring(L, ourFunction.c_str()) != 0)
 	{
 		Engine::GetLogger().LogError("Could not load file {0}: {1}", GetPath(), lua_tostring(L, -1));
