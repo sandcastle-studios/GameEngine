@@ -52,6 +52,7 @@ ComponentFactory<TComponentType>::ComponentFactory()
 template <typename TComponentType>
 void ComponentFactory<TComponentType>::ReturnMemory(unsigned short aIndex)
 {
+	myComponents[aIndex].Destruct();
 	myFreeMemorySlots.Push(aIndex);
 	myComponentsActiveTag[aIndex] = false;
 }
@@ -70,6 +71,7 @@ template <typename TComponentType>
 SharedPtrComponent<TComponentType> ComponentFactory<TComponentType>::CreateComponent()
 {
 	unsigned short index = GetAndActivateIndex();
+	myComponents[index].Construct();
 	return SharedPtrComponent<TComponentType>(this, index, &myComponents[index]);
 }
 

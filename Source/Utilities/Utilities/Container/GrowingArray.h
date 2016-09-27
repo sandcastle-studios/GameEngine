@@ -43,7 +43,7 @@
 
 		void Optimize();
 		__forceinline SizeType Size() const;
-
+		SizeType GetCapacity();
 		inline void Resize(SizeType aNewSize);
 		inline void Reserve(SizeType aReservedSize);
 		__forceinline const ObjectType* GetArrayPointer(SizeType aPosition = 0)const { return myArray+ aPosition; }
@@ -55,6 +55,11 @@
 		SizeType myNrOfItems;
 	};
 
+	template<typename ObjectType, typename SizeType /*= unsigned short*/>
+	SizeType GrowingArray<ObjectType, SizeType>::GetCapacity()
+	{
+		return myCapacity;
+	}
 
 
 	template<typename ObjectType, typename SizeType = unsigned short>
@@ -449,4 +454,8 @@
 			myCapacity = aNewSize;
 		}
 		myNrOfItems = aNewSize;
+
+		
+
+
 	}

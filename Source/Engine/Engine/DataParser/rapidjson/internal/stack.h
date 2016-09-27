@@ -143,8 +143,8 @@ public:
         return *allocator_;
     }
     bool Empty() const { return stackTop_ == stack_; }
-    size_t GetSize() const { return static_cast<size_t>(stackTop_ - stack_); }
-    size_t GetCapacity() const { return static_cast<size_t>(stackEnd_ - stack_); }
+	size_t GetSize() const { return static_cast<size_t>(stackTop_ - stack_); }
+	size_t GetCapacity() const { return static_cast<size_t>(stackEnd_ - stack_); }
 
 private:
     template<typename T>
