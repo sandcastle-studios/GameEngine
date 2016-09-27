@@ -98,37 +98,37 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>

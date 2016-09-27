@@ -73,25 +73,25 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\..\extlibs\imgui\include\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
