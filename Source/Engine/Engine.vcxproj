@@ -101,37 +101,37 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\..\extlibs\imgui\include\;..\Lua\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -423,6 +423,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Lua\Lua.vcxproj">
       <Project>{fcd7ef62-0070-4d53-ac73-4539dabb8e2c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+      <Project>{f6457bb1-2b8a-423f-b7d7-6d4f26952fc4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ModelLoader\ModelLoader.vcxproj">
       <Project>{1f6e6e52-a1a6-4e1c-ae3b-7cb5437256b9}</Project>
