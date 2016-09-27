@@ -78,7 +78,7 @@
 #ifndef _AK_DEFAULT_IO_HOOK_BLOCKING_H_
 #define _AK_DEFAULT_IO_HOOK_BLOCKING_H_
 
-#include "..\..\..\Wwise\include\AK\SoundEngine\Common\AkStreamMgrModule.h"
+#include "include\AK\SoundEngine\Common\AkStreamMgrModule.h"
 //#include <AK/SoundEngine/Common/AkStreamMgrModule.h>
 #include "../Common/AkFileLocationBase.h"
 

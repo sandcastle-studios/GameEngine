@@ -5,6 +5,7 @@ class FileChangeWatcher;
 class ResourceManager;
 class DebugLogger;
 class Debugger;
+class SoundManger;
 
 class Engine
 {
@@ -14,6 +15,7 @@ public:
 	static ResourceManager & GetResourceManager();
 	static DebugLogger & GetLogger();
 	static Debugger & GetDebugger();
+	static SoundManger & GetSoundManager();
 
 	static void CreateInstance();
 	static Engine & GetInstance();
@@ -30,6 +32,7 @@ private:
 	std::unique_ptr<ResourceManager> myResourceManager;
 	std::unique_ptr<DebugLogger> myDebugLogger;
 	std::shared_ptr<Debugger> myDebugger;
+	std::shared_ptr<SoundManger> mySoundManager;
 
 	static Engine * ourInstance;
 };
@@ -66,4 +69,9 @@ inline Debugger & Engine::GetDebugger()
 		Error("No debugger is attached!");
 	}
 	return *GetInstance().myDebugger;
+}
+
+inline SoundManger & Engine::GetSoundManager()
+{
+	return *GetInstance().mySoundManager;
 }

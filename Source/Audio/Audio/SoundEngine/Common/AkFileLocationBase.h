@@ -17,7 +17,7 @@
 
 struct AkFileSystemFlags;
 
-#include "..\..\..\Wwise\include\AK\SoundEngine\Common\IAkStreamMgr.h"
+#include "include\AK\SoundEngine\Common\IAkStreamMgr.h"
 
 
 class CAkFileLocationBase

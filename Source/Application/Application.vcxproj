@@ -169,6 +169,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\Audio\Wwise\x64_vc140\Debug\lib\</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)/PDBs/$(Configuration)/$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -230,6 +231,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\Audio\Wwise\x64_vc140\Debug\lib\</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)/PDBs/$(Configuration)/$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
@@ -251,6 +253,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\Audio\Wwise\x64_vc140\Debug\lib\</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(OutDir)/PDBs/$(Configuration)/$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

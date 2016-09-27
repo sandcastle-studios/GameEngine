@@ -30,10 +30,7 @@
     <ClCompile Include="SoundEngine\Common\AkFilePackageLUT.cpp">
       <Filter>Source Files\External</Filter>
     </ClCompile>
-    <ClCompile Include="AudioInterface.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WwiseManager.cpp">
+    <ClCompile Include="Audio\WwiseManager.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,13 +47,10 @@
     <ClInclude Include="SoundEngine\Common\AkFilePackageLUT.h">
       <Filter>Source Files\External</Filter>
     </ClInclude>
-    <ClInclude Include="AudioInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WwiseManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AudioCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\WwiseManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

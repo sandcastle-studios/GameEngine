@@ -78,6 +78,7 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IncludePath>..\Wwise\x64_vc140\Debug\lib\;$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,7 +90,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>..\Wwise\x64_vc140\Debug\lib\;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,7 +136,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Wwise\include;SoundEngine\Common;SoundEngine\Win32;.;..\Common;..\..\..\Audio\Wwise\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);..\Wwise\include;SoundEngine\Common;SoundEngine\Win32;.;..\Common;..\..\..\Audio\Wwise\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
@@ -158,7 +160,7 @@
     </ProjectReference>
     <Lib>
       <AdditionalDependencies>AkConvolutionReverbFX.lib;AkFlangerFX.lib;AkTremoloFX.lib;AkMemoryMgr.lib;AuroHeadphoneFX.lib;IOSONOProximityMixer.lib;AkMotionGenerator.lib;AkSineSource.lib;AkSoundSeedWind.lib;AkStereoDelayFX.lib;AkGuitarDistortionFX.lib;AkRumble.lib;AkSoundEngine.lib;AkSilenceSource.lib;iZTrashBoxModelerFX.lib;AkSoundSeedImpactFX.lib;AkRoomVerbFX.lib;iZTrashDelayFX.lib;McDSPFutzBoxFX.lib;AkParametricEQFX.lib;AuroPannerMixer.lib;AkToneSource.lib;McDSPLimiterFX.lib;AkCompressorFX.lib;CrankcaseAudioREVModelPlayerFX.lib;AkAudioInputSource.lib;AkMusicEngine.lib;AkSoundSeedWoosh.lib;iZTrashMultibandDistortionFX.lib;iZHybridReverbFX.lib;AkPitchShifterFX.lib;iZTrashDynamicsFX.lib;iZTrashDistortionFX.lib;AkPeakLimiterFX.lib;AkDelayFX.lib;AkGainFX.lib;AkVorbisDecoder.lib;AkMeterFX.lib;AkMatrixReverbFX.lib;iZTrashFiltersFX.lib;AkSynthOne.lib;AkMP3Source.lib;AkStreamMgr.lib;AkHarmonizerFX.lib;AkTimeStretchFX.lib;AkExpanderFX.lib;dxguid.lib;ws2_32.lib;Dsound.lib;Msacm32.lib;Dbghelp.lib;Winmm.lib;CommunicationCentral.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\extlibs\wwise\debug\;..\extlibs\wwise\Debug\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\extlibs\wwise\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalOptions>/IGNORE:4006 /IGNORE:4221 /IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -187,15 +189,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Wwise\include;SoundEngine\Common;SoundEngine\Win32;.;..\Common;..\..\..\Audio\Wwise\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DisableSpecificWarnings>4006;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -205,25 +208,23 @@
     </Link>
     <Lib>
       <AdditionalDependencies>AkConvolutionReverbFX.lib;AkFlangerFX.lib;AkTremoloFX.lib;AkMemoryMgr.lib;AuroHeadphoneFX.lib;IOSONOProximityMixer.lib;AkMotionGenerator.lib;AkSineSource.lib;AkSoundSeedWind.lib;AkStereoDelayFX.lib;AkGuitarDistortionFX.lib;AkRumble.lib;AkSoundEngine.lib;AkSilenceSource.lib;iZTrashBoxModelerFX.lib;AkSoundSeedImpactFX.lib;AkRoomVerbFX.lib;iZTrashDelayFX.lib;McDSPFutzBoxFX.lib;AkParametricEQFX.lib;AuroPannerMixer.lib;AkToneSource.lib;McDSPLimiterFX.lib;AkCompressorFX.lib;CrankcaseAudioREVModelPlayerFX.lib;AkAudioInputSource.lib;AkMusicEngine.lib;AkSoundSeedWoosh.lib;iZTrashMultibandDistortionFX.lib;iZHybridReverbFX.lib;AkPitchShifterFX.lib;iZTrashDynamicsFX.lib;iZTrashDistortionFX.lib;AkPeakLimiterFX.lib;AkDelayFX.lib;AkGainFX.lib;AkVorbisDecoder.lib;AkMeterFX.lib;AkMatrixReverbFX.lib;iZTrashFiltersFX.lib;AkSynthOne.lib;AkMP3Source.lib;AkStreamMgr.lib;AkHarmonizerFX.lib;AkTimeStretchFX.lib;AkExpanderFX.lib;dxguid.lib;ws2_32.lib;dinput8.lib;Dsound.lib;XInput.lib;Msacm32.lib;Dbghelp.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Libs\wwise\release\;..\Libs\wwise\release\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\extlibs\wwise\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AudioInterface.cpp" />
     <ClCompile Include="SoundEngine\Common\AkFileLocationBase.cpp" />
     <ClCompile Include="SoundEngine\Common\AkFilePackage.cpp" />
     <ClCompile Include="SoundEngine\Common\AkFilePackageLUT.cpp" />
     <ClCompile Include="SoundEngine\Win32\AkDefaultIOHookBlocking.cpp" />
-    <ClCompile Include="WwiseManager.cpp" />
+    <ClCompile Include="Audio\WwiseManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioCommon.h" />
-    <ClInclude Include="AudioInterface.h" />
     <ClInclude Include="SoundEngine\Common\AkFileLocationBase.h" />
     <ClInclude Include="SoundEngine\Common\AkFilePackage.h" />
     <ClInclude Include="SoundEngine\Common\AkFilePackageLUT.h" />
     <ClInclude Include="SoundEngine\Win32\AkDefaultIOHookBlocking.h" />
-    <ClInclude Include="WwiseManager.h" />
+    <ClInclude Include="Audio\WwiseManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

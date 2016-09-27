@@ -6,7 +6,9 @@
 #include <Engine\Camera\Camera.h>
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
-#include "..\Audio\Audio\AudioInterface.h"
+#include "Engine\Engine.h"
+#include "Engine\SoundManager\SoundManger.h"
+
 
 void ErrorCallback(const char* aError)
 {
@@ -22,13 +24,12 @@ SoundTestScene::SoundTestScene()
 	myObjects.push_back(std::make_shared<ModelInstance>(model));
 	GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
 
-	CAudioInterface::CreateInstance();
-	success = CAudioInterface::GetInstance()->Init("Audio/SoundBanks/Init.bnk");
-	CAudioInterface::GetInstance()->SetErrorCallBack(ErrorCallback);
+	success = Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	Engine::GetSoundManager().SetErrorCallBack(ErrorCallback);
 
-	success = CAudioInterface::GetInstance()->LoadBank("Audio/SoundBanks/level1.bnk");
+	success = Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 	success;
-	CAudioInterface::GetInstance()->PostEvent("Play_Derp");
+	Engine::GetSoundManager().PostEvent("Play_Derp");
 	myPlaying = false;
 }
 
@@ -46,10 +47,10 @@ void SoundTestScene::Update(const Time & aDeltaTime)
 	}
 	if (!myPlaying)
 	{
-		CAudioInterface::GetInstance()->PostEvent("Play_Derp");
+		Engine::GetSoundManager().PostEvent("Play_Derp");
 		myPlaying = true;
 	}
-	CAudioInterface::GetInstance()->Update();
+	Engine::GetSoundManager().Update();
 	mySoundLoop += 0.0008f;
 
 

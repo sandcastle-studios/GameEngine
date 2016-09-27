@@ -1,5 +1,19 @@
 #include "WwiseManager.h"
 
+#include "include\AK\SoundEngine\Common\AkTypes.h"
+#include "include\AK\Tools\Common\AkPlatformFuncs.h"
+#include "include\AK\SoundEngine\Common\AkSoundEngine.h"
+
+#include "include\AK\SoundEngine\Common\AkMemoryMgr.h"		// Memory Manager
+#include "include\AK\SoundEngine\Common\AkModule.h"		// Default memory and stream managers
+#include "include\AK\SoundEngine\Common\IAkStreamMgr.h"		// Streaming Manager
+#include "include\AK\SoundEngine\Common\AkSoundEngine.h"    // Sound engine
+#include "include\AK\MusicEngine\Common\AkMusicEngine.h"	// Music Engine
+#include "include\AK\SoundEngine\Common\AkStreamMgrModule.h"	// AkStreamMgrModule
+#include "include\AK\Plugin\AllPluginsRegistrationHelpers.h"	// Plug-ins
+#include "include\AK\Comm\AkCommunication.h"	// Plug-ins
+#include "SoundEngine\Win32\AkFilePackageLowLevelIOBlocking.h"
+
 
 
 
