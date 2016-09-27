@@ -158,6 +158,36 @@
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
     <ClInclude Include="Engine\Component\LightComponent.h" />
     <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
+    <ClInclude Include="Engine\DataParser\DataParser.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\error\en.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\error\error.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\biginteger.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\diyfp.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\dtoa.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\ieee754.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\itoa.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\meta.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\pow10.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\stack.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\strfunc.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\strtod.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\internal\swap.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\msinttypes\inttypes.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\msinttypes\stdint.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\allocators.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\document.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\encodedstream.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\encodings.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\filereadstream.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\filewritestream.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\memorybuffer.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\memorystream.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\pointer.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\prettywriter.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\rapidjson.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\reader.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
+    <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -276,6 +306,7 @@
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
+    <ClCompile Include="Engine\DataParser\DataParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">
