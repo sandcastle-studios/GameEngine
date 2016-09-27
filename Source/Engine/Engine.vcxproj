@@ -246,6 +246,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
+    <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
     <ClInclude Include="Engine\DataParser\DataParser.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\allocators.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\document.h" />

@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine\Component\Pointer\SharedPtrComponent.h"
 
 class Scene;
 class BaseComponent;
@@ -29,16 +30,16 @@ public:
 
 
 	template <typename TComponentType>
-	void AddComponent(const TComponentType &aComponent);
+	void AddComponent(const SharedPtrComponent<TComponentType> & aComponent);
 
 	template <typename TComponentType>
-	std::shared_ptr<TComponentType> GetComponent();
+	SharedPtrComponent<TComponentType> GetComponent();
 
 	template <typename TComponentType>
-	const std::shared_ptr<TComponentType> GetComponent()const;
+	const SharedPtrComponent<TComponentType> GetComponent()const;
 
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
-	GrowingArray<std::shared_ptr<BaseComponent>, size_t> myComponents;
+	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponents;
 
 	inline const Vector3f& GetPosition() const
 	{
@@ -81,34 +82,34 @@ const TStateType & GameObject::GetState() const
 }
 
 template <typename TComponentType>
-void GameObject::AddComponent(const TComponentType &aComponent)
+void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aComponent)
 {
-	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponent>>::GetID<TComponentType>();
-	size_t nextID = UniqeIdentifier<std::shared_ptr<BaseComponent>>::nextTypeIndex;
+	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
+	size_t nextID = UniqeIdentifier<BaseComponent>::nextTypeIndex;
 	if (myComponents.Size() < nextID)
 	{
 		myComponents.Resize(nextID);
 	}
-	myComponents[id] = aComponent;
+	myComponents[id] = SharedPtrComponent<BaseComponent>::CastFrom(aComponent);
 }
 
 template <typename TComponentType>
-std::shared_ptr<TComponentType>
+SharedPtrComponent<TComponentType>
 GameObject::GetComponent()
 {
-	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponent>>::GetID<TComponentType>();
-	size_t nextID = UniqeIdentifier<std::shared_ptr<BaseComponent>>::nextTypeIndex;
+	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
+	size_t nextID = UniqeIdentifier<BaseComponent>::nextTypeIndex;
 	if (myComponents.Size() < nextID)
 	{
 		AddComponent<TComponentType>();
 	}
-	return std::static_pointer_cast<TComponentType>(myComponents[id]);
+	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id]);
 }
 
 template <typename TComponentType>
-const std::shared_ptr<TComponentType>
+const SharedPtrComponent<TComponentType>
 GameObject::GetComponent() const
 {
-	size_t id = UniqeIdentifier<std::shared_ptr<BaseComponent>>::GetID<TComponentType>();
-	return std::static_pointer_cast<TComponentType>(myComponents[id]);
+	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
+	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id]);
 }

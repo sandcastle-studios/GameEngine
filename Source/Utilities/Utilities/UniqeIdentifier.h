@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 template <typename TIDType>
 class UniqeIdentifier
 {
@@ -12,7 +10,8 @@ public:
 	template<typename T>
 	static size_t GetID()
 	{
-		static size_t id = nextTypeIndex++;
+		static size_t id =  nextTypeIndex++;
+
 		return id;
 	}
 };

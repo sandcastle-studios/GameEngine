@@ -23,3 +23,11 @@ void ModelComponent::SetModel(std::shared_ptr<ModelInstance> aModel)
 {
 	myModel = aModel;
 }
+
+void ModelComponent::Construct()
+{
+}
+
+void ModelComponent::Destruct()
+{
+}

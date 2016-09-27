@@ -8,12 +8,14 @@
 #include "Utilities/CommonIncludes.h"
 #include "../ModelLoader/CommonIncludes.h"
 
+#include "Engine\Time\Time.h"
 #include "Engine\StringFormatter.h"
 #include <Utilities\UniqeIdentifier.h>
+#include "Engine\Component\BaseComponent.h"
 #include <Utilities\Container\GrowingArray.h>
+#include <Utilities\Pointer\SharedPtr.h>
 
 #include "Engine\BoundingBox.h"
-#include "Engine\Time\Time.h"
 #include "Engine\Time\Stopwatch.h"
 #include "Engine\PostMaster.h"
 #include "Engine\Debugging\DebugLogger.h"

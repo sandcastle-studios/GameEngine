@@ -6,5 +6,10 @@ class LightComponent :
 public:
 	LightComponent();
 	~LightComponent();
+
+	virtual void Construct() override;
+
+	virtual void Destruct() override;
+
 };
 

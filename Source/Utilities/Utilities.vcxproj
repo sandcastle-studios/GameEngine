@@ -154,6 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Utilities\Container\Stack.h" />
+    <ClInclude Include="Utilities\Pointer\SharedPtr.h" />
     <ClInclude Include="Utilities\UniqeIdentifier.h" />
     <ClInclude Include="Utilities\CommonIncludes.h" />
     <ClInclude Include="Utilities\Container\GrowingArray.h" />
