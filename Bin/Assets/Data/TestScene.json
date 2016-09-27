@@ -1,0 +1,212 @@
+{
+  "name": "TestScene",
+  "resources": {
+    "textures": [
+      {
+        "name": "companion_heart"
+      }
+    ]
+  },
+  "hierarchy": [
+    {
+      "name": "companion",
+      "components": [
+        {
+          "localPosition": [
+            3.4,
+            4.3,
+            -6.31
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "name": null,
+          "parentName": null,
+          "type": "Transform"
+        },
+        {
+          "type": null
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "parentCube",
+      "components": [
+        {
+          "localPosition": [
+            1.93,
+            3.87,
+            -3.678
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "name": null,
+          "parentName": null,
+          "type": "Transform"
+        },
+        {
+          "type": null
+        },
+        {
+          "center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "BoxCollider"
+        }
+      ],
+      "children": [
+        {
+          "name": "childCube",
+          "components": [
+            {
+              "localPosition": [
+                0.0,
+                0.0,
+                1.109
+              ],
+              "localRotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "localScale": [
+                1.0,
+                1.0
+                1.0
+              ],
+              "name": null,
+              "parentName": null,
+              "type": "Transform"
+            },
+            {
+              "type": null
+            },
+            {
+              "center": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "type": "BoxCollider"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "platform",
+      "components": [
+        {
+          "localPosition": [
+            2.3435,
+            2.4468143,
+            -7.16502
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            14.5706644,
+            0.363473743,
+            17.6981373
+          ],
+          "name": null,
+          "parentName": null,
+          "type": "Transform"
+        },
+        {
+          "type": null
+        },
+        {
+          "center": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "size": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "BoxCollider"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "Point light",
+      "components": [
+        {
+          "localPosition": [
+            2.24,
+            4.97,
+            -7.21
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            0.371980429,
+            1.0,
+            0.109438822
+          ],
+          "name": null,
+          "parentName": null,
+          "type": "Transform"
+        },
+        {
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "range": 10.0,
+          "lightType": "Point",
+          "castsShadows": false,
+          "realtime": false,
+          "type": "Light"
+        }
+      ],
+      "children": []
+    }
+  ]
+}

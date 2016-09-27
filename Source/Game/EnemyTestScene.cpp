@@ -8,11 +8,14 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+#include <Engine/DataParser/DataParser.h>
+
 EnemyTestScene::EnemyTestScene()
 {
 	CreateFactories();
 
-
+	rapidjson::Document doc;
+	Data::Open("Assets/Data/TestScene.json", doc);
 }
 
 EnemyTestScene::~EnemyTestScene()
