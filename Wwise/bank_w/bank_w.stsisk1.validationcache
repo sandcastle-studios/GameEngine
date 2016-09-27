@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="70">
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3583268296" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Attenuations\Default Work Unit.wwu" DateLow="3583301010" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\bank_w.wproj" DateLow="3585229975" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Control Surface Sessions\Default Work Unit.wwu" DateLow="3583326079" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Conversion Settings\Default Work Unit.wwu" DateLow="3583351142" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Conversion Settings\Factory Conversion Settings.wwu" DateLow="3583386230" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Dynamic Dialogue\Default Work Unit.wwu" DateLow="3583411287" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Effects\Default Work Unit.wwu" DateLow="3583426758" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Effects\Factory Effects.wwu" DateLow="3583483533" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Events\Default Work Unit.wwu" DateLow="3583513569" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Game Parameters\Default Work Unit.wwu" DateLow="3583533592" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="3583889163" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3583909171" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Mixing Sessions\Default Work Unit.wwu" DateLow="3583929194" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Modulators\Default Work Unit.wwu" DateLow="3583957660" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Presets\Default Work Unit.wwu" DateLow="3584862186" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Queries\Default Work Unit.wwu" DateLow="3584892207" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Queries\Factory Queries.wwu" DateLow="3584922243" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\SoundBanks\Default Work Unit.wwu" DateLow="3584942269" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Soundcaster Sessions\Default Work Unit.wwu" DateLow="3584973055" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\States\Default Work Unit.wwu" DateLow="3585003097" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Switches\Default Work Unit.wwu" DateLow="3585023121" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Bin\bank_w\Triggers\Default Work Unit.wwu" DateLow="3585043147" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3583268296" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Attenuations\Default Work Unit.wwu" DateLow="3583301010" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\bank_w.stsisk1.wsettings" DateLow="3388972303" DateHigh="30546110"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\bank_w.wproj" DateLow="3585229975" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Control Surface Sessions\Default Work Unit.wwu" DateLow="3583326079" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Conversion Settings\Default Work Unit.wwu" DateLow="3583351142" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Conversion Settings\Factory Conversion Settings.wwu" DateLow="3583386230" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Dynamic Dialogue\Default Work Unit.wwu" DateLow="3583411287" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Effects\Default Work Unit.wwu" DateLow="3583426758" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Effects\Factory Effects.wwu" DateLow="3583483533" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Events\Default Work Unit.wwu" DateLow="3583513569" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Game Parameters\Default Work Unit.wwu" DateLow="3583533592" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="3583889163" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="3583909171" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Mixing Sessions\Default Work Unit.wwu" DateLow="3583929194" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Modulators\Default Work Unit.wwu" DateLow="3583957660" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Presets\Default Work Unit.wwu" DateLow="3584862186" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Queries\Default Work Unit.wwu" DateLow="3584892207" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Queries\Factory Queries.wwu" DateLow="3584922243" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\SoundBanks\Default Work Unit.wwu" DateLow="3584942269" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Soundcaster Sessions\Default Work Unit.wwu" DateLow="3584973055" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\States\Default Work Unit.wwu" DateLow="3585003097" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Switches\Default Work Unit.wwu" DateLow="3585023121" DateHigh="30545936"/>
+	<ValidationCacheItem File="C:\SandCastle\SandBucket\Wwise\bank_w\Triggers\Default Work Unit.wwu" DateLow="3585043147" DateHigh="30545936"/>
+</ValidationCache>

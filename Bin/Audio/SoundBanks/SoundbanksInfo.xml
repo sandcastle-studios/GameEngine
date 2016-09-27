@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\</ProjectRoot>
-		<SourceFilesRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\Audio\SoundBanks\</SoundBanksRoot>
+		<ProjectRoot>C:\SandCastle\SandBucket\Wwise\bank_w\</ProjectRoot>
+		<SourceFilesRoot>C:\SandCastle\SandBucket\Wwise\bank_w\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\SandCastle\SandBucket\Bin\Audio\SoundBanks\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\SandCastle\SandBucket\Wwise\bank_w\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
