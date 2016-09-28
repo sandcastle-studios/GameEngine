@@ -29,9 +29,7 @@ public:
 	template <typename TComponentType>
 	const SharedPtrComponent<TComponentType> GetComponent()const;
 
-	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponents;
-
 
 private:
 	Scene * myScene;
@@ -69,6 +67,7 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 		myComponents.Resize(nextID);
 	}
 	myComponents[id] = SharedPtrComponent<BaseComponent>::CastFrom(aComponent);
+	myComponents[id]->SetGameObject();
 }
 
 template <typename TComponentType>

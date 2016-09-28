@@ -12,7 +12,6 @@ public:
 	~ComponentFactory();
 
 	SharedPtrComponent<TComponentType> CreateComponent();
-	//SharedPtrComponent<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex);
 
 	virtual void Update(const Time & aDeltaTime) override;
 
