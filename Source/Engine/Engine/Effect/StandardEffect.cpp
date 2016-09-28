@@ -4,8 +4,8 @@
 
 StandardEffect::StandardEffect()
 {
-	AttachVertexShader("shaders/shader.fx", "VShader");
-	AttachPixelShader("shaders/shader.fx", "PShader");
+	AttachVertexShader("shaders/pbr/vertex.fx", "VShader");
+	AttachPixelShader("shaders/pbr/pixel.fx", "PShader");
 
 	InputLayout layout;
 	layout.Add("POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);

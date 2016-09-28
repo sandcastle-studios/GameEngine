@@ -49,9 +49,12 @@ void Scene::Render()
 {
 	if (mySkybox != nullptr)
 	{
+		float previousAmbient = Engine::GetRenderer().GetModelRenderer().GetAmbient();
+		Engine::GetRenderer().GetModelRenderer().SetAmbient(1.f);
 		myCamera->ApplySkyboxMatrixToVS();
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
+		Engine::GetRenderer().GetModelRenderer().SetAmbient(previousAmbient);
 	}
 
 	myCamera->ApplyToVS();

@@ -1,3 +1,5 @@
+#define Pi 3.14159265359
+
 struct VertexInputType
 {
     float4 position : POSITION;
@@ -41,10 +43,17 @@ cbuffer LightConstantBuffer : register(b1)
 		float4 direction;
 		float4 color;
 	} directionLight[1];
+	
+	float ambient;
+	float3 ambientPadding;
 };
 
 Texture2D boundTexture : register( t0 );
 Texture2D boundNormalMap : register( t1 );
+Texture2D boundRougnessMap : register(t2);
+Texture2D boundAmbientOcclusionMap : register(t3);
+Texture2D boundEmissiveMap : register(t4);
+Texture2D boundMetalnessMap : register(t5);
 
 SamplerState samplerState;
 
@@ -73,7 +82,13 @@ PixelOutputType PShader(PixelInputType input)
 	
 	float3 sampledColor = boundTexture.Sample(samplerState, input.uv).xyz;
 	float3 sampledNormal = (boundNormalMap.Sample(samplerState, input.uv).xyz * 2.f) - (1.f).xxx;
+	float3 sampledRougness = boundRougnessMap.Sample(samplerState, input.uv).xyz;
+	float3 sampledAmbientOcclusion = boundAmbientOcclusionMap.Sample(samplerState, input.uv).xyz;
+	float3 sampledEmissive = boundEmissiveMap.Sample(samplerState, input.uv).xyz;
+	float sampledMetalness = boundMetalnessMap.Sample(samplerState, input.uv).x;
 	
+	roughness = sampledRougness;
+
 	float3x3 tangentSpaceMatrix = float3x3(
 		normalize(input.bitangent.xyz),
 		normalize(input.tangent.xyz),
@@ -82,15 +97,12 @@ PixelOutputType PShader(PixelInputType input)
 	
 	float3 normal = mul(sampledNormal, tangentSpaceMatrix);
 
-	const float3 directionToLight = -directionLight[0].direction;
+	const float3 directionToLight = -directionLight[0].direction.xyz;
 	
 	float lambert = saturate(dot(normal, directionToLight));
-	float3 directDiffuse = sampledColor * directionLight[0].color * lambert.xxx;
-
-	float ambientAmount = 0.001f;
-
-	output.color = float4(directDiffuse * (1.0f - ambientAmount) + sampledColor * ambientAmount, 1.0f);
-
-
+	float3 directDiffuse = sampledColor * directionLight[0].color.xyz * lambert.xxx;
+	
+	output.color = float4(directDiffuse * (1.0f - ambient) + sampledColor * ambient, 1.0f);
+	
 	return output;
 }

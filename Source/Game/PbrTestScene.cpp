@@ -13,10 +13,11 @@
 #include <Engine\GameObject\GameObject.h>
 
 PbrTestScene::PbrTestScene()
+	: Scene("spacebox.dds")
 {
-	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/stefan_sphere/testSpheres.fbx"));
-	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
-
+	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
+	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
+	
 	auto bb = myHead->GetBoundingBox();
 
 	auto model = GetComponentFactory<ModelComponent>()->CreateComponent();
@@ -26,10 +27,11 @@ PbrTestScene::PbrTestScene()
 	obj->AddComponent(model);
 	myObjects.push_back(obj);
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
+	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 4.5f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
+	Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
+	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 0.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
 }
 
 PbrTestScene::~PbrTestScene()
@@ -38,6 +40,8 @@ PbrTestScene::~PbrTestScene()
 
 void PbrTestScene::Update(const Time & aDeltaTime)
 {
+	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+
 	if (myRollLeft)
 	{
 		myCamera->GetRototation().RotateZ(-aDeltaTime.InSeconds());
@@ -47,7 +51,7 @@ void PbrTestScene::Update(const Time & aDeltaTime)
 		myCamera->GetRototation().RotateZ(aDeltaTime.InSeconds());
 	}
 
-	const float speed = 1.f;
+	const float speed = 5.f;
 
 	if (myMoveLeft)
 	{
@@ -76,7 +80,7 @@ void PbrTestScene::Update(const Time & aDeltaTime)
 		myCamera->AddPosition(myCamera->GetRototation().GetDownward() * speed * aDeltaTime.InSeconds());
 	}
 
-	const float rotateSpeed = 1.f;
+	const float rotateSpeed = 1.5f;
 
 	if (myPitchForward)
 	{
