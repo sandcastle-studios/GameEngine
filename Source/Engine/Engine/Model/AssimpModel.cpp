@@ -30,10 +30,18 @@ AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::str
 	Surface surface;
 
 	const int diffuseSlot = 0;
+	const int roughnessSlot = 1;
+	const int ambientOcclusionSlot = 2;
+	const int emissiveSlot = 3;
 	const int normalSlot = 5;
+	const int metalnessslot = 10;
 
 	TryLoadTexture(*model, surface, modelDirectory, diffuseSlot, SurfaceTextureIndex::eDiffuse);
+	TryLoadTexture(*model, surface, modelDirectory, roughnessSlot, SurfaceTextureIndex::eRoughness);
+	TryLoadTexture(*model, surface, modelDirectory, ambientOcclusionSlot, SurfaceTextureIndex::eAmbientOcclusion);
+	TryLoadTexture(*model, surface, modelDirectory, emissiveSlot, SurfaceTextureIndex::eEmissive);
 	TryLoadTexture(*model, surface, modelDirectory, normalSlot, SurfaceTextureIndex::eNormal);
+	TryLoadTexture(*model, surface, modelDirectory, metalnessslot, SurfaceTextureIndex::eMetalness);
 
 	for (size_t j = 0; j < GetMeshes().size(); j++)
 	{

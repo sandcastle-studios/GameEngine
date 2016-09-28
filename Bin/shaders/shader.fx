@@ -44,7 +44,11 @@ cbuffer LightConstantBuffer : register(b1)
 };
 
 Texture2D boundTexture : register( t0 );
-Texture2D boundNormalMap : register( t1 );
+Texture2D boundRoughness : register(t1);
+Texture2D boundAmbientOcclusion : register(t2);
+Texture2D boundEmissive : register(t3);
+Texture2D boundNormalMap : register( t4 );
+Texture2D boundMetalness : register(t5);
 
 SamplerState samplerState;
 

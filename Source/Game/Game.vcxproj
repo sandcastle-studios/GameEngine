@@ -253,6 +253,7 @@
     <ClInclude Include="Game\LightingTestScene.h" />
     <ClInclude Include="Game\PostMasterSample.h" />
     <ClInclude Include="Game\SlideShowScene.h" />
+    <ClInclude Include="Game\StefanScene.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +265,7 @@
     <ClCompile Include="Game\LightingTestScene.cpp" />
     <ClCompile Include="Game\PostMasterSample.cpp" />
     <ClCompile Include="Game\SlideShowScene.cpp" />
+    <ClCompile Include="Game\StefanScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
