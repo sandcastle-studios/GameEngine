@@ -47,7 +47,7 @@ void SoundTestScene::Update(const Time & aDeltaTime)
 	}
 	if (!myPlaying)
 	{
-		Engine::GetSoundManager().PostEvent("Play_Derp");
+		//Engine::GetSoundManager().PostEvent("Play_Derp");
 		myPlaying = true;
 	}
 	Engine::GetSoundManager().Update();
