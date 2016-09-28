@@ -4,128 +4,128 @@
 #include <vector>
 
 // SIMPLE Wrappers
-//namespace FBXLoader
-//{
-//	struct Vector4f
-//	{
-//		Vector4f()
-//		{
-//			myX = 0;
-//			myY = 0;
-//			myZ = 0;
-//			myW = 0;
-//		}
-//		Vector4f(float aX, float aY, float aZ, float aW)
-//		{
-//			myX = aX;
-//			myY = aY;
-//			myZ = aZ;
-//			myW = aW;
-//		}
-//		float myX;
-//		float myY;
-//		float myZ;
-//		float myW;
-//	};
-//
-//	struct Vector2f
-//	{
-//		Vector2f()
-//		{
-//			myX = 0;
-//			myY = 0;
-//		}
-//		Vector2f(float aX, float aY)
-//		{
-//			myX = aX;
-//			myY = aY;
-//		}
-//		float myX;
-//		float myY;
-//	};
-//
-//	struct Matrix44f
-//	{
-//		Matrix44f()
-//		{
-//			myMatrix[0][0] = 1;
-//			myMatrix[1][0] = 0;
-//			myMatrix[2][0] = 0;
-//			myMatrix[3][0] = 0;
-//			myMatrix[0][1] = 0;
-//			myMatrix[1][1] = 1;
-//			myMatrix[2][1] = 0;
-//			myMatrix[3][1] = 0;
-//			myMatrix[0][2] = 0;
-//			myMatrix[1][2] = 0;
-//			myMatrix[2][2] = 1;
-//			myMatrix[3][2] = 0;
-//			myMatrix[0][3] = 0;
-//			myMatrix[1][3] = 0;
-//			myMatrix[2][3] = 0;
-//			myMatrix[3][3] = 1;
-//		}
-//		float myMatrix[4][4];
-//
-//		void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ)
-//		{
-//			myMatrix[0][0] = ScaleX; myMatrix[0][1] = 0.0f;   myMatrix[0][2] = 0.0f;   myMatrix[0][3] = 0.0f;
-//			myMatrix[1][0] = 0.0f;   myMatrix[1][1] = ScaleY; myMatrix[1][2] = 0.0f;   myMatrix[1][3] = 0.0f;
-//			myMatrix[2][0] = 0.0f;   myMatrix[2][1] = 0.0f;   myMatrix[2][2] = ScaleZ; myMatrix[2][3] = 0.0f;
-//			myMatrix[3][0] = 0.0f;   myMatrix[3][1] = 0.0f;   myMatrix[3][2] = 0.0f;   myMatrix[3][3] = 1.0f;
-//		}
-//		void InitTranslationTransform(float x, float y, float z)
-//		{
-//			myMatrix[0][0] = 1.0f; myMatrix[0][1] = 0.0f; myMatrix[0][2] = 0.0f; myMatrix[0][3] = 0;
-//			myMatrix[1][0] = 0.0f; myMatrix[1][1] = 1.0f; myMatrix[1][2] = 0.0f; myMatrix[1][3] = 0;
-//			myMatrix[2][0] = 0.0f; myMatrix[2][1] = 0.0f; myMatrix[2][2] = 1.0f; myMatrix[2][3] = 0;
-//			myMatrix[3][0] = x;    myMatrix[3][1] = y;	  myMatrix[3][2] = z;	 myMatrix[3][3] = 1.0f;
-//		}
-//		Matrix44f& operator*=(const Matrix44f& aMatrix)
-//		{
-//			Matrix44f temp;
-//
-//			temp.myMatrix[0][0] = myMatrix[0][0] * aMatrix.myMatrix[0][0] + myMatrix[0][1] * aMatrix.myMatrix[1][0] + myMatrix[0][2] * aMatrix.myMatrix[2][0] + myMatrix[0][3] * aMatrix.myMatrix[3][0];
-//			temp.myMatrix[0][1] = myMatrix[0][0] * aMatrix.myMatrix[0][1] + myMatrix[0][1] * aMatrix.myMatrix[1][1] + myMatrix[0][2] * aMatrix.myMatrix[2][1] + myMatrix[0][3] * aMatrix.myMatrix[3][1];
-//			temp.myMatrix[0][2] = myMatrix[0][0] * aMatrix.myMatrix[0][2] + myMatrix[0][1] * aMatrix.myMatrix[1][2] + myMatrix[0][2] * aMatrix.myMatrix[2][2] + myMatrix[0][3] * aMatrix.myMatrix[3][2];
-//			temp.myMatrix[0][3] = myMatrix[0][0] * aMatrix.myMatrix[0][3] + myMatrix[0][1] * aMatrix.myMatrix[1][3] + myMatrix[0][2] * aMatrix.myMatrix[2][3] + myMatrix[0][3] * aMatrix.myMatrix[3][3];
-//
-//			temp.myMatrix[1][0] = myMatrix[1][0] * aMatrix.myMatrix[0][0] + myMatrix[1][1] * aMatrix.myMatrix[1][0] + myMatrix[1][2] * aMatrix.myMatrix[2][0] + myMatrix[1][3] * aMatrix.myMatrix[3][0];
-//			temp.myMatrix[1][1] = myMatrix[1][0] * aMatrix.myMatrix[0][1] + myMatrix[1][1] * aMatrix.myMatrix[1][1] + myMatrix[1][2] * aMatrix.myMatrix[2][1] + myMatrix[1][3] * aMatrix.myMatrix[3][1];
-//			temp.myMatrix[1][2] = myMatrix[1][0] * aMatrix.myMatrix[0][2] + myMatrix[1][1] * aMatrix.myMatrix[1][2] + myMatrix[1][2] * aMatrix.myMatrix[2][2] + myMatrix[1][3] * aMatrix.myMatrix[3][2];
-//			temp.myMatrix[1][3] = myMatrix[1][0] * aMatrix.myMatrix[0][3] + myMatrix[1][1] * aMatrix.myMatrix[1][3] + myMatrix[1][2] * aMatrix.myMatrix[2][3] + myMatrix[1][3] * aMatrix.myMatrix[3][3];
-//
-//			temp.myMatrix[2][0] = myMatrix[2][0] * aMatrix.myMatrix[0][0] + myMatrix[2][1] * aMatrix.myMatrix[1][0] + myMatrix[2][2] * aMatrix.myMatrix[2][0] + myMatrix[2][3] * aMatrix.myMatrix[3][0];
-//			temp.myMatrix[2][1] = myMatrix[2][0] * aMatrix.myMatrix[0][1] + myMatrix[2][1] * aMatrix.myMatrix[1][1] + myMatrix[2][2] * aMatrix.myMatrix[2][1] + myMatrix[2][3] * aMatrix.myMatrix[3][1];
-//			temp.myMatrix[2][2] = myMatrix[2][0] * aMatrix.myMatrix[0][2] + myMatrix[2][1] * aMatrix.myMatrix[1][2] + myMatrix[2][2] * aMatrix.myMatrix[2][2] + myMatrix[2][3] * aMatrix.myMatrix[3][2];
-//			temp.myMatrix[2][3] = myMatrix[2][0] * aMatrix.myMatrix[0][3] + myMatrix[2][1] * aMatrix.myMatrix[1][3] + myMatrix[2][2] * aMatrix.myMatrix[2][3] + myMatrix[2][3] * aMatrix.myMatrix[3][3];
-//
-//			temp.myMatrix[3][0] = myMatrix[3][0] * aMatrix.myMatrix[0][0] + myMatrix[3][1] * aMatrix.myMatrix[1][0] + myMatrix[3][2] * aMatrix.myMatrix[2][0] + myMatrix[3][3] * aMatrix.myMatrix[3][0];
-//			temp.myMatrix[3][1] = myMatrix[3][0] * aMatrix.myMatrix[0][1] + myMatrix[3][1] * aMatrix.myMatrix[1][1] + myMatrix[3][2] * aMatrix.myMatrix[2][1] + myMatrix[3][3] * aMatrix.myMatrix[3][1];
-//			temp.myMatrix[3][2] = myMatrix[3][0] * aMatrix.myMatrix[0][2] + myMatrix[3][1] * aMatrix.myMatrix[1][2] + myMatrix[3][2] * aMatrix.myMatrix[2][2] + myMatrix[3][3] * aMatrix.myMatrix[3][2];
-//			temp.myMatrix[3][3] = myMatrix[3][0] * aMatrix.myMatrix[0][3] + myMatrix[3][1] * aMatrix.myMatrix[1][3] + myMatrix[3][2] * aMatrix.myMatrix[2][3] + myMatrix[3][3] * aMatrix.myMatrix[3][3];
-//
-//			memcpy(myMatrix, temp.myMatrix, 4 * 4 * 4);
-//
-//			return *this;
-//		}
-//		Matrix44f operator*(const Matrix44f& aSecondMatrix) const
-//		{
-//			Matrix44f Ret;
-//
-//			for (unsigned int i = 0; i < 4; i++) {
-//				for (unsigned int j = 0; j < 4; j++) {
-//					Ret.myMatrix[i][j] = myMatrix[i][0] * aSecondMatrix.myMatrix[0][j] +
-//						myMatrix[i][1] * aSecondMatrix.myMatrix[1][j] +
-//						myMatrix[i][2] * aSecondMatrix.myMatrix[2][j] +
-//						myMatrix[i][3] * aSecondMatrix.myMatrix[3][j];
-//				}
-//			}
-//
-//			return Ret;
-//		}
-//	};
-//}
+namespace FBXLoader
+{
+	struct Vector4f
+	{
+		Vector4f()
+		{
+			myX = 0;
+			myY = 0;
+			myZ = 0;
+			myW = 0;
+		}
+		Vector4f(float aX, float aY, float aZ, float aW)
+		{
+			myX = aX;
+			myY = aY;
+			myZ = aZ;
+			myW = aW;
+		}
+		float myX;
+		float myY;
+		float myZ;
+		float myW;
+	};
+
+	struct Vector2f
+	{
+		Vector2f()
+		{
+			myX = 0;
+			myY = 0;
+		}
+		Vector2f(float aX, float aY)
+		{
+			myX = aX;
+			myY = aY;
+		}
+		float myX;
+		float myY;
+	};
+
+	struct Matrix44f
+	{
+		Matrix44f()
+		{
+			myMatrix[0][0] = 1;
+			myMatrix[1][0] = 0;
+			myMatrix[2][0] = 0;
+			myMatrix[3][0] = 0;
+			myMatrix[0][1] = 0;
+			myMatrix[1][1] = 1;
+			myMatrix[2][1] = 0;
+			myMatrix[3][1] = 0;
+			myMatrix[0][2] = 0;
+			myMatrix[1][2] = 0;
+			myMatrix[2][2] = 1;
+			myMatrix[3][2] = 0;
+			myMatrix[0][3] = 0;
+			myMatrix[1][3] = 0;
+			myMatrix[2][3] = 0;
+			myMatrix[3][3] = 1;
+		}
+		float myMatrix[4][4];
+
+		void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ)
+		{
+			myMatrix[0][0] = ScaleX; myMatrix[0][1] = 0.0f;   myMatrix[0][2] = 0.0f;   myMatrix[0][3] = 0.0f;
+			myMatrix[1][0] = 0.0f;   myMatrix[1][1] = ScaleY; myMatrix[1][2] = 0.0f;   myMatrix[1][3] = 0.0f;
+			myMatrix[2][0] = 0.0f;   myMatrix[2][1] = 0.0f;   myMatrix[2][2] = ScaleZ; myMatrix[2][3] = 0.0f;
+			myMatrix[3][0] = 0.0f;   myMatrix[3][1] = 0.0f;   myMatrix[3][2] = 0.0f;   myMatrix[3][3] = 1.0f;
+		}
+		void InitTranslationTransform(float x, float y, float z)
+		{
+			myMatrix[0][0] = 1.0f; myMatrix[0][1] = 0.0f; myMatrix[0][2] = 0.0f; myMatrix[0][3] = 0;
+			myMatrix[1][0] = 0.0f; myMatrix[1][1] = 1.0f; myMatrix[1][2] = 0.0f; myMatrix[1][3] = 0;
+			myMatrix[2][0] = 0.0f; myMatrix[2][1] = 0.0f; myMatrix[2][2] = 1.0f; myMatrix[2][3] = 0;
+			myMatrix[3][0] = x;    myMatrix[3][1] = y;	  myMatrix[3][2] = z;	 myMatrix[3][3] = 1.0f;
+		}
+		Matrix44f& operator*=(const Matrix44f& aMatrix)
+		{
+			Matrix44f temp;
+
+			temp.myMatrix[0][0] = myMatrix[0][0] * aMatrix.myMatrix[0][0] + myMatrix[0][1] * aMatrix.myMatrix[1][0] + myMatrix[0][2] * aMatrix.myMatrix[2][0] + myMatrix[0][3] * aMatrix.myMatrix[3][0];
+			temp.myMatrix[0][1] = myMatrix[0][0] * aMatrix.myMatrix[0][1] + myMatrix[0][1] * aMatrix.myMatrix[1][1] + myMatrix[0][2] * aMatrix.myMatrix[2][1] + myMatrix[0][3] * aMatrix.myMatrix[3][1];
+			temp.myMatrix[0][2] = myMatrix[0][0] * aMatrix.myMatrix[0][2] + myMatrix[0][1] * aMatrix.myMatrix[1][2] + myMatrix[0][2] * aMatrix.myMatrix[2][2] + myMatrix[0][3] * aMatrix.myMatrix[3][2];
+			temp.myMatrix[0][3] = myMatrix[0][0] * aMatrix.myMatrix[0][3] + myMatrix[0][1] * aMatrix.myMatrix[1][3] + myMatrix[0][2] * aMatrix.myMatrix[2][3] + myMatrix[0][3] * aMatrix.myMatrix[3][3];
+
+			temp.myMatrix[1][0] = myMatrix[1][0] * aMatrix.myMatrix[0][0] + myMatrix[1][1] * aMatrix.myMatrix[1][0] + myMatrix[1][2] * aMatrix.myMatrix[2][0] + myMatrix[1][3] * aMatrix.myMatrix[3][0];
+			temp.myMatrix[1][1] = myMatrix[1][0] * aMatrix.myMatrix[0][1] + myMatrix[1][1] * aMatrix.myMatrix[1][1] + myMatrix[1][2] * aMatrix.myMatrix[2][1] + myMatrix[1][3] * aMatrix.myMatrix[3][1];
+			temp.myMatrix[1][2] = myMatrix[1][0] * aMatrix.myMatrix[0][2] + myMatrix[1][1] * aMatrix.myMatrix[1][2] + myMatrix[1][2] * aMatrix.myMatrix[2][2] + myMatrix[1][3] * aMatrix.myMatrix[3][2];
+			temp.myMatrix[1][3] = myMatrix[1][0] * aMatrix.myMatrix[0][3] + myMatrix[1][1] * aMatrix.myMatrix[1][3] + myMatrix[1][2] * aMatrix.myMatrix[2][3] + myMatrix[1][3] * aMatrix.myMatrix[3][3];
+
+			temp.myMatrix[2][0] = myMatrix[2][0] * aMatrix.myMatrix[0][0] + myMatrix[2][1] * aMatrix.myMatrix[1][0] + myMatrix[2][2] * aMatrix.myMatrix[2][0] + myMatrix[2][3] * aMatrix.myMatrix[3][0];
+			temp.myMatrix[2][1] = myMatrix[2][0] * aMatrix.myMatrix[0][1] + myMatrix[2][1] * aMatrix.myMatrix[1][1] + myMatrix[2][2] * aMatrix.myMatrix[2][1] + myMatrix[2][3] * aMatrix.myMatrix[3][1];
+			temp.myMatrix[2][2] = myMatrix[2][0] * aMatrix.myMatrix[0][2] + myMatrix[2][1] * aMatrix.myMatrix[1][2] + myMatrix[2][2] * aMatrix.myMatrix[2][2] + myMatrix[2][3] * aMatrix.myMatrix[3][2];
+			temp.myMatrix[2][3] = myMatrix[2][0] * aMatrix.myMatrix[0][3] + myMatrix[2][1] * aMatrix.myMatrix[1][3] + myMatrix[2][2] * aMatrix.myMatrix[2][3] + myMatrix[2][3] * aMatrix.myMatrix[3][3];
+
+			temp.myMatrix[3][0] = myMatrix[3][0] * aMatrix.myMatrix[0][0] + myMatrix[3][1] * aMatrix.myMatrix[1][0] + myMatrix[3][2] * aMatrix.myMatrix[2][0] + myMatrix[3][3] * aMatrix.myMatrix[3][0];
+			temp.myMatrix[3][1] = myMatrix[3][0] * aMatrix.myMatrix[0][1] + myMatrix[3][1] * aMatrix.myMatrix[1][1] + myMatrix[3][2] * aMatrix.myMatrix[2][1] + myMatrix[3][3] * aMatrix.myMatrix[3][1];
+			temp.myMatrix[3][2] = myMatrix[3][0] * aMatrix.myMatrix[0][2] + myMatrix[3][1] * aMatrix.myMatrix[1][2] + myMatrix[3][2] * aMatrix.myMatrix[2][2] + myMatrix[3][3] * aMatrix.myMatrix[3][2];
+			temp.myMatrix[3][3] = myMatrix[3][0] * aMatrix.myMatrix[0][3] + myMatrix[3][1] * aMatrix.myMatrix[1][3] + myMatrix[3][2] * aMatrix.myMatrix[2][3] + myMatrix[3][3] * aMatrix.myMatrix[3][3];
+
+			memcpy(myMatrix, temp.myMatrix, 4 * 4 * 4);
+
+			return *this;
+		}
+		Matrix44f operator*(const Matrix44f& aSecondMatrix) const
+		{
+			Matrix44f Ret;
+
+			for (unsigned int i = 0; i < 4; i++) {
+				for (unsigned int j = 0; j < 4; j++) {
+					Ret.myMatrix[i][j] = myMatrix[i][0] * aSecondMatrix.myMatrix[0][j] +
+						myMatrix[i][1] * aSecondMatrix.myMatrix[1][j] +
+						myMatrix[i][2] * aSecondMatrix.myMatrix[2][j] +
+						myMatrix[i][3] * aSecondMatrix.myMatrix[3][j];
+				}
+			}
+
+			return Ret;
+		}
+	};
+}
 
 
 typedef unsigned int uint;
@@ -181,18 +181,18 @@ struct VertexBoneData
 class SVertexCollection
 {
 public:
-	void PushVec4(Vector4f aPos)
+	void PushVec4(FBXLoader::Vector4f aPos)
 	{
-		myData.push_back(aPos.x);
-		myData.push_back(aPos.y);
-		myData.push_back(aPos.z);
-		myData.push_back(aPos.w);
+		myData.push_back(aPos.myX);
+		myData.push_back(aPos.myY);
+		myData.push_back(aPos.myZ);
+		myData.push_back(aPos.myW);
 
 	}
-	void PushVec2(Vector2f aPos)
+	void PushVec2(FBXLoader::Vector2f aPos)
 	{
-		myData.push_back(aPos.x);
-		myData.push_back(aPos.y);
+		myData.push_back(aPos.myX);
+		myData.push_back(aPos.myY);
 	}
 
 	std::vector<float> myData;

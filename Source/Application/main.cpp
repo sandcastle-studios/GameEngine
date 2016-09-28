@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include <Game\Game.h>
-#include <Engine\Debugging\CommandLineParameters.h>
+#include <Game.h>
+#include <CommandLineParameters.h>
 
 #ifdef PUBLISH
 int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)

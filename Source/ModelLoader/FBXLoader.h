@@ -3,10 +3,11 @@
 #include <vector>
 #include <map>
 
+using namespace FBXLoader;
 struct BoneInfo
 {
-	Matrix44f BoneOffset;
-	Matrix44f FinalTransformation;
+	FBXLoader::Matrix44f BoneOffset;
+	FBXLoader::Matrix44f FinalTransformation;
 
 	BoneInfo()
 	{
@@ -41,7 +42,7 @@ public:
 	std::string myModelPath;
 	float myAnimationDuration;
 	const struct aiScene* myScene;
-	Matrix44f myGlobalInverseTransform;
+	FBXLoader::Matrix44f myGlobalInverseTransform;
 	bool myIsLoaded;
 	std::vector<std::string> myTextures;
 	// Animation data

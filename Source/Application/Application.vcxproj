@@ -100,42 +100,42 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\Utilities\;..\Game\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Game\;..\Engine\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <TargetName>$(ProjectName) ($(Configuration), $(Platform))</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
@@ -268,9 +268,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Game\Game.vcxproj">
       <Project>{af116dc0-4f8e-4629-a7fc-79317dfc0be4}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
-      <Project>{92d34133-88e5-4fe3-bfe2-96e8a9b316f3}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

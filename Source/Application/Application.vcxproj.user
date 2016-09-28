@@ -24,7 +24,4 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(OutputPath)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
-  <PropertyGroup>
-    <ShowAllFiles>true</ShowAllFiles>
-  </PropertyGroup>
 </Project>

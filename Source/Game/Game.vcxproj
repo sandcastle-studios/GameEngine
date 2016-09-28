@@ -98,37 +98,37 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
-    <IncludePath>..\Utilities\;..\Engine\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Engine\;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
@@ -142,7 +142,6 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,7 +156,6 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -175,7 +173,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -195,7 +192,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -215,7 +211,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -235,7 +230,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -244,26 +238,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Game\Component\Controller\AIControllerComponent.h" />
-    <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
-    <ClInclude Include="Game\CommonIncludes.h" />
-    <ClInclude Include="Game\EnemyTestScene.h" />
-    <ClInclude Include="Game\Game.h" />
-    <ClInclude Include="Game\InstancedTestScene.h" />
-    <ClInclude Include="Game\LightingTestScene.h" />
-    <ClInclude Include="Game\PostMasterSample.h" />
-    <ClInclude Include="Game\SlideShowScene.h" />
+    <ClInclude Include="CommonIncludes.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="InstancedTestScene.h" />
+    <ClInclude Include="LightingTestScene.h" />
+    <ClInclude Include="PostMasterSample.h" />
+    <ClInclude Include="SlideShowScene.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game\Component\Controller\AIControllerComponent.cpp" />
-    <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
-    <ClCompile Include="Game\EnemyTestScene.cpp" />
-    <ClCompile Include="Game\Game.cpp" />
-    <ClCompile Include="Game\InstancedTestScene.cpp" />
-    <ClCompile Include="Game\LightingTestScene.cpp" />
-    <ClCompile Include="Game\PostMasterSample.cpp" />
-    <ClCompile Include="Game\SlideShowScene.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InstancedTestScene.cpp" />
+    <ClCompile Include="LightingTestScene.cpp" />
+    <ClCompile Include="PostMasterSample.cpp" />
+    <ClCompile Include="SlideShowScene.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
