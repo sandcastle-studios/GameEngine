@@ -13,7 +13,6 @@ ResourceManager::~ResourceManager()
 
 void ResourceManager::Update()
 {
-	Engine::GetFileWatcher().PostChanges();
 }
 
 ReceiveResult ResourceManager::Receive(const FileChangedEvent & aMessage)

@@ -42,6 +42,7 @@ __forceinline T min(T a, T b)
 #include "Utilities\Math\Matrix33.h"
 #include "Utilities\Math\Matrix44.h"
 #include "Utilities\Math\Quaternion.h"
+#include "Utilities\Container\Stack.h"
 
 
 #ifdef WINDOWS

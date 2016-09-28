@@ -12,6 +12,9 @@
 #include "LightingTestScene.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
 #include "SoundTestScene.h"
+//#include "LightingTestScene.h"
+//#include <Engine\SplashScreen\SplashScreenScene.h>
+#include "EnemyTestScene.h"
 
 Game::Game()
 {
@@ -85,6 +88,9 @@ void Game::Initialize()
 
 void Game::Update(const Time &aDeltaTime)
 {
+	Engine::GetResourceManager().Update();
+	Engine::GetFileWatcher().PostChanges();
+
 	if (myScene != nullptr)
 	{
 		myScene->Update(aDeltaTime);

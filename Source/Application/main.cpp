@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <Game.h>
+#include <Game\Game.h>
 #include <Engine\Debugging\CommandLineParameters.h>
 
 #ifdef PUBLISH

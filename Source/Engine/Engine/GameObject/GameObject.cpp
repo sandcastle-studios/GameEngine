@@ -3,6 +3,7 @@
 
 GameObject::GameObject()
 {
+	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 }
 
 GameObject::~GameObject()
