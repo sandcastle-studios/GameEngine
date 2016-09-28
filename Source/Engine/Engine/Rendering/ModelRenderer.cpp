@@ -16,8 +16,11 @@ ModelRenderer::ModelRenderer()
 	myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, 1, false));
 	myLightingBuffer = std::make_shared<ConstantBuffer<LightConstantBufferData>>();
 	
-	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
-	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
+
+	myLightingData.directionalLight[0].myColor = Vector4f(1.f, 1.f, 1.f, 1.f);
+	myLightingData.directionalLight[0].myDirection = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
+
+
 }
 
 ModelRenderer::~ModelRenderer()
@@ -119,8 +122,10 @@ void ModelRenderer::ReturnBatchIdentifier(size_t aBatchIdentifier)
 
 void ModelRenderer::SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor)
 {
-	myLightingData.directionLight[aIndex].direction = Vector4f(aLightDirection.GetNormalized(), 1.f);
-	myLightingData.directionLight[aIndex].color = aLightColor;
+	myLightingData.directionalLight[aIndex].myDirection = Vector4f(aLightDirection.GetNormalized(), 1.f);
+	myLightingData.directionalLight[aIndex].myColor = aLightColor;
+
+
 }
 
 void ModelRenderer::UpdateAndBindLightingBuffer()

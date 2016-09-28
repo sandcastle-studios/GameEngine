@@ -14,7 +14,7 @@ public:
 	ReceiveResult Receive(const AnyKeyUpMessage & aMessage) override;
 
 private:
-	std::shared_ptr<ModelInstance> myHead;
+	std::shared_ptr<ModelInstance> mySphere;
 	bool myRotateLeft;
 	bool myRotateRight;
 	bool myMoveLeft;

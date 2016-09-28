@@ -6,25 +6,33 @@
 #include <Engine\Camera\Camera.h>
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
+#include <Engine\Component\Factory\ComponentFactory.h>
 #include <imgui.h>
+#include <Engine\Component\ModelComponent.h>
+#include <Engine\GameObject\GameObject.h>
 
 
 LightingTestScene::LightingTestScene()
 {
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
-	myHead = std::make_shared<ModelInstance>(model);
-	//myObjects.push_back(myHead);
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx")));
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Sphere/testSpheres.fbx");
+	mySphere = std::make_shared<ModelInstance>(model);
 
-	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+	auto modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
+	auto go = std::make_shared<GameObject>();
+	go->AddComponent(modelComponent);
+	modelComponent->SetModel(mySphere);
 
-	auto bb = myHead->GetBoundingBox();
+
+
+
+	mySphere->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+
+	auto bb = mySphere->GetBoundingBox();
 
 	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
+	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
 }
 
 LightingTestScene::~LightingTestScene()
