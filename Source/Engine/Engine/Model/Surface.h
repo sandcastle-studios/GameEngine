@@ -4,6 +4,10 @@ enum class SurfaceTextureIndex
 {
 	eDiffuse,
 	eNormal,
+	eRoughness,
+	eAmbientOcclusion,
+	eEmissive,
+	eMetalness,
 
 	eCount
 };
