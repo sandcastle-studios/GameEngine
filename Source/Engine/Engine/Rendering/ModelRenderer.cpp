@@ -17,7 +17,8 @@ ModelRenderer::ModelRenderer()
 	myLightingBuffer = std::make_shared<ConstantBuffer<LightConstantBufferData>>();
 	
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
-	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
+	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-0.f, -0.f, 1.f).GetNormalized(), 1.f);
+	
 }
 
 ModelRenderer::~ModelRenderer()

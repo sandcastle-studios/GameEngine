@@ -1,5 +1,6 @@
 #pragma once
 #include "Utilities\Container\GrowingArray.h"
+#include "Engine\Texture\TextureCube.h"
 
 class GameObject;
 class BaseComponentFactory;
@@ -8,6 +9,15 @@ template <typename TComponentFactoryType>class ComponentFactory;
 
 class Camera;
 class StandardEffect;
+
+template <typename TBufferType>
+class ConstantBuffer;
+
+struct MipMapStruct
+{
+	unsigned int actualValue;
+	Vector3f trash;
+};
 
 class Scene
 {
@@ -43,6 +53,9 @@ protected:
 	std::shared_ptr<StandardEffect> myEffect;
 
 	Time myTime;
+
+	std::shared_ptr<TextureCube> myTextureCube;
+	std::shared_ptr<ConstantBuffer<MipMapStruct>> myMipmapBuffer;
 };
 
 template<typename TComponentType>

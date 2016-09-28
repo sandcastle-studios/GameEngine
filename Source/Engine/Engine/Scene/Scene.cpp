@@ -10,8 +10,18 @@
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
 
+
+
 Scene::Scene(const char * aSkyboxPath)
 {
+	myTextureCube = std::make_shared<TextureCube>("textures/skansenbox.dds");
+	myMipmapBuffer = std::make_shared<ConstantBuffer<MipMapStruct>>();
+
+
+	MipMapStruct data;
+	data.actualValue = 8;
+	myMipmapBuffer->UpdateData(data);
+
 	myCamera = std::make_unique<Camera>();
 
 	myEffect = std::make_shared<StandardEffect>();
@@ -47,6 +57,7 @@ void Scene::Update(const Time & aDeltaTime)
 
 void Scene::Render()
 {
+	myTextureCube->BindToPS(11);
 	if (mySkybox != nullptr)
 	{
 		myCamera->ApplySkyboxMatrixToVS();
