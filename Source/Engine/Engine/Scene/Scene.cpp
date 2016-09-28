@@ -9,16 +9,18 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
+#include "Engine\Effect\SkyboxEffect.h"
 
 Scene::Scene(const char * aSkyboxPath)
 {
 	myCamera = std::make_unique<Camera>();
 
 	myEffect = std::make_shared<StandardEffect>();
+	mySkyboxEffect = std::make_shared<SkyboxEffect>();
 	 
 	if (aSkyboxPath != nullptr)
 	{
-		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(myEffect, std::make_shared<Texture>(aSkyboxPath)));
+		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(mySkyboxEffect, std::make_shared<Texture>(aSkyboxPath)));
 	}
 	else
 	{
@@ -49,7 +51,7 @@ void Scene::Render()
 {
 	if (mySkybox != nullptr)
 	{
-		myCamera->ApplySkyboxMatrixToVS();
+		mySkybox->SetMatrix(Matrix44f::CreateTranslation(GetCamera().GetPosition()));
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
 	}

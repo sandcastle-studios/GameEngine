@@ -19,7 +19,8 @@ ModelRenderer::ModelRenderer()
 
 	myLightingData.directionalLight[0].myColor = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionalLight[0].myDirection = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
-
+	mySkybox = std::make_shared<TextureCube>("models/cube_1024_preblurred_angle3_Skansen3.dds");
+	myLightingData.mipMapCount = mySkybox->GetMipMapCount();
 
 }
 
@@ -57,6 +58,8 @@ void ModelRenderer::RenderBuffer()
 	myIsInstantRendering = false;
 
 	UpdateAndBindLightingBuffer();
+
+	mySkybox->BindToPS(6);
 
 	for (size_t i=0; i<myCurrentlyScheduledBatches.size(); i++)
 	{

@@ -8,6 +8,7 @@ template <typename TComponentFactoryType>class ComponentFactory;
 
 class Camera;
 class StandardEffect;
+class SkyboxEffect;
 
 class Scene
 {
@@ -41,6 +42,7 @@ protected:
 	std::unique_ptr<Camera> myCamera;
 
 	std::shared_ptr<StandardEffect> myEffect;
+	std::shared_ptr<SkyboxEffect> mySkyboxEffect;
 
 	Time myTime;
 };

@@ -189,6 +189,7 @@
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
     <ClInclude Include="Engine\Texture\TextureCube.h" />
+    <ClInclude Include="Engine\Effect\SkyboxEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -309,6 +310,7 @@
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
+    <ClCompile Include="Engine\Effect\SkyboxEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

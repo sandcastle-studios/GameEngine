@@ -25,11 +25,11 @@ LightingTestScene::LightingTestScene()
 
 
 
-	mySphere->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+	//mySphere->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	auto bb = mySphere->GetBoundingBox();
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
+	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -5.f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));

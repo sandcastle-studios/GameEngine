@@ -278,6 +278,7 @@
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\Effect\SkyboxEffect.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h" />
     <ClInclude Include="Engine\BoundingBox.h" />
@@ -355,6 +356,7 @@
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\Effect\SkyboxEffect.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Model\AssimpModel.cpp" />
     <ClCompile Include="Engine\Buffer\Buffer.cpp" />

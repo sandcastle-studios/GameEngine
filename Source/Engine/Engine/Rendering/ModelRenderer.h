@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine\LightConstantBufferData.h"
+#include "..\Texture\TextureCube.h"
 
 class GenericMesh;
 template<typename T>
@@ -57,6 +58,9 @@ private:
 
 	std::shared_ptr<ConstantBuffer<LightConstantBufferData>> myLightingBuffer;
 	LightConstantBufferData myLightingData;
+
+	std::shared_ptr<TextureCube> mySkybox;
+
 
 	bool myIsInstantRendering;
 	void UpdateAndBindLightingBuffer();
