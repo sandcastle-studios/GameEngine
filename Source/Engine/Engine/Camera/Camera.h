@@ -30,7 +30,6 @@ public:
 	const ConstantBuffer<CameraCB> & GetCameraConstantBuffer() const;
 
 	void ApplyToVS() const;
-	void ApplySkyboxMatrixToVS() const;
 
 	void UpdateCB() const;
 

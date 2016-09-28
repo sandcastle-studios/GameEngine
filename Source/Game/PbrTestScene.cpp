@@ -16,7 +16,7 @@ PbrTestScene::PbrTestScene()
 	: Scene("spacebox.dds")
 {
 	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
-	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
+	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/stefan_sphere/testSpheres.fbx")); // 
 	
 	auto bb = myHead->GetBoundingBox();
 
@@ -25,13 +25,13 @@ PbrTestScene::PbrTestScene()
 
 	std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
 	obj->AddComponent(model);
-	myObjects.push_back(obj);
+	// myObjects.push_back(obj);
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 4.5f));
+	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -15.f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
 	Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 0.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
+	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
 }
 
 PbrTestScene::~PbrTestScene()
@@ -40,6 +40,12 @@ PbrTestScene::~PbrTestScene()
 
 void PbrTestScene::Update(const Time & aDeltaTime)
 {
+	if (ImGui::Begin("PBR Test Scene", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
+	{
+		ImGui::Text("Move camera with WASD, QE, Ctrl, Space and Arrow Keys.");
+	}
+	ImGui::End();
+
 	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	if (myRollLeft)

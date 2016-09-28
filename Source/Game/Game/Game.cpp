@@ -49,7 +49,7 @@ void Game::Start()
 		ProcessMessages();
 
 		Update(deltaTime);
-
+		
 		Render();
 	}
 
@@ -103,8 +103,6 @@ void Game::Render()
 	{
 		myScene->Render();
 	}
-
-	Engine::GetDebugger().RenderFrame();
 
 	Engine::GetInstance().GetRenderer().Present();
 }

@@ -70,7 +70,7 @@ void CalculateVisibility()
 
 void CalculateAmbientDiffuse()
 {
-	float3 ambientLight = boundCubeMap.SampleLevel(samplerState, gObjectNormal, (uint)cubeMipCount).xyz;
+	float3 ambientLight = boundCubeMap.SampleLevel(samplerState, gObjectNormal, 8).xyz;
 	gAmbientDiffuse = gMetalnessAlbedo * ambientLight * gAmbientOcclusion * (float3(1.0f, 1.0f, 1.0f) - gReflectionFresnel);
 }
 
@@ -78,8 +78,8 @@ void CalculateAmbientSpecularity()
 {
 	float3 reflectionVector = -reflect(gToEye, gObjectNormal);
 	float fakeLysSpecularPower = RoughToSPow(gRoughness);
-	float lysMipMap = GetSpecPowToMip(fakeLysSpecularPower, (uint)cubeMipCount);
-	float3 ambientLight = boundCubeMap.SampleLevel(samplerState, reflectionVector.xyz, lysMipMap).xyz;
+	float lysMipMap = GetSpecPowToMip(fakeLysSpecularPower, 8);
+    float3 ambientLight = boundCubeMap.SampleLevel(samplerState, reflectionVector.xyz, lysMipMap).xyz;
 	gAmbientSpecularity = ambientLight * gAmbientOcclusion * gReflectionFresnel;
 }
 
@@ -97,41 +97,44 @@ PixelOutput PShader(PixelInput aInput)
 {
 	gInput = aInput;
 	
-	gLightDirection = normalize(directionLight[0].direction);
+	gLightDirection = normalize(directionLight[0].direction.xyz);
 	
-	gToEye = normalize(gInput.worldPosition.xyz - cameraPosition.xyz);
+    gToEye = normalize(cameraPosition.xyz - gInput.worldPosition.xyz);
 	gToLight = -gLightDirection;
 	gHalfVec = normalize(gToLight + gToEye);
 
 	gAlbedo = boundTexture.Sample(samplerState, gInput.uv).xyz;
 	float3 normalMap = (boundNormalMap.Sample(samplerState, gInput.uv).xyz * 2.f) - (1.f).xxx;
-	gObjectNormal = normalize(mul(normalMap, float3x3(gInput.tangent.xyz, gInput.bitangent.xyz, gInput.normal.xyz)).xyz);
+    gObjectNormal = normalize(mul(normalMap, float3x3(gInput.tangent.xyz, gInput.bitangent.xyz, gInput.normal.xyz)).xyz);
 	gRoughness = boundRoughnessMap.Sample(samplerState, gInput.uv).x;
 	gMetalness = boundMetalnessMap.Sample(samplerState, gInput.uv).x;
 	gAmbientOcclusion = boundAmbientOcclusionMap.Sample(samplerState, gInput.uv).x;
 	gEmissive = boundEmissiveMap.Sample(samplerState, gInput.uv).xyz;
 	gMetalnessAlbedo = gAlbedo - (gAlbedo * gMetalness.xxx);
 	gSubstance = (float3(0.04f, 0.04f, 0.04f) - (float3(0.04f, 0.04f, 0.04f) * gMetalness)) + gAlbedo * gMetalness;
+    
+    CalculateReflectionFresnel();
 
 	CalculateFresnel();
-	CalculateReflectionFresnel();
-
 	CalculateDistribution();
 	CalculateVisibility();
-
-	CalculateAmbientDiffuse();
-	CalculateAmbientSpecularity();
-
-	gLambert = saturate(dot(gObjectNormal, gToLight));
 
 	float3 directDiffuse = (0.f).xxx;
 	float3 directSpecularity = (0.f).xxx;
 
-	directDiffuse += CalulateDirectDiffuse(directionLight[0].color);
-	directSpecularity += CalulateDirectSpecularity(directionLight[0].color);
+    // foreach (light)
+    {
+        CalculateAmbientDiffuse();
+        CalculateAmbientSpecularity();
+
+        gLambert = saturate(dot(gObjectNormal, gToLight));
+
+        directDiffuse += CalulateDirectDiffuse(directionLight[0].color.xyz);
+        directSpecularity += CalulateDirectSpecularity(directionLight[0].color.xyz);
+    }
 
 	PixelOutput output;
-	output.color.xyz = gAmbientDiffuse + gAmbientSpecularity + directDiffuse + directSpecularity + gEmissive;
+    output.color.xyz = gAmbientDiffuse + gAmbientSpecularity + directDiffuse + directSpecularity + gEmissive;
 	output.color.a = 1.0f;
 	return output;
 }
