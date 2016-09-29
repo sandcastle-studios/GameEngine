@@ -14,8 +14,9 @@
     <ClInclude Include="Game\Component\Controller\AIControllerComponent.h" />
     <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
     <ClInclude Include="Game\SoundTestScene.h" />
-    <ClInclude Include="CollisionTestScene.h" />
     <ClInclude Include="PbrTestScene.h" />
+    <ClInclude Include="Game\CollisionTestScene.h" />
+    <ClInclude Include="Game\CockpitTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -30,8 +31,9 @@
     <ClCompile Include="Game\Component\Controller\AIControllerComponent.cpp" />
     <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
     <ClCompile Include="Game\SoundTestScene.cpp" />
-    <ClCompile Include="CollisionTestScene.cpp" />
     <ClCompile Include="PbrTestScene.cpp" />
+    <ClCompile Include="Game\CollisionTestScene.cpp" />
+    <ClCompile Include="Game\CockpitTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">
