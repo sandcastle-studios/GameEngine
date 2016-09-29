@@ -23,7 +23,7 @@ void ShotComponent::Update(const Time & aDeltaTime)
 {
 	myAge += aDeltaTime;
 
-	if (myAge.InSeconds() >= 0.5f)
+	if (myAge.InSeconds() >= 10.f)
 	{
 		// Engine::GetLogger().LogInfo("myAge{0}", myAge.InSeconds());
 		myObject->Remove();

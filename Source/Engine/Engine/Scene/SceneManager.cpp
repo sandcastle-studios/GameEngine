@@ -43,41 +43,40 @@ std::shared_ptr<JsonScene> SceneManager::CreateScene(const char* aFilePath)
 	for (unsigned short i = 0; i < static_cast<unsigned short>(sceneData["hierarchy"].Capacity()); ++i)
 	{
 		DataNode objectNode = sceneData["hierarchy"][i];
-		GameObjectData data = LoadGameObject(objectNode, newScene);
-		newScene->CreateGameObject(&data);
+		LoadGameObject(objectNode, newScene);
 	}
 
 
 	return newScene;
 }
 
-GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene)
+void SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene)
 {
-	GameObjectData objectData;
-	objectData.myID = aObjectNode["name"].GetString();
+	std::shared_ptr<GameObject> obj = aScene->CreateGameObject(nullptr);
+	//std::shared_ptr<GameObjectData> objectData = std::make_shared<GameObjectData>();
+	obj->SetIdentifier(aObjectNode["name"].GetString());
 
 	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
 	{
 		std::string componentType = aObjectNode["components"][i]["type"].GetString();
-		SharedPtrComponent<BaseComponent> newComponent;// = std::is_null_pointer;
 
 		if (componentType == "Transform")
 		{
-			objectData.myPosition = Vector3f(
+			obj->SetPosition(Vector3f(
 				aObjectNode["components"][i]["localPosition"][0].GetFloat(),
 				aObjectNode["components"][i]["localPosition"][1].GetFloat(),
 				aObjectNode["components"][i]["localPosition"][2].GetFloat()
-			);
-			objectData.myRotation = Quaternion(
+			));
+			obj->SetRotation(Quaternion(
 				aObjectNode["components"][i]["localRotation"][0].GetFloat(),
 				aObjectNode["components"][i]["localRotation"][1].GetFloat(),
 				aObjectNode["components"][i]["localRotation"][2].GetFloat()
-			);
-			objectData.myScale = Vector3f(
+			));
+			obj->SetScale(Vector3f(
 				aObjectNode["components"][i]["localScale"][0].GetFloat(),
 				aObjectNode["components"][i]["localScale"][1].GetFloat(),
 				aObjectNode["components"][i]["localScale"][2].GetFloat()
-			) / 100.f;
+			) / 100.f);
 
 			continue;
 		}
@@ -86,23 +85,14 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 			//TODO: Send texture into model comp. as well, also send desired effect/shader to use for the model
 			auto && mc = aScene->GetComponentFactory<ModelComponent>()->CreateComponent();
 			mc->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
-			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(mc);
+			obj->AddComponent(mc);
 		}
 		else
 		{
 			Error("Unable to load component. Unrecognized component type.");
 		}
 
-
-		if (newComponent == nullptr)
-		{
-			Error("Failed to create new component");
-		}
-
-		objectData.myComponentList.Add(newComponent);
+		// objectData->myComponentList.Add(newComponent);
 	}
-
-
-	return objectData;
 }
 

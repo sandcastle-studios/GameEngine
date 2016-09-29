@@ -32,7 +32,7 @@ public:
 	const Camera & GetCamera() const;
 
 	void CreateGameObjectBuffer(const unsigned short aObjectCount);
-	std::shared_ptr<GameObject>  CreateGameObject(const GameObjectData* aData = nullptr);
+	std::shared_ptr<GameObject>  CreateGameObject(const std::shared_ptr<GameObjectData> * aData = nullptr);
 
 	template <typename TComponentType>
 	std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory();

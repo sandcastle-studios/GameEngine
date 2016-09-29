@@ -31,6 +31,13 @@ JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 	myEnemy->SetPosition(Vector3f(0.f, 0.f, 0.f));
 
 	myObjects.Add(myEnemy);
+
+	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(-40.f, 0.f, -5.f), Vector3f::One / 100.f);
+
+	movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+	myEnemy->AddComponent(movementComponent);
+
+	myObjects.Add(myEnemy);
 }
 
 
@@ -41,6 +48,7 @@ JsonScene::~JsonScene()
 void JsonScene::Update(const Time & aDeltaTime)
 {
 	GrowingArray<GameObject*>tempShoots;
+	GrowingArray<GameObject*>NotShots;
 
 	SphereIntersection tempEnemyCollider;
 	SphereIntersection tempProjectileCollider;
@@ -51,29 +59,55 @@ void JsonScene::Update(const Time & aDeltaTime)
 			tempShoots.Add(&ashot.GetGameObject());
 		}
 	);
-	
-	tempEnemyCollider.UpdatePosition(myEnemy->GetPosition());
-	tempEnemyCollider.SetRadius(myEnemy->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * myEnemy->GetScale().x);
 
-	for (unsigned short iShot = 0; iShot < tempShoots.Size(); ++iShot)
-	{
-		GameObject & tempShoot = *tempShoots[iShot];
-
-		tempProjectileCollider.UpdatePosition(tempShoot.GetPosition());
-		tempProjectileCollider.SetRadius(tempShoot.GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * tempShoot.GetScale().x);
-
-		if (Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true)
+	GetComponentFactory<ModelComponent>()->EnumerateActiveComponents(
+		[&](ModelComponent & aThing)
 		{
-			if (tempShoot.GetComponent < ShotComponent>()->myHasHit == false)
+			if (aThing.GetGameObject().GetComponentCount<ShotComponent>() < 1)
 			{
-				tempShoot.GetComponent < ShotComponent>()->myHasHit = true;
+				NotShots.Add(&aThing.GetGameObject());
+			}
+		}
+	);
 
-				myEnemy->SetScale(myEnemy->GetScale() + Vector3f(0.1f, 0.1f, 0.1f));
+	size_t c = 0;
+
+	for (unsigned short iNotShot = 0; iNotShot < NotShots.Size(); ++iNotShot)
+	{
+		tempEnemyCollider.UpdatePosition(NotShots[iNotShot]->GetPosition());
+
+		if (NotShots[iNotShot]->GetComponent<ModelComponent>() != nullptr)
+		{
+			c++;
+			tempEnemyCollider.SetRadius((NotShots[iNotShot]->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * NotShots[iNotShot]->GetScale().x);	
+		}
+		else
+		{
+			continue;
+		}
+
+		for (unsigned short iShot = 0; iShot < tempShoots.Size(); ++iShot)
+		{
+			GameObject & tempShoot = *tempShoots[iShot];
+
+			tempProjectileCollider.UpdatePosition(tempShoot.GetPosition());
+			tempProjectileCollider.SetRadius((tempShoot.GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * tempShoot.GetScale().x);
+
+			if (Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true)
+			{
+				if (tempShoot.GetComponent < ShotComponent>()->myHasHit == false)
+				{
+					tempShoot.GetComponent < ShotComponent>()->myHasHit = true;
+
+					Engine::GetLogger().LogInfo("{0}", NotShots[iNotShot]->GetIdentifier());
+					
+					NotShots[iNotShot]->SetScale(NotShots[iNotShot]->GetScale() * Vector3f(1.01f, 1.01f, 1.01f));
+				}
 			}
 		}
 	}
 
-
+	// Engine::GetLogger().LogInfo("{0}", c);
 
 	Engine::GetSoundManager().Update();
 
