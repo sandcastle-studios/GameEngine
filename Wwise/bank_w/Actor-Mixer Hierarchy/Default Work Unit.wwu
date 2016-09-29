@@ -133,6 +133,38 @@
 						<ActiveSource Name="mega_mob_incoming" ID="{7403F1A3-E988-4DC2-AE56-EE00F3A22746}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="spaceThruster" ID="{B9D253F9-2601-4B72-A98D-4E722078C9BA}" ShortID="324043889" Type="SoundFX">
+					<PropertyList>
+						<Property Name="MaxReachedBehavior" Type="int16" Value="1"/>
+						<Property Name="MaxSoundPerInstance" Type="int16">
+							<ValueList>
+								<Value>1</Value>
+							</ValueList>
+						</Property>
+						<Property Name="UseMaxSoundPerInstance" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{16D73D86-8A23-43D8-81E6-0ACF7F42B647}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DA14C0C6-F59E-4393-829F-230779BEA0FD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="spaceThruster" ID="{10FCC236-4B2C-4E6E-9BBC-F5FEA5C0F9FF}" ShortID="507624551">
+							<Language>SFX</Language>
+							<AudioFile>spaceThruster.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="spaceThruster" ID="{10FCC236-4B2C-4E6E-9BBC-F5FEA5C0F9FF}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

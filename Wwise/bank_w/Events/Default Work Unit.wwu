@@ -37,7 +37,7 @@
 						<Action Name="Play" ID="{B0CA4A04-4B2D-4F81-A15C-B2ED955A78DC}" ShortID="1051323807" Type="Play" Scope="One" Global="false">
 							<ElementList>
 								<Element ID="{44535E01-7772-4C88-8FC3-8F05E7FEAB2D}" Global="false">
-									<ObjectRef Name="mega_mob_incoming_non_repeating" ID="{EB218A1E-0A7E-4D06-BFA6-EB2953AAFF1D}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+									<ObjectRef Name="spaceThruster" ID="{B9D253F9-2601-4B72-A98D-4E722078C9BA}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
 								</Element>
 							</ElementList>
 						</Action>
@@ -52,7 +52,7 @@
 							</PropertyList>
 							<ElementList>
 								<Element ID="{11E72C3C-8A08-42EA-8881-8B2AD2A2ECC8}" Global="true">
-									<ObjectRef Name="mega_mob_incoming" ID="{599FF11A-0A6A-4F83-BEDA-3BABE5E7837B}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+									<ObjectRef Name="spaceThruster" ID="{B9D253F9-2601-4B72-A98D-4E722078C9BA}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
 								</Element>
 							</ElementList>
 						</Action>
