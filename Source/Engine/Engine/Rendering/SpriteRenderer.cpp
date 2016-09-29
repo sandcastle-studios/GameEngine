@@ -37,5 +37,7 @@ void SpriteRenderer::Render(const Sprite &aSprite)
 
 	aSprite.GetTexture()->BindToPS(0);
 	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	Engine::GetRenderer().DisableDepthWrite();
 	myQuad->RenderInstanced(1);
+	Engine::GetRenderer().EnableDepthWrite();
 }

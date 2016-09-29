@@ -16,6 +16,7 @@ JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 2.5f));
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
+	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 }
 
 
@@ -32,6 +33,17 @@ void JsonScene::Update(const Time & aDeltaTime)
 void JsonScene::Render()
 {
 	Scene::Render();
+
+	Engine::GetRenderer().GetModelRenderer().RenderBuffer();
+
+	Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
+	pos.x = std::floorf(pos.x);
+	pos.y = std::floorf(pos.y);
+	mySprite.SetOrigin(pos);
+	mySprite.SetPosition(pos);
+	mySprite.SetRotation(0.f);
+	mySprite.SetScale(Engine::GetRenderer().GetRenderTargetResolution() / Vector2f(1920.f, 1080.f));
+	mySprite.Render();
 }
 
 

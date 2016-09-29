@@ -17,14 +17,15 @@
 #include "Engine\Resources\ResourceManager.h"
 #include "Engine\SplashScreen\SplashScreenEffect.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 
 CockpitTestScene::CockpitTestScene()
 {
 	CreateFactories();
 	
-	myConstantBuffer = std::make_unique<ConstantBuffer<SplashScreenCBuffer>>();
 	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
-	mySprite.SetEffect(std::make_shared<SpriteEffect>());
+	CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.f, 0.f, 5.f));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 2.f));
 }
 
 
@@ -39,16 +40,18 @@ void CockpitTestScene::Update(const Time & aDeltaTime)
 
 void CockpitTestScene::Render()
 {
-	myConstantBuffer->UpdateData(SplashScreenCBuffer{ Vector4f(myTime.InSeconds(), 0.f, 0.f, 0.f) });
-	myConstantBuffer->BindToPS(2);
+	Scene::Render();
+
+	Engine::GetRenderer().GetModelRenderer().RenderBuffer();
+
 	Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
 	pos.x = std::floorf(pos.x);
 	pos.y = std::floorf(pos.y);
-	mySprite.SetPosition(Vector2f(0.f, 0.f));
-	//mySprite.SetOrigin(mySprite.GetTexture()->GetSize() / 2.f);
+	mySprite.SetOrigin(pos);
+	mySprite.SetPosition(pos);
+	mySprite.SetRotation(0.f);
+	mySprite.SetScale(Engine::GetRenderer().GetRenderTargetResolution() / Vector2f(1920.f, 1080.f));
 	mySprite.Render();
-
-	Scene::Render();
 }
 
 void CockpitTestScene::CreateFactories()
