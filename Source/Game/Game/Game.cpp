@@ -87,7 +87,7 @@ void Game::Initialize()
 {
 	mySceneManager = std::make_unique<SceneManager>();
 
-	mySceneManager->LoadScene<PlayerTestScene>();
+	mySceneManager->LoadJsonScene("Assets/Data/asteroidFieldTestScene.json");
 
 	auto player = mySceneManager->GetCurrentScene()->CreateGameObject(nullptr);
 	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<PlayerShootComponent>()->CreateComponent();
