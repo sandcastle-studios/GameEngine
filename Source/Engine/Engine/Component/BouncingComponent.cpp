@@ -2,12 +2,11 @@
 #include "BouncingComponent.h"
 #include "Engine/GameObject/GameObject.h"
 
-const float epsilonTest = 0.01f;
-
 BouncingComponent::BouncingComponent()
 {
-	myVelocity.x = 3.f;
-	myMovingTowardsPoint = Vector3f(0.f, 0.f, 30.f);
+	const float velocityMagic = 3.f;
+	myVelocity = Vector3f(velocityMagic, velocityMagic, velocityMagic);
+	myMovingTowardsPoint = Vector3f(0.f, 0.f, 40.f);
 	myThrowingAwayVelocity = Vector3f(0.f, 0.f, 0.f);
 	myPointGravity = 0.0098f;
 }
@@ -38,17 +37,25 @@ void BouncingComponent::Destruct()
 
 void BouncingComponent::MoveObject(const Time & aDeltaTime)
 {
-	if (myObject->GetPosition().x <= myMovingTowardsPoint.x + epsilonTest &&
-		myObject->GetPosition().x >= myMovingTowardsPoint.x - epsilonTest &&
-		myObject->GetPosition().y <= myMovingTowardsPoint.y + epsilonTest &&
-		myObject->GetPosition().y >= myMovingTowardsPoint.y - epsilonTest &&
-		myObject->GetPosition().z <= myMovingTowardsPoint.z + epsilonTest &&
-		myObject->GetPosition().z >= myMovingTowardsPoint.z - epsilonTest)
+	const float warpRangeTest = 3.5f;
+	//---------------------------- 
+	if (myObject->GetPosition().x <= myMovingTowardsPoint.x + warpRangeTest &&
+		myObject->GetPosition().x >= myMovingTowardsPoint.x - warpRangeTest &&
+		myObject->GetPosition().y <= myMovingTowardsPoint.y + warpRangeTest &&
+		myObject->GetPosition().y >= myMovingTowardsPoint.y - warpRangeTest &&
+		myObject->GetPosition().z <= myMovingTowardsPoint.z + warpRangeTest &&
+		myObject->GetPosition().z >= myMovingTowardsPoint.z - warpRangeTest)
 	{
-		const float range = 5.f;
-		myThrowingAwayVelocity = Vector3f(myRandomizer.GetRandomValue(-range, range), myRandomizer.GetRandomValue(-range, range), myRandomizer.GetRandomValue(-range, range));
+		const float range = 0.2f;
+		float xVel = myRandomizer.GetRandomValue(-range, range);
+		float yVel = myRandomizer.GetRandomValue(-range, range);
+		float zVel = myRandomizer.GetRandomValue(-range, range);
+
+		myThrowingAwayVelocity = Vector3f(xVel, yVel, zVel);
 		myVelocity += myThrowingAwayVelocity;
 	}
+	//---------------------------- -
+
 	Vector3f towardsPoint = myMovingTowardsPoint - myObject->GetPosition();
 	towardsPoint.Normalize();
 	towardsPoint *= myPointGravity;

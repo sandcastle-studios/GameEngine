@@ -23,7 +23,7 @@ EnemyTestScene::EnemyTestScene(const char* aName)
 
 	//-------------
 
-	myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One /** 0.05f*/);
+	myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 1.5f);
 
 	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
 	myEnemy->AddComponent(movementComponent);
