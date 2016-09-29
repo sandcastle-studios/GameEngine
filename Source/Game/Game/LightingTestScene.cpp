@@ -46,63 +46,7 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 	ImGui::End();
 
 	// myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()));
-
-	if (myRollLeft)
-	{
-		myCamera->GetRototation().RotateZ(-aDeltaTime.InSeconds());
-	}
-	if (myRollRight)
-	{
-		myCamera->GetRototation().RotateZ(aDeltaTime.InSeconds());
-	}
-
-	const float speed = 1.f;
-
-	if (myMoveLeft)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetLeft() * speed * aDeltaTime.InSeconds());
-	}
-	if (myMoveRight)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetRight() * speed * aDeltaTime.InSeconds());
-	}
-
-	if (myMoveForward)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetForward() * speed * aDeltaTime.InSeconds());
-	}
-	if (myMoveBackward)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetBackward() * speed * aDeltaTime.InSeconds());
-	}
-
-	if (myMoveUp)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetUpward() * speed * aDeltaTime.InSeconds());
-	}
-	if (myMoveDown)
-	{
-		myCamera->AddPosition(myCamera->GetRototation().GetDownward() * speed * aDeltaTime.InSeconds());
-	}
-
-	const float rotateSpeed = 1.f;
-
-	if (myPitchForward)
-	{
-		myCamera->GetRototation().RotateX(rotateSpeed * aDeltaTime.InSeconds());
-	}
-	if (myPitchBackward)
-	{
-		myCamera->GetRototation().RotateX(-rotateSpeed * aDeltaTime.InSeconds());
-	}
-	if (myRotateLeft)
-	{
-		myCamera->GetRototation().RotateY(rotateSpeed * aDeltaTime.InSeconds());
-	}
-	if (myRotateRight)
-	{
-		myCamera->GetRototation().RotateY(-rotateSpeed * aDeltaTime.InSeconds());
-	}
+	
 
 	Scene::Update(aDeltaTime);
 }
@@ -110,57 +54,6 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 void LightingTestScene::Render()
 {
 	Scene::Render();
-}
-
-ReceiveResult LightingTestScene::Receive(const AnyKeyDownMessage& aMessage)
-{
-	switch (aMessage.key)
-	{
-	case KeyboardKey::eQ:
-		myRollLeft = true;
-		break;
-	case KeyboardKey::eE:
-		myRollRight = true;
-		break;
-
-	case KeyboardKey::eA:
-		myMoveLeft = true;
-		break;
-	case KeyboardKey::eD:
-		myMoveRight = true;
-		break;
-	case KeyboardKey::eW:
-		myMoveForward = true;
-		break;
-	case KeyboardKey::eS:
-		myMoveBackward = true;
-		break;
-
-	case KeyboardKey::eLeft:
-		myRotateLeft = true;
-		break;
-	case KeyboardKey::eRight:
-		myRotateRight = true;
-		break;
-	case KeyboardKey::eUp:
-		myPitchForward = true;
-		break;
-	case KeyboardKey::eDown:
-		myPitchBackward = true;
-		break;
-
-	case KeyboardKey::eControl:
-		myMoveDown = true;
-		break;
-	case KeyboardKey::eSpace:
-		myMoveUp = true;
-		break;
-
-	case KeyboardKey::eAlt:
-		Engine::GetLogger().LogInfo("eAlt pressed");
-		break;
-	}
-	return ReceiveResult::eContinue;
 }
 
 ReceiveResult LightingTestScene::Receive(const AnyKeyUpMessage& aMessage)

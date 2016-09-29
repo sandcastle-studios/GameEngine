@@ -190,6 +190,8 @@
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
     <ClInclude Include="Engine\Texture\TextureCube.h" />
+    <ClInclude Include="Engine\Camera\CameraController.h" />
+    <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -311,6 +313,8 @@
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
+    <ClCompile Include="Engine\Camera\CameraController.cpp" />
+    <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

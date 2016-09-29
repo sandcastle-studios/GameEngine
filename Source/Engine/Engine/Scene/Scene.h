@@ -7,6 +7,7 @@ class BaseComponentFactory;
 template <typename TComponentFactoryType>class ComponentFactory;
 
 class Camera;
+class CameraController;
 class StandardEffect;
 
 class Scene
@@ -18,7 +19,7 @@ public:
 	virtual void Update(const Time & aDeltaTime);
 	virtual void Render();
 
-	Camera & GetCamera();
+	void PushCameraController(const std::shared_ptr<CameraController> & aCameraController);
 
 	template <typename TComponentType>
 	void PreCreateComponentFactory();
@@ -39,6 +40,7 @@ protected:
 	std::unique_ptr<ModelInstance> mySkybox;
 
 	std::unique_ptr<Camera> myCamera;
+	Stack<std::shared_ptr<CameraController>> myCameraControllers;
 
 	std::shared_ptr<StandardEffect> myEffect;
 

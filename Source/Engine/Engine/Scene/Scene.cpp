@@ -9,6 +9,7 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
+#include "Engine\Camera\CameraController.h"
 
 Scene::Scene(const char * aSkyboxPath)
 {
@@ -43,6 +44,16 @@ void Scene::Update(const Time & aDeltaTime)
 		}
 	}
 
+	std::shared_ptr<CameraController> & cc = myCameraControllers.Top();
+	if (cc != nullptr)
+	{
+		CameraControllerResult result = cc->Update(aDeltaTime, *myCamera);
+		if (result == CameraControllerResult::ePassControl)
+		{
+			myCameraControllers.Pop();
+		}
+	}
+
 	myTime += aDeltaTime;
 }
 
@@ -66,7 +77,7 @@ void Scene::Render()
 	}
 }
 
-Camera & Scene::GetCamera()
+void Scene::PushCameraController(const std::shared_ptr<CameraController> & aCameraController)
 {
-	return *myCamera;
+	myCameraControllers.Push(aCameraController);
 }

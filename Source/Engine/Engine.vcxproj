@@ -244,6 +244,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Camera\CameraController.h" />
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
     <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
@@ -335,6 +336,7 @@
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
     <ClInclude Include="Engine\Component\LightComponent.h" />
+    <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -353,6 +355,7 @@
     <ClInclude Include="Engine\Window\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Camera\CameraController.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
@@ -400,6 +403,7 @@
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
+    <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -421,7 +425,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Audio\Audio\Audio.vcxproj">
       <Project>{b5915c8f-2aef-4137-bcbe-152f819860cd}</Project>
-	</ProjectReference>
+    </ProjectReference>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{f6457bb1-2b8a-423f-b7d7-6d4f26952fc4}</Project>
     </ProjectReference>
