@@ -14,6 +14,7 @@ public:
 
 private:
 	void SetIsBoosting(const bool aIsBoosting);
+	void UpdateAcceleration(const Time & aDeltaTime);
 
 	float myCurrentMovementSpeed;
 	float myCurrentRotationSpeed;

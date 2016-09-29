@@ -35,6 +35,8 @@ FreeSpaceCameraController::~FreeSpaceCameraController()
 
 CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime, Camera & aCamera)
 {
+	UpdateAcceleration(aDeltaTime);
+
 	if (myRollLeft)
 	{
 		aCamera.GetOrientation().RotateZ(-myDriftRotationSpeed * aDeltaTime.InSeconds());
@@ -201,14 +203,42 @@ void FreeSpaceCameraController::SetIsBoosting(const bool aIsBoosting)
 {
 	myBoosting = aIsBoosting;
 
+	//Uncomment movement speed change below to disable gradual acceleration in favor of instant boost speed on/off
 	if (aIsBoosting == true)
 	{
-		myCurrentMovementSpeed = myBoostMovementSpeed;
+		//myCurrentMovementSpeed = myBoostMovementSpeed;
 		myCurrentRotationSpeed = myBoostRotationSpeed;
 	}
 	else
 	{
-		myCurrentMovementSpeed = myDriftMovementSpeed;
+		//myCurrentMovementSpeed = myDriftMovementSpeed;
 		myCurrentRotationSpeed = myDriftRotationSpeed;
+	}
+}
+
+void FreeSpaceCameraController::UpdateAcceleration(const Time & aDeltaTime)
+{
+	const float AccelerationSpeed = (myBoostMovementSpeed - myDriftMovementSpeed) / 3.f;
+	const float DecelerationSpeed = AccelerationSpeed * 2.f;
+
+	if (myBoosting == true)
+	{
+		if (myCurrentMovementSpeed < myBoostMovementSpeed)
+		{
+			myCurrentMovementSpeed += AccelerationSpeed * aDeltaTime.InSeconds();
+
+			if (myCurrentMovementSpeed > myBoostMovementSpeed)
+				myCurrentMovementSpeed = myBoostMovementSpeed;
+		}
+	}
+	else
+	{
+		if (myCurrentMovementSpeed > myDriftMovementSpeed)
+		{
+			myCurrentMovementSpeed -= DecelerationSpeed * aDeltaTime.InSeconds();
+
+			if (myCurrentMovementSpeed < myDriftMovementSpeed)
+				myCurrentMovementSpeed = myDriftMovementSpeed;
+		}
 	}
 }
