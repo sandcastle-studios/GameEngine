@@ -1,10 +1,14 @@
 #include "stdafx.h"
 #include "Engine\GameObject\GameObject.h"
+#include "..\Scene\Scene.h"
+
+int nextId = 0;
 
 GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
 	myScene = &aScene;
 	myScale = Vector3f::One;
+	myIsRemoved = false;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 
@@ -52,7 +56,7 @@ const Vector3f & GameObject::GetScale() const
 Matrix44f GameObject::GetTransformation() const
 {
 	Matrix44f aRotation = myRotation.GenerateMatrix();
-	return aRotation * Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * Matrix44f::CreateTranslation(myPosition);
+	return Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * aRotation * Matrix44f::CreateTranslation(myPosition);
 }
 
 void GameObject::SetData(const GameObjectData& aData)
@@ -64,5 +68,14 @@ void GameObject::SetData(const GameObjectData& aData)
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{
 		AddComponent(aData.myComponentList[i]);
+	}
+}
+
+void GameObject::Remove()
+{
+	if (myIsRemoved == false)
+	{
+		myScene->IncrementRemovalCounter();
+		myIsRemoved = true;
 	}
 }

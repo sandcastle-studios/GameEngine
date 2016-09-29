@@ -7,6 +7,7 @@
 #include "ShotComponent.h"
 #include <Engine/Component/Factory/ComponentFactory.h>
 #include <Engine/GameObject/GameObject.h>
+#include "../Engine/Engine/SoundManager/SoundManger.h"
 
 void PlayerShootComponent::Construct()
 {
@@ -30,17 +31,26 @@ void PlayerShootComponent::Destruct()
 
 ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage)
 {
+	std::cout << "---" << std::endl;
+
 	const Camera & camera = myObject->GetScene().GetCamera();
 	const Vector3f right = camera.GetOrientation().GetRight();
-	const float distance = 0.125f;
+	const float distance = 0.35f;
 
 	myShotCounter++;
 	std::shared_ptr<GameObject> shot;
 
+	const Vector3f shotSize(0.1f, 0.1f, 1.5f);
+
 	if (myShotCounter % 2 == 0)
-		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * distance, Vector3f::One * 0.03f, camera.GetOrientation());
+		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * distance, shotSize, camera.GetOrientation());
 	else
-		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * -distance, Vector3f::One * 0.03f, camera.GetOrientation());
-	shot->AddComponent(myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent());
+		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * -distance, shotSize, camera.GetOrientation());
+
+	Engine::GetSoundManager().PostEvent("Play_Derp");
+
+	auto shotComponent = myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent();
+	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 10.f);
+	shot->AddComponent(shotComponent);
 	return ReceiveResult::eContinue;
 }

@@ -40,6 +40,7 @@ public:
 	template <typename TComponentType>
 	const std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory()const;
 
+	void IncrementRemovalCounter();
 protected:
 	void SetCameraOrientation(const Vector3f & aCameraPosition, const Vector3f & aLookDirection = Vector3f(0.f, 0.f, 1.f));
 
@@ -58,6 +59,8 @@ protected:
 	Time myTime;
 	std::string myName;
 
+private:
+	int myScheduledRemovals;
 };
 
 template<typename TComponentType>

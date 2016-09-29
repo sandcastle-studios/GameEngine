@@ -35,6 +35,13 @@ __forceinline T min(T a, T b)
 
 #define Error(e) { std::cout << e << std::endl; abort(); }
 #define Warning(e) { std::cout << e << std::endl; }
+#define FLOOR(aValue, aFloorValue) ((aValue) < (aFloorValue) ? aValue : aFloorValue)
+#define CEILING(aValue, aCeilingValue) ((aValue) > (aCeilingValue) ? aValue : aCeilingValue)
+#define CLAMP(a, min, max) ((a)<(min)?(min):((a)>(max)?(max):(a)))
+#define MIN(a, b) (((a)<(b))?(a):(b))
+#define MAX(a, b) (((a)>(b))?(a):(b))
+#define ABS(a) (a)<0?(a)*-1:(a) 
+#define SWAP(a, b)	(a) = (a) ^ (b); (b) = (a) ^ (b); (a) = (a) ^ (b);
 
 #include "Utilities\Math\Vector2.h"
 #include "Utilities\Math\Vector3.h"

@@ -14,9 +14,8 @@ public:
 	void PostEvent(const char* aEvent);
 	void Update();
 
-	typedef void(*callback_function)(const char*);
-	void SetErrorCallBack(callback_function aErrorCallback);
-
 private:
 	std::unique_ptr<CWwiseManager> myWwiseManager;
+
+	static void ErrorCallback(const char* aError);
 };

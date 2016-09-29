@@ -13,8 +13,15 @@ public:
 	ReceiveResult Receive(const AnyKeyDownMessage & aMessage) override;
 
 private:
-	float myMovementSpeed;
-	float myRotationSpeed;
+	void SetIsBoosting(const bool aIsBoosting);
+	void UpdateAcceleration(const Time & aDeltaTime);
+
+	float myCurrentMovementSpeed;
+	float myCurrentRotationSpeed;
+	float myDriftMovementSpeed;
+	float myDriftRotationSpeed;
+	float myBoostMovementSpeed;
+	float myBoostRotationSpeed;
 
 	bool myRotateLeft;
 	bool myRotateRight;
@@ -29,4 +36,6 @@ private:
 	bool myRollRight;
 	bool myMoveDown;
 	bool myMoveUp;
+
+	bool myBoosting;
 };

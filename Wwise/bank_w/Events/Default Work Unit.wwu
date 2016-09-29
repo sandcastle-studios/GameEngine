@@ -25,8 +25,8 @@
 					<ChildrenList>
 						<Action Name="Play" ID="{554D0D0E-6F5F-4696-9079-2E9A02D4DE2E}" ShortID="698798444" Type="Play" Scope="One" Global="false">
 							<ElementList>
-								<Element ID="{27FE49E9-2066-4C0E-850E-991BA27C89F3}" Global="false">
-									<ObjectRef Name="laserMachineGun" ID="{B8748A87-53E0-4643-BB5A-AEAB688C6C84}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+								<Element ID="{37116E3B-1599-4531-AC98-4DF1AD0B2490}" Global="false">
+									<ObjectRef Name="Randomize7" ID="{5DDAC80D-C207-4773-A63B-BDB6A59BC65F}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
 								</Element>
 							</ElementList>
 						</Action>

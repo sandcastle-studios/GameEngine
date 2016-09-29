@@ -1,0 +1,770 @@
+{
+  "name": "",
+  "hierarchy": [
+    {
+      "name": "52M (7)",
+      "components": [
+        {
+          "localPosition": [
+            -285.0,
+            -128.0,
+            -884.0
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (6)",
+      "components": [
+        {
+          "localPosition": [
+            -392.5,
+            79.0,
+            -765.0
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (5)",
+      "components": [
+        {
+          "localPosition": [
+            337.4,
+            -88.9,
+            -147.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (4)",
+      "components": [
+        {
+          "localPosition": [
+            246.4,
+            32.0,
+            -414.3
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "13M (4)",
+      "components": [
+        {
+          "localPosition": [
+            -125.8,
+            -15.2,
+            -204.4
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/13M/13M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "13M (3)",
+      "components": [
+        {
+          "localPosition": [
+            13.73,
+            -156.9,
+            -283.1
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/13M/13M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (7)",
+      "components": [
+        {
+          "localPosition": [
+            -32.2,
+            57.3,
+            -416.8
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (6)",
+      "components": [
+        {
+          "localPosition": [
+            -144.6,
+            -37.7,
+            -223.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (5)",
+      "components": [
+        {
+          "localPosition": [
+            56.7,
+            -91.5,
+            -223.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (3)",
+      "components": [
+        {
+          "localPosition": [
+            -38.6,
+            -91.7,
+            -400.4
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (4)",
+      "components": [
+        {
+          "localPosition": [
+            -120.6,
+            -69.7,
+            -113.3
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (3)",
+      "components": [
+        {
+          "localPosition": [
+            -186.4,
+            59.3,
+            -206.6
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (2)",
+      "components": [
+        {
+          "localPosition": [
+            -237.1,
+            -37.1,
+            -204.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M (1)",
+      "components": [
+        {
+          "localPosition": [
+            46.7,
+            29.8,
+            -204.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (2)",
+      "components": [
+        {
+          "localPosition": [
+            5.2,
+            1.2,
+            -273.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M (1)",
+      "components": [
+        {
+          "localPosition": [
+            109.8,
+            1.2,
+            -129.1
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "13M (2)",
+      "components": [
+        {
+          "localPosition": [
+            -85.4,
+            -0.03,
+            -196.3
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/13M/13M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "13M (1)",
+      "components": [
+        {
+          "localPosition": [
+            5.4,
+            -0.03,
+            -131.8
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/13M/13M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "52M",
+      "components": [
+        {
+          "localPosition": [
+            117.5,
+            3.1,
+            -2.4
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/52M/52M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "16M",
+      "components": [
+        {
+          "localPosition": [
+            56.7,
+            1.2,
+            -2.7
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/26M/26M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "13M",
+      "components": [
+        {
+          "localPosition": [
+            13.73,
+            -0.03,
+            -2.55
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Asteroids/Standard/13M/13M.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "interceptorX101 (1)",
+      "components": [
+        {
+          "localPosition": [
+            -10.91,
+            -1.22,
+            2.05
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "interceptorX101",
+      "components": [
+        {
+          "localPosition": [
+            -10.95,
+            -0.04,
+            -2.84
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "gubbe",
+      "components": [
+        {
+          "localPosition": [
+            0.078,
+            -0.59,
+            -1.731
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Gubbe/gubbe.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "Directional Light",
+      "components": [
+        {
+          "localPosition": [
+            0.0,
+            7.81,
+            0.0
+          ],
+          "localRotation": [
+            0.408217877,
+            -0.234569684,
+            0.109381631,
+            0.8754261
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "Main Camera",
+      "components": [
+        {
+          "localPosition": [
+            0.0,
+            4.73,
+            -10.0
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    }
+  ]
+}
