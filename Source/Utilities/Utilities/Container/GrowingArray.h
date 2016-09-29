@@ -96,7 +96,7 @@
 	GrowingArray<ObjectType, SizeType>::GrowingArray(GrowingArray&& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		myCapacity = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myCapacity;
 		mySafeModeFlag = aGrowingArray.mySafeModeFlag;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		myArray = aGrowingArray.myArray;
@@ -115,10 +115,10 @@
 	GrowingArray<ObjectType,SizeType>& GrowingArray<ObjectType, SizeType>::operator=(const GrowingArray& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		if (myCapacity != aGrowingArray.myRecommendedNrOfItems)
+		if (myCapacity != aGrowingArray.myCapacity)
 		{
 			delete[] myArray;
-			myArray = new ObjectType[aGrowingArray.myRecommendedNrOfItems];
+			myArray = new ObjectType[aGrowingArray.myCapacity];
 		}
 
 		if (aGrowingArray.mySafeModeFlag == true)
@@ -132,7 +132,7 @@
 		{
 			memcpy(myArray, aGrowingArray.myArray, sizeof(ObjectType)*aGrowingArray.Size());
 		}
-		myCapacity = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myCapacity;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		return *this;
 	}
@@ -140,7 +140,7 @@
 	GrowingArray<ObjectType, SizeType>& GrowingArray<ObjectType, SizeType>::operator=(GrowingArray&& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
-		myCapacity = aGrowingArray.myRecommendedNrOfItems;
+		myCapacity = aGrowingArray.myCapacity;
 		myNrOfItems = aGrowingArray.myNrOfItems;
 		myArray = aGrowingArray.myArray;
 		aGrowingArray.myArray = nullptr;

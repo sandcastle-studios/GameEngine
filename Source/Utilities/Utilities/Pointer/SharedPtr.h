@@ -19,16 +19,11 @@ public:
 	//static SharedPtr<TPointerType> CastFrom(const SharedPtr<TOldPointerType> & aOtherPtr);
 
 protected:
-	virtual void Return() = 0;
+	void (*myReturnFunction)(SharedPtr *);
 
 	std::atomic_int *myReferenceCounter;
 	TPointerType *myPointer;
 };
-
-template <typename TPointerType>
-void SharedPtr<TPointerType>::Return()
-{
-}
 
 //template <typename TPointerType>
 //template <typename TOldPointerType>
@@ -58,10 +53,12 @@ SharedPtr<TPointerType>::SharedPtr()
 template <typename TPointerType>
 SharedPtr<TPointerType>::SharedPtr(const SharedPtr<TPointerType> &aOtherPointer)
 {
+	myReturnFunction = aOtherPointer.myReturnFunction;
 	myReferenceCounter = aOtherPointer.myReferenceCounter;
 	if (myReferenceCounter != nullptr)
 	{
 		myReferenceCounter->fetch_add(1);
+		Engine::GetLogger().LogInfo("CopyConstruct refcount: {0}", myReferenceCounter->load());
 	}
 	myPointer = aOtherPointer.myPointer;
 }
@@ -71,9 +68,12 @@ SharedPtr<TPointerType>::~SharedPtr()
 {
 	if (myReferenceCounter != nullptr)
 	{
-		if (myReferenceCounter->fetch_sub(1) <= 0)
+		int count = myReferenceCounter->fetch_sub(1);
+
+		Engine::GetLogger().LogInfo("Destructor refcount: {0}", count);
+		if (count <= 0)
 		{
-			Return();
+			myReturnFunction(this);
 			myPointer->Destruct();
 
 			delete myReferenceCounter;

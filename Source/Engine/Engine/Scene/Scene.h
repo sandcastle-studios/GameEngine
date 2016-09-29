@@ -21,7 +21,7 @@ public:
 	Camera & GetCamera();
 
 	template <typename TComponentType>
-	void AddComponentFactory();
+	void PreCreateComponentFactory();
 
 protected:
 
@@ -46,7 +46,7 @@ protected:
 };
 
 template<typename TComponentType>
-inline void Scene::AddComponentFactory()
+inline void Scene::PreCreateComponentFactory()
 {
 	size_t id = UniqeIdentifier<BaseComponentFactory>::GetID<ComponentFactory<TComponentType>>();
 	size_t nextID = UniqeIdentifier<BaseComponentFactory>::nextTypeIndex;
@@ -65,7 +65,7 @@ std::shared_ptr<ComponentFactory<TComponentType>> Scene::GetComponentFactory()
 	size_t nextID = UniqeIdentifier<BaseComponentFactory>::nextTypeIndex;
 	if (myFactories.Size() < nextID || myFactories[id] == nullptr)
 	{
-		AddComponentFactory<TComponentType>();
+		PreCreateComponentFactory<TComponentType>();
 	}
 	return std::static_pointer_cast<ComponentFactory<TComponentType>>(myFactories[id]);
 }

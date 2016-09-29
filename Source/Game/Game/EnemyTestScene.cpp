@@ -31,8 +31,8 @@ void EnemyTestScene::Render()
 
 void EnemyTestScene::CreateFactories()
 {
-	AddComponentFactory<ModelComponent>();
-	AddComponentFactory<LightComponent>();
+	PreCreateComponentFactory<ModelComponent>();
+	PreCreateComponentFactory<LightComponent>();
 
 	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
@@ -45,4 +45,6 @@ void EnemyTestScene::CreateFactories()
 	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 	
 	enemy->AddComponent<ModelComponent>(prettyModel);
+
+	myObjects.push_back(enemy);
 }

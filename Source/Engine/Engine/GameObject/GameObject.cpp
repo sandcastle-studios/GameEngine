@@ -8,4 +8,6 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
+	int apa = 0;
+	++apa;
 }
