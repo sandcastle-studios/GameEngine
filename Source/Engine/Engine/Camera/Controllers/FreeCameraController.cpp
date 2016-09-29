@@ -36,52 +36,48 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 		aCamera.GetOrientation().RotateZ(aDeltaTime.InSeconds());
 	}
 
-	const float speed = myMovementSpeed;
-
 	if (myMoveLeft)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveRight)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myMoveForward)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveBackward)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myMoveUp)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveDown)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * speed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myMovementSpeed * aDeltaTime.InSeconds());
 	}
-
-	const float rotateSpeed = myRotationSpeed;
 
 	if (myPitchForward)
 	{
-		aCamera.GetOrientation().RotateX(rotateSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateX(myRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myPitchBackward)
 	{
-		aCamera.GetOrientation().RotateX(-rotateSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateX(-myRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myRotateLeft)
 	{
-		aCamera.GetOrientation().RotateY(rotateSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateY(myRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myRotateRight)
 	{
-		aCamera.GetOrientation().RotateY(-rotateSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateY(-myRotationSpeed * aDeltaTime.InSeconds());
 	}
 
 	return CameraControllerResult::eKeepControl;
