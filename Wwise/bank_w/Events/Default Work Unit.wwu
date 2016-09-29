@@ -35,9 +35,6 @@
 				<Event Name="Player_Thruster" ID="{7E83DC9A-9BCA-40CF-84C2-20D8EC0EAFC4}">
 					<ChildrenList>
 						<Action Name="Play" ID="{B0CA4A04-4B2D-4F81-A15C-B2ED955A78DC}" ShortID="1051323807" Type="Play" Scope="One" Global="false">
-							<PropertyList>
-								<Property Name="FadeTime" Type="Real64" Value="0.3"/>
-							</PropertyList>
 							<ElementList>
 								<Element ID="{44535E01-7772-4C88-8FC3-8F05E7FEAB2D}" Global="false">
 									<ObjectRef Name="spaceThruster" ID="{B9D253F9-2601-4B72-A98D-4E722078C9BA}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
@@ -50,7 +47,8 @@
 					<ChildrenList>
 						<Action Name="Stop" ID="{69BBEB8C-EBDA-4F9B-8C4E-6B470D7A36DC}" ShortID="585163246" Type="Stop" Scope="One" Global="true">
 							<PropertyList>
-								<Property Name="FadeTime" Type="Real64" Value="0.4"/>
+								<Property Name="FadeCurve" Type="int16" Value="1"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.25"/>
 							</PropertyList>
 							<ElementList>
 								<Element ID="{11E72C3C-8A08-42EA-8881-8B2AD2A2ECC8}" Global="true">
