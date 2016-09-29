@@ -8,6 +8,7 @@
 #include <Engine\Rendering\ModelRenderer.h>
 #include "Engine\Engine.h"
 #include "Engine\SoundManager\SoundManger.h"
+#include "..\ImGui\imgui.h"
 
 
 void ErrorCallback(const char* aError)
@@ -29,7 +30,7 @@ SoundTestScene::SoundTestScene()
 
 	success = Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 	success;
-	Engine::GetSoundManager().PostEvent("Play_Derp");
+	
 	myPlaying = false;
 }
 
@@ -40,21 +41,17 @@ SoundTestScene::~SoundTestScene()
 
 void SoundTestScene::Update(const Time & aDeltaTime)
 {
-	if (mySoundLoop> 1.0f)
+	if (ImGui::Begin("Sound stuffs", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
-		myPlaying = false;
-		mySoundLoop = 0.0f;
+		if (ImGui::Button("Play sound!") == true)
+		{
+			Engine::GetSoundManager().PostEvent("Play_Derp");
+		}
 	}
-	if (!myPlaying)
-	{
-		//Engine::GetSoundManager().PostEvent("Play_Derp");
-		myPlaying = true;
-	}
+	ImGui::End();
+
+
 	Engine::GetSoundManager().Update();
-	mySoundLoop += 0.0008f;
-
-
-
 	//myObjects[0]->SetMatrix(myObjects[0]->GetMatrix()*Matrix44f::CreateRotateAroundY(0.7f * aDeltaTime.InSeconds()));
 	Scene::Update(aDeltaTime);
 }
