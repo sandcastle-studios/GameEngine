@@ -25,6 +25,7 @@ public:
 	typedef void(*callback_function)(const char*);
 	void SetErrorCallBack(callback_function aErrorCallback);
 private:
+	bool myIsInitialized;
 	void TermWwise();
 	bool InitWwise(AkMemSettings &in_memSettings, AkStreamMgrSettings &in_stmSettings, AkDeviceSettings &in_deviceSettings, AkInitSettings &in_initSettings, AkPlatformInitSettings &in_platformInitSettings, AkMusicSettings &in_musicInit, AkOSChar* in_szErrorBuffer, unsigned int in_unErrorBufferCharCount);
 	void CallError(const char* aError);

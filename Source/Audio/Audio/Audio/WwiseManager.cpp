@@ -63,19 +63,24 @@ CAkFilePackageLowLevelIOBlocking* m_pLowLevelIO;
 CWwiseManager::CWwiseManager()
 	:myErrorCallbck(nullptr)
 {
+	myIsInitialized = false;
 }
 
 
 CWwiseManager::~CWwiseManager()
 {
-	AK::SoundEngine::StopAll();
-	AK::SoundEngine::UnregisterGameObj(GAME_OBJECT_POSTEST);
-	AK::SoundEngine::ClearBanks();
-	TermWwise();
+	if (myIsInitialized == true)
+	{
+		AK::SoundEngine::StopAll();
+		AK::SoundEngine::UnregisterGameObj(GAME_OBJECT_POSTEST);
+		AK::SoundEngine::ClearBanks();
+		TermWwise();
+	}
 }
 
 bool CWwiseManager::Init(const char* aInitBank)
 {
+	myIsInitialized = true;
 	AkMemSettings memSettings;
 	AkStreamMgrSettings stmSettings;
 	AkDeviceSettings deviceSettings;
