@@ -11,12 +11,13 @@
 #include <Engine/Model/ModelInstance.h>
 #include <Engine\Component\ModelComponent.h>
 #include <Engine\GameObject\GameObject.h>
+#include "..\Engine\Engine\Model\CubeModel.h"
 
 PbrTestScene::PbrTestScene()
 	: Scene("spacebox.dds")
 {
 	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
-	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/stefan_sphere/testSpheres.fbx")); // 
+	myHead = std::make_shared<ModelInstance>(std::make_shared<CubeModel>(myEffect, nullptr/*, "models/unitsphere/sphere.fbx"*/)); // 
 	
 	auto bb = myHead->GetBoundingBox();
 

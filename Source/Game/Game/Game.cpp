@@ -82,7 +82,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<EnemyTestScene>();
+	myScene = std::make_unique<PbrTestScene>();
 
 	CreatePerspective();
 }
