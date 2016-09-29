@@ -1,21 +1,33 @@
 #include "stdafx.h"
 #include "EnemyTestScene.h"
-#include <Engine\Component\Factory\ComponentFactory.h>
-#include <Engine/Model/ModelInstance.h>
-#include <Engine\Component\ModelComponent.h>
-#include <Engine\Component\LightComponent.h>
-#include <Engine\GameObject\GameObject.h>
-#include <Engine\Model\AssimpModel.h>
-#include <Engine/Effect/StandardEffect.h>
-#include <Engine\Camera/Camera.h>
-#include <Engine/DataParser/DataParser.h>
 #include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+#include <Engine\Component\BouncingComponent.h>
+#include "PlayerShootComponent.h"
+#include <Engine/GameObject/GameObject.h>
+#include <Engine/SoundManager/SoundManger.h>
+#include <Engine\Model\AssimpModel.h>
 
-EnemyTestScene::EnemyTestScene(const char* aName) : Scene(aName)
+EnemyTestScene::EnemyTestScene(const char* aName)
+	: Scene("EnemyScene", "grass.dds")
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 
-	CreateFactories();
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	//CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One /** 0.05f*/);
+
+	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+
+	myPlayer = CreateGameObject(nullptr);
+	auto && shootComponent = GetComponentFactory<PlayerShootComponent>()->CreateComponent();
+	myPlayer->AddComponent(shootComponent);
+
+	//-------------
+
+	myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 1.5f);
+
+	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+	myEnemy->AddComponent(movementComponent);
+	myEnemy->SetPosition(Vector3f(0.f, 0.f, 50.f));
 }
 
 EnemyTestScene::~EnemyTestScene()
@@ -24,35 +36,10 @@ EnemyTestScene::~EnemyTestScene()
 
 void EnemyTestScene::Update(const Time & aDeltaTime)
 {
+	Engine::GetSoundManager().Update();
 	Scene::Update(aDeltaTime);
 }
-
 void EnemyTestScene::Render()
 {
 	Scene::Render();
-}
-
-void EnemyTestScene::CreateFactories()
-{
-	PreCreateComponentFactory<ModelComponent>();
-	PreCreateComponentFactory<LightComponent>();
-
-	std::shared_ptr<GameObject> enemy = CreateGameObject();
-
-	//GetComponentFactory<ModelComponent>()->CreateComponent();
-
-	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	prettyModel->SetModel(model);
-
-	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
-	moarModel->SetModel(actualModel);
-	
-	enemy->AddComponent<ModelComponent>(prettyModel);
-	enemy->AddComponent<ModelComponent>(moarModel);
-
-	myObjects.Add(enemy);
-
-	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 }
