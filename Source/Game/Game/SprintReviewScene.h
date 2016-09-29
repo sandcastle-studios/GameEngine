@@ -14,7 +14,5 @@ public:
 
 private:
 	void CreateFactories();
-
-
 };
 
