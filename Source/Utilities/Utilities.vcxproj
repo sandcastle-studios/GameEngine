@@ -158,6 +158,7 @@
     <ClInclude Include="Utilities\Container\Stack.h" />
     <ClInclude Include="Utilities\Intersection\IntersectionTests.h" />
     <ClInclude Include="Utilities\Pointer\SharedPtr.h" />
+    <ClInclude Include="Utilities\Randomizer\Randomizer.h" />
     <ClInclude Include="Utilities\Shapes\SphereShape.h" />
     <ClInclude Include="Utilities\UniqeIdentifier.h" />
     <ClInclude Include="Utilities\CommonIncludes.h" />
@@ -180,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Utilities\Randomizer\Randomizer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

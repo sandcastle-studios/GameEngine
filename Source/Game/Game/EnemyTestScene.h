@@ -11,8 +11,7 @@ public:
 	virtual void Render() override;
 
 private:
-	void CreateFactories();
-
-
+	std::shared_ptr<GameObject> myPlayer;
+	std::shared_ptr<GameObject> myEnemy;
 };
 
