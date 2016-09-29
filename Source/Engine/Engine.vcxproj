@@ -291,6 +291,7 @@
     <ClInclude Include="Engine\Model\CubeModel.h" />
     <ClInclude Include="Engine\Model\Surface.h" />
     <ClInclude Include="Engine\Scene\SceneManager.h" />
+    <ClInclude Include="Engine\SoundManager\PlaySoundEvent.h" />
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Texture\dds.h" />
     <ClInclude Include="Engine\Texture\DDSTextureLoader.h" />

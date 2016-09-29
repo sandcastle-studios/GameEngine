@@ -2,6 +2,36 @@
   "name": "",
   "hierarchy": [
     {
+      "name": "gubbe (1)",
+      "components": [
+        {
+          "localPosition": [
+            0.37,
+            0.0,
+            0.0
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Gubbe/gubbe.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
       "name": "52M (7)",
       "components": [
         {
@@ -691,9 +721,9 @@
       "components": [
         {
           "localPosition": [
-            0.078,
-            -0.59,
-            -1.731
+            0.0,
+            0.0,
+            0.0
           ],
           "localRotation": [
             0.0,

@@ -7,9 +7,10 @@ namespace Intersection
 	bool SphereVsSphere(const SphereIntersection & aFirstSphere, const SphereIntersection & aSecondSphere)
 	{
 		Vector3f tempLengthDifference = aFirstSphere.GetPosition() - aSecondSphere.GetPosition();
-		float tempCombinedRadius = aFirstSphere.GetRadiusSquared() + aSecondSphere.GetRadiusSquared();
+		float tempCombinedRadius = aFirstSphere.GetRadius() + aSecondSphere.GetRadius();
+		float tempDistance = tempLengthDifference.Length();
 
-		if (tempLengthDifference.Length2() < tempCombinedRadius)
+		if (tempDistance < tempCombinedRadius)
 		{
 			return true;
 		}
