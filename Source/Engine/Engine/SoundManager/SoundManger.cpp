@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SoundManger.h"
 #include "Audio/WwiseManager.h"
-
+#include "Engine/SoundManager/PlaySoundEvent.h"
 
 SoundManger::SoundManger()
 {
@@ -43,4 +43,11 @@ void SoundManger::ErrorCallback(const char* aError)
 	std::string temp = aError;
 	std::wstring errorMsg(temp.begin(), temp.end());
 	OutputDebugString(errorMsg.c_str());
+}
+
+ReceiveResult SoundManger::Receive(const PlaySoundEvent & aMessage)
+{
+	PostEvent(aMessage.mySoundEventName);
+
+	return ReceiveResult::eContinue;
 }
