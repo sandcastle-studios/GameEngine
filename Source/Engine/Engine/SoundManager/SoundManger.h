@@ -1,8 +1,10 @@
 #pragma once
+#include <Engine\PostMaster.h>
 
 class CWwiseManager;
+struct PlaySoundEvent;
 
-class SoundManger
+class SoundManger : public Subscriber<PlaySoundEvent>
 {
 public:
 	SoundManger();
@@ -16,6 +18,8 @@ public:
 
 	typedef void(*callback_function)(const char*);
 	void SetErrorCallBack(callback_function aErrorCallback);
+
+	virtual ReceiveResult Receive(const PlaySoundEvent & aMessage);
 
 private:
 	std::unique_ptr<CWwiseManager> myWwiseManager;

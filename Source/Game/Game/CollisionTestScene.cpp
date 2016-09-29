@@ -28,6 +28,9 @@ CollisionTestScene::CollisionTestScene()
 
 	myCollisionSphere1 = std::make_unique<SphereIntersection>();
 	myCollisionSphere2 = std::make_unique<SphereIntersection>();
+
+	myCollisionSphere1->SetRadius(1.f);
+	myCollisionSphere2->SetRadius(1.f);
 }
 
 
@@ -48,9 +51,9 @@ void CollisionTestScene::Update(const Time & aDeltaTime)
 		{
 			Vector3f tempVector1 = myTestObject1->GetPosition();
 
-			ImGui::SliderFloat("X", &tempVector1.x, -3.f, 3.f);
-			ImGui::SliderFloat("Y", &tempVector1.y, -3.f, 3.f);
-			ImGui::SliderFloat("Z", &tempVector1.z, -3.f, 3.f);
+			ImGui::SliderFloat("X1", &tempVector1.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y1", &tempVector1.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z1", &tempVector1.z, -3.f, 3.f);
 
 			myTestObject1->SetPosition(tempVector1);
 			myCollisionSphere1->UpdatePosition(tempVector1);
@@ -62,9 +65,9 @@ void CollisionTestScene::Update(const Time & aDeltaTime)
 
 			Vector3f tempVector2 = myTestObject2->GetPosition();
 
-			ImGui::SliderFloat("X", &tempVector2.x, -3.f, 3.f);
-			ImGui::SliderFloat("Y", &tempVector2.y, -3.f, 3.f);
-			ImGui::SliderFloat("Z", &tempVector2.z, -3.f, 3.f);
+			ImGui::SliderFloat("X2", &tempVector2.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y2", &tempVector2.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z2", &tempVector2.z, -3.f, 3.f);
 
 			myTestObject2->SetPosition(tempVector2);
 			myCollisionSphere2->UpdatePosition(tempVector2);
@@ -112,7 +115,6 @@ void CollisionTestScene::CreateFactories()
 
 	myTestObject1->SetScale(Vector3f(0.01f, 0.01f, 0.01f));
 	myTestObject2->SetScale(Vector3f(0.01f, 0.01f, 0.01f));
-
 
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
