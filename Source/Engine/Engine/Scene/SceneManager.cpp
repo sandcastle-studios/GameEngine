@@ -19,7 +19,7 @@ SceneManager::~SceneManager()
 {
 }
 
-std::shared_ptr<Scene> SceneManager::LoadScene(const char* aFilePath)
+std::shared_ptr<Scene> SceneManager::LoadJsonScene(const char* aFilePath)
 {
 	if (myScenes.find(aFilePath) == myScenes.end())
 	{
