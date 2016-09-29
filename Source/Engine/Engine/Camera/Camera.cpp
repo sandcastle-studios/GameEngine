@@ -26,6 +26,7 @@ void Camera::ApplyToVS() const
 	UpdateCB();
 
 	myCameraCB->BindToVS(0);
+	myCameraCB->BindToPS(0);
 }
 
 void Camera::UpdateCB() const

@@ -58,6 +58,7 @@ void Scene::Update(const Time & aDeltaTime)
 void Scene::Render()
 {
 	myTextureCube->BindToPS(11);
+	myMipmapBuffer->BindToPS(2);
 	if (mySkybox != nullptr)
 	{
 		myCamera->ApplySkyboxMatrixToVS();

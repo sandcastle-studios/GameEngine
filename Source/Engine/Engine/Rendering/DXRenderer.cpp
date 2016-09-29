@@ -175,7 +175,7 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 	samplerDesc.BorderColor[2] = 0;
 	samplerDesc.BorderColor[3] = 0;
 	samplerDesc.MinLOD = 0;
-	samplerDesc.MaxLOD = 0.f;
+	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
 	CheckDXError(
 		myDevice->CreateSamplerState(&samplerDesc, &mySamplerState)

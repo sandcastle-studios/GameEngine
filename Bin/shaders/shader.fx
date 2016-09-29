@@ -232,7 +232,7 @@ PixelOutputType PixelShader_AmbientDiffuse(PixelInputType input)
 	float3 metalnessAlbedo = PixelShader_MetalnessAlbedo(input).color.rgb;
 	float3 ambientOcclusion = PixelShader_AmbientOcclusion(input).color.xxx;
 
-	float3 ambientLight = cubeMap.SampleLevel(samplerState, normal.xyz, (uint) CubeMipCount.x - 2).xyz;
+	float3 ambientLight = cubeMap.SampleLevel(samplerState, normal.xyz, (uint) 11 - 2).xyz;
 	float3 fresnel = PixelShader_ReflectionFresnel(input).color.xyz;
 
 	PixelOutputType output;
@@ -245,14 +245,14 @@ PixelOutputType PixelShader_AmbientDiffuse(PixelInputType input)
 PixelOutputType PixelShader_AmbientSpecularity(PixelInputType input)
 {
 	float3 normal = PixelShader_ObjectNormal(input).color.xyz;
-	float roughness = 0.f;
+    float roughness = PixelShader_Roughness(input).color.x;
 	float3 ambientOcclusion = PixelShader_AmbientOcclusion(input).color.xxx;
 	
 	float3 toEye = normalize(cameraPosition.xyz - input.worldPosition.xyz);
 	float3 reflectionVector = -reflect(toEye, normal);
 	
 	float fakeLysSpecularPower = RoughToSPow(roughness);
-	float lysMipMap = GetSpecPowToMip(fakeLysSpecularPower, (uint) CubeMipCount.x);
+	float lysMipMap = GetSpecPowToMip(fakeLysSpecularPower, (uint) 11);
 
 	float3 ambientLight = cubeMap.SampleLevel(samplerState, reflectionVector.xyz, lysMipMap).xyz;
 	float3 fresnel = PixelShader_ReflectionFresnel(input).color.xyz;
@@ -353,9 +353,6 @@ PixelOutputType PixelShader_DirectSpecularity(PixelInputType input)
 PixelOutputType PixelShader_PBL(PixelInputType input)
 {
     PixelOutputType output;
-    output.color.xyz = PixelShader_AmbientSpecularity(input).color.xyz;
-    output.color.a = 1.f;
-    return output;
 
 	float3 emissive = PixelShader_Emissive(input).color.xyz;
 	float3 ambientDiffuse = PixelShader_AmbientDiffuse(input).color.xyz;
