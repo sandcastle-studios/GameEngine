@@ -126,7 +126,6 @@ SharedPtr<TPointerType>::~SharedPtr()
 		if (count <= 0)
 		{
 			myReturnFunction(this);
-			myPointer->Destruct();
 
 			delete myReferenceCounter;
 			myReferenceCounter = nullptr;

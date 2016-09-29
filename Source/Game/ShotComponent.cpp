@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ShotComponent.h"
-#include "..\Engine\Engine\GameObject\GameObject.h"
+#include <Engine\GameObject\GameObject.h>
 
 void ShotComponent::SetSpeed(const Vector3f & aSpeed)
 {
@@ -15,7 +15,7 @@ void ShotComponent::Construct()
 
 void ShotComponent::Destruct()
 {
-	Engine::GetLogger().LogInfo("ShotComponent::Destruct");
+	// Engine::GetLogger().LogInfo("ShotComponent::Destruct");
 }
 
 void ShotComponent::Update(const Time & aDeltaTime)
