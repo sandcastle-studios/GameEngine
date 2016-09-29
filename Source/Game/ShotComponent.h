@@ -16,5 +16,6 @@ public:
 
 private:
 	Vector3f mySpeed;
+	Time myAge;
 };
 

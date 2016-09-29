@@ -31,6 +31,8 @@ void PlayerShootComponent::Destruct()
 
 ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage)
 {
+	std::cout << "---" << std::endl;
+
 	const Camera & camera = myObject->GetScene().GetCamera();
 	const Vector3f right = camera.GetOrientation().GetRight();
 	const float distance = 0.35f;
