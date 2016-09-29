@@ -23,4 +23,9 @@ void GameObject::SetData(const GameObjectData& aData)
 	myPosition = aData.myPosition;
 	myRotation = aData.myRotation;
 	myScene = aData.myScene;
+
+	for (size_t i = 0; aData.myComponentList.Size(); ++i)
+	{
+		AddComponent(aData.myComponentList[i]);
+	}
 }

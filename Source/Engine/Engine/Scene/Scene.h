@@ -26,14 +26,14 @@ public:
 
 	void CreateGameObjectBuffer(const unsigned short aObjectCount);
 	void CreateGameObject(const GameObjectData& aData);
-
-protected:
-
 	template <typename TComponentType>
 	std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory();
 
 	template <typename TComponentType>
 	const std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory()const;
+
+protected:
+
 
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponentFactory>, size_t> myFactories;

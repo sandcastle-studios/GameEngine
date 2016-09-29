@@ -1,44 +1,6 @@
 {
   "name": "TestScene",
-  "resources": {
-    "textures": [
-      {
-        "name": "companion_heart"
-      }
-    ]
-  },
   "hierarchy": [
-    {
-      "name": "companion",
-      "components": 
-	  [
-        {
-          "localPosition": [
-            3.4,
-            4.3,
-            -6.31
-          ],
-          "localRotation": [
-            0.0,
-            0.0,
-            0.0,
-            1.0
-          ],
-          "localScale": [
-            100.0,
-            100.0,
-            100.0
-          ],
-          "name": null,
-          "parentName": null,
-          "type": "Transform"
-        },
-        {
-          "type": null
-        }
-      ],
-      "children": []
-    },
     {
       "name": "parentCube",
       "components": [
@@ -59,25 +21,7 @@
             1.0,
             1.0
           ],
-          "name": null,
-          "parentName": null,
           "type": "Transform"
-        },
-        {
-          "type": null
-        },
-        {
-          "center": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "size": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "type": "BoxCollider"
         }
       ],
       "children": [
@@ -101,25 +45,7 @@
                 1.0,
                 1.0
               ],
-              "name": null,
-              "parentName": null,
               "type": "Transform"
-            },
-            {
-              "type": null
-            },
-            {
-              "center": [
-                0.0,
-                0.0,
-                0.0
-              ],
-              "size": [
-                1.0,
-                1.0,
-                1.0
-              ],
-              "type": "BoxCollider"
             }
           ],
           "children": []
@@ -146,25 +72,37 @@
             0.363473743,
             17.6981373
           ],
-          "name": null,
-          "parentName": null,
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "companion",
+      "components": [
+        {
+          "localPosition": [
+            3.4,
+            4.3,
+            -6.31
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            100.0,
+            100.0,
+            100.0
+          ],
           "type": "Transform"
         },
         {
-          "type": null
-        },
-        {
-          "center": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "size": [
-            1.0,
-            1.0,
-            1.0
-          ],
-          "type": "BoxCollider"
+          "modelPath": "Hej",
+          "texturePath": "Heeeeeej",
+          "type": "ModelData"
         }
       ],
       "children": []
@@ -189,22 +127,7 @@
             1.0,
             0.109438822
           ],
-          "name": null,
-          "parentName": null,
           "type": "Transform"
-        },
-        {
-          "color": [
-            1.0,
-            1.0,
-            1.0,
-            1.0
-          ],
-          "range": 10.0,
-          "lightType": "Point",
-          "castsShadows": false,
-          "realtime": false,
-          "type": "Light"
         }
       ],
       "children": []

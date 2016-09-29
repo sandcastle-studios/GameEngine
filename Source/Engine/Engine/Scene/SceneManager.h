@@ -1,7 +1,10 @@
 #pragma once
+#include "Engine/GameObject/GameObject.h"
 
 class JsonScene;
 class Scene;
+class StandardEffect;
+
 
 class SceneManager
 {
@@ -22,9 +25,12 @@ public:
 
 private:
 	std::shared_ptr<JsonScene> CreateScene(const char* aFilePath);
-
+	GameObjectData LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene);
 	std::unordered_map<const char*, std::shared_ptr<Scene>> myScenes;
 	std::shared_ptr<Scene> myCurrentScene;
+
+	std::shared_ptr<StandardEffect> myStandardEffect;
+
 };
 
 template<typename TSceneType>

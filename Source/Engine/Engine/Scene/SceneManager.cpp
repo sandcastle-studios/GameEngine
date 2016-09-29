@@ -3,9 +3,15 @@
 #include "Engine\Scene\JsonScene.h"
 #include "Engine\Scene\Scene.h"
 #include "Engine\GameObject\GameObject.h"
+#include "Engine\Component\ModelComponent.h"
+#include <Engine\Component\Factory\ComponentFactory.h>
+#include "Engine\Component\Pointer\SharedPtrComponent.h"
+#include <Engine\Effect\StandardEffect.h>
+
 
 SceneManager::SceneManager()
 {
+	myStandardEffect = std::make_shared<StandardEffect>();
 }
 
 
@@ -36,24 +42,54 @@ std::shared_ptr<JsonScene> SceneManager::CreateScene(const char* aFilePath)
 
 	for (unsigned short i = 0; i < static_cast<unsigned short>(sceneData["hierarchy"].Capacity()); ++i)
 	{
-		DataNode objectNode = sceneData["hierarchy"][i];
-		GameObjectData objectData;
-		objectData.myID = objectNode["name"].GetString();
-		objectData.myPosition = Vector3f(
-			objectNode["components"][0]["localPosition"][0].GetFloat(),
-			objectNode["components"][0]["localPosition"][1].GetFloat(),
-			objectNode["components"][0]["localPosition"][2].GetFloat()
-		);
-		objectData.myRotation = Quaternion(
-			objectNode["components"][0]["localRotation"][0].GetFloat(), 
-			objectNode["components"][0]["localRotation"][1].GetFloat(), 
-			objectNode["components"][0]["localRotation"][2].GetFloat()		//TODO: Add loop for component indices as well
-		);
-		objectData.myScene = newScene;
-
-		newScene->CreateGameObject(objectData);
+		DataNode objectNode = sceneData["hierarchy"][i];		
+		newScene->CreateGameObject(LoadGameObject(objectNode, newScene));
 	}
 
 
 	return newScene;
 }
+
+GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene)
+{
+	GameObjectData objectData;
+	objectData.myID = aObjectNode["name"].GetString();
+	objectData.myScene = aScene;
+
+	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
+	{
+		std::string componentType = aObjectNode["components"][i]["type"].GetString();
+		SharedPtrComponent<BaseComponent> newComponent;// = std::is_null_pointer;
+
+		if (componentType == "Transform")
+		{
+			objectData.myPosition = Vector3f(
+				aObjectNode["components"][i]["localPosition"][0].GetFloat(),
+				aObjectNode["components"][i]["localPosition"][1].GetFloat(),
+				aObjectNode["components"][i]["localPosition"][2].GetFloat()
+			);
+			objectData.myRotation = Quaternion(
+				aObjectNode["components"][i]["localRotation"][0].GetFloat(),
+				aObjectNode["components"][i]["localRotation"][1].GetFloat(),
+				aObjectNode["components"][i]["localRotation"][2].GetFloat()
+			);
+		}
+		else if (componentType == "ModelData")
+		{
+			//TODO: Send texture into model comp. as well, also send desired effect/shader to use for the model
+			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(aScene->GetComponentFactory<ModelComponent>()->CreateComponent());
+			SharedPtrComponent<ModelComponent>::CastFrom(newComponent)->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+		}
+		else
+		{
+			Error("Unable to load component. Unrecognized component type.");
+		}
+
+
+		objectData.myComponentList.Add(newComponent);
+	}
+
+
+	return objectData;
+}
+
