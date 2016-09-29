@@ -15,19 +15,19 @@
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 2.5f));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 3.f));
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 
 	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
-	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One);
+	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One / 100.f);
 
 	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
 	myEnemy->AddComponent(movementComponent);
 	myEnemy->SetPosition(Vector3f(0.f, 0.f, 0.f));
 
-	myObjects.Add(myEnemy);
+	//myObjects.Add(myEnemy);
 }
 
 
