@@ -19,6 +19,11 @@ public:
 
 	virtual void ReturnMemory(unsigned short aIndex) override;
 
+	template <typename TEnumerator>
+	void EnumerateActiveComponents(const TEnumerator & aEnumerator);
+
+	int Count() const;
+
 private:
 	unsigned short GetAndActivateIndex();
 
@@ -26,6 +31,33 @@ private:
 	GrowingArray<TComponentType> myComponents;
 	Stack<unsigned short> myFreeMemorySlots;
 };
+
+template <typename TComponentType>
+int ComponentFactory<TComponentType>::Count() const
+{
+	int counter = 0;
+	for (unsigned short iComponent = 0; iComponent < myComponents.Size(); ++iComponent)
+	{
+		if (myComponentsActiveTag[iComponent] == true)
+		{
+			counter++;
+		}
+	}
+	return counter;
+}
+
+template <typename TComponentType>
+template <typename TEnumerator>
+void ComponentFactory<TComponentType>::EnumerateActiveComponents(const TEnumerator & aEnumerator)
+{
+	for (unsigned short iComponent = 0; iComponent < myComponents.Size(); ++iComponent)
+	{
+		if (myComponentsActiveTag[iComponent] == true)
+		{
+			aEnumerator(myComponents[iComponent]);
+		}
+	}
+}
 
 #include "Engine\Component\Pointer\SharedPtrComponent.h"
 
@@ -51,7 +83,7 @@ ComponentFactory<TComponentType>::ComponentFactory()
 template <typename TComponentType>
 void ComponentFactory<TComponentType>::ReturnMemory(unsigned short aIndex)
 {
-	Engine::GetLogger().LogInfo("Index {0} returned to factory.", aIndex);
+	// Engine::GetLogger().LogInfo("Index {0} returned to factory.", aIndex);
 
 	myComponents[aIndex].Destruct();
 	myComponents[aIndex].~TComponentType();

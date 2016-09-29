@@ -48,7 +48,7 @@ ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eR
 	Engine::GetSoundManager().PostEvent("Play_Derp");
 
 	auto shotComponent = myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent();
-	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 30.f);
+	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 100.f);
 	shot->AddComponent(shotComponent);
 	return ReceiveResult::eContinue;
 }

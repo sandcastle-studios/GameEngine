@@ -85,7 +85,7 @@ inline void BoundingBox<T>::ExpandToContain(const Vector3<T> & aPosition)
 template<typename T>
 inline T BoundingBox<T>::GetMaximumRadius() const
 {
-	return std::sqrt(GetSize().x * GetSize().x + GetSize().y * GetSize().y + GetSize().z * GetSize().z);
+	return std::sqrt(GetSize().x * GetSize().x + GetSize().y * GetSize().y + GetSize().z * GetSize().z) / static_cast<T>(2);
 }
 
 using BoundingBoxf = BoundingBox<float>;

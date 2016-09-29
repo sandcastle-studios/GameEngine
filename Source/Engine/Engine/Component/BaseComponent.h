@@ -15,6 +15,8 @@ public:
 	virtual void Construct() = 0;
 	virtual void Destruct() = 0;
 
+	GameObject & GetGameObject();
+
 	void SetGameObject(GameObject & anObject);
 	 
 protected:

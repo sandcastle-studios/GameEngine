@@ -41,6 +41,9 @@ public:
 	template <typename TComponentType>
 	void AddComponent(const SharedPtrComponent<TComponentType> & aComponent);
 
+	template<>
+	void AddComponent<BaseComponent>(const SharedPtrComponent<BaseComponent> & aComponent);
+
 	template <typename TComponentType>
 	SharedPtrComponent<TComponentType> GetComponent(const size_t & anIndex = 0);
 
@@ -55,6 +58,9 @@ public:
 	void Remove();
 
 	bool IsRemoved() const;
+
+	const std::string & GetIdentifier() const;
+	void SetIdentifier(const std::string &aIdentifier);
 
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
@@ -98,6 +104,7 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 		myComponents.Resize(nextID);
 	}
 	myComponents[id].Add(SharedPtrComponent<BaseComponent>::CastFrom(aComponent));
+	Engine::GetLogger().LogInfo("{0} wrote to index {1}", typeid(TComponentType).name(), id);
 	myComponents[id].GetLast()->SetGameObject(*this);
 }
 
@@ -108,7 +115,7 @@ GameObject::GetComponent(const size_t & anIndex/* = 0*/)
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
 	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
 	{
-		return nullptr;
+		return SharedPtrComponent<TComponentType>();
 	}
 	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
 }
@@ -120,7 +127,7 @@ GameObject::GetComponent(const size_t & anIndex/* = 0*/) const
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
 	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
 	{
-		return nullptr;
+		return SharedPtrComponent<TComponentType>();
 	}
 	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
 }
@@ -129,7 +136,15 @@ template <typename TComponentType>
 size_t GameObject::GetComponentCount() const
 {
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
-	return myComponents[id].Size();
+
+	if (id < myComponents.Size())
+	{
+		return myComponents[id].Size();
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 inline bool GameObject::IsRemoved() const

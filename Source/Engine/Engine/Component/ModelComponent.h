@@ -1,8 +1,11 @@
 #pragma once
 #include "Engine/Component/BaseComponent.h"
+#include <Engine/BoundingBox.h>
+
 
 class Model;
 class Effect;
+
 
 class ModelComponent : public BaseComponent
 {
@@ -17,6 +20,8 @@ public:
 	void SetModel(std::shared_ptr<Model> aModel);
 
 	void SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect);
+
+	const BoundingBoxf & GetBoundingBox() const;
 
 	virtual void Construct() override;
 

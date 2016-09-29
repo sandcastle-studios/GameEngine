@@ -6,6 +6,7 @@
 
 #include "Engine/GameObject/GameObject.h"
 
+
 ModelComponent::ModelComponent()
 {
 }
@@ -32,6 +33,11 @@ void ModelComponent::SetModel(const char* aModelFilePath, std::shared_ptr<Effect
 {
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(aEffect, aModelFilePath);
 	myModel = model;
+}
+
+const BoundingBoxf & ModelComponent::GetBoundingBox() const
+{
+	return myModel->GetBoundingBox();
 }
 
 void ModelComponent::Construct()

@@ -18,6 +18,11 @@ void BaseComponent::Render() const
 {
 }
 
+GameObject & BaseComponent::GetGameObject()
+{
+	return *myObject;
+}
+
 void BaseComponent::SetGameObject(GameObject & anObject)
 {
 	myObject = &anObject;

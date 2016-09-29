@@ -58,6 +58,12 @@ Matrix44f GameObject::GetTransformation() const
 	return Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * aRotation * Matrix44f::CreateTranslation(myPosition);
 }
 
+template<>
+void GameObject::AddComponent(const SharedPtrComponent<BaseComponent> & aComponent)
+{
+	Error("SLUTA ROBIN");
+}
+
 void GameObject::SetData(const GameObjectData& aData)
 {
 	myID = aData.myID;
@@ -78,4 +84,14 @@ void GameObject::Remove()
 		myScene->IncrementRemovalCounter();
 		myIsRemoved = true;
 	}
+}
+
+const std::string & GameObject::GetIdentifier() const
+{
+	return myID;
+}
+
+void GameObject::SetIdentifier(const std::string &aIdentifier)
+{
+	myID = aIdentifier;
 }
