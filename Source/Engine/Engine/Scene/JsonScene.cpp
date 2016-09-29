@@ -10,18 +10,25 @@
 #include <Engine\Camera\Camera.h>
 #include <Engine\DataParser\DataParser.h>
 #include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+#include <Engine\Component\BouncingComponent.h>
 #include "..\SoundManager\SoundManger.h"
 #include "..\Game\ShotComponent.h"
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 2.5f));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 2.5f));
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 
 	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One);
 
+	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+	myEnemy->AddComponent(movementComponent);
+	myEnemy->SetPosition(Vector3f(0.f, 0.f, 0.f));
+
+	myObjects.Add(myEnemy);
 }
 
 

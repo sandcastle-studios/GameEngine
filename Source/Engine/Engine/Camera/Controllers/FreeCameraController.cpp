@@ -9,7 +9,7 @@ FreeSpaceCameraController::FreeSpaceCameraController(const float aMovementSpeed,
 	myCurrentMovementSpeed = aMovementSpeed;
 	myCurrentRotationSpeed = aRotationSpeed;
 
-	myBoostMovementSpeed = myDriftMovementSpeed * 5.f;
+	myBoostMovementSpeed = myDriftMovementSpeed * 7.5f;
 	myBoostRotationSpeed = myDriftRotationSpeed / 2.f;
 
 	myRotateLeft = false;
@@ -35,6 +35,8 @@ FreeSpaceCameraController::~FreeSpaceCameraController()
 
 CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime, Camera & aCamera)
 {
+	const float TurnAccelerationAmount = myDriftRotationSpeed / 3.f;
+
 	UpdateAcceleration(aDeltaTime);
 
 	if (myRollLeft)
@@ -218,7 +220,7 @@ void FreeSpaceCameraController::SetIsBoosting(const bool aIsBoosting)
 
 void FreeSpaceCameraController::UpdateAcceleration(const Time & aDeltaTime)
 {
-	const float AccelerationSpeed = (myBoostMovementSpeed - myDriftMovementSpeed) / 3.f;
+	const float AccelerationSpeed = (myBoostMovementSpeed - myDriftMovementSpeed) / 1.f;
 	const float DecelerationSpeed = AccelerationSpeed * 2.f;
 
 	if (myBoosting == true)
