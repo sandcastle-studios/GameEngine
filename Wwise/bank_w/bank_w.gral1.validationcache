@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="70">
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2505045367" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Attenuations\Default Work Unit.wwu" DateLow="2505060503" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\bank_w.gral1.wsettings" DateLow="2505025349" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\bank_w.wproj" DateLow="2505000376" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Control Surface Sessions\Default Work Unit.wwu" DateLow="2505080403" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Conversion Settings\Default Work Unit.wwu" DateLow="2505105435" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Conversion Settings\Factory Conversion Settings.wwu" DateLow="2505145461" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Dynamic Dialogue\Default Work Unit.wwu" DateLow="2505165485" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Effects\Default Work Unit.wwu" DateLow="2505180498" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Effects\Factory Effects.wwu" DateLow="2505230543" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Events\Default Work Unit.wwu" DateLow="2505250564" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Game Parameters\Default Work Unit.wwu" DateLow="2505265701" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="2505287692" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2505302835" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Mixing Sessions\Default Work Unit.wwu" DateLow="2505317887" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Modulators\Default Work Unit.wwu" DateLow="2505337883" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Presets\Default Work Unit.wwu" DateLow="2505352883" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Queries\Default Work Unit.wwu" DateLow="2505367902" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Queries\Factory Queries.wwu" DateLow="2505397809" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\SoundBanks\Default Work Unit.wwu" DateLow="2505412943" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Soundcaster Sessions\Default Work Unit.wwu" DateLow="2505432842" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\States\Default Work Unit.wwu" DateLow="2505452981" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Switches\Default Work Unit.wwu" DateLow="2505468012" DateHigh="30545316"/>
+	<ValidationCacheItem File="D:\Projects\TGA_Wise\Workbed\bank_w\Triggers\Default Work Unit.wwu" DateLow="2505483009" DateHigh="30545316"/>
+</ValidationCache>

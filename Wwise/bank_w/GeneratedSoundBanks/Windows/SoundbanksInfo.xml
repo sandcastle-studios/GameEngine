@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2678230382" Language="SFX">
+			<ShortName>level1</ShortName>
+			<Path>level1.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2362094225" Name="Play_Derp"/>
+				<Event Id="2270376495" Name="Play_Laser"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="345062463" Language="SFX">
+					<ShortName>adam.wav</ShortName>
+					<Path>SFX\adam_9E69E797.wem</Path>
+				</File>
+				<File Id="544884412" Language="SFX">
+					<ShortName>mega_mob_incoming.wav</ShortName>
+					<Path>SFX\mega_mob_incoming_9E69E797.wem</Path>
+				</File>
+				<File Id="818493151" Language="SFX">
+					<ShortName>laserMachineGun.wav</ShortName>
+					<Path>SFX\laserMachineGun_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

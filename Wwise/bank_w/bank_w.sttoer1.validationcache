@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="70">
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="69112576" DateHigh="30545319"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Attenuations\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\bank_w.wproj" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Control Surface Sessions\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Conversion Settings\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Conversion Settings\Factory Conversion Settings.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Dynamic Dialogue\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Effects\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Effects\Factory Effects.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Events\Default Work Unit.wwu" DateLow="69112576" DateHigh="30545319"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Game Parameters\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Mixing Sessions\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Modulators\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Presets\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Queries\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Queries\Factory Queries.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\SoundBanks\Default Work Unit.wwu" DateLow="69112576" DateHigh="30545319"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Soundcaster Sessions\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\States\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Switches\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+	<ValidationCacheItem File="C:\Users\sttoer1\Documents\GameEngineG1\Bin\bank_w\Triggers\Default Work Unit.wwu" DateLow="2514014464" DateHigh="30545316"/>
+</ValidationCache>

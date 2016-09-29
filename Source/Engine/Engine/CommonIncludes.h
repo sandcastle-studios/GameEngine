@@ -3,7 +3,6 @@
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dcompiler.lib")
 #pragma comment( lib, "dxguid.lib")
-#pragma comment( lib, "../../extlibs/imgui/lib/imgui.lib")
 
 #include "Utilities/CommonIncludes.h"
 #include "../ModelLoader/CommonIncludes.h"

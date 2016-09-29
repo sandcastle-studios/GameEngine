@@ -9,6 +9,9 @@
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
 #include <Engine\FileWatcher\FileChangeWatcher.h>
+#include "LightingTestScene.h"
+#include <Engine\SplashScreen\SplashScreenScene.h>
+#include "SoundTestScene.h"
 #include "Engine\Scene\SceneManager.h"
 #include "EnemyTestScene.h"
 
