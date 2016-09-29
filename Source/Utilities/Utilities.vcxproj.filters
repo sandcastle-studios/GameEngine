@@ -16,11 +16,13 @@
     <ClInclude Include="Utilities\Shapes\SphereShape.h" />
     <ClInclude Include="Utilities\Intersection\IntersectionShapes\SphereIntersection.h" />
     <ClInclude Include="Utilities\Intersection\IntersectionTests.h" />
+    <ClInclude Include="Utilities\Randomizer\Randomizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Utilities\Math\Quaternion.cpp" />
     <ClCompile Include="Utilities\Intersection\IntersectionShapes\SphereIntersection.cpp" />
     <ClCompile Include="Utilities\Intersection\IntersectionTests.cpp" />
+    <ClCompile Include="Utilities\Randomizer\Randomizer.cpp" />
   </ItemGroup>
 </Project>

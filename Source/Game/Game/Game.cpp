@@ -86,7 +86,7 @@ void Game::Initialize()
 	mySceneManager = std::make_unique<SceneManager>();
 
 	// mySceneManager->LoadScene("Assets/Data/TestScene.json");
-	mySceneManager->LoadScene<PlayerTestScene>();
+	mySceneManager->LoadScene<EnemyTestScene>();
 
 	CreatePerspective();
 }
