@@ -244,6 +244,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Component\BouncingComponent.h" />
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
     <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
@@ -355,6 +356,7 @@
     <ClInclude Include="Engine\Window\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Component\BouncingComponent.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
@@ -425,7 +427,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Audio\Audio\Audio.vcxproj">
       <Project>{b5915c8f-2aef-4137-bcbe-152f819860cd}</Project>
-	</ProjectReference>
+    </ProjectReference>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{f6457bb1-2b8a-423f-b7d7-6d4f26952fc4}</Project>
     </ProjectReference>

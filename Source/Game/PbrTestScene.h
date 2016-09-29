@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine\Scene\Scene.h>
 
+class CubeModel;
+
 class PbrTestScene : public Scene, public Subscriber<AnyKeyDownMessage>, public Subscriber<AnyKeyUpMessage>
 {
 public:
@@ -14,7 +16,7 @@ public:
 	ReceiveResult Receive(const AnyKeyUpMessage & aMessage) override;
 
 private:
-	std::shared_ptr<ModelInstance> myHead;
+	std::shared_ptr<CubeModel> myHead;
 	bool myRotateLeft;
 	bool myRotateRight;
 	bool myMoveLeft;

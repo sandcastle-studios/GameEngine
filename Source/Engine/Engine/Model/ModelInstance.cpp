@@ -29,6 +29,8 @@ void ModelInstance::SetMatrix(const Matrix44f & aMatrix)
 	myWorldMatrix = aMatrix;
 }
 
+
+
 BoundingBoxf ModelInstance::GetBoundingBox() const
 {
 	BoundingBoxf boundingBox = myModel->GetBoundingBox();

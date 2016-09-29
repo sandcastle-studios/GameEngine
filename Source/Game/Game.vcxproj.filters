@@ -16,6 +16,8 @@
     <ClInclude Include="Game\SoundTestScene.h" />
     <ClInclude Include="PbrTestScene.h" />
     <ClInclude Include="Game\SprintReviewScene.h" />
+    <ClInclude Include="Game\CollisionTestScene.h" />
+    <ClInclude Include="Game\CockpitTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -32,6 +34,8 @@
     <ClCompile Include="Game\SoundTestScene.cpp" />
     <ClCompile Include="PbrTestScene.cpp" />
     <ClCompile Include="Game\SprintReviewScene.cpp" />
+    <ClCompile Include="Game\CollisionTestScene.cpp" />
+    <ClCompile Include="Game\CockpitTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">

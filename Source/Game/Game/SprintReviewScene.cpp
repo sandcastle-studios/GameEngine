@@ -9,6 +9,8 @@
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
 
+
+
 SprintReviewScene::SprintReviewScene()
 {
 	CreateFactories();
@@ -35,15 +37,13 @@ void SprintReviewScene::CreateFactories()
 
 	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
-	//GetComponentFactory<ModelComponent>()->CreateComponent();
-
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
+	prettyModel->SetModel(model);
 
 	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
-	moarModel->SetModel(std::make_shared<ModelInstance>(actualModel));
+	moarModel->SetModel(actualModel);
 
 	enemy->AddComponent<ModelComponent>(prettyModel);
 	enemy->AddComponent<ModelComponent>(moarModel);

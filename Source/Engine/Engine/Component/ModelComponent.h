@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Component/BaseComponent.h"
 
-class ModelInstance;
+class Model;
 class Effect;
 
 class ModelComponent : public BaseComponent
@@ -14,7 +14,7 @@ public:
 
 	virtual void Render() const override;
 
-	void SetModel(std::shared_ptr<ModelInstance> aModel);
+	void SetModel(std::shared_ptr<Model> aModel);
 
 	void SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect);
 
@@ -23,7 +23,6 @@ public:
 	virtual void Destruct() override;
 
 private:
-	std::shared_ptr<ModelInstance> myModel;
-
+	std::shared_ptr<Model> myModel;
 };
 
