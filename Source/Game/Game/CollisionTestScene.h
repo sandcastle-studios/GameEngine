@@ -10,7 +10,7 @@ class CollisionTestScene :
 	public Scene
 {
 public:
-	CollisionTestScene();
+	CollisionTestScene(const char * aPoppyName);
 	virtual ~CollisionTestScene();
 
 
@@ -23,8 +23,8 @@ private:
 	std::unique_ptr<SphereIntersection> myCollisionSphere1;
 	std::unique_ptr<SphereIntersection> myCollisionSphere2;
 
-	std::shared_ptr<ModelInstance> myTestObject1;
-	std::shared_ptr<ModelInstance> myTestObject2;
+	std::shared_ptr<GameObject> myTestObject1;
+	std::shared_ptr<GameObject> myTestObject2;
 
 	void CreateFactories();
 };

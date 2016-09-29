@@ -16,7 +16,7 @@
 #include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
 #include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 
-CollisionTestScene::CollisionTestScene()
+CollisionTestScene::CollisionTestScene(const char * aPoppyName) : Scene(aPoppyName)
 {
 	CreateFactories();
 
@@ -91,28 +91,32 @@ void CollisionTestScene::Render()
 
 void CollisionTestScene::CreateFactories()
 {
-	//PreCreateComponentFactory<ModelComponent>();
-	//PreCreateComponentFactory<LightComponent>();
-	//
-	//std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
-	//
-	//SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
-	//
-	//SharedPtrComponent<ModelComponent> tempModel2(GetComponentFactory<ModelComponent>()->CreateComponent());
-	//std::shared_ptr<AssimpModel> derpModel = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
-	//
-	//myTestObject1 = std::make_shared<ModelInstance>(model);
-	//myTestObject2 = std::make_shared<ModelInstance>(derpModel);
-	//
+	PreCreateComponentFactory<ModelComponent>();
+	PreCreateComponentFactory<LightComponent>();
+
+	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+
+	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	prettyModel->SetModel(model);
+
+	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
+	moarModel->SetModel(actualModel);
+
+	myTestObject1->AddComponent<ModelComponent>(prettyModel);
+	myTestObject2->AddComponent<ModelComponent>(moarModel);
+
+	myObjects.Add(myTestObject1);
+	myObjects.Add(myTestObject2);
+
+	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	
 	//myTestObject1->SetMatrix(myTestObject1->GetMatrix() * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
 	//myTestObject2->SetMatrix(myTestObject2->GetMatrix() * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
-	//prettyModel->SetModel(myTestObject1);
-	//tempModel2->SetModel(myTestObject2);
-	//
-	//GetCamera().SetPosition(myTestObject1->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
-	//
-	//myObjects.Add(enemy);
-	//
+	
+	
+	myObjects.Add(enemy);
+	
 	
 }
