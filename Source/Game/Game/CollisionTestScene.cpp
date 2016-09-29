@@ -15,9 +15,13 @@
 #include <Engine\SplashScreen\SplashScreenScene.h>
 #include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
 #include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
+#include "Engine\Camera\Controllers\FreeSpaceCameraController.h"
 
-CollisionTestScene::CollisionTestScene(const char * aPoppyName) : Scene(aPoppyName)
+CollisionTestScene::CollisionTestScene()
 {
+	myTestObject1 = CreateGameObject();
+	myTestObject2 = CreateGameObject();
+
 	CreateFactories();
 
 	SetCameraOrientation(Vector3f(0.f, 0.f, -3.f));
@@ -42,28 +46,28 @@ void CollisionTestScene::Update(const Time & aDeltaTime)
 	{
 		if (ImGui::CollapsingHeader("Object 1") == true)
 		{
-			Vector3f tempVector = myTestObject1->GetPosition();
+			Vector3f tempVector1 = myTestObject1->GetPosition();
 
-			ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
-			ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
-			ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
+			ImGui::SliderFloat("X", &tempVector1.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y", &tempVector1.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z", &tempVector1.z, -3.f, 3.f);
 
-			myTestObject1->SetPosition(tempVector);
-			myCollisionSphere1->UpdatePosition(tempVector);
+			myTestObject1->SetPosition(tempVector1);
+			myCollisionSphere1->UpdatePosition(tempVector1);
 		}
 
 		
 		if (ImGui::CollapsingHeader("Object 2") == true)
 		{
 
-			Vector3f tempVector = myTestObject2->GetPosition();
+			Vector3f tempVector2 = myTestObject2->GetPosition();
 
-			ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
-			ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
-			ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
+			ImGui::SliderFloat("X", &tempVector2.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y", &tempVector2.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z", &tempVector2.z, -3.f, 3.f);
 
-			myTestObject2->SetPosition(tempVector);
-			myCollisionSphere2->UpdatePosition(tempVector);
+			myTestObject2->SetPosition(tempVector2);
+			myCollisionSphere2->UpdatePosition(tempVector2);
 		}
 
 		if (Intersection::SphereVsSphere(*myCollisionSphere1, *myCollisionSphere2) == true)
@@ -94,29 +98,26 @@ void CollisionTestScene::CreateFactories()
 	PreCreateComponentFactory<ModelComponent>();
 	PreCreateComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
 	prettyModel->SetModel(model);
 
 	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
+	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
 	moarModel->SetModel(actualModel);
-
+	
 	myTestObject1->AddComponent<ModelComponent>(prettyModel);
 	myTestObject2->AddComponent<ModelComponent>(moarModel);
 
-	myObjects.Add(myTestObject1);
-	myObjects.Add(myTestObject2);
+	myTestObject1->SetScale(Vector3f(0.01f, 0.01f, 0.01f));
+	myTestObject2->SetScale(Vector3f(0.01f, 0.01f, 0.01f));
 
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 	
-	//myTestObject1->SetMatrix(myTestObject1->GetMatrix() * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
-	//myTestObject2->SetMatrix(myTestObject2->GetMatrix() * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
-	
-	
-	myObjects.Add(enemy);
+
 	
 	
 }

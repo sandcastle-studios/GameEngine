@@ -10,7 +10,7 @@ class CollisionTestScene :
 	public Scene
 {
 public:
-	CollisionTestScene(const char * aPoppyName);
+	CollisionTestScene();
 	virtual ~CollisionTestScene();
 
 
@@ -20,6 +20,7 @@ public:
 	virtual void Render() override;
 
 private:
+
 	std::unique_ptr<SphereIntersection> myCollisionSphere1;
 	std::unique_ptr<SphereIntersection> myCollisionSphere2;
 
