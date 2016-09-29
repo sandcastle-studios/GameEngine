@@ -20,7 +20,7 @@ ModelRenderer::ModelRenderer()
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
 
-	mySkybox = std::make_shared<TextureCube>("textures/cubeMap4.dds");
+	mySkybox = std::make_shared<TextureCube>("textures/cubeMap.dds");
 	myLightingData.myCubeMapMipMaps = mySkybox->GetMipMapLevels();
 }
 
