@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine\Scene\Scene.h>
 
+class CubeModel;
+
 class PbrTestScene : public Scene
 {
 public:
@@ -11,6 +13,6 @@ public:
 	virtual void Render() override;
 
 private:
-	std::shared_ptr<ModelInstance> myHead;
+	std::shared_ptr<CubeModel> myHead;
 };
 

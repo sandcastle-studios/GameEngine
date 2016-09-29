@@ -14,6 +14,7 @@ public:
 	void SetMatrix(const Matrix44f & aMatrix);
 	const Matrix44f & GetMatrix() const;
 
+	void SetPosition(const Vector3f & aPosition);
 	Vector3f GetPosition() const;
 
 	const std::shared_ptr<Model> & GetModel();
@@ -29,6 +30,11 @@ private:
 inline const Matrix44f & ModelInstance::GetMatrix() const
 {
 	return myWorldMatrix;
+}
+
+inline void ModelInstance::SetPosition(const Vector3f & aPosition)
+{
+	myWorldMatrix.SetPosition(aPosition);
 }
 
 inline Vector3f ModelInstance::GetPosition() const

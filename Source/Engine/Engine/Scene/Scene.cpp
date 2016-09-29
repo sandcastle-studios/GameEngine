@@ -108,14 +108,12 @@ std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, 
 std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
 {
 	std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+	object->SetPosition(aPosition);
+	object->SetScale(aScale);
+	object->SetRotation(aOrientation);
 
 	SharedPtrComponent<ModelComponent> modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
-	std::shared_ptr<ModelInstance> modelInstance = std::make_shared<ModelInstance>(aModel);
-	Quaternion q = aOrientation;
-	q.Normalize();
-	modelInstance->SetMatrix(q.GenerateMatrix() * Matrix44f::CreateScale(aScale.x, aScale.y, aScale.z) * Matrix44f::CreateTranslation(aPosition));
-	modelComponent->SetModel(modelInstance);
-
+	modelComponent->SetModel(aModel);
 	object->AddComponent(modelComponent);
 
 	myObjects.Add(object);

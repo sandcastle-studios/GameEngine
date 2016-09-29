@@ -192,6 +192,7 @@
     <ClInclude Include="Engine\Texture\TextureCube.h" />
     <ClInclude Include="Engine\Camera\CameraController.h" />
     <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
+    <ClInclude Include="Engine\Component\BouncingComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -315,6 +316,7 @@
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
     <ClCompile Include="Engine\Camera\CameraController.cpp" />
     <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
+    <ClCompile Include="Engine\Component\BouncingComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

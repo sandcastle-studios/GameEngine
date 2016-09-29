@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Component/BaseComponent.h"
 
-class ModelInstance;
+class Model;
 
 class ModelComponent : public BaseComponent
 {
@@ -13,14 +13,13 @@ public:
 
 	virtual void Render() const override;
 
-	void SetModel(std::shared_ptr<ModelInstance> aModel);
+	void SetModel(std::shared_ptr<Model> aModel);
 
 	virtual void Construct() override;
 
 	virtual void Destruct() override;
 
 private:
-	std::shared_ptr<ModelInstance> myModel;
-
+	std::shared_ptr<Model> myModel;
 };
 

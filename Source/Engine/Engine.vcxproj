@@ -245,6 +245,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Camera\CameraController.h" />
+    <ClInclude Include="Engine\Component\BouncingComponent.h" />
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\Factory\BaseComponentFactory.h" />
     <ClInclude Include="Engine\Component\Pointer\SharedPtrComponent.h" />
@@ -356,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Camera\CameraController.cpp" />
+    <ClCompile Include="Engine\Component\BouncingComponent.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />

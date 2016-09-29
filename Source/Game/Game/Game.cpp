@@ -14,7 +14,7 @@
 #include "SoundTestScene.h"
 //#include "LightingTestScene.h"
 //#include <Engine\SplashScreen\SplashScreenScene.h>
-#include "EnemyTestScene.h"
+#include "Game/SprintReviewScene.h"
 #include "PbrTestScene.h"
 #include "PlayerTestScene.h"
 

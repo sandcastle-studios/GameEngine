@@ -12,11 +12,13 @@
 #include <Engine\Component\ModelComponent.h>
 #include <Engine\GameObject\GameObject.h>
 #include "..\Engine\Engine\Camera\Controllers\FreeSpaceCameraController.h"
+#include "..\Engine\Engine\Model\CubeModel.h"
 
 PbrTestScene::PbrTestScene()
 	: Scene("spacebox.dds")
 {
-	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/stefan_sphere/testSpheres.fbx")); // 
+	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
+	myHead = std::make_shared<CubeModel>(myEffect, nullptr); // 
 	
 	auto bb = myHead->GetBoundingBox();
 
@@ -46,7 +48,7 @@ void PbrTestScene::Update(const Time & aDeltaTime)
 	}
 	ImGui::End();
 
-	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+	//myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	Scene::Update(aDeltaTime);
 }
