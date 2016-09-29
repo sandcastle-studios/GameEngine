@@ -18,7 +18,7 @@ public:
 		myStack.RemoveAtIndex(myStack.Size() - 1);
 		return value;
 	}
-	T Top()
+	T & Top()
 	{
 		assert(myStack.Size() > 0 && "STACK IS EMPTY");
 		return myStack.GetLast();

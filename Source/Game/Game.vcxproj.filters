@@ -15,6 +15,9 @@
     <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
     <ClInclude Include="Game\SoundTestScene.h" />
     <ClInclude Include="PbrTestScene.h" />
+    <ClInclude Include="PlayerTestScene.h" />
+    <ClInclude Include="PlayerShootComponent.h" />
+    <ClInclude Include="ShotComponent.h" />
     <ClInclude Include="Game\SprintReviewScene.h" />
     <ClInclude Include="Game\CollisionTestScene.h" />
     <ClInclude Include="Game\CockpitTestScene.h" />
@@ -33,6 +36,9 @@
     <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
     <ClCompile Include="Game\SoundTestScene.cpp" />
     <ClCompile Include="PbrTestScene.cpp" />
+    <ClCompile Include="PlayerTestScene.cpp" />
+    <ClCompile Include="PlayerShootComponent.cpp" />
+    <ClCompile Include="ShotComponent.cpp" />
     <ClCompile Include="Game\SprintReviewScene.cpp" />
     <ClCompile Include="Game\CollisionTestScene.cpp" />
     <ClCompile Include="Game\CockpitTestScene.cpp" />

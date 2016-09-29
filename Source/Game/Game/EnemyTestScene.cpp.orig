@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SprintReviewScene.h"
+#include "EnemyTestScene.h"
 #include <Engine\Component\Factory\ComponentFactory.h>
 #include <Engine/Model/ModelInstance.h>
 #include <Engine\Component\ModelComponent.h>
@@ -8,34 +8,43 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+<<<<<<< HEAD
+#include <Engine/DataParser/DataParser.h>
 
+EnemyTestScene::EnemyTestScene(const char* aName) : Scene(aName)
+=======
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 
-
-SprintReviewScene::SprintReviewScene()
+EnemyTestScene::EnemyTestScene()
+>>>>>>> player_shooting
 {
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+
 	CreateFactories();
 }
 
-SprintReviewScene::~SprintReviewScene()
+EnemyTestScene::~EnemyTestScene()
 {
 }
 
-void SprintReviewScene::Update(const Time & aDeltaTime)
+void EnemyTestScene::Update(const Time & aDeltaTime)
 {
 	Scene::Update(aDeltaTime);
 }
 
-void SprintReviewScene::Render()
+void EnemyTestScene::Render()
 {
 	Scene::Render();
 }
 
-void SprintReviewScene::CreateFactories()
+void EnemyTestScene::CreateFactories()
 {
 	PreCreateComponentFactory<ModelComponent>();
 	PreCreateComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = CreateGameObject();
+	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+
+	//GetComponentFactory<ModelComponent>()->CreateComponent();
 
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
@@ -44,7 +53,7 @@ void SprintReviewScene::CreateFactories()
 	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
 	moarModel->SetModel(actualModel);
-
+	
 	enemy->AddComponent<ModelComponent>(prettyModel);
 	enemy->AddComponent<ModelComponent>(moarModel);
 

@@ -10,12 +10,14 @@ struct GameObjectData
 	Quaternion myRotation;
 	Vector3f myPosition;
 	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
+	std::shared_ptr<Scene> myScene;
 };
 
 class GameObject
 {
 public:
-	GameObject(Scene & aScene, const GameObjectData * aData = nullptr);
+	GameObject();
+	GameObject(const GameObjectData& aData);
 	~GameObject();
 
 	void SetPosition(const Vector3f & aPosition);
@@ -52,11 +54,15 @@ public:
 	void SetData(const GameObjectData& aData);
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
+<<<<<<< HEAD
 	std::string myID;
+=======
 	Vector3f myPosition;
 	Vector3f myScale;
+>>>>>>> player_shooting
 	Quaternion myRotation;
-	Scene * myScene;
+	Vector3f myPosition;
+	std::shared_ptr<Scene> myScene;
 };
 
 inline Scene & GameObject::GetScene()

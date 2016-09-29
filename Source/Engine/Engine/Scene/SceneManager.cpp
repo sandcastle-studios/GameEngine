@@ -19,7 +19,7 @@ SceneManager::~SceneManager()
 {
 }
 
-std::shared_ptr<Scene> SceneManager::LoadScene(const char* aFilePath)
+std::shared_ptr<Scene> SceneManager::LoadJsonScene(const char* aFilePath)
 {
 	if (myScenes.find(aFilePath) == myScenes.end())
 	{
@@ -42,8 +42,9 @@ std::shared_ptr<JsonScene> SceneManager::CreateScene(const char* aFilePath)
 
 	for (unsigned short i = 0; i < static_cast<unsigned short>(sceneData["hierarchy"].Capacity()); ++i)
 	{
-		DataNode objectNode = sceneData["hierarchy"][i];		
-		newScene->CreateGameObject(LoadGameObject(objectNode, newScene));
+		DataNode objectNode = sceneData["hierarchy"][i];
+		GameObjectData data = LoadGameObject(objectNode, newScene);
+		newScene->CreateGameObject(&data);
 	}
 
 
@@ -54,7 +55,6 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 {
 	GameObjectData objectData;
 	objectData.myID = aObjectNode["name"].GetString();
-	objectData.myScene = aScene;
 
 	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
 	{
@@ -79,8 +79,9 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 		else if (componentType == "ModelData")
 		{
 			//TODO: Send texture into model comp. as well, also send desired effect/shader to use for the model
-			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(aScene->GetComponentFactory<ModelComponent>()->CreateComponent());
-			SharedPtrComponent<ModelComponent>::CastFrom(newComponent)->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+			auto && mc = aScene->GetComponentFactory<ModelComponent>()->CreateComponent();
+			mc->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(mc);
 		}
 		else
 		{

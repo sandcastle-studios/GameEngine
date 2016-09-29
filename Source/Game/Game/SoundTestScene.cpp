@@ -8,6 +8,7 @@
 #include <Engine\Rendering\ModelRenderer.h>
 #include "Engine\Engine.h"
 #include "Engine\SoundManager\SoundManger.h"
+#include "..\Engine\Engine\Camera\Controllers\FreeSpaceCameraController.h"
 
 
 void ErrorCallback(const char* aError)
@@ -22,7 +23,9 @@ SoundTestScene::SoundTestScene()
 	bool success;
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(model));
-	GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
+	SetCameraOrientation(Vector3f(0.0f, 0.0f, -1.0f));
+
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 
 	success = Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().SetErrorCallBack(ErrorCallback);

@@ -88,7 +88,6 @@ SharedPtr<TPointerType>::SharedPtr(SharedPtr && aOtherPointer)
 	aOtherPointer.myPointer = nullptr;
 	aOtherPointer.myReferenceCounter = nullptr;
 	aOtherPointer.myReturnFunction = nullptr;
-	Engine::GetLogger().LogInfo("derp {0}", myReferenceCounter->load());
 }
 
 template <typename TPointerType>
@@ -114,7 +113,6 @@ SharedPtr<TPointerType> & SharedPtr<TPointerType>::operator=(SharedPtr && aOther
 	aOtherPointer.myPointer = nullptr;
 	aOtherPointer.myReferenceCounter = nullptr;
 	aOtherPointer.myReturnFunction = nullptr;
-	Engine::GetLogger().LogInfo("meh {0}", myReferenceCounter->load());
 	return *this;
 }
 

@@ -20,7 +20,7 @@ CollisionTestScene::CollisionTestScene(const char * aPoppyName) : Scene(aPoppyNa
 {
 	CreateFactories();
 
-	GetCamera().SetPosition(Vector3f(0.f, 0.f, -3.f));
+	SetCameraOrientation(Vector3f(0.f, 0.f, -3.f));
 
 	myCollisionSphere1 = std::make_unique<SphereIntersection>();
 	myCollisionSphere2 = std::make_unique<SphereIntersection>();
