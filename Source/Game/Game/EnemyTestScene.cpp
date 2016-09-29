@@ -37,7 +37,7 @@ void EnemyTestScene::CreateFactories()
 	PreCreateComponentFactory<ModelComponent>();
 	PreCreateComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> enemy = CreateGameObject();
 
 	//GetComponentFactory<ModelComponent>()->CreateComponent();
 

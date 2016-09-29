@@ -103,9 +103,11 @@ void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
 	myObjects.Reserve(aObjectCount);
 }
 
-void Scene::CreateGameObject(const GameObjectData& aData)
+std::shared_ptr<GameObject> Scene::CreateGameObject(const GameObjectData* aData)
 {
-	myObjects.Add(std::make_shared<GameObject>(aData));
+	std::shared_ptr<GameObject> go = std::make_shared<GameObject>(*this, aData);
+	myObjects.Add(go);
+	return go;
 }
 
 std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
@@ -115,7 +117,7 @@ std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, 
 
 std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
 {
-	std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> object = std::make_shared<GameObject>(*this, nullptr);
 	object->SetPosition(aPosition);
 	object->SetScale(aScale);
 	object->SetRotation(aOrientation);
