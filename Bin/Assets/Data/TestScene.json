@@ -6,9 +6,9 @@
       "components": [
         {
           "localPosition": [
-            1.93,
+            0.61,
             3.87,
-            -3.678
+            2.15
           ],
           "localRotation": [
             0.0,
@@ -22,6 +22,11 @@
             1.0
           ],
           "type": "Transform"
+        },
+        {
+          "modelPath": "models/tga_companioncube/companion.fbx",
+          "texturePath": "",
+          "type": "ModelData"
         }
       ],
       "children": [
@@ -46,6 +51,11 @@
                 1.0
               ],
               "type": "Transform"
+            },
+            {
+              "modelPath": "models/tga_companioncube/companion.fbx",
+              "texturePath": "",
+              "type": "ModelData"
             }
           ],
           "children": []
@@ -82,9 +92,9 @@
       "components": [
         {
           "localPosition": [
-            3.4,
+            7.54,
             4.3,
-            -6.31
+            5.41
           ],
           "localRotation": [
             0.0,
