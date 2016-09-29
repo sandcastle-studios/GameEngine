@@ -44,6 +44,7 @@ __forceinline T min(T a, T b)
 #include "Utilities\Math\Quaternion.h"
 #include "Utilities\Container\Stack.h"
 
+#include "Utilities\Shapes\SphereShape.h"
 
 #ifdef WINDOWS
 	#include <Windows.h>

@@ -16,6 +16,8 @@
 //#include <Engine\SplashScreen\SplashScreenScene.h>
 #include "EnemyTestScene.h"
 #include "PbrTestScene.h"
+#include "Game/CollisionTestScene.h"
+#include "Game/CockpitTestScene.h"
 
 Game::Game()
 {
@@ -82,7 +84,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<EnemyTestScene>();
+	myScene = std::make_unique<CockpitTestScene>();
 
 	CreatePerspective();
 }
