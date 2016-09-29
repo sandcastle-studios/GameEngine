@@ -9,6 +9,7 @@
 #include "Engine\Engine.h"
 #include "Engine\SoundManager\SoundManger.h"
 #include "..\ImGui\imgui.h"
+#include "..\Engine\Engine\SoundManager\PlaySoundEvent.h"
 
 
 void ErrorCallback(const char* aError)
@@ -23,7 +24,7 @@ SoundTestScene::SoundTestScene()
 	bool success;
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(model));
-	GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
+	//GetCamera().SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
 
 	success = Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().SetErrorCallBack(ErrorCallback);
@@ -45,7 +46,7 @@ void SoundTestScene::Update(const Time & aDeltaTime)
 	{
 		if (ImGui::Button("Play sound!") == true)
 		{
-			Engine::GetSoundManager().PostEvent("Play_Derp");
+			PostMaster::Post(PlaySoundEvent("Play_Derp"));
 		}
 	}
 	ImGui::End();

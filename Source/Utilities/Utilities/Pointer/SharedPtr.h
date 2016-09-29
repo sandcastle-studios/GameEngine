@@ -12,6 +12,11 @@ public:
 
 	SharedPtr & operator=(SharedPtr && aOtherPointer);
 	SharedPtr & operator=(const SharedPtr & aOtherPointer);
+	bool operator==(std::nullptr_t aNullptr) const;
+	bool operator!=(std::nullptr_t aNullptr) const;
+	bool operator==(const SharedPtr & aOtherPointer) const;
+	bool operator!=(const SharedPtr & aOtherPointer) const;
+
 	unsigned short GetRefCount()const;
 	TPointerType *operator->();
 	const TPointerType &operator*();
@@ -22,6 +27,30 @@ protected:
 	std::atomic_int *myReferenceCounter;
 	TPointerType *myPointer;
 };
+
+template <typename TPointerType>
+bool SharedPtr<TPointerType>::operator==(const SharedPtr & aOtherPointer) const
+{
+	return (myPointer == aOtherPointer.myPointer);
+}
+
+template <typename TPointerType>
+bool SharedPtr<TPointerType>::operator!=(const SharedPtr & aOtherPointer) const
+{
+	return !(myPointer == aOtherPointer.myPointer);
+}
+
+template <typename TPointerType>
+bool SharedPtr<TPointerType>::operator==(std::nullptr_t aNullptr) const
+{
+	return (myPointer == nullptr);
+}
+
+template <typename TPointerType>
+bool SharedPtr<TPointerType>::operator!=(std::nullptr_t aNullptr) const
+{
+	return !(myPointer == nullptr);
+}
 
 template <typename TPointerType>
 SharedPtr<TPointerType>::SharedPtr(TPointerType *aPointer)
@@ -59,7 +88,6 @@ SharedPtr<TPointerType>::SharedPtr(SharedPtr && aOtherPointer)
 	aOtherPointer.myPointer = nullptr;
 	aOtherPointer.myReferenceCounter = nullptr;
 	aOtherPointer.myReturnFunction = nullptr;
-	Engine::GetLogger().LogInfo("derp {0}", myReferenceCounter->load());
 }
 
 template <typename TPointerType>
@@ -85,7 +113,6 @@ SharedPtr<TPointerType> & SharedPtr<TPointerType>::operator=(SharedPtr && aOther
 	aOtherPointer.myPointer = nullptr;
 	aOtherPointer.myReferenceCounter = nullptr;
 	aOtherPointer.myReturnFunction = nullptr;
-	Engine::GetLogger().LogInfo("meh {0}", myReferenceCounter->load());
 	return *this;
 }
 

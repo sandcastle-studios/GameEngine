@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine\Scene\Scene.h"
-class SoundTestScene :
-	public Scene
+
+class SoundTestScene : public Scene
 {
 public:
 	SoundTestScene();

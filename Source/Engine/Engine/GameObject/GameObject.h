@@ -4,11 +4,29 @@
 class Scene;
 class BaseComponent;
 
+struct GameObjectData
+{
+	std::string myID;
+	Quaternion myRotation;
+	Vector3f myPosition;
+	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
+};
+
 class GameObject
 {
 public:
-	GameObject();
+	GameObject(Scene & aScene, const GameObjectData * aData = nullptr);
 	~GameObject();
+
+	void SetPosition(const Vector3f & aPosition);
+	void SetRotation(const Quaternion & aRotation);
+	void SetScale(const Vector3f & aScale);
+
+	const Vector3f & GetPosition() const;
+	const Quaternion & GetRotation() const;
+	const Vector3f &  GetScale() const;
+
+	Matrix44f GetTransformation() const;
 
 	Scene & GetScene();
 	const Scene & GetScene() const;
@@ -18,7 +36,6 @@ public:
 
 	template <typename TStateType>
 	const TStateType & GetState() const;
-
 
 	template <typename TComponentType>
 	void AddComponent(const SharedPtrComponent<TComponentType> & aComponent);
@@ -32,10 +49,13 @@ public:
 	template <typename TComponentType>
 	size_t GetComponentCount() const;
 
-	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
-
-
+	void SetData(const GameObjectData& aData);
 private:
+	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
+	std::string myID;
+	Vector3f myPosition;
+	Vector3f myScale;
+	Quaternion myRotation;
 	Scene * myScene;
 };
 
@@ -71,6 +91,7 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 		myComponents.Resize(nextID);
 	}
 	myComponents[id].Add(SharedPtrComponent<BaseComponent>::CastFrom(aComponent));
+	myComponents[id].GetLast()->SetGameObject(*this);
 }
 
 template <typename TComponentType>

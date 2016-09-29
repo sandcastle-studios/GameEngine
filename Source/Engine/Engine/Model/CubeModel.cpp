@@ -129,7 +129,7 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	indicies[35] = 5;
 
 	Surface surface;
-	
+
 	if (aTexture != nullptr)
 	{
 		surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);

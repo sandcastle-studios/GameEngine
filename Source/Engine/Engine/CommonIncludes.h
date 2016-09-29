@@ -36,3 +36,5 @@
 #include "Engine\Model\Model.h"
 #include "Engine\Sprite\Sprite.h"
 #include "Engine\Debugging\Debugger.h"
+#include "Engine\DataParser\DataParser.h"
+//#include "Engine\GameObject\GameObject.h"

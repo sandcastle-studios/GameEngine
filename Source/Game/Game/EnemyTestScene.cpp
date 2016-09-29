@@ -8,8 +8,13 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
-EnemyTestScene::EnemyTestScene()
+#include <Engine/DataParser/DataParser.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+
+EnemyTestScene::EnemyTestScene(const char* aName) : Scene(aName)
 {
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+
 	CreateFactories();
 }
 
@@ -32,22 +37,22 @@ void EnemyTestScene::CreateFactories()
 	PreCreateComponentFactory<ModelComponent>();
 	PreCreateComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> enemy = CreateGameObject();
 
 	//GetComponentFactory<ModelComponent>()->CreateComponent();
 
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
+	prettyModel->SetModel(model);
 
 	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
-	moarModel->SetModel(std::make_shared<ModelInstance>(actualModel));
+	moarModel->SetModel(actualModel);
 	
 	enemy->AddComponent<ModelComponent>(prettyModel);
 	enemy->AddComponent<ModelComponent>(moarModel);
 
 	myObjects.Add(enemy);
 
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 }

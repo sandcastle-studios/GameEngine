@@ -16,5 +16,9 @@ void BaseComponent::Update(const Time & aDeltaTime)
 
 void BaseComponent::Render() const
 {
+}
 
+void BaseComponent::SetGameObject(GameObject & anObject)
+{
+	myObject = &anObject;
 }
