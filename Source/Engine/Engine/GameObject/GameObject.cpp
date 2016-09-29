@@ -4,7 +4,7 @@
 GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
 	myScene = &aScene;
-	myScale = Vector3f::One;
+	myScale = Vector3f::One / 200.f;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 
@@ -31,7 +31,7 @@ void GameObject::SetRotation(const Quaternion & aRotation)
 
 void GameObject::SetScale(const Vector3f & aScale)
 {
-	myScale = aScale;
+	myScale = aScale / 100.f;
 }
 
 const Vector3f & GameObject::GetPosition() const
