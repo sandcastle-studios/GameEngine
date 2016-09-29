@@ -30,6 +30,8 @@ PbrTestScene::PbrTestScene()
 	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -15.f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
+	myObjects.push_back(obj);
+
 	Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
 }
