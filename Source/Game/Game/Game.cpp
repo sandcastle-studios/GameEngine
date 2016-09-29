@@ -17,6 +17,7 @@
 #include "Game/SprintReviewScene.h"
 #include "PbrTestScene.h"
 #include "PlayerTestScene.h"
+#include "CollisionTestScene.h"
 
 Game::Game()
 {

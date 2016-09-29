@@ -30,6 +30,8 @@ Scene::Scene(const char* aName, const char * aSkyboxPath)
 		mySkybox = nullptr;
 	}
 
+	myScheduledRemovals = 0;
+
 	myFactories.Reserve(8);
 }
 
@@ -39,6 +41,28 @@ Scene::~Scene()
 
 void Scene::Update(const Time & aDeltaTime)
 {
+	if (myScheduledRemovals > 0)
+	{
+		for (int i = static_cast<int>(myObjects.Size()) - 1; i >= 0; i--)
+		{
+			if (myObjects[static_cast<unsigned short>(i)]->IsRemoved())
+			{
+				auto obj = myObjects[static_cast<unsigned short>(i)];
+				myObjects.RemoveCyclicAtIndex(static_cast<unsigned short>(i));
+				myScheduledRemovals--;
+
+				Engine::GetLogger().LogInfo("Refcount after removal: {0}", obj.use_count());
+
+				if (myScheduledRemovals == 0)
+				{
+					break;
+				}
+			}
+		}
+
+		myScheduledRemovals = 0;
+	}
+
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 	{
 		if (myFactories[iFactory] != nullptr)
@@ -108,6 +132,11 @@ std::shared_ptr<GameObject> Scene::CreateGameObject(const GameObjectData* aData)
 	std::shared_ptr<GameObject> go = std::make_shared<GameObject>(*this, aData);
 	myObjects.Add(go);
 	return go;
+}
+
+void Scene::IncrementRemovalCounter()
+{
+	myScheduledRemovals++;
 }
 
 std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)

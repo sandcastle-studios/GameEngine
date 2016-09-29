@@ -195,6 +195,7 @@
     <ClInclude Include="Engine\Camera\CameraController.h" />
     <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
     <ClInclude Include="Engine\Component\BouncingComponent.h" />
+    <ClInclude Include="Engine\SoundManager\PlaySoundEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">

@@ -1,10 +1,14 @@
 #include "stdafx.h"
 #include "Engine\GameObject\GameObject.h"
+#include "..\Scene\Scene.h"
+
+int nextId = 0;
 
 GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
 	myScene = &aScene;
 	myScale = Vector3f::One / 200.f;
+	myIsRemoved = false;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 
@@ -64,5 +68,14 @@ void GameObject::SetData(const GameObjectData& aData)
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{
 		AddComponent(aData.myComponentList[i]);
+	}
+}
+
+void GameObject::Remove()
+{
+	if (myIsRemoved == false)
+	{
+		myScene->IncrementRemovalCounter();
+		myIsRemoved = true;
 	}
 }

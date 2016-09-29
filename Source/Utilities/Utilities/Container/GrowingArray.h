@@ -288,7 +288,10 @@
 			}
 			++i;
 		}
+
 		assert(myArray[i] == aObject && "OBJECT NOT FOUND");
+		myArray[i] = ObjectType();
+
 		if (i < myNrOfItems -1)
 		{
 			myArray[i] = myArray[--myNrOfItems];
@@ -306,6 +309,8 @@
 
 		assert((aItemNumber >= 0 && aItemNumber < myNrOfItems) && "INDEX OUT OF BOUNDS!");
 
+		myArray[aItemNumber] = ObjectType();
+
 		if (aItemNumber < myNrOfItems - 1)
 		{
 			myArray[aItemNumber] = myArray[--myNrOfItems];
@@ -321,6 +326,8 @@
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
 		assert((aItemNumber >= 0 && aItemNumber < myNrOfItems) && "INDEX OUT OF BOUNDS!");
+
+		myArray[aItemNumber] = ObjectType();
 
 		for (SizeType i = aItemNumber; i < myNrOfItems; ++i)
 		{

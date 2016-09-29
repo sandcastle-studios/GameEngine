@@ -121,7 +121,7 @@ SharedPtr<TPointerType>::~SharedPtr()
 {
 	if (myReferenceCounter != nullptr)
 	{
-		int count = myReferenceCounter->fetch_sub(1);
+		int count = myReferenceCounter->fetch_sub(1) - 1;
 
 		if (count <= 0)
 		{
