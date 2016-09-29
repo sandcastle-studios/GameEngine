@@ -9,15 +9,7 @@
 #include "Engine\Engine.h"
 #include "Engine\SoundManager\SoundManger.h"
 #include "..\Engine\Engine\Camera\Controllers\FreeSpaceCameraController.h"
-
-
-void ErrorCallback(const char* aError)
-{
-	std::string temp = aError;
-	std::wstring errorMsg(temp.begin(), temp.end());
-	OutputDebugString(errorMsg.c_str());
-}
-
+ 
 SoundTestScene::SoundTestScene()
 {
 	bool success;
@@ -28,7 +20,6 @@ SoundTestScene::SoundTestScene()
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 
 	success = Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
-	Engine::GetSoundManager().SetErrorCallBack(ErrorCallback);
 
 	success = Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 	success;

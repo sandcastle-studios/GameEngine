@@ -7,6 +7,7 @@
 #include "ShotComponent.h"
 #include <Engine/Component/Factory/ComponentFactory.h>
 #include <Engine/GameObject/GameObject.h>
+#include "../Engine/Engine/SoundManager/SoundManger.h"
 
 void PlayerShootComponent::Construct()
 {
@@ -43,7 +44,9 @@ ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eR
 		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * distance, shotSize, camera.GetOrientation());
 	else
 		shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * -distance, shotSize, camera.GetOrientation());
-	
+
+	Engine::GetSoundManager().PostEvent("Play_Derp");
+
 	auto shotComponent = myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent();
 	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 10.f);
 	shot->AddComponent(shotComponent);
