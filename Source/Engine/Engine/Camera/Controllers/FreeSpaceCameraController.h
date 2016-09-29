@@ -9,8 +9,8 @@ public:
 
 	virtual CameraControllerResult Update(const Time & aDeltaTime, Camera & aCamera) override;
 
-	ReceiveResult Receive(const AnyKeyDownMessage & aMessage) override;
 	ReceiveResult Receive(const AnyKeyUpMessage & aMessage) override;
+	ReceiveResult Receive(const AnyKeyDownMessage & aMessage) override;
 
 private:
 	float myMovementSpeed;
@@ -30,4 +30,3 @@ private:
 	bool myMoveDown;
 	bool myMoveUp;
 };
-

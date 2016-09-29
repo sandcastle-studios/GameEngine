@@ -85,10 +85,59 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 	}
 }
 
-ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyDownMessage & aMessage)
-{
 
+ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyUpMessage & aMessage)
+{
+	switch (aMessage.key)
+	{
+	case KeyboardKey::eQ:
+		myRollLeft = true;
+		break;
+	case KeyboardKey::eE:
+		myRollRight = true;
+		break;
+
+	case KeyboardKey::eA:
+		myMoveLeft = true;
+		break;
+	case KeyboardKey::eD:
+		myMoveRight = true;
+		break;
+	case KeyboardKey::eW:
+		myMoveForward = true;
+		break;
+	case KeyboardKey::eS:
+		myMoveBackward = true;
+		break;
+
+	case KeyboardKey::eLeft:
+		myRotateLeft = true;
+		break;
+	case KeyboardKey::eRight:
+		myRotateRight = true;
+		break;
+	case KeyboardKey::eUp:
+		myPitchForward = true;
+		break;
+	case KeyboardKey::eDown:
+		myPitchBackward = true;
+		break;
+
+	case KeyboardKey::eControl:
+		myMoveDown = true;
+		break;
+	case KeyboardKey::eSpace:
+		myMoveUp = true;
+		break;
+
+	case KeyboardKey::eAlt:
+		Engine::GetLogger().LogInfo("eAlt pressed");
+		break;
+	}
+	return ReceiveResult::eContinue;
 }
+
+
 
 ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyUpMessage & aMessage)
 {
