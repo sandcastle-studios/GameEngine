@@ -84,7 +84,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<CockpitTestScene>();
+	myScene = std::make_unique<CollisionTestScene>();
 
 	CreatePerspective();
 }
