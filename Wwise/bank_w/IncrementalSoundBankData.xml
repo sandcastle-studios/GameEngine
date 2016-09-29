@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <IncrementalBankBuild Version="4" Flags="601859981">
+	<Platform GUID="{BD0BDF13-3125-454F-8BFD-319537169F82}">
+		<Language ID="0">
+			<Bank Name="Init" Hash="1054434091" StreamHash="157587662" Timestamp="131196502937677783"/>
+			<Bank Name="level1" Hash="3688302756" StreamHash="157587662" Timestamp="131196502937557703"/>
+		</Language>
+	</Platform>
+	<Platform GUID="{869AD233-43F2-4C0F-9126-79F44C15E1DA}">
+		<Language ID="0">
+			<Bank Name="Init" Hash="2837672369" StreamHash="157587662" Timestamp="131196502939919279"/>
+			<Bank Name="level1" Hash="3688302756" StreamHash="157587662" Timestamp="131196502939789192"/>
+		</Language>
+	</Platform>
 	<Platform GUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EC}">
 		<Language ID="0">
-			<Bank Name="Init" Hash="2766525704" StreamHash="157587662" Timestamp="131196095836012261"/>
-			<Bank Name="level1" Hash="1257926206" StreamHash="157587662" Timestamp="131196231382023733"/>
+			<Bank Name="Init" Hash="2766525704" StreamHash="157587662" Timestamp="131196099820701652"/>
+			<Bank Name="level1" Hash="1244501123" StreamHash="157587662" Timestamp="131196513891065883"/>
+		</Language>
+	</Platform>
+	<Platform GUID="{ECE03DB4-F948-462D-B2BB-A9173012B1F9}">
+		<Language ID="0">
+			<Bank Name="Init" Hash="3592833362" StreamHash="157587662" Timestamp="131196502936832220"/>
+			<Bank Name="level1" Hash="3688302756" StreamHash="157587662" Timestamp="131196502936697129"/>
+		</Language>
+	</Platform>
+	<Platform GUID="{9C6217D5-DD11-4795-87C1-6CE02853C541}">
+		<Language ID="0">
+			<Bank Name="Init" Hash="507575851" StreamHash="157587662" Timestamp="131196502938598397"/>
+			<Bank Name="level1" Hash="3688302756" StreamHash="157587662" Timestamp="131196502938443292"/>
 		</Language>
 	</Platform>
 	<Platform GUID="{A2D401DE-B8B6-4FEB-8142-137C34D507CB}">
 		<Language ID="0">
-			<Bank Name="Init" Hash="1240343039" StreamHash="157587662" Timestamp="131193777247681857"/>
-			<Bank Name="level1" Hash="3266944973" StreamHash="157587662" Timestamp="131193777247546770"/>
+			<Bank Name="Init" Hash="1240343039" StreamHash="157587662" Timestamp="131196502935921610"/>
+			<Bank Name="level1" Hash="3688302756" StreamHash="157587662" Timestamp="131196502935786518"/>
 		</Language>
 	</Platform>
 </IncrementalBankBuild>

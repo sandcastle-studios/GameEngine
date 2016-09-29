@@ -1,16 +1,20 @@
 #include "stdafx.h"
 #include "FreeSpaceCameraController.h"
+#include <Engine\SoundManager\SoundManger.h>
 
 FreeSpaceCameraController::FreeSpaceCameraController(const float aMovementSpeed, const float aRotationSpeed)
 {
+	myRotationAccelerationCap =  aRotationSpeed / 3.f;
+
 	myDriftMovementSpeed = aMovementSpeed;
-	myDriftRotationSpeed = aRotationSpeed;
+	myDriftRotationSpeed = aRotationSpeed - myRotationAccelerationCap;
 
 	myCurrentMovementSpeed = aMovementSpeed;
 	myCurrentRotationSpeed = aRotationSpeed;
 
 	myBoostMovementSpeed = myDriftMovementSpeed * 7.5f;
-	myBoostRotationSpeed = myDriftRotationSpeed / 2.f;
+	myBoostRotationSpeed = (aRotationSpeed / 2.f) - myRotationAccelerationCap;
+
 
 	myRotateLeft = false;
 	myRotateRight = false;
@@ -35,61 +39,88 @@ FreeSpaceCameraController::~FreeSpaceCameraController()
 
 CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime, Camera & aCamera)
 {
-	const float TurnAccelerationAmount = myDriftRotationSpeed / 3.f;
-
 	UpdateAcceleration(aDeltaTime);
+
+	float strafeSpeed = myCurrentMovementSpeed;
+	if (myBoosting == true)
+	{
+		strafeSpeed /= 2.f;
+	}
+
+	bool isMoving = false;
 
 	if (myRollLeft)
 	{
 		aCamera.GetOrientation().RotateZ(-myDriftRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRollRight)
 	{
 		aCamera.GetOrientation().RotateZ(myDriftRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveLeft)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * strafeSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveRight)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * strafeSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveForward)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveBackward)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveUp)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * strafeSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveDown)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * strafeSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myPitchForward)
 	{
 		aCamera.GetOrientation().RotateX(myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myPitchBackward)
 	{
 		aCamera.GetOrientation().RotateX(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRotateLeft)
 	{
 		aCamera.GetOrientation().RotateY(myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRotateRight)
 	{
 		aCamera.GetOrientation().RotateY(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
+	}
+
+	if (isMoving)
+	{
+		Engine::GetSoundManager().PostEvent("Player_Thruster");
+	}
+	else
+	{
+		Engine::GetSoundManager().PostEvent("Stop_Thruster");
 	}
 
 	return CameraControllerResult::eKeepControl;
@@ -201,6 +232,9 @@ ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyUpMessage & aMessag
 	return ReceiveResult::eContinue;
 }
 
+
+//PRIVATE FUNCTIONS:
+
 void FreeSpaceCameraController::SetIsBoosting(const bool aIsBoosting)
 {
 	myBoosting = aIsBoosting;
@@ -220,6 +254,7 @@ void FreeSpaceCameraController::SetIsBoosting(const bool aIsBoosting)
 
 void FreeSpaceCameraController::UpdateAcceleration(const Time & aDeltaTime)
 {
+	//Update movement acceleration
 	const float AccelerationSpeed = (myBoostMovementSpeed - myDriftMovementSpeed) / 1.f;
 	const float DecelerationSpeed = AccelerationSpeed * 2.f;
 
@@ -242,5 +277,66 @@ void FreeSpaceCameraController::UpdateAcceleration(const Time & aDeltaTime)
 			if (myCurrentMovementSpeed < myDriftMovementSpeed)
 				myCurrentMovementSpeed = myDriftMovementSpeed;
 		}
+	}
+
+
+	//Update rotation acceleration
+	float currentRotateSpeedCap = GetCurrentRotateAccelerationCap();
+	float currentRotateSpeedBase = GetCurrentRotateAccelerationBase();
+	const float RotateAccelerationSpeed = (currentRotateSpeedCap - currentRotateSpeedBase) / 1.f;
+	if (GetIsRotating() == false)
+	{
+		myCurrentRotationSpeed = currentRotateSpeedBase;
+		/*
+		if (myCurrentRotationSpeed > currentRotateSpeedBase)
+		{
+		myCurrentRotationSpeed -= RotateAccelerationSpeed * aDeltaTime.InSeconds();
+		if (myCurrentRotationSpeed < currentRotateSpeedBase)
+		myCurrentRotationSpeed = currentRotateSpeedBase;
+		}
+		*/
+	}
+	else
+	{		
+		if (myCurrentRotationSpeed < currentRotateSpeedCap)
+		{
+			myCurrentRotationSpeed += RotateAccelerationSpeed * aDeltaTime.InSeconds();
+			if (myCurrentRotationSpeed > currentRotateSpeedCap)
+				myCurrentRotationSpeed = currentRotateSpeedCap;
+		}
+	}
+}
+
+bool FreeSpaceCameraController::GetIsMoving() const
+{
+	return (myMoveUp == true || myMoveDown == true || myMoveForward == true || myMoveBackward == true || myMoveLeft == true || myMoveRight == true);
+}
+
+bool FreeSpaceCameraController::GetIsRotating() const
+{
+	return (myRotateLeft == true || myRotateRight == true || myRollLeft == true || myRollRight == true || myPitchForward == true || myPitchBackward == true);
+}
+
+float FreeSpaceCameraController::GetCurrentRotateAccelerationCap() const
+{
+	if (myBoosting == false)
+	{
+		return myDriftRotationSpeed + myRotationAccelerationCap;
+	}
+	else
+	{
+		return myBoostRotationSpeed + myRotationAccelerationCap;
+	}
+}
+
+float FreeSpaceCameraController::GetCurrentRotateAccelerationBase() const
+{
+	if (myBoosting == false)
+	{
+		return myDriftRotationSpeed;
+	}
+	else
+	{
+		return myBoostRotationSpeed;
 	}
 }
