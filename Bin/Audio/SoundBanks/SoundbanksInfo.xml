@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="10" SoundbankVersion="113">
 	<RootPaths>
-		<ProjectRoot>C:\SandCastle\SandBucket\Wwise\bank_w\</ProjectRoot>
-		<SourceFilesRoot>C:\SandCastle\SandBucket\Wwise\bank_w\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\SandCastle\SandBucket\Bin\Audio\SoundBanks\</SoundBanksRoot>
+		<ProjectRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\sterpa1\Documents\GameEngine\Bin\Audio\SoundBanks\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>C:\SandCastle\SandBucket\Wwise\bank_w\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -31,9 +31,9 @@
 					<ShortName>mega_mob_incoming.wav</ShortName>
 					<Path>SFX\mega_mob_incoming_9E69E797.wem</Path>
 				</File>
-				<File Id="818493151" Language="SFX">
-					<ShortName>laserMachineGun.wav</ShortName>
-					<Path>SFX\laserMachineGun_4B8CC0C5.wem</Path>
+				<File Id="632474148" Language="SFX">
+					<ShortName>Randomize7.wav</ShortName>
+					<Path>SFX\Randomize7_9E69E797.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

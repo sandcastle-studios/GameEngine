@@ -50,6 +50,11 @@ public:
 	size_t GetComponentCount() const;
 
 	void SetData(const GameObjectData& aData);
+
+	void Remove();
+
+	bool IsRemoved() const;
+
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
 	std::string myID;
@@ -57,6 +62,7 @@ private:
 	Vector3f myScale;
 	Quaternion myRotation;
 	Scene * myScene;
+	bool myIsRemoved;
 };
 
 inline Scene & GameObject::GetScene()
@@ -123,4 +129,9 @@ size_t GameObject::GetComponentCount() const
 {
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
 	return myComponents[id].Size();
+}
+
+inline bool GameObject::IsRemoved() const
+{
+	return myIsRemoved;
 }
