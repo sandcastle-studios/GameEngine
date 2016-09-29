@@ -17,6 +17,7 @@
     <ClInclude Include="Utilities\Intersection\IntersectionShapes\SphereIntersection.h" />
     <ClInclude Include="Utilities\Intersection\IntersectionTests.h" />
     <ClInclude Include="Utilities\Randomizer\Randomizer.h" />
+    <ClInclude Include="Utilities\Math\MathMacros.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
