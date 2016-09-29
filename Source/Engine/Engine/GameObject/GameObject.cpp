@@ -34,7 +34,7 @@ void GameObject::SetRotation(const Quaternion & aRotation)
 
 void GameObject::SetScale(const Vector3f & aScale)
 {
-	myScale = aScale / 100.f; //Divide by 100 to account for m -> cm system;
+	myScale = aScale;
 }
 
 const Vector3f & GameObject::GetPosition() const
@@ -63,7 +63,7 @@ void GameObject::SetData(const GameObjectData& aData)
 	myID = aData.myID;
 	myPosition = aData.myPosition;
 	myRotation = aData.myRotation;
-	myScale = aData.myScale / 100.f; //Divide by 100 to account for m -> cm system
+	myScale = aData.myScale;
 
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{

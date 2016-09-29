@@ -77,7 +77,7 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 				aObjectNode["components"][i]["localScale"][0].GetFloat(),
 				aObjectNode["components"][i]["localScale"][1].GetFloat(),
 				aObjectNode["components"][i]["localScale"][2].GetFloat()
-			);
+			) / 100.f;
 
 			continue;
 		}
