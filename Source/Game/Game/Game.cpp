@@ -5,19 +5,19 @@
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Camera\Camera.h>
 #include <Engine\Time\Stopwatch.h>
-#include <Engine\Scene\Scene.h>
+#include <Engine\Scene\JsonScene.h>
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
 #include <Engine\FileWatcher\FileChangeWatcher.h>
 #include "LightingTestScene.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
 #include "SoundTestScene.h"
-//#include "LightingTestScene.h"
-//#include <Engine\SplashScreen\SplashScreenScene.h>
+#include "Engine\Scene\SceneManager.h"
 #include "EnemyTestScene.h"
-#include "PbrTestScene.h"
-#include "Game/CollisionTestScene.h"
-#include "Game/CockpitTestScene.h"
+#include "Game/SprintReviewScene.h"
+
+
+
 
 Game::Game()
 {
@@ -59,7 +59,7 @@ void Game::Start()
 	}
 
 	// Destroy our world releasing it's resources allowing the engine to shut down
-	myScene = nullptr;
+	mySceneManager = nullptr;
 
 	Engine::DestroyInstance();
 }
@@ -84,7 +84,10 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<CollisionTestScene>();
+	mySceneManager = std::make_unique<SceneManager>();
+
+	mySceneManager->LoadScene("Assets/Data/TestScene.json");
+	//mySceneManager->LoadScene<EnemyTestScene>("EnemyTestScene");
 
 	CreatePerspective();
 }
@@ -94,9 +97,9 @@ void Game::Update(const Time &aDeltaTime)
 	Engine::GetResourceManager().Update();
 	Engine::GetFileWatcher().PostChanges();
 
-	if (myScene != nullptr)
+	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
-		myScene->Update(aDeltaTime);
+		mySceneManager->GetCurrentScene()->Update(aDeltaTime);
 	}
 }
 
@@ -104,9 +107,9 @@ void Game::Render()
 {
 	Engine::GetInstance().GetRenderer().ClearFrame();
 
-	if (myScene != nullptr)
+	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
-		myScene->Render();
+		mySceneManager->GetCurrentScene()->Render();
 	}
 
 	Engine::GetInstance().GetRenderer().Present();
@@ -114,5 +117,8 @@ void Game::Render()
 
 void Game::CreatePerspective()
 {
-	myScene->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+	if (mySceneManager->GetCurrentScene() != nullptr)
+	{
+		mySceneManager->GetCurrentScene()->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+	}
 }

@@ -9,14 +9,14 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
+#include "Engine\GameObject\GameObject.h"
 
-Scene::Scene(const char * aSkyboxPath)
+Scene::Scene(const char* aName, const char * aSkyboxPath)
 {
 	myCamera = std::make_unique<Camera>();
 
 	myEffect = std::make_shared<StandardEffect>();
-	myEffect = std::make_shared<StandardEffect>();
-	 
+	myName = aName;
 	if (aSkyboxPath != nullptr)
 	{
 		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
@@ -69,4 +69,14 @@ void Scene::Render()
 Camera & Scene::GetCamera()
 {
 	return *myCamera;
+}
+
+void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
+{
+	myObjects.Reserve(aObjectCount);
+}
+
+void Scene::CreateGameObject(const GameObjectData& aData)
+{
+	myObjects.Add(std::make_shared<GameObject>(aData));
 }

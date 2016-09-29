@@ -8,7 +8,9 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
-EnemyTestScene::EnemyTestScene()
+#include <Engine/DataParser/DataParser.h>
+
+EnemyTestScene::EnemyTestScene(const char* aName) : Scene(aName)
 {
 	CreateFactories();
 }

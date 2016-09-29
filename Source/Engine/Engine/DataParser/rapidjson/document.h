@@ -854,15 +854,15 @@ public:
         if (member != MemberEnd())
             return member->value;
 		else {
-			DL_ASSERT_CONDITIONAL(false, (std::string("Could not find key: ") + std::string(name.data_.s.str)).c_str());    // see above note
+			Error((std::string("Could not find key: ") + std::string(name.data_.s.str)).c_str());    // see above note
 
 			// This will generate -Wexit-time-destructors in clang
             // static GenericValue NullValue;
             // return NullValue;
 
             // Use static buffer and placement-new to prevent destruction
-            static char buffer[sizeof(GenericValue)];
-            return *new (buffer) GenericValue();
+            //static char buffer[sizeof(GenericValue)];
+            //return *new (buffer) GenericValue();
         }
     }
     template <typename SourceAllocator>

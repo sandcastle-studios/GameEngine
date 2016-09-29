@@ -6,6 +6,11 @@ GameObject::GameObject()
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 }
 
+GameObject::GameObject(const GameObjectData& aData)
+{
+	SetData(aData);
+}
+
 GameObject::~GameObject()
 {
 }
@@ -25,4 +30,17 @@ Matrix44f GameObject::GetTransformation() const
 	Matrix44f tempTransformation = myRotation.GenerateMatrix();
 	tempTransformation.SetPosition(myPosition);
 	return tempTransformation;
+}
+
+void GameObject::SetData(const GameObjectData& aData)
+{
+	myID = aData.myID;
+	myPosition = aData.myPosition;
+	myRotation = aData.myRotation;
+	myScene = aData.myScene;
+
+	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
+	{
+		AddComponent(aData.myComponentList[i]);
+	}
 }

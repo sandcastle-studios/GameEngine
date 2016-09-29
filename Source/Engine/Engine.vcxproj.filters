@@ -189,6 +189,8 @@
     <ClInclude Include="Engine\DataParser\rapidjson\reader.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
+    <ClInclude Include="Engine\Scene\SceneManager.h" />
+    <ClInclude Include="Engine\Scene\JsonScene.h" />
     <ClInclude Include="Engine\Texture\TextureCube.h" />
     <ClInclude Include="Engine\Component\BouncingComponent.h" />
   </ItemGroup>
@@ -311,6 +313,8 @@
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
+    <ClCompile Include="Engine\Scene\SceneManager.cpp" />
+    <ClCompile Include="Engine\Scene\JsonScene.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
     <ClCompile Include="Engine\Component\BouncingComponent.cpp" />
   </ItemGroup>

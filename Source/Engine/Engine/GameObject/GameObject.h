@@ -4,10 +4,20 @@
 class Scene;
 class BaseComponent;
 
+struct GameObjectData
+{
+	std::string myID;
+	Quaternion myRotation;
+	Vector3f myPosition;
+	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
+	std::shared_ptr<Scene> myScene;
+};
+
 class GameObject
 {
 public:
 	GameObject();
+	GameObject(const GameObjectData& aData);
 	~GameObject();
 
 	const Vector3f & GetPosition() const;
@@ -35,11 +45,13 @@ public:
 	template <typename TComponentType>
 	size_t GetComponentCount() const;
 
+	void SetData(const GameObjectData& aData);
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
-	Vector3f myPosition;
+	std::string myID;
 	Quaternion myRotation;
-	Scene * myScene;
+	Vector3f myPosition;
+	std::shared_ptr<Scene> myScene;
 };
 
 inline Scene & GameObject::GetScene()

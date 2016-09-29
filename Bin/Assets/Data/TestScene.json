@@ -1,0 +1,146 @@
+{
+  "name": "TestScene",
+  "hierarchy": [
+    {
+      "name": "parentCube",
+      "components": [
+        {
+          "localPosition": [
+            0.61,
+            3.87,
+            2.15
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "models/tga_companioncube/companion.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": [
+        {
+          "name": "childCube",
+          "components": [
+            {
+              "localPosition": [
+                0.0,
+                0.0,
+                1.109
+              ],
+              "localRotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "localScale": [
+                1.0,
+                1.0,
+                1.0
+              ],
+              "type": "Transform"
+            },
+            {
+              "modelPath": "models/tga_companioncube/companion.fbx",
+              "texturePath": "",
+              "type": "ModelData"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "platform",
+      "components": [
+        {
+          "localPosition": [
+            2.3435,
+            2.4468143,
+            -7.16502
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            14.5706644,
+            0.363473743,
+            17.6981373
+          ],
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "companion",
+      "components": [
+        {
+          "localPosition": [
+            7.54,
+            4.3,
+            5.41
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            100.0,
+            100.0,
+            100.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "models/tga_companioncube/companion.fbx",
+          "texturePath": "Heeeeeej",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+    {
+      "name": "Point light",
+      "components": [
+        {
+          "localPosition": [
+            2.24,
+            4.97,
+            -7.21
+          ],
+          "localRotation": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            0.371980429,
+            1.0,
+            0.109438822
+          ],
+          "type": "Transform"
+        }
+      ],
+      "children": []
+    }
+  ]
+}
