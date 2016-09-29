@@ -54,6 +54,7 @@ void ComponentFactory<TComponentType>::ReturnMemory(unsigned short aIndex)
 	Engine::GetLogger().LogInfo("Index {0} returned to factory.", aIndex);
 
 	myComponents[aIndex].Destruct();
+	myComponents[aIndex].~TComponentType();
 	myFreeMemorySlots.Push(aIndex);
 	myComponentsActiveTag[aIndex] = false;
 }
@@ -62,6 +63,7 @@ template <typename TComponentType>
 SharedPtrComponent<TComponentType> ComponentFactory<TComponentType>::CreateComponent()
 {
 	unsigned short index = GetAndActivateIndex();
+	new (&myComponents[index]) TComponentType();
 	myComponents[index].Construct();
 	return SharedPtrComponent<TComponentType>(this, index, &myComponents[index]);
 }

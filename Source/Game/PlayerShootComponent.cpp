@@ -31,8 +31,6 @@ void PlayerShootComponent::Destruct()
 
 ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage)
 {
-	std::cout << "---" << std::endl;
-
 	const Camera & camera = myObject->GetScene().GetCamera();
 	const Vector3f right = camera.GetOrientation().GetRight();
 	const float distance = 0.35f;
@@ -50,7 +48,7 @@ ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eR
 	Engine::GetSoundManager().PostEvent("Play_Derp");
 
 	auto shotComponent = myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent();
-	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 10.f);
+	shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 30.f);
 	shot->AddComponent(shotComponent);
 	return ReceiveResult::eContinue;
 }
