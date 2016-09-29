@@ -11,6 +11,7 @@
 #include <Engine\DataParser\DataParser.h>
 #include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 #include "..\SoundManager\SoundManger.h"
+#include "..\Game\ShotComponent.h"
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
@@ -30,6 +31,22 @@ JsonScene::~JsonScene()
 
 void JsonScene::Update(const Time & aDeltaTime)
 {
+	GrowingArray<GameObject*>tempShoots;
+	//GrowingArray<GameObject>
+
+	GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
+		[&](ShotComponent & ashot)
+		{
+			tempShoots.Add(&ashot.GetGameObject());
+		}
+	);
+	
+	
+
+	for ()
+
+
+
 	Engine::GetSoundManager().Update();
 
 	Scene::Update(aDeltaTime);
