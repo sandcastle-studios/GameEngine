@@ -13,6 +13,8 @@
 #include <Engine\Component\BouncingComponent.h>
 #include "..\SoundManager\SoundManger.h"
 #include "..\Game\ShotComponent.h"
+#include "..\Utilities\Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
+#include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
@@ -39,7 +41,9 @@ JsonScene::~JsonScene()
 void JsonScene::Update(const Time & aDeltaTime)
 {
 	GrowingArray<GameObject*>tempShoots;
-	//GrowingArray<GameObject>
+
+	SphereIntersection tempEnemyCollider;
+	SphereIntersection tempProjectileCollider;
 
 	GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
 		[&](ShotComponent & ashot)
@@ -48,9 +52,26 @@ void JsonScene::Update(const Time & aDeltaTime)
 		}
 	);
 	
-	
+	tempEnemyCollider.UpdatePosition(myEnemy->GetPosition());
+	tempEnemyCollider.SetRadius(myEnemy->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * myEnemy->GetScale().x);
 
-	for ()
+	for (unsigned short iShot = 0; iShot < tempShoots.Size(); ++iShot)
+	{
+		GameObject & tempShoot = *tempShoots[iShot];
+
+		tempProjectileCollider.UpdatePosition(tempShoot.GetPosition());
+		tempProjectileCollider.SetRadius(tempShoot.GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * tempShoot.GetScale().x);
+
+		if (Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true)
+		{
+			if (tempShoot.GetComponent < ShotComponent>()->myHasHit == false)
+			{
+				tempShoot.GetComponent < ShotComponent>()->myHasHit = true;
+
+				myEnemy->SetScale(myEnemy->GetScale() + Vector3f(0.1f, 0.1f, 0.1f));
+			}
+		}
+	}
 
 
 
