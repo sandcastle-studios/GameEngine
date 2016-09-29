@@ -19,7 +19,7 @@ Scene::Scene(const char* aName, const char * aSkyboxPath)
 	myName = aName;
 	if (aSkyboxPath != nullptr)
 	{
-		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(myEffect, std::make_shared<Texture>(aSkyboxPath)));
+		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
 	}
 	else
 	{
@@ -48,14 +48,14 @@ void Scene::Update(const Time & aDeltaTime)
 
 void Scene::Render()
 {
+	myCamera->ApplyToVS();
+
 	if (mySkybox != nullptr)
 	{
-		myCamera->ApplySkyboxMatrixToVS();
+		mySkybox->SetMatrix(Matrix44f::CreateTranslation(myCamera->GetPosition()));
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
 	}
-
-	myCamera->ApplyToVS();
 
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 	{
@@ -73,10 +73,10 @@ Camera & Scene::GetCamera()
 
 void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
 {
-	myObjects.reserve(aObjectCount);
+	myObjects.Reserve(aObjectCount);
 }
 
 void Scene::CreateGameObject(const GameObjectData& aData)
 {
-	myObjects.push_back(std::make_shared<GameObject>(aData));
+	myObjects.Add(std::make_shared<GameObject>(aData));
 }

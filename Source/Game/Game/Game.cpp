@@ -14,6 +14,7 @@
 #include "SoundTestScene.h"
 #include "Engine\Scene\SceneManager.h"
 #include "EnemyTestScene.h"
+#include "PbrTestScene.h"
 
 Game::Game()
 {
@@ -50,7 +51,7 @@ void Game::Start()
 		ProcessMessages();
 
 		Update(deltaTime);
-
+		
 		Render();
 	}
 
@@ -107,8 +108,6 @@ void Game::Render()
 	{
 		mySceneManager->GetCurrentScene()->Render();
 	}
-
-	Engine::GetDebugger().RenderFrame();
 
 	Engine::GetInstance().GetRenderer().Present();
 }

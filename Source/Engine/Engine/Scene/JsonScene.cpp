@@ -13,7 +13,7 @@
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath)
 {
-	CreateFactories();
+
 }
 
 
@@ -34,17 +34,3 @@ void JsonScene::Render()
 
 //PRIVATE FUNCTIONS:
 
-void JsonScene::CreateFactories()
-{
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
-
-	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
-
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
-	
-	enemy->AddComponent<ModelComponent>(prettyModel);
-	myObjects.push_back(enemy);
-
-}

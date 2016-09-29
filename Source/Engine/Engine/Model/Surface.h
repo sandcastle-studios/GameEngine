@@ -4,6 +4,10 @@ enum class SurfaceTextureIndex
 {
 	eDiffuse,
 	eNormal,
+	eRoughness,
+	eAmbientOcclusion,
+	eEmissive,
+	eMetalness,
 
 	eCount
 };
@@ -13,6 +17,7 @@ class Texture;
 class Surface
 {
 public:
+	Surface();
 	void BindToPS() const;
 
 	void SetSlot(const SurfaceTextureIndex aSlot, const std::shared_ptr<Texture> & aTexture);

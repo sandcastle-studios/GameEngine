@@ -13,8 +13,6 @@ GameObject::GameObject(const GameObjectData& aData)
 
 GameObject::~GameObject()
 {
-	int apa = 0;
-	++apa;
 }
 
 void GameObject::SetData(const GameObjectData& aData)

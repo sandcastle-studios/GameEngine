@@ -6,6 +6,7 @@
 #include "Engine\Model\Mesh.h"
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Buffer\ConstantBuffer.h"
+#include "..\Texture\TextureCube.h"
 
 ModelRenderer::ModelRenderer()
 {
@@ -18,6 +19,9 @@ ModelRenderer::ModelRenderer()
 	
 	myLightingData.directionLight[0].color = Vector4f(1.f, 1.f, 1.f, 1.f);
 	myLightingData.directionLight[0].direction = Vector4f(Vector3f(-1.f, -1.f, 1.f).GetNormalized(), 1.f);
+
+	mySkybox = std::make_shared<TextureCube>("textures/skansen.dds");
+	myLightingData.myCubeMapMipMaps = mySkybox->GetMipMapLevels();
 }
 
 ModelRenderer::~ModelRenderer()
@@ -52,6 +56,7 @@ void ModelRenderer::Render(const std::shared_ptr<GenericMesh> & aMesh, const Mat
 void ModelRenderer::RenderBuffer()
 {
 	myIsInstantRendering = false;
+	mySkybox->BindToPS(6);
 
 	UpdateAndBindLightingBuffer();
 
@@ -117,10 +122,20 @@ void ModelRenderer::ReturnBatchIdentifier(size_t aBatchIdentifier)
 	myReturnedBatchIdentifiers.push(aBatchIdentifier);
 }
 
+void ModelRenderer::SetAmbient(float aAmbient)
+{
+	myLightingData.ambient = aAmbient;
+}
+
 void ModelRenderer::SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor)
 {
 	myLightingData.directionLight[aIndex].direction = Vector4f(aLightDirection.GetNormalized(), 1.f);
 	myLightingData.directionLight[aIndex].color = aLightColor;
+}
+
+float ModelRenderer::GetAmbient() const
+{
+	return myLightingData.ambient;
 }
 
 void ModelRenderer::UpdateAndBindLightingBuffer()

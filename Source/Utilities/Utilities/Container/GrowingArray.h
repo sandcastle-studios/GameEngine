@@ -185,7 +185,7 @@
 			Reserve(myCapacity * 2);
 		}
 		
-		myArray[myNrOfItems++] = aObject;
+ 		myArray[myNrOfItems++] = aObject;
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>

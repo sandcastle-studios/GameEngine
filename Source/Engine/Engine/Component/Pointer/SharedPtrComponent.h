@@ -43,7 +43,6 @@ SharedPtrComponent<TPointerType> SharedPtrComponent<TPointerType>::CastFrom(cons
 	SharedPtrComponent newPtr;
 	newPtr.myReferenceCounter = aOtherPtr.myReferenceCounter;
 	newPtr.myReferenceCounter->fetch_add(1);
-	Engine::GetLogger().LogInfo("CastFrom refcount: {0}", newPtr.myReferenceCounter->load());
 	newPtr.myPointer = static_cast<TPointerType*>(aOtherPtr.myPointer);
 	newPtr.myComponentFactory = static_cast<BaseComponentFactory*>(aOtherPtr.myComponentFactory);
 	newPtr.myComponentIndex = aOtherPtr.myComponentIndex;

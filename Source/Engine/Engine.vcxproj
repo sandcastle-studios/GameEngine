@@ -320,6 +320,7 @@
     <ClInclude Include="Engine\Scene\Scene.h" />
     <ClInclude Include="Engine\Effect\Shader.h" />
     <ClInclude Include="Engine\Buffer\ShaderResourceBuffer.h" />
+    <ClInclude Include="Engine\Texture\TextureCube.h" />
     <ClInclude Include="Engine\Vertex\SimpleVertex.h" />
     <ClInclude Include="Engine\Size.h" />
     <ClInclude Include="Engine\Camera\Skybox.h" />
@@ -402,6 +403,7 @@
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\Scene\JsonScene.cpp" />
+    <ClCompile Include="Engine\Texture\TextureCube.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
