@@ -3,8 +3,14 @@
 
 FreeSpaceCameraController::FreeSpaceCameraController(const float aMovementSpeed, const float aRotationSpeed)
 {
-	myMovementSpeed = aMovementSpeed;
-	myRotationSpeed = aRotationSpeed;
+	myDriftMovementSpeed = aMovementSpeed;
+	myDriftRotationSpeed = aRotationSpeed;
+
+	myCurrentMovementSpeed = aMovementSpeed;
+	myCurrentRotationSpeed = aRotationSpeed;
+
+	myBoostMovementSpeed = myDriftMovementSpeed * 5.f;
+	myBoostRotationSpeed = myDriftRotationSpeed / 2.f;
 
 	myRotateLeft = false;
 	myRotateRight = false;
@@ -19,6 +25,8 @@ FreeSpaceCameraController::FreeSpaceCameraController(const float aMovementSpeed,
 	myRollRight = false;
 	myMoveDown = false;
 	myMoveUp = false;
+
+	myBoosting = false;
 }
 
 FreeSpaceCameraController::~FreeSpaceCameraController()
@@ -38,46 +46,46 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 
 	if (myMoveLeft)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveRight)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myMoveForward)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveBackward)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myMoveUp)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 	if (myMoveDown)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myPitchForward)
 	{
-		aCamera.GetOrientation().RotateX(myRotationSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateX(myCurrentRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myPitchBackward)
 	{
-		aCamera.GetOrientation().RotateX(-myRotationSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateX(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myRotateLeft)
 	{
-		aCamera.GetOrientation().RotateY(myRotationSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateY(myCurrentRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myRotateRight)
 	{
-		aCamera.GetOrientation().RotateY(-myRotationSpeed * aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateY(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
 	}
 
 	return CameraControllerResult::eKeepControl;
@@ -125,6 +133,10 @@ ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyDownMessage & aMess
 		break;
 	case KeyboardKey::eSpace:
 		myMoveUp = true;
+		break;
+
+	case KeyboardKey::eShift:
+		SetIsBoosting(true);
 		break;
 
 	case KeyboardKey::eAlt:
@@ -177,6 +189,26 @@ ReceiveResult FreeSpaceCameraController::Receive(const AnyKeyUpMessage & aMessag
 	case KeyboardKey::eSpace:
 		myMoveUp = false;
 		break;
+
+	case KeyboardKey::eShift:
+		SetIsBoosting(false);
+		break;
 	}
 	return ReceiveResult::eContinue;
+}
+
+void FreeSpaceCameraController::SetIsBoosting(const bool aIsBoosting)
+{
+	myBoosting = aIsBoosting;
+
+	if (aIsBoosting == true)
+	{
+		myCurrentMovementSpeed = myBoostMovementSpeed;
+		myCurrentRotationSpeed = myBoostRotationSpeed;
+	}
+	else
+	{
+		myCurrentMovementSpeed = myDriftMovementSpeed;
+		myCurrentRotationSpeed = myDriftRotationSpeed;
+	}
 }
