@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="10" SoundbankVersion="113">
+	<RootPaths>
+		<ProjectRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\GeneratedSoundBanks\Android</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="2678230382" Language="SFX">
+			<ShortName>level1</ShortName>
+			<Path>level1.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2362094225" Name="Play_Derp"/>
+				<Event Id="2270376495" Name="Play_Laser"/>
+				<Event Id="299884166" Name="Player_Thruster"/>
+				<Event Id="2169740631" Name="Stop_Thruster"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="345062463" Language="SFX">
+					<ShortName>adam.wav</ShortName>
+					<Path>SFX\adam_9E69E797.wem</Path>
+				</File>
+				<File Id="544884412" Language="SFX">
+					<ShortName>mega_mob_incoming.wav</ShortName>
+					<Path>SFX\mega_mob_incoming_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="632474148" Language="SFX">
+					<ShortName>Randomize7.wav</ShortName>
+					<Path>SFX\Randomize7_9E69E797.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
