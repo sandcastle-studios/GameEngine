@@ -37,11 +37,11 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 {
 	if (myRollLeft)
 	{
-		aCamera.GetOrientation().RotateZ(-aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateZ(-myDriftRotationSpeed * aDeltaTime.InSeconds());
 	}
 	if (myRollRight)
 	{
-		aCamera.GetOrientation().RotateZ(aDeltaTime.InSeconds());
+		aCamera.GetOrientation().RotateZ(myDriftRotationSpeed * aDeltaTime.InSeconds());
 	}
 
 	if (myMoveLeft)
