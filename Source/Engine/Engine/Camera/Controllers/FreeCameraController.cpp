@@ -36,7 +36,7 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 		aCamera.GetOrientation().RotateZ(aDeltaTime.InSeconds());
 	}
 
-	const float speed = 1.f;
+	const float speed = myMovementSpeed;
 
 	if (myMoveLeft)
 	{
@@ -65,7 +65,7 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * speed * aDeltaTime.InSeconds());
 	}
 
-	const float rotateSpeed = 1.f;
+	const float rotateSpeed = myRotationSpeed;
 
 	if (myPitchForward)
 	{
