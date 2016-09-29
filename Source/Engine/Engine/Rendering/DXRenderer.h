@@ -45,6 +45,9 @@ public:
 	void StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution);
 	const Vector2f & GetRenderTargetResolution() const;
 
+	void EnableDepthWrite();
+	void DisableDepthWrite();
+
 private:
 	void CreateBuffers(int aWidth, int aHeight);
 
@@ -55,7 +58,8 @@ private:
 	ID3D11RasterizerState * myRasterState;
 	ID3D11BlendState * myAlphaBlendingState;
 	ID3D11DepthStencilState* myDepthStencilState;
-
+	ID3D11DepthStencilState* myDepthStencilStateDisableWrite;
+	
 	std::shared_ptr<RenderTexture> myBackbuffer;
 
 	std::unique_ptr<TextureDebugger> myTextureDebugger;

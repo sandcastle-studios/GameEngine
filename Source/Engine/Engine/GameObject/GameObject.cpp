@@ -7,7 +7,6 @@ int nextId = 0;
 GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
 	myScene = &aScene;
-	myScale = Vector3f::One;
 	myIsRemoved = false;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
@@ -64,6 +63,7 @@ void GameObject::SetData(const GameObjectData& aData)
 	myID = aData.myID;
 	myPosition = aData.myPosition;
 	myRotation = aData.myRotation;
+	myScale = aData.myScale;
 
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{

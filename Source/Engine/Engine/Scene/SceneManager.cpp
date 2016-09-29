@@ -73,6 +73,11 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 				aObjectNode["components"][i]["localRotation"][1].GetFloat(),
 				aObjectNode["components"][i]["localRotation"][2].GetFloat()
 			);
+			objectData.myScale = Vector3f(
+				aObjectNode["components"][i]["localScale"][0].GetFloat(),
+				aObjectNode["components"][i]["localScale"][1].GetFloat(),
+				aObjectNode["components"][i]["localScale"][2].GetFloat()
+			) / 100.f;
 
 			continue;
 		}

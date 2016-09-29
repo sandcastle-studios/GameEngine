@@ -18,6 +18,7 @@
 #include "PbrTestScene.h"
 #include "PlayerTestScene.h"
 #include "CollisionTestScene.h"
+#include "PlayerShootComponent.h"
 
 Game::Game()
 {
@@ -86,8 +87,12 @@ void Game::Initialize()
 {
 	mySceneManager = std::make_unique<SceneManager>();
 
-	// mySceneManager->LoadScene("Assets/Data/TestScene.json");
-	mySceneManager->LoadScene<EnemyTestScene>();
+	mySceneManager->LoadJsonScene("Assets/Data/asteroidFieldTestScene.json");
+
+	auto player = mySceneManager->GetCurrentScene()->CreateGameObject(nullptr);
+	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<PlayerShootComponent>()->CreateComponent();
+	player->AddComponent(shootComponent);
+	//mySceneManager->LoadScene<EnemyTestScene>();
 
 	CreatePerspective();
 }
@@ -119,6 +124,6 @@ void Game::CreatePerspective()
 {
 	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
-		mySceneManager->GetCurrentScene()->UpdatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+		mySceneManager->GetCurrentScene()->UpdatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 10000000.f, 0.1f);
 	}
 }

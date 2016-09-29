@@ -9,6 +9,7 @@ struct GameObjectData
 	std::string myID;
 	Quaternion myRotation;
 	Vector3f myPosition;
+	Vector3f myScale;
 	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
 };
 

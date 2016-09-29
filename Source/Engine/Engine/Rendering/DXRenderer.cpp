@@ -213,6 +213,13 @@ void DXRenderer::Initialize(void *aOutputTarget, int aWidth, int aHeight, bool a
 
 	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 0);
 
+	depthStencilDesc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+	depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+
+	CheckDXError(
+		myDevice->CreateDepthStencilState(&depthStencilDesc, &myDepthStencilStateDisableWrite)
+	);
+
 	myTextureDebugger = std::make_unique<TextureDebugger>();
 	myModelRenderer = std::make_unique<ModelRenderer>();
 	mySpriteRenderer = std::make_unique<SpriteRenderer>();
@@ -325,4 +332,14 @@ void DXRenderer::StoreRenderTargetResolution(const Vector2f & aRenderTargetResol
 const Vector2f & DXRenderer::GetRenderTargetResolution() const
 {
 	return myCurrentRenderTargetResolution;
+}
+
+void DXRenderer::EnableDepthWrite()
+{
+	myDeviceContext->OMSetDepthStencilState(myDepthStencilState, 0);
+}
+
+void DXRenderer::DisableDepthWrite()
+{
+	myDeviceContext->OMSetDepthStencilState(myDepthStencilStateDisableWrite, 0);
 }
