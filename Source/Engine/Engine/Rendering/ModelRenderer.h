@@ -9,6 +9,8 @@ class ModelInstance;
 template <typename T>
 class ConstantBuffer;
 
+class TextureCube;
+
 class BatchEntry
 {
 public:
@@ -47,7 +49,10 @@ public:
 	size_t GenerateBatchIdentifier(const std::shared_ptr<GenericMesh> & aMesh);
 	void ReturnBatchIdentifier(size_t aBatchIdentifier);
 
+	void SetAmbient(float aAmbient);
 	void SetDirectionalLight(int aIndex, const Vector3f & aLightDirection, const Vector4f & aLightColor);
+
+	float GetAmbient() const;
 
 private:
 	std::vector<BatchEntry*> myCurrentlyScheduledBatches;
@@ -57,6 +62,8 @@ private:
 
 	std::shared_ptr<ConstantBuffer<LightConstantBufferData>> myLightingBuffer;
 	LightConstantBufferData myLightingData;
+
+	std::shared_ptr<TextureCube> mySkybox;
 
 	bool myIsInstantRendering;
 	void UpdateAndBindLightingBuffer();

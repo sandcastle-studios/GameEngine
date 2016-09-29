@@ -4,42 +4,24 @@ template <typename TPointerType>
 class SharedPtr
 {
 public:
-	SharedPtr(const SharedPtr<TPointerType> &aOtherPointer);
+	SharedPtr(const SharedPtr &aOtherPointer);
+	SharedPtr(SharedPtr && aOtherPointer);
 	SharedPtr(TPointerType *aPointer);
 	SharedPtr();
 	virtual ~SharedPtr();
 
+	SharedPtr & operator=(SharedPtr && aOtherPointer);
+	SharedPtr & operator=(const SharedPtr & aOtherPointer);
 	unsigned short GetRefCount()const;
 	TPointerType *operator->();
 	const TPointerType &operator*();
 
-	// SharedPtr<PlayerComponent>::CastFrom(ptr);
-
-	//template <typename TOldPointerType>
-	//static SharedPtr<TPointerType> CastFrom(const SharedPtr<TOldPointerType> & aOtherPtr);
-
 protected:
-	virtual void Return() = 0;
+	void (*myReturnFunction)(SharedPtr *);
 
 	std::atomic_int *myReferenceCounter;
 	TPointerType *myPointer;
 };
-
-template <typename TPointerType>
-void SharedPtr<TPointerType>::Return()
-{
-}
-
-//template <typename TPointerType>
-//template <typename TOldPointerType>
-//SharedPtr<TPointerType> SharedPtr<TPointerType>::CastFrom(const SharedPtr<TOldPointerType> & aOtherPtr)
-//{
-//	SharedPtr newPtr;
-//	newPtr.myReferenceCounter = aOtherPtr.myReferenceCounter;
-//	newPtr.myReferenceCounter->fetch_add(1);
-//	newPtr.myPointer = static_cast<TPointerType>(aOtherPtr.myPointer);
-//	return newPtr;
-//}
 
 template <typename TPointerType>
 SharedPtr<TPointerType>::SharedPtr(TPointerType *aPointer)
@@ -56,8 +38,9 @@ SharedPtr<TPointerType>::SharedPtr()
 }
 
 template <typename TPointerType>
-SharedPtr<TPointerType>::SharedPtr(const SharedPtr<TPointerType> &aOtherPointer)
+SharedPtr<TPointerType>::SharedPtr(const SharedPtr &aOtherPointer)
 {
+	myReturnFunction = aOtherPointer.myReturnFunction;
 	myReferenceCounter = aOtherPointer.myReferenceCounter;
 	if (myReferenceCounter != nullptr)
 	{
@@ -67,13 +50,55 @@ SharedPtr<TPointerType>::SharedPtr(const SharedPtr<TPointerType> &aOtherPointer)
 }
 
 template <typename TPointerType>
+SharedPtr<TPointerType>::SharedPtr(SharedPtr && aOtherPointer)
+{
+	myPointer = aOtherPointer.myPointer;
+	myReferenceCounter = aOtherPointer.myReferenceCounter;
+	myReturnFunction = aOtherPointer.myReturnFunction;
+
+	aOtherPointer.myPointer = nullptr;
+	aOtherPointer.myReferenceCounter = nullptr;
+	aOtherPointer.myReturnFunction = nullptr;
+	Engine::GetLogger().LogInfo("derp {0}", myReferenceCounter->load());
+}
+
+template <typename TPointerType>
+SharedPtr<TPointerType> & SharedPtr<TPointerType>::operator=(const SharedPtr & aOtherPointer)
+{
+	myPointer = aOtherPointer.myPointer;
+	myReferenceCounter = aOtherPointer.myReferenceCounter;
+	myReturnFunction = aOtherPointer.myReturnFunction;
+	if (myReferenceCounter != nullptr)
+	{
+		myReferenceCounter->fetch_add(1);
+	}
+	return *this;
+}
+
+template <typename TPointerType>
+SharedPtr<TPointerType> & SharedPtr<TPointerType>::operator=(SharedPtr && aOtherPointer)
+{
+	myPointer = aOtherPointer.myPointer;
+	myReferenceCounter = aOtherPointer.myReferenceCounter;
+	myReturnFunction = aOtherPointer.myReturnFunction;
+
+	aOtherPointer.myPointer = nullptr;
+	aOtherPointer.myReferenceCounter = nullptr;
+	aOtherPointer.myReturnFunction = nullptr;
+	Engine::GetLogger().LogInfo("meh {0}", myReferenceCounter->load());
+	return *this;
+}
+
+template <typename TPointerType>
 SharedPtr<TPointerType>::~SharedPtr()
 {
 	if (myReferenceCounter != nullptr)
 	{
-		if (myReferenceCounter->fetch_sub(1) <= 0)
+		int count = myReferenceCounter->fetch_sub(1);
+
+		if (count <= 0)
 		{
-			Return();
+			myReturnFunction(this);
 			myPointer->Destruct();
 
 			delete myReferenceCounter;

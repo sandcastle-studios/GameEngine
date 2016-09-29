@@ -2,10 +2,10 @@
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Effect\InputLayout.h"
 
-StandardEffect::StandardEffect()
+StandardEffect::StandardEffect(const char * aVertexPath, const char * aVertexEntryPoint, const char * aPixelPath, const char * aPixelEntryPoint)
 {
-	AttachVertexShader("shaders/shader.fx", "VShader");
-	AttachPixelShader("shaders/shader.fx", "PShader");
+	AttachVertexShader(aVertexPath, aVertexEntryPoint);
+	AttachPixelShader(aPixelPath, aPixelEntryPoint);
 
 	InputLayout layout;
 	layout.Add("POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT);

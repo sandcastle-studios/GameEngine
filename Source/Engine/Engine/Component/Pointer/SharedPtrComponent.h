@@ -13,20 +13,27 @@ public:
 	template <typename TOldPointerType>
 	static SharedPtrComponent<TPointerType> CastFrom(const SharedPtrComponent<TOldPointerType> & aOtherPtr);
 
-protected:
-	virtual void Return() override final;
-
 private:
 	template<typename T>
 	friend class SharedPtrComponent;
+
+	static void ReturnFunction(SharedPtr<TPointerType> * aUs);
 
 	BaseComponentFactory * myComponentFactory;
 	unsigned short myComponentIndex;
 };
 
 template <typename TPointerType>
+void SharedPtrComponent<TPointerType>::ReturnFunction(SharedPtr<TPointerType> * aUs)
+{
+	auto ptr = static_cast<SharedPtrComponent*>(aUs);
+	ptr->myComponentFactory->ReturnMemory(ptr->myComponentIndex);
+}
+
+template <typename TPointerType>
 SharedPtrComponent<TPointerType>::SharedPtrComponent()
 {
+	myReturnFunction = &ReturnFunction;
 }
 
 template <typename TPointerType>
@@ -48,10 +55,5 @@ SharedPtrComponent<TPointerType>::SharedPtrComponent(BaseComponentFactory * aCom
 {
 	myComponentFactory = aComponentFactory;
 	myComponentIndex = aComponentIndex;
-}
-
-template <typename TPointerType>
-void SharedPtrComponent<TPointerType>::Return()
-{
-	myComponentFactory->ReturnMemory(myComponentIndex);
+	myReturnFunction = &ReturnFunction;
 }

@@ -11,8 +11,6 @@
 EnemyTestScene::EnemyTestScene()
 {
 	CreateFactories();
-
-
 }
 
 EnemyTestScene::~EnemyTestScene()
@@ -31,18 +29,25 @@ void EnemyTestScene::Render()
 
 void EnemyTestScene::CreateFactories()
 {
-	AddComponentFactory<ModelComponent>();
-	AddComponentFactory<LightComponent>();
+	PreCreateComponentFactory<ModelComponent>();
+	PreCreateComponentFactory<LightComponent>();
 
 	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
 	//GetComponentFactory<ModelComponent>()->CreateComponent();
 
-	SharedPtrComponent<ModelComponent> prettyModel (GetComponentFactory<ModelComponent>()->CreateComponent());
+	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
 
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
+	moarModel->SetModel(std::make_shared<ModelInstance>(actualModel));
 	
 	enemy->AddComponent<ModelComponent>(prettyModel);
+	enemy->AddComponent<ModelComponent>(moarModel);
+
+	myObjects.Add(enemy);
+
+	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 }

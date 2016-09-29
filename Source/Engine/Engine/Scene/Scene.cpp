@@ -15,10 +15,11 @@ Scene::Scene(const char * aSkyboxPath)
 	myCamera = std::make_unique<Camera>();
 
 	myEffect = std::make_shared<StandardEffect>();
+	myEffect = std::make_shared<StandardEffect>();
 	 
 	if (aSkyboxPath != nullptr)
 	{
-		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(myEffect, std::make_shared<Texture>(aSkyboxPath)));
+		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
 	}
 	else
 	{
@@ -47,14 +48,14 @@ void Scene::Update(const Time & aDeltaTime)
 
 void Scene::Render()
 {
+	myCamera->ApplyToVS();
+
 	if (mySkybox != nullptr)
 	{
-		myCamera->ApplySkyboxMatrixToVS();
+		mySkybox->SetMatrix(Matrix44f::CreateTranslation(myCamera->GetPosition()));
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
 	}
-
-	myCamera->ApplyToVS();
 
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 	{

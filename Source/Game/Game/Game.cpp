@@ -15,7 +15,7 @@
 //#include "LightingTestScene.h"
 //#include <Engine\SplashScreen\SplashScreenScene.h>
 #include "EnemyTestScene.h"
-#include "CollisionTestScene.h"
+#include "PbrTestScene.h"
 
 Game::Game()
 {
@@ -52,7 +52,7 @@ void Game::Start()
 		ProcessMessages();
 
 		Update(deltaTime);
-
+		
 		Render();
 	}
 
@@ -82,7 +82,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<CollisionTestScene>();
+	myScene = std::make_unique<EnemyTestScene>();
 
 	CreatePerspective();
 }
@@ -106,8 +106,6 @@ void Game::Render()
 	{
 		myScene->Render();
 	}
-
-	Engine::GetDebugger().RenderFrame();
 
 	Engine::GetInstance().GetRenderer().Present();
 }

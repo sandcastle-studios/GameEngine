@@ -26,6 +26,7 @@ void Camera::ApplyToVS() const
 	UpdateCB();
 
 	myCameraCB->BindToVS(0);
+	myCameraCB->BindToPS(0);
 }
 
 void Camera::UpdateCB() const
@@ -37,19 +38,6 @@ void Camera::UpdateCB() const
 	CameraCB cb;
 	cb.projection = myProjection;
 	cb.view = rotationMatrix * Matrix44f::CreateTranslation(myPosition);
-	cb.view.Inverse();
-	cb.cameraPosition = myPosition;
-	myCameraCB->UpdateData(cb);
-}
-
-void Camera::ApplySkyboxMatrixToVS() const
-{
-	Quaternion rotation = myRotation;
-	rotation.Normalize();
-
-	CameraCB cb;
-	cb.projection = myProjection;
-	cb.view = rotation.GenerateMatrix();
 	cb.view.Inverse();
 	cb.cameraPosition = myPosition;
 	myCameraCB->UpdateData(cb);
