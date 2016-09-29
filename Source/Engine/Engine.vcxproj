@@ -157,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Audio/Audio/;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -215,7 +215,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Audio/Audio/;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -235,7 +235,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4100;4189</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Audio/Audio/;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -330,6 +330,7 @@
     <ClInclude Include="Engine\Sprite\QuadSpriteShape.h" />
     <ClInclude Include="Engine\Sprite\Sprite.h" />
     <ClInclude Include="Engine\SplashScreen\SplashScreenEffect.h" />
+    <ClInclude Include="Engine\SoundManager\SoundManger.h" />
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
     <ClInclude Include="Engine\Component\LightComponent.h" />
@@ -394,6 +395,7 @@
     <ClCompile Include="Engine\Sprite\QuadSpriteShape.cpp" />
     <ClCompile Include="Engine\Sprite\Sprite.cpp" />
     <ClCompile Include="Engine\SplashScreen\SplashScreenEffect.cpp" />
+    <ClCompile Include="Engine\SoundManager\SoundManger.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -415,6 +417,9 @@
     <ClCompile Include="Engine\Window\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Audio\Audio\Audio.vcxproj">
+      <Project>{b5915c8f-2aef-4137-bcbe-152f819860cd}</Project>
+	</ProjectReference>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{f6457bb1-2b8a-423f-b7d7-6d4f26952fc4}</Project>
     </ProjectReference>

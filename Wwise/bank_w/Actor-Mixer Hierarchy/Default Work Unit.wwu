@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}" SchemaVersion="70">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="mega_mob_incoming" ID="{599FF11A-0A6A-4F83-BEDA-3BABE5E7837B}" ShortID="434418011" Type="SoundFX">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-15</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{16D73D86-8A23-43D8-81E6-0ACF7F42B647}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DA14C0C6-F59E-4393-829F-230779BEA0FD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="mega_mob_incoming" ID="{90D4CEFD-B303-4F84-BCB1-9C6B5AC068C1}" ShortID="544884412">
+							<Language>SFX</Language>
+							<AudioFile>mega_mob_incoming.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="mega_mob_incoming" ID="{90D4CEFD-B303-4F84-BCB1-9C6B5AC068C1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="adam" ID="{D7C3F242-FB34-4C1B-B307-B9842596288F}" ShortID="123590358" Type="SoundFX">
+					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{E632A458-10CB-47E5-8A21-5A3113B80E09}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="935"/>
+											<Property Name="Min" Type="Real64" Value="-758"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{16D73D86-8A23-43D8-81E6-0ACF7F42B647}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DA14C0C6-F59E-4393-829F-230779BEA0FD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="adam" ID="{12CADD69-85A4-44BE-A81E-C32F12FFDB2A}" ShortID="345062463">
+							<Language>SFX</Language>
+							<AudioFile>adam.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="adam" ID="{12CADD69-85A4-44BE-A81E-C32F12FFDB2A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="laserMachineGun" ID="{B8748A87-53E0-4643-BB5A-AEAB688C6C84}" ShortID="700377564" Type="SoundFX">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{16D73D86-8A23-43D8-81E6-0ACF7F42B647}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DA14C0C6-F59E-4393-829F-230779BEA0FD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="laserMachineGun" ID="{B480691B-F64B-4C64-86C8-BB43FE75A02E}" ShortID="818493151">
+							<Language>SFX</Language>
+							<AudioFile>laserMachineGun.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="laserMachineGun" ID="{B480691B-F64B-4C64-86C8-BB43FE75A02E}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

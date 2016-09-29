@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{AC650890-2A47-4848-948D-4FF3985BE07B}" SchemaVersion="70">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{AC650890-2A47-4848-948D-4FF3985BE07B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_Laser" ID="{5174A51F-29C6-416E-A349-F92A2B1F3E89}">
+					<ChildrenList>
+						<Action Name="Play" ID="{1BC46870-8B26-4500-A49A-C04AEEC72FA3}" ShortID="694480172" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{2C399C9D-2E61-4CF2-A8F9-CF8C1E2324A4}" Global="false">
+									<ObjectRef Name="mega_mob_incoming" ID="{599FF11A-0A6A-4F83-BEDA-3BABE5E7837B}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+						<Action Name="Play" ID="{56C18101-252C-45E6-A472-2EB02CE58AD0}" ShortID="741757320" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{4432FE6A-18A4-4F10-97A3-371C38791154}" Global="false">
+									<ObjectRef Name="adam" ID="{D7C3F242-FB34-4C1B-B307-B9842596288F}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_Derp" ID="{674C1A60-7B75-49A9-A831-1453CAD7A128}">
+					<ChildrenList>
+						<Action Name="Play" ID="{554D0D0E-6F5F-4696-9079-2E9A02D4DE2E}" ShortID="698798444" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{27FE49E9-2066-4C0E-850E-991BA27C89F3}" Global="false">
+									<ObjectRef Name="laserMachineGun" ID="{B8748A87-53E0-4643-BB5A-AEAB688C6C84}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

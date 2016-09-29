@@ -152,6 +152,7 @@
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\SoundManager\SoundManger.h" />
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
@@ -303,6 +304,7 @@
     <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\SoundManager\SoundManger.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />

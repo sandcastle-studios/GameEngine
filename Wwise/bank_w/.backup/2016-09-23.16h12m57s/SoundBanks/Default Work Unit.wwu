@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3570A2EC-6BB4-4451-9962-8DDC79E00E11}" SchemaVersion="69">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{3570A2EC-6BB4-4451-9962-8DDC79E00E11}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="level1" ID="{A0E83AFA-0FE9-4929-9A4C-3F8092ADC6F1}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_mega_mob_incoming" ID="{9E1E1B1A-5C38-47D5-B6C6-DE7A4AC6EB80}" WorkUnitID="{AC650890-2A47-4848-948D-4FF3985BE07B}" Filter="7" Origin="Manual"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

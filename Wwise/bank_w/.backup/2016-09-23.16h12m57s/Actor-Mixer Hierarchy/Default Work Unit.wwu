@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}" SchemaVersion="69">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="mega_mob_incoming" ID="{599FF11A-0A6A-4F83-BEDA-3BABE5E7837B}" ShortID="434418011" Type="SoundFX">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{16D73D86-8A23-43D8-81E6-0ACF7F42B647}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{DA14C0C6-F59E-4393-829F-230779BEA0FD}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="mega_mob_incoming" ID="{90D4CEFD-B303-4F84-BCB1-9C6B5AC068C1}" ShortID="544884412">
+							<Language>SFX</Language>
+							<AudioFile>mega_mob_incoming.wav</AudioFile>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="mega_mob_incoming" ID="{90D4CEFD-B303-4F84-BCB1-9C6B5AC068C1}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{AC650890-2A47-4848-948D-4FF3985BE07B}" SchemaVersion="69">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{AC650890-2A47-4848-948D-4FF3985BE07B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_mega_mob_incoming" ID="{9E1E1B1A-5C38-47D5-B6C6-DE7A4AC6EB80}">
+					<ChildrenList>
+						<Action Name="Play" ID="{BD233EB9-8A31-43E3-887D-86A994566091}" ShortID="973760582" Type="Play" Scope="One" Global="false">
+							<ElementList>
+								<Element ID="{6D30A326-491A-4341-9C6F-B2F84ECF90CD}" Global="false">
+									<ObjectRef Name="mega_mob_incoming" ID="{599FF11A-0A6A-4F83-BEDA-3BABE5E7837B}" WorkUnitID="{F2F27E13-F2F4-4994-B8D2-8B1CE7FDCA7C}"/>
+								</Element>
+							</ElementList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>
