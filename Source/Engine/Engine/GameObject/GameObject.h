@@ -10,14 +10,12 @@ struct GameObjectData
 	Quaternion myRotation;
 	Vector3f myPosition;
 	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
-	Scene * myScene;
 };
 
 class GameObject
 {
 public:
-	GameObject();
-	GameObject(const GameObjectData& aData);
+	GameObject(Scene & aScene, const GameObjectData * aData = nullptr);
 	~GameObject();
 
 	void SetPosition(const Vector3f & aPosition);

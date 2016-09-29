@@ -35,7 +35,7 @@ void SprintReviewScene::CreateFactories()
 	PreCreateComponentFactory<ModelComponent>();
 	PreCreateComponentFactory<LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> enemy = CreateGameObject();
 
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");

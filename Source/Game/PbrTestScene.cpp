@@ -25,7 +25,7 @@ PbrTestScene::PbrTestScene()
 	auto model = GetComponentFactory<ModelComponent>()->CreateComponent();
 	model->SetModel(myHead);
 
-	std::shared_ptr<GameObject> obj = std::make_shared<GameObject>();
+	std::shared_ptr<GameObject> obj = CreateGameObject();
 	obj->AddComponent(model);
 
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));

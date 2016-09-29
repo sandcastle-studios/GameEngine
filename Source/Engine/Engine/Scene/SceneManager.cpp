@@ -42,8 +42,9 @@ std::shared_ptr<JsonScene> SceneManager::CreateScene(const char* aFilePath)
 
 	for (unsigned short i = 0; i < static_cast<unsigned short>(sceneData["hierarchy"].Capacity()); ++i)
 	{
-		DataNode objectNode = sceneData["hierarchy"][i];		
-		newScene->CreateGameObject(LoadGameObject(objectNode, newScene));
+		DataNode objectNode = sceneData["hierarchy"][i];
+		GameObjectData data = LoadGameObject(objectNode, newScene);
+		newScene->CreateGameObject(&data);
 	}
 
 
@@ -54,7 +55,6 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 {
 	GameObjectData objectData;
 	objectData.myID = aObjectNode["name"].GetString();
-	objectData.myScene = &*aScene;
 
 	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
 	{
