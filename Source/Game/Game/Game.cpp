@@ -79,7 +79,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<LightingTestScene>();
+	myScene = std::make_unique<LightingTestScene>("models/cube_1024_preblurred_angle3_Skansen3.dds");
 
 	CreatePerspective();
 }

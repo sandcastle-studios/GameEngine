@@ -12,14 +12,14 @@
 #include <Engine\GameObject\GameObject.h>
 
 
-LightingTestScene::LightingTestScene()
+LightingTestScene::LightingTestScene(const char* aSkyPath) : Scene(aSkyPath)
 {
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Sphere/testSpheres.fbx");
 	mySphere = std::make_shared<ModelInstance>(model);
 
-	auto modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
-	auto go = std::make_shared<GameObject>();
-	go->AddComponent(modelComponent);
+	SharedPtrComponent<ModelComponent> modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
+	std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+	object->AddComponent(modelComponent);
 	modelComponent->SetModel(mySphere);
 
 
@@ -27,9 +27,8 @@ LightingTestScene::LightingTestScene()
 
 	//mySphere->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
-	auto bb = mySphere->GetBoundingBox();
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -5.f));
+	GetCamera().SetPosition(Vector3f(0.f, 0.f, -8.f));
 	// GetCamera().LookAt(Vector3f::Zero);
 
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));

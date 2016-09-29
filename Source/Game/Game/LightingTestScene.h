@@ -4,7 +4,7 @@
 class LightingTestScene : public Scene, public Subscriber<AnyKeyDownMessage>, public Subscriber<AnyKeyUpMessage>
 {
 public:
-	LightingTestScene();
+	LightingTestScene(const char* aSkyPath);
 	~LightingTestScene();
 	
 	virtual void Update(const Time & aDeltaTime) override;
