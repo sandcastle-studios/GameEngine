@@ -52,7 +52,7 @@ const Vector3f & GameObject::GetScale() const
 Matrix44f GameObject::GetTransformation() const
 {
 	Matrix44f aRotation = myRotation.GenerateMatrix();
-	return aRotation * Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * Matrix44f::CreateTranslation(myPosition);
+	return Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * aRotation * Matrix44f::CreateTranslation(myPosition);
 }
 
 void GameObject::SetData(const GameObjectData& aData)

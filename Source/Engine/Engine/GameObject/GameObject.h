@@ -91,7 +91,7 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 		myComponents.Resize(nextID);
 	}
 	myComponents[id].Add(SharedPtrComponent<BaseComponent>::CastFrom(aComponent));
-	myComponents[id].GetLast()->SetGameObject(std::make_shared<GameObject>(*this));
+	myComponents[id].GetLast()->SetGameObject(*this);
 }
 
 template <typename TComponentType>

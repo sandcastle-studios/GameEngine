@@ -15,8 +15,9 @@ public:
 	virtual void Construct() = 0;
 	virtual void Destruct() = 0;
 
-	void SetGameObject(const std::shared_ptr<GameObject> & anObject);
+	void SetGameObject(GameObject & anObject);
+	 
 protected:
-	std::shared_ptr<GameObject> myObject;
+	GameObject * myObject;
 };
 
