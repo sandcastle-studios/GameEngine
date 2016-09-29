@@ -3,8 +3,10 @@
 
 void Surface::BindToPS() const
 {
-	BindSlotToPS(static_cast<int>(SurfaceTextureIndex::eDiffuse));
-	BindSlotToPS(static_cast<int>(SurfaceTextureIndex::eNormal));
+	for (int i = 0; i < static_cast<int>(SurfaceTextureIndex::eCount); i++)
+	{
+		BindSlotToPS(i);
+	}
 }
 
 void Surface::BindSlotToPS(int aIndex) const
