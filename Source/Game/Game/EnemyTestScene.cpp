@@ -43,8 +43,13 @@ void EnemyTestScene::CreateFactories()
 	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
 
 	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+
+	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
+	moarModel->SetModel(std::make_shared<ModelInstance>(actualModel));
 	
 	enemy->AddComponent<ModelComponent>(prettyModel);
+	enemy->AddComponent<ModelComponent>(moarModel);
 
 	myObjects.push_back(enemy);
 }
