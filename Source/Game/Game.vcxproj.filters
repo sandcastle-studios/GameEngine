@@ -15,6 +15,7 @@
     <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
     <ClInclude Include="Game\SoundTestScene.h" />
     <ClInclude Include="PbrTestScene.h" />
+    <ClInclude Include="Game\SprintReviewScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
     <ClCompile Include="Game\SoundTestScene.cpp" />
     <ClCompile Include="PbrTestScene.cpp" />
+    <ClCompile Include="Game\SprintReviewScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">
