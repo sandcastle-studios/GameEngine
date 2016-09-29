@@ -12,11 +12,11 @@ public:
 
 	void SetSphere(const SphereShape & aSphere)
 	{
-		SetPosition(aSphere.myPosition);
+		UpdatePosition(aSphere.myPosition);
 		SetRadius(aSphere.myRadius);
 	}
 
-	void SetPosition(const Vector3f & aPosition)
+	void UpdatePosition(const Vector3f & aPosition)
 	{
 		myPosition = aPosition;
 	}

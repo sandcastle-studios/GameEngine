@@ -13,6 +13,8 @@
 #include "Engine\Resources\ResourceManager.h"
 #include "Engine\SplashScreen\SplashScreenEffect.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
+#include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
+#include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 
 CollisionTestScene::CollisionTestScene()
 {
@@ -20,9 +22,8 @@ CollisionTestScene::CollisionTestScene()
 
 	GetCamera().SetPosition(Vector3f(0.f, 0.f, -3.f));
 
-
-	
-
+	myCollisionSphere1 = std::make_unique<SphereIntersection>();
+	myCollisionSphere2 = std::make_unique<SphereIntersection>();
 }
 
 
@@ -36,30 +37,47 @@ void CollisionTestScene::Update(const Time & aDeltaTime)
 	ImGui::SetNextWindowSize({ 375, 400 }, ImGuiSetCond_Once);
 	ImGui::SetNextWindowCollapsed(true, ImGuiSetCond_Once);
 
-	if (ImGui::Begin("Object 1", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
+
+	if (ImGui::Begin("Collision", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
-		Vector3f tempVector = myTestObject1->GetPosition();
+		if (ImGui::CollapsingHeader("Object 1") == true)
+		{
+			Vector3f tempVector = myTestObject1->GetPosition();
 
-		ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
-		ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
-		ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
+			ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
 
-		myTestObject1->SetPosition(tempVector);
+			myTestObject1->SetPosition(tempVector);
+			myCollisionSphere1->UpdatePosition(tempVector);
+		}
+
+		
+		if (ImGui::CollapsingHeader("Object 2") == true)
+		{
+
+			Vector3f tempVector = myTestObject2->GetPosition();
+
+			ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
+			ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
+			ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
+
+			myTestObject2->SetPosition(tempVector);
+			myCollisionSphere2->UpdatePosition(tempVector);
+		}
+
+		if (Intersection::SphereVsSphere(*myCollisionSphere1, *myCollisionSphere2) == true)
+		{
+			ImGui::Text("Collision!");
+		}
+		else
+		{
+			ImGui::Text("void!!!");
+		}
+
+
+		
 	}
-
-	ImGui::End();
-
-	if (ImGui::Begin("Object 2", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
-	{
-		Vector3f tempVector = myTestObject2->GetPosition();
-
-		ImGui::SliderFloat("X", &tempVector.x, -3.f, 3.f);
-		ImGui::SliderFloat("Y", &tempVector.y, -3.f, 3.f);
-		ImGui::SliderFloat("Z", &tempVector.z, -3.f, 3.f);
-
-		myTestObject2->SetPosition(tempVector);
-	}
-
 	ImGui::End();
 
 	Scene::Update(aDeltaTime);

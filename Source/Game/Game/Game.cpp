@@ -14,8 +14,10 @@
 #include "SoundTestScene.h"
 //#include "LightingTestScene.h"
 //#include <Engine\SplashScreen\SplashScreenScene.h>
-#include "Game/SprintReviewScene.h"
+#include "EnemyTestScene.h"
 #include "PbrTestScene.h"
+#include "Game/CollisionTestScene.h"
+#include "Game/CockpitTestScene.h"
 
 Game::Game()
 {
@@ -82,7 +84,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<SprintReviewScene>();
+	myScene = std::make_unique<CollisionTestScene>();
 
 	CreatePerspective();
 }
