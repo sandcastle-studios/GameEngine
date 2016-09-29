@@ -62,12 +62,12 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 
 	if (myMoveLeft)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * strafeSpeed * aDeltaTime.InSeconds());
 		isMoving = true;
 	}
 	if (myMoveRight)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * strafeSpeed * aDeltaTime.InSeconds());
 		isMoving = true;
 	}
 
@@ -84,12 +84,12 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 
 	if (myMoveUp)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * strafeSpeed * aDeltaTime.InSeconds());
 		isMoving = true;
 	}
 	if (myMoveDown)
 	{
-		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * strafeSpeed * aDeltaTime.InSeconds());
 		isMoving = true;
 	}
 
