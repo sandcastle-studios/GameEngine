@@ -107,7 +107,7 @@ GameObject::GetComponent(const size_t & anIndex/* = 0*/)
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
 	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
 	{
-		return nullptr;
+		return SharedPtrComponent<TComponentType>();
 	}
 	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
 }
@@ -119,7 +119,7 @@ GameObject::GetComponent(const size_t & anIndex/* = 0*/) const
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
 	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
 	{
-		return nullptr;
+		return SharedPtrComponent<TComponentType>();
 	}
 	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
 }

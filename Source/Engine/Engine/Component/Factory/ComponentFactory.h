@@ -19,6 +19,9 @@ public:
 
 	virtual void ReturnMemory(unsigned short aIndex) override;
 
+	template <typename TEnumerator>
+	void EnumerateActiveComponents(const TEnumerator & aEnumerator);
+
 private:
 	unsigned short GetAndActivateIndex();
 
@@ -26,6 +29,19 @@ private:
 	GrowingArray<TComponentType> myComponents;
 	Stack<unsigned short> myFreeMemorySlots;
 };
+
+template <typename TComponentType>
+template <typename TEnumerator>
+void ComponentFactory<TComponentType>::EnumerateActiveComponents(const TEnumerator & aEnumerator)
+{
+	for (unsigned short iComponent = 0; iComponent < myComponents.Size(); ++iComponent)
+	{
+		if (myComponentsActiveTag[iComponent] == true)
+		{
+			aEnumerator(myComponents[iComponent]);
+		}
+	}
+}
 
 #include "Engine\Component\Pointer\SharedPtrComponent.h"
 

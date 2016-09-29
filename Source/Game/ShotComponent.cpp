@@ -5,6 +5,7 @@
 void ShotComponent::SetSpeed(const Vector3f & aSpeed)
 {
 	mySpeed = aSpeed;
+	myHasHit = false;
 }
 
 void ShotComponent::Construct()

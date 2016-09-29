@@ -14,7 +14,11 @@ public:
 
 	virtual void Update(const Time & aDeltaTime) override;
 
+	bool myHasHit;
+
 private:
+	
+
 	Vector3f mySpeed;
 	Time myAge;
 };
