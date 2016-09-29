@@ -104,7 +104,6 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 		myComponents.Resize(nextID);
 	}
 	myComponents[id].Add(SharedPtrComponent<BaseComponent>::CastFrom(aComponent));
-	Engine::GetLogger().LogInfo("{0} wrote to index {1}", typeid(TComponentType).name(), id);
 	myComponents[id].GetLast()->SetGameObject(*this);
 }
 

@@ -61,7 +61,7 @@ Matrix44f GameObject::GetTransformation() const
 template<>
 void GameObject::AddComponent(const SharedPtrComponent<BaseComponent> & aComponent)
 {
-	Error("SLUTA ROBIN");
+	//Error("SLUTA ROBIN");
 }
 
 void GameObject::SetData(const GameObjectData& aData)
