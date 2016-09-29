@@ -12,10 +12,10 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	std::shared_ptr<Scene> LoadScene(const char* aFilePath);
+	std::shared_ptr<Scene> LoadJsonScene(const char* aFilePath);
 
-	template<typename TSceneType>
-	std::shared_ptr<Scene> LoadScene(const char* aName);
+	template<typename TSceneType, typename ...TArgs>
+	std::shared_ptr<Scene> LoadScene(const TArgs & ...aArgs);
 
 	inline std::shared_ptr<Scene> GetCurrentScene() const
 	{
@@ -33,14 +33,11 @@ private:
 
 };
 
-template<typename TSceneType>
-std::shared_ptr<Scene> SceneManager::LoadScene(const char* aName)
+template<typename TSceneType, typename ...TArgs>
+std::shared_ptr<Scene>
+SceneManager::LoadScene(const TArgs & ...aArgs)
 {
-	if (myScenes.find(aName) == myScenes.end())
-	{
-		myScenes[aName] = (std::make_shared<TSceneType>(aName));
-	}
-	myCurrentScene = myScenes[aName];
-	return myScenes[aName];
+	myCurrentScene = std::make_shared<TSceneType>(aArgs...);
+	return myCurrentScene;
 }
 

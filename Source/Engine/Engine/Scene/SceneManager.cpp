@@ -19,7 +19,7 @@ SceneManager::~SceneManager()
 {
 }
 
-std::shared_ptr<Scene> SceneManager::LoadScene(const char* aFilePath)
+std::shared_ptr<Scene> SceneManager::LoadJsonScene(const char* aFilePath)
 {
 	if (myScenes.find(aFilePath) == myScenes.end())
 	{
@@ -54,7 +54,7 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 {
 	GameObjectData objectData;
 	objectData.myID = aObjectNode["name"].GetString();
-	objectData.myScene = aScene;
+	objectData.myScene = &*aScene;
 
 	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
 	{

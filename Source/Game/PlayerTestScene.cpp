@@ -5,7 +5,7 @@
 #include <Engine/GameObject/GameObject.h>
 
 PlayerTestScene::PlayerTestScene()
-	: Scene("grass.dds")
+	: Scene("PlayerTestScene", "grass.dds")
 {
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 	CreateAndAddModel("models/pillar/pillarShortObelisk.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 0.05f);
