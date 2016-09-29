@@ -21,7 +21,7 @@ JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 
 	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
-	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One);
+	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One / 100.f);
 
 	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
 	myEnemy->AddComponent(movementComponent);
