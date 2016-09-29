@@ -54,7 +54,7 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 {
 	GameObjectData objectData;
 	objectData.myID = aObjectNode["name"].GetString();
-	objectData.myScene = aScene;
+	objectData.myScene = &*aScene;
 
 	for (unsigned short i = 0; i < aObjectNode["components"].Capacity(); ++i)
 	{

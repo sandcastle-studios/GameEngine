@@ -10,7 +10,7 @@ struct GameObjectData
 	Quaternion myRotation;
 	Vector3f myPosition;
 	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
-	std::shared_ptr<Scene> myScene;
+	Scene * myScene;
 };
 
 class GameObject
@@ -58,7 +58,7 @@ private:
 	Vector3f myPosition;
 	Vector3f myScale;
 	Quaternion myRotation;
-	std::shared_ptr<Scene> myScene;
+	Scene * myScene;
 };
 
 inline Scene & GameObject::GetScene()
