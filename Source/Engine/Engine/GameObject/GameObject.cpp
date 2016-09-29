@@ -7,7 +7,6 @@ int nextId = 0;
 GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
 	myScene = &aScene;
-	myScale = Vector3f::One / 200.f;
 	myIsRemoved = false;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
@@ -35,7 +34,7 @@ void GameObject::SetRotation(const Quaternion & aRotation)
 
 void GameObject::SetScale(const Vector3f & aScale)
 {
-	myScale = aScale / 100.f;
+	myScale = aScale / 100.f; //Divide by 100 to account for m -> cm system;
 }
 
 const Vector3f & GameObject::GetPosition() const
@@ -64,6 +63,7 @@ void GameObject::SetData(const GameObjectData& aData)
 	myID = aData.myID;
 	myPosition = aData.myPosition;
 	myRotation = aData.myRotation;
+	myScale = aData.myScale / 100.f; //Divide by 100 to account for m -> cm system
 
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{

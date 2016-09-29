@@ -14,7 +14,7 @@
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(500.f, 2.5f));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 2.5f));
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 }
 
