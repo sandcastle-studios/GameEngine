@@ -4,9 +4,11 @@
 
 struct SphereShape
 {
-	SphereShape() : myPosition(Vector3f::One), Radius(1.f)
+	SphereShape(const Vector3f & aPosition, const float aRadius) : myPosition(aPosition), myRadius(aRadius)
+	{}
+	SphereShape() : myPosition(Vector3f::One), myRadius(1.f)
 	{}
 
 	Vector3f myPosition;
-	float Radius;
+	float myRadius;
 };

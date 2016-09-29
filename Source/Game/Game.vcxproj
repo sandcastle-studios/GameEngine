@@ -244,6 +244,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionTestScene.h" />
     <ClInclude Include="Game\Component\Controller\AIControllerComponent.h" />
     <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
     <ClInclude Include="Game\CommonIncludes.h" />
@@ -257,6 +258,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionTestScene.cpp" />
     <ClCompile Include="Game\Component\Controller\AIControllerComponent.cpp" />
     <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
     <ClCompile Include="Game\EnemyTestScene.cpp" />
