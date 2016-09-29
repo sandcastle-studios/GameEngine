@@ -1,0 +1,11 @@
+Event	ID	Name			Wwise Object Path	Notes
+	299884166	Player_Thruster			\Default Work Unit\Player_Thruster	
+	2169740631	Stop_Thruster			\Default Work Unit\Stop_Thruster	
+	2270376495	Play_Laser			\Default Work Unit\Play_Laser	
+	2362094225	Play_Derp			\Default Work Unit\Play_Derp	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	345062463	adam	C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\.cache\iOS\SFX\adam_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\adam		979008
+	544884412	mega_mob_incoming	C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\.cache\iOS\SFX\mega_mob_incoming_4B8CC0C5.wem		\Actor-Mixer Hierarchy\Default Work Unit\mega_mob_incoming		1111384
+	632474148	Randomize7	C:\Users\sterpa1\Documents\GameEngine\Wwise\bank_w\.cache\iOS\SFX\Randomize7_9E69E797.wem		\Actor-Mixer Hierarchy\Default Work Unit\Randomize7		111518
+

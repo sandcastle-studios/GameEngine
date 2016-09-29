@@ -5,8 +5,10 @@
 			<ChildrenList>
 				<SoundBank Name="level1" ID="{A0E83AFA-0FE9-4929-9A4C-3F8092ADC6F1}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Stop_Thruster" ID="{FE93801F-1BCF-4A5A-86D2-750C4CAEAF0C}" WorkUnitID="{AC650890-2A47-4848-948D-4FF3985BE07B}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Play_Laser" ID="{5174A51F-29C6-416E-A349-F92A2B1F3E89}" WorkUnitID="{AC650890-2A47-4848-948D-4FF3985BE07B}" Filter="7" Origin="Manual"/>
 						<ObjectRef Name="Play_Derp" ID="{674C1A60-7B75-49A9-A831-1453CAD7A128}" WorkUnitID="{AC650890-2A47-4848-948D-4FF3985BE07B}" Filter="7" Origin="Manual"/>
+						<ObjectRef Name="Player_Thruster" ID="{7E83DC9A-9BCA-40CF-84C2-20D8EC0EAFC4}" WorkUnitID="{AC650890-2A47-4848-948D-4FF3985BE07B}" Filter="7" Origin="Manual"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

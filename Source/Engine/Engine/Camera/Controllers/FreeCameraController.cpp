@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "FreeSpaceCameraController.h"
+#include <Engine\SoundManager\SoundManger.h>
 
 FreeSpaceCameraController::FreeSpaceCameraController(const float aMovementSpeed, const float aRotationSpeed)
 {
@@ -37,57 +38,80 @@ CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime
 {
 	UpdateAcceleration(aDeltaTime);
 
+	bool isMoving = false;
+
 	if (myRollLeft)
 	{
 		aCamera.GetOrientation().RotateZ(-myDriftRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRollRight)
 	{
 		aCamera.GetOrientation().RotateZ(myDriftRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveLeft)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetLeft() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveRight)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetRight() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveForward)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetForward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveBackward)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetBackward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myMoveUp)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetUpward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myMoveDown)
 	{
 		aCamera.AddPosition(aCamera.GetOrientation().GetDownward() * myCurrentMovementSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 
 	if (myPitchForward)
 	{
 		aCamera.GetOrientation().RotateX(myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myPitchBackward)
 	{
 		aCamera.GetOrientation().RotateX(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRotateLeft)
 	{
 		aCamera.GetOrientation().RotateY(myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
 	}
 	if (myRotateRight)
 	{
 		aCamera.GetOrientation().RotateY(-myCurrentRotationSpeed * aDeltaTime.InSeconds());
+		isMoving = true;
+	}
+
+	if (isMoving)
+	{
+		Engine::GetSoundManager().PostEvent("Player_Thruster");
+	}
+	else
+	{
+		Engine::GetSoundManager().PostEvent("Stop_Thruster");
 	}
 
 	return CameraControllerResult::eKeepControl;
