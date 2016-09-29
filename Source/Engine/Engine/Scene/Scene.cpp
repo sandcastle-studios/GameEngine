@@ -41,7 +41,7 @@ Scene::~Scene()
 
 void Scene::Update(const Time & aDeltaTime)
 {
-	if (myScheduledRemovals > 0)
+	//if (myScheduledRemovals > 0)
 	{
 		for (int i = static_cast<int>(myObjects.Size()) - 1; i >= 0; i--)
 		{
@@ -51,16 +51,16 @@ void Scene::Update(const Time & aDeltaTime)
 				myObjects.RemoveCyclicAtIndex(static_cast<unsigned short>(i));
 				myScheduledRemovals--;
 
-				Engine::GetLogger().LogInfo("Refcount after removal: {0}", obj.use_count());
+				// Engine::GetLogger().LogInfo("Refcount after removal: {0}", obj.use_count());
 
 				if (myScheduledRemovals == 0)
 				{
-					break;
+					//break;
 				}
 			}
 		}
 
-		myScheduledRemovals = 0;
+		//myScheduledRemovals = 0;
 	}
 
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
