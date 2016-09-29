@@ -18,6 +18,7 @@
 #include "PbrTestScene.h"
 #include "PlayerTestScene.h"
 #include "CollisionTestScene.h"
+#include "CockpitTestScene.h"
 
 Game::Game()
 {
@@ -87,7 +88,7 @@ void Game::Initialize()
 	mySceneManager = std::make_unique<SceneManager>();
 
 	// mySceneManager->LoadScene("Assets/Data/TestScene.json");
-	mySceneManager->LoadScene<SoundTestScene>();
+	mySceneManager->LoadScene<CockpitTestScene>();
 
 	CreatePerspective();
 }

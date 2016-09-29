@@ -70,11 +70,15 @@ const Vector2f & Sprite::GetScale() const
 Matrix44f Sprite::GenerateMatrix() const
 {
 	Vector2f renderSize = Engine::GetRenderer().GetRenderTargetResolution();
-	Vector2f textureSize = myTexture->GetSize();
+	Vector2f textureSize = Vector2f::One;
 
-	return Matrix44f::CreateScale(textureSize.x, textureSize.y, 1.f)
+	if (myTexture != nullptr)
+	{
+		textureSize = myTexture->GetSize();
+	}
+
+	return Matrix44f::CreateScale(textureSize.x * myScale.x, textureSize.y * myScale.y, 1.f)
 		* Matrix44f::CreateTranslation(myPosition.x - myOrigin.x - renderSize.x / 2.f, myPosition.y - myOrigin.y - renderSize.y / 2.f, 0.f)
-		* Matrix44f::CreateScale(myScale.x, myScale.y, 1.f)
 		* Matrix44f::CreateRotateAroundZ(myRotation)
 		* Matrix44f::CreateScale(2.0f / renderSize.x, -2.0f / renderSize.y, 1.f);
 }

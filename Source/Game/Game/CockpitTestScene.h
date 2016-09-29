@@ -21,9 +21,6 @@ public:
 private:
 	Sprite mySprite;
 
-	std::unique_ptr<ConstantBuffer<SplashScreenCBuffer>> myConstantBuffer;
-	std::shared_ptr<SplashScreenEffect> mySplashScreenEffect;
-
 	std::shared_ptr<ModelInstance> myTestObject1;
 
 	void CreateFactories();
