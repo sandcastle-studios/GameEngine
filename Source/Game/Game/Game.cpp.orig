@@ -15,8 +15,14 @@
 #include "Engine\Scene\SceneManager.h"
 #include "EnemyTestScene.h"
 #include "Game/SprintReviewScene.h"
+<<<<<<< HEAD
+
+
+
+=======
 #include "PbrTestScene.h"
 #include "PlayerTestScene.h"
+>>>>>>> player_shooting
 
 Game::Game()
 {
@@ -83,10 +89,14 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
+<<<<<<< HEAD
 	mySceneManager = std::make_unique<SceneManager>();
 
 	mySceneManager->LoadScene("Assets/Data/TestScene.json");
 	//mySceneManager->LoadScene<EnemyTestScene>("EnemyTestScene");
+=======
+	myScene = std::make_unique<PlayerTestScene>();
+>>>>>>> player_shooting
 
 	CreatePerspective();
 }
@@ -116,8 +126,12 @@ void Game::Render()
 
 void Game::CreatePerspective()
 {
+<<<<<<< HEAD
 	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
-		mySceneManager->GetCurrentScene()->UpdatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+		mySceneManager->GetCurrentScene()->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
 	}
+=======
+	myScene->UpdatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+>>>>>>> player_shooting
 }

@@ -18,7 +18,7 @@ CollisionTestScene::CollisionTestScene()
 {
 	CreateFactories();
 
-	GetCamera().SetPosition(Vector3f(0.f, 0.f, -3.f));
+	SetCameraOrientation(Vector3f(0.f, 0.f, -3.f));
 
 
 	

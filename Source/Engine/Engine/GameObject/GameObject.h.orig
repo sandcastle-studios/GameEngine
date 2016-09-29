@@ -54,10 +54,14 @@ public:
 	void SetData(const GameObjectData& aData);
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
+<<<<<<< HEAD
 	std::string myID;
+=======
 	Vector3f myPosition;
 	Vector3f myScale;
+>>>>>>> player_shooting
 	Quaternion myRotation;
+	Vector3f myPosition;
 	std::shared_ptr<Scene> myScene;
 };
 

@@ -3,16 +3,36 @@
 
 GameObject::GameObject()
 {
+	myScale = Vector3f::One;
+
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
 }
 
 GameObject::GameObject(const GameObjectData& aData)
 {
+	myScale = Vector3f::One;
+
 	SetData(aData);
 }
 
 GameObject::~GameObject()
 {
+}
+
+void GameObject::SetPosition(const Vector3f & aPosition)
+{
+	myPosition = aPosition;
+}
+
+void GameObject::SetRotation(const Quaternion & aRotation)
+{
+	myRotation = aRotation;
+	myRotation.Normalize();
+}
+
+void GameObject::SetScale(const Vector3f & aScale)
+{
+	myScale = aScale;
 }
 
 const Vector3f & GameObject::GetPosition() const
@@ -25,11 +45,15 @@ const Quaternion & GameObject::GetRotation() const
 	return myRotation;
 }
 
+const Vector3f & GameObject::GetScale() const
+{
+	return myScale;
+}
+
 Matrix44f GameObject::GetTransformation() const
 {
-	Matrix44f tempTransformation = myRotation.GenerateMatrix();
-	tempTransformation.SetPosition(myPosition);
-	return tempTransformation;
+	Matrix44f aRotation = myRotation.GenerateMatrix();
+	return aRotation * Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * Matrix44f::CreateTranslation(myPosition);
 }
 
 void GameObject::SetData(const GameObjectData& aData)

@@ -8,10 +8,15 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+<<<<<<< HEAD
 #include <Engine/DataParser/DataParser.h>
-#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 
 EnemyTestScene::EnemyTestScene(const char* aName) : Scene(aName)
+=======
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+
+EnemyTestScene::EnemyTestScene()
+>>>>>>> player_shooting
 {
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 

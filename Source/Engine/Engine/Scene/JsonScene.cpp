@@ -9,11 +9,13 @@
 #include <Engine\Effect\StandardEffect.h>
 #include <Engine\Camera\Camera.h>
 #include <Engine\DataParser\DataParser.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 
 
-JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath)
+JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
-	GetCamera().SetPosition(Vector3f(0.f, 0.f, -10.f));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 }
 
 

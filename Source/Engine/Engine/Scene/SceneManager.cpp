@@ -79,8 +79,9 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 		else if (componentType == "ModelData")
 		{
 			//TODO: Send texture into model comp. as well, also send desired effect/shader to use for the model
-			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(aScene->GetComponentFactory<ModelComponent>()->CreateComponent());
-			SharedPtrComponent<ModelComponent>::CastFrom(newComponent)->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+			auto && mc = aScene->GetComponentFactory<ModelComponent>()->CreateComponent();
+			mc->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+			newComponent = SharedPtrComponent<BaseComponent>::CastFrom(mc);
 		}
 		else
 		{
