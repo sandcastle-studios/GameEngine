@@ -15,6 +15,10 @@ public:
 private:
 	void SetIsBoosting(const bool aIsBoosting);
 	void UpdateAcceleration(const Time & aDeltaTime);
+	bool GetIsMoving() const;
+	bool GetIsRotating() const;
+	float GetCurrentRotateAccelerationCap() const;
+	float GetCurrentRotateAccelerationBase() const;
 
 	float myCurrentMovementSpeed;
 	float myCurrentRotationSpeed;
@@ -22,6 +26,8 @@ private:
 	float myDriftRotationSpeed;
 	float myBoostMovementSpeed;
 	float myBoostRotationSpeed;
+
+	float myRotationAccelerationCap;
 
 	bool myRotateLeft;
 	bool myRotateRight;

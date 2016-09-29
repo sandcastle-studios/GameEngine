@@ -13,5 +13,6 @@ public:
 
 private:
 	Sprite mySprite;
+	std::shared_ptr<GameObject> myEnemy;
 };
 

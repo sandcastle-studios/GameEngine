@@ -63,8 +63,12 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 	myVelocity += towardsPoint;
 
 	Vector3f newPosition = myObject->GetPosition() + (myVelocity * aDeltaTime.InSeconds());
-
 	myObject->SetPosition(newPosition);
+
+	Vector3f rot = myVelocity.GetNormalized();
+	Quaternion orientation(rot.x, rot.y, rot.z, 1.f);
+
+	myObject->SetRotation(orientation);
 }
 
 //void BouncingComponent::Construct()
