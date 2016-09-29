@@ -51,20 +51,12 @@ ComponentFactory<TComponentType>::ComponentFactory()
 template <typename TComponentType>
 void ComponentFactory<TComponentType>::ReturnMemory(unsigned short aIndex)
 {
+	Engine::GetLogger().LogInfo("Index {0} returned to factory.", aIndex);
+
 	myComponents[aIndex].Destruct();
 	myFreeMemorySlots.Push(aIndex);
 	myComponentsActiveTag[aIndex] = false;
 }
-
-//emplate <typename TComponentType>
-//haredPtrComponent<TComponentType> ComponentFactory<TComponentType>::GetComponent(unsigned short aIndex)
-//
-//	if (myComponentsActiveTag[aIndex] == false)
-//	{
-//		Engine::GetLogger().LogError("Component Error, tried to access an INACTIVE component with GetComponent() from factory");
-//	}
-//	return SharedPtrComponent<TComponentType> (this, aIndex, myComponents[aIndex]);
-//
 
 template <typename TComponentType>
 SharedPtrComponent<TComponentType> ComponentFactory<TComponentType>::CreateComponent()

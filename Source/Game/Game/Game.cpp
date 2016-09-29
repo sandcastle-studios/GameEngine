@@ -9,9 +9,13 @@
 #include "SlideShowScene.h"
 #include "InstancedTestScene.h"
 #include <Engine\FileWatcher\FileChangeWatcher.h>
+#include "LightingTestScene.h"
+#include <Engine\SplashScreen\SplashScreenScene.h>
+#include "SoundTestScene.h"
 //#include "LightingTestScene.h"
 //#include <Engine\SplashScreen\SplashScreenScene.h>
 #include "EnemyTestScene.h"
+#include "PbrTestScene.h"
 
 Game::Game()
 {
@@ -48,7 +52,7 @@ void Game::Start()
 		ProcessMessages();
 
 		Update(deltaTime);
-
+		
 		Render();
 	}
 
@@ -78,7 +82,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<EnemyTestScene>();
+	myScene = std::make_unique<PbrTestScene>();
 
 	CreatePerspective();
 }
@@ -102,8 +106,6 @@ void Game::Render()
 	{
 		myScene->Render();
 	}
-
-	Engine::GetDebugger().RenderFrame();
 
 	Engine::GetInstance().GetRenderer().Present();
 }

@@ -152,6 +152,7 @@
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\SoundManager\SoundManger.h" />
     <ClInclude Include="Engine\Component\BaseComponent.h" />
     <ClInclude Include="Engine\Component\ModelComponent.h" />
     <ClInclude Include="Engine\Component\Factory\ComponentFactory.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Engine\DataParser\rapidjson\reader.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
+    <ClInclude Include="Engine\Texture\TextureCube.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -303,10 +305,12 @@
     <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
     <ClCompile Include="Engine\Imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\Debugging\Debugger.cpp" />
+    <ClCompile Include="Engine\SoundManager\SoundManger.cpp" />
     <ClCompile Include="Engine\Component\BaseComponent.cpp" />
     <ClCompile Include="Engine\Component\ModelComponent.cpp" />
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
+    <ClCompile Include="Engine\Texture\TextureCube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

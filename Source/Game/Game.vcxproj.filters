@@ -13,6 +13,8 @@
     <ClInclude Include="Game\CommonIncludes.h" />
     <ClInclude Include="Game\Component\Controller\AIControllerComponent.h" />
     <ClInclude Include="Game\Component\Controller\ControllerComponent.h" />
+    <ClInclude Include="Game\SoundTestScene.h" />
+    <ClInclude Include="PbrTestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -26,6 +28,8 @@
     <ClCompile Include="Game\SlideShowScene.cpp" />
     <ClCompile Include="Game\Component\Controller\AIControllerComponent.cpp" />
     <ClCompile Include="Game\Component\Controller\ControllerComponent.cpp" />
+    <ClCompile Include="Game\SoundTestScene.cpp" />
+    <ClCompile Include="PbrTestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Samples">

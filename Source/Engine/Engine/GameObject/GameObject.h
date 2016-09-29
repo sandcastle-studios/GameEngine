@@ -24,12 +24,16 @@ public:
 	void AddComponent(const SharedPtrComponent<TComponentType> & aComponent);
 
 	template <typename TComponentType>
-	SharedPtrComponent<TComponentType> GetComponent();
+	SharedPtrComponent<TComponentType> GetComponent(const size_t & anIndex = 0);
 
 	template <typename TComponentType>
-	const SharedPtrComponent<TComponentType> GetComponent()const;
+	const SharedPtrComponent<TComponentType> GetComponent(const size_t & anIndex = 0)const;
 
-	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponents;
+	template <typename TComponentType>
+	size_t GetComponentCount() const;
+
+	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
+
 
 private:
 	Scene * myScene;
@@ -66,27 +70,36 @@ void GameObject::AddComponent(const SharedPtrComponent<TComponentType> & aCompon
 	{
 		myComponents.Resize(nextID);
 	}
-	myComponents[id] = SharedPtrComponent<BaseComponent>::CastFrom(aComponent);
-	myComponents[id]->SetGameObject();
+	myComponents[id].Add(SharedPtrComponent<BaseComponent>::CastFrom(aComponent));
 }
 
 template <typename TComponentType>
 SharedPtrComponent<TComponentType>
-GameObject::GetComponent()
+GameObject::GetComponent(const size_t & anIndex/* = 0*/)
 {
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
-	size_t nextID = UniqeIdentifier<BaseComponent>::nextTypeIndex;
-	if (myComponents.Size() < nextID)
+	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
 	{
-		AddComponent<TComponentType>();
+		return nullptr;
 	}
-	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id]);
+	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
 }
 
 template <typename TComponentType>
 const SharedPtrComponent<TComponentType>
-GameObject::GetComponent() const
+GameObject::GetComponent(const size_t & anIndex/* = 0*/) const
 {
 	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
-	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id]);
+	if (myComponents.Size() <= id || myComponents[id].Size() <= anIndex)
+	{
+		return nullptr;
+	}
+	return SharedPtrComponent<TComponentType>::CastFrom(myComponents[id][anIndex]);
+}
+
+template <typename TComponentType>
+size_t GameObject::GetComponentCount() const
+{
+	size_t id = UniqeIdentifier<BaseComponent>::GetID<TComponentType>();
+	return myComponents[id].Size();
 }
