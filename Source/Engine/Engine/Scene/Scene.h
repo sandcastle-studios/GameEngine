@@ -24,13 +24,20 @@ public:
 	template <typename TComponentType>
 	void PreCreateComponentFactory();
 
-protected:
+	void UpdatePerspective(float aFoV, float aWidth, float aHeight, float aNearPlane, float aFarPlane) const;
+
+	std::shared_ptr<GameObject> CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale = Vector3f::One, const Quaternion & aOrientation = Quaternion());
+	std::shared_ptr<GameObject> CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale = Vector3f::One, const Quaternion & aOrientation = Quaternion());
+	const Camera & GetCamera() const;
 
 	template <typename TComponentType>
 	std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory();
 
 	template <typename TComponentType>
 	const std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory()const;
+protected:
+	void SetCameraOrientation(const Vector3f & aCameraPosition, const Vector3f & aLookDirection = Vector3f(0.f, 0.f, 1.f));
+
 
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponentFactory>, size_t> myFactories;

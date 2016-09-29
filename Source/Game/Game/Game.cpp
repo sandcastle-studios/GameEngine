@@ -16,6 +16,7 @@
 //#include <Engine\SplashScreen\SplashScreenScene.h>
 #include "EnemyTestScene.h"
 #include "PbrTestScene.h"
+#include "PlayerTestScene.h"
 
 Game::Game()
 {
@@ -82,7 +83,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<EnemyTestScene>();
+	myScene = std::make_unique<PlayerTestScene>();
 
 	CreatePerspective();
 }
@@ -112,5 +113,5 @@ void Game::Render()
 
 void Game::CreatePerspective()
 {
-	myScene->GetCamera().CreatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
+	myScene->UpdatePerspective(60.f, static_cast<float>(myWindow->GetSize().width), static_cast<float>(myWindow->GetSize().height), 100.f, 0.1f);
 }

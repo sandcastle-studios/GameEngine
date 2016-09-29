@@ -255,6 +255,9 @@
     <ClInclude Include="Game\SlideShowScene.h" />
     <ClInclude Include="Game\SoundTestScene.h" />
     <ClInclude Include="PbrTestScene.h" />
+    <ClInclude Include="PlayerShootComponent.h" />
+    <ClInclude Include="PlayerTestScene.h" />
+    <ClInclude Include="ShotComponent.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +271,9 @@
     <ClCompile Include="Game\SlideShowScene.cpp" />
     <ClCompile Include="Game\SoundTestScene.cpp" />
     <ClCompile Include="PbrTestScene.cpp" />
+    <ClCompile Include="PlayerShootComponent.cpp" />
+    <ClCompile Include="PlayerTestScene.cpp" />
+    <ClCompile Include="ShotComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

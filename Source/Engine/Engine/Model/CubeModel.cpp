@@ -129,8 +129,11 @@ CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_
 	indicies[35] = 5;
 
 	Surface surface;
-	surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
 
+	if (aTexture != nullptr)
+	{
+		surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
+	}
 
 	AddMesh(std::make_shared<Mesh<Vertex>>(aEffect, surface, verticies, indicies));
 }

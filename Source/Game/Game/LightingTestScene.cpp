@@ -7,23 +7,22 @@
 #include <Engine\Rendering\DXRenderer.h>
 #include <Engine\Rendering\ModelRenderer.h>
 #include <imgui.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
 
 
 LightingTestScene::LightingTestScene()
 {
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	//std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
-	myHead = std::make_shared<ModelInstance>(model);
-	//myObjects.push_back(myHead);
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx")));
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	myHead = std::make_shared<ModelInstance>(model);
+	
 	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	auto bb = myHead->GetBoundingBox();
 
-	GetCamera().SetPosition(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
-	// GetCamera().LookAt(Vector3f::Zero);
-
+	SetCameraOrientation(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
+	
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
 }
 
@@ -54,51 +53,4 @@ void LightingTestScene::Update(const Time & aDeltaTime)
 void LightingTestScene::Render()
 {
 	Scene::Render();
-}
-
-ReceiveResult LightingTestScene::Receive(const AnyKeyUpMessage& aMessage)
-{
-	switch (aMessage.key)
-	{
-	case KeyboardKey::eQ:
-		myRollLeft = false;
-		break;
-	case KeyboardKey::eE:
-		myRollRight = false;
-		break;
-
-	case KeyboardKey::eA:
-		myMoveLeft = false;
-		break;
-	case KeyboardKey::eD:
-		myMoveRight = false;
-		break;
-	case KeyboardKey::eW:
-		myMoveForward = false;
-		break;
-	case KeyboardKey::eS:
-		myMoveBackward = false;
-		break;
-
-	case KeyboardKey::eLeft:
-		myRotateLeft = false;
-		break;
-	case KeyboardKey::eRight:
-		myRotateRight = false;
-		break;
-	case KeyboardKey::eUp:
-		myPitchForward = false;
-		break;
-	case KeyboardKey::eDown:
-		myPitchBackward = false;
-		break;
-
-	case KeyboardKey::eControl:
-		myMoveDown = false;
-		break;
-	case KeyboardKey::eSpace:
-		myMoveUp = false;
-		break;
-	}
-	return ReceiveResult::eContinue;
 }

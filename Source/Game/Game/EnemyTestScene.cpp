@@ -8,8 +8,12 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+
 EnemyTestScene::EnemyTestScene()
 {
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+
 	CreateFactories();
 }
 
@@ -49,5 +53,5 @@ void EnemyTestScene::CreateFactories()
 
 	myObjects.Add(enemy);
 
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 }

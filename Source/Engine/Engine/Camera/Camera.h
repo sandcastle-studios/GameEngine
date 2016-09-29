@@ -24,8 +24,8 @@ public:
 
 	void LookAt(const Vector3f & aLookAt);
 
-	Quaternion& GetRototation();
-	const Quaternion& GetRototation() const;
+	Quaternion& GetOrientation();
+	const Quaternion& GetOrientation() const;
 
 	const ConstantBuffer<CameraCB> & GetCameraConstantBuffer() const;
 
@@ -56,12 +56,12 @@ inline const Vector3f & Camera::GetPosition() const
 	return myPosition;
 }
 
-inline Quaternion & Camera::GetRototation()
+inline Quaternion & Camera::GetOrientation()
 {
 	return myRotation;
 }
 
-inline const Quaternion & Camera::GetRototation() const
+inline const Quaternion & Camera::GetOrientation() const
 {
 	return myRotation;
 }

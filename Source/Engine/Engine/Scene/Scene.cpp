@@ -10,6 +10,10 @@
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
 #include "Engine\Camera\CameraController.h"
+#include "Engine/Component\ModelComponent.h"
+#include "Engine/Model/AssimpModel.h"
+#include "Engine/Component/Factory/ComponentFactory.h"
+#include "..\GameObject\GameObject.h"
 
 Scene::Scene(const char * aSkyboxPath)
 {
@@ -44,13 +48,16 @@ void Scene::Update(const Time & aDeltaTime)
 		}
 	}
 
-	std::shared_ptr<CameraController> & cc = myCameraControllers.Top();
-	if (cc != nullptr)
+	if (myCameraControllers.Size() > 0)
 	{
-		CameraControllerResult result = cc->Update(aDeltaTime, *myCamera);
-		if (result == CameraControllerResult::ePassControl)
+		std::shared_ptr<CameraController> & cc = myCameraControllers.Top();
+		if (cc != nullptr)
 		{
-			myCameraControllers.Pop();
+			CameraControllerResult result = cc->Update(aDeltaTime, *myCamera);
+			if (result == CameraControllerResult::ePassControl)
+			{
+				myCameraControllers.Pop();
+			}
 		}
 	}
 
@@ -80,4 +87,43 @@ void Scene::Render()
 void Scene::PushCameraController(const std::shared_ptr<CameraController> & aCameraController)
 {
 	myCameraControllers.Push(aCameraController);
+}
+
+void Scene::SetCameraOrientation(const Vector3f & aCameraPosition, const Vector3f & aLookDirection /*= Vector3f(0.f, 0.f, 1.f)*/)
+{
+	myCamera->SetPosition(aCameraPosition);
+	myCamera->LookAt(aCameraPosition + aLookDirection);
+}
+
+const Camera & Scene::GetCamera() const
+{
+	return *myCamera;
+}
+
+std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
+{
+	return CreateObjectWithModel(std::make_shared<AssimpModel>(myEffect, aPath), aPosition, aScale, aOrientation);
+}
+
+std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
+{
+	std::shared_ptr<GameObject> object = std::make_shared<GameObject>();
+
+	SharedPtrComponent<ModelComponent> modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
+	std::shared_ptr<ModelInstance> modelInstance = std::make_shared<ModelInstance>(aModel);
+	Quaternion q = aOrientation;
+	q.Normalize();
+	modelInstance->SetMatrix(q.GenerateMatrix() * Matrix44f::CreateScale(aScale.x, aScale.y, aScale.z) * Matrix44f::CreateTranslation(aPosition));
+	modelComponent->SetModel(modelInstance);
+
+	object->AddComponent(modelComponent);
+
+	myObjects.Add(object);
+
+	return object;
+}
+
+void Scene::UpdatePerspective(float aFoV, float aWidth, float aHeight, float aNearPlane, float aFarPlane) const
+{
+	myCamera->CreatePerspective(aFoV, aWidth, aHeight, aNearPlane, aFarPlane);
 }
