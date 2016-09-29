@@ -1,18 +1,17 @@
 #include "stdafx.h"
 #include "Engine\GameObject\GameObject.h"
 
-GameObject::GameObject()
+GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
 {
+	myScene = &aScene;
 	myScale = Vector3f::One;
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
-}
 
-GameObject::GameObject(const GameObjectData& aData)
-{
-	myScale = Vector3f::One;
-
-	SetData(aData);
+	if (aData != nullptr)
+	{
+		SetData(*aData);
+	}
 }
 
 GameObject::~GameObject()
@@ -61,7 +60,6 @@ void GameObject::SetData(const GameObjectData& aData)
 	myID = aData.myID;
 	myPosition = aData.myPosition;
 	myRotation = aData.myRotation;
-	myScene = aData.myScene;
 
 	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{

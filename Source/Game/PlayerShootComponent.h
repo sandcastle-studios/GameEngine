@@ -12,10 +12,7 @@ public:
 
 	ReceiveResult Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage);
 
-	void SetScene(Scene & aScene);
-
 private:
-	Scene * myScene;
 	std::shared_ptr<Model> myModel;
 	std::shared_ptr<Subscription<KeyDownMessage<KeyboardKey::eReturn>>> myKeySubscription;
 	int myShotCounter;
