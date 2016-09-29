@@ -16,7 +16,7 @@ PbrTestScene::PbrTestScene()
 	: Scene("spacebox.dds")
 {
 	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
-	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/stefan_sphere/testSpheres.fbx")); // 
+	myHead = std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx")); // 
 	
 	auto bb = myHead->GetBoundingBox();
 
@@ -48,7 +48,7 @@ void PbrTestScene::Update(const Time & aDeltaTime)
 	}
 	ImGui::End();
 
-	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+	myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	if (myRollLeft)
 	{

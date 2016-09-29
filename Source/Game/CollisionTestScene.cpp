@@ -15,7 +15,7 @@ CollisionTestScene::CollisionTestScene()
 {
 	CreateFactories();
 
-	//GetCamera().SetPosition(Vector3f(0.f, 0.f, -200.f));
+	GetCamera().SetPosition(Vector3f(0.f, 0.f, -3.f));
 }
 
 
@@ -31,8 +31,21 @@ void CollisionTestScene::Update(const Time & aDeltaTime)
 
 	if (ImGui::Begin("Debug Window"))
 	{
+		static float TestFloat = 1.f;
+
 		static bool checked;
 		ImGui::Checkbox("Checked", &checked);
+
+		ImGui::SliderFloat("test drag float", &TestFloat, 0.f, 10.f);
+	}
+
+	ImGui::End();
+
+	if (ImGui::Begin("Window test"))
+	{
+		static float TestFloat1 = 1.f;
+
+		ImGui::SliderFloat("test drag float", &TestFloat1, 0.f, 10.f);
 	}
 
 	ImGui::End();
@@ -47,20 +60,22 @@ void CollisionTestScene::Render()
 
 void CollisionTestScene::CreateFactories()
 {
-	AddComponentFactory<ModelComponent>();
-	AddComponentFactory<LightComponent>();
+	PreCreateComponentFactory<ModelComponent>();
+	PreCreateComponentFactory<LightComponent>();
 
 	std::shared_ptr<GameObject> enemy = std::make_shared<GameObject>();
 
-	//GetComponentFactory<ModelComponent>()->CreateComponent();
-
 	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Asteroid/AsteroidPillarHuge1.fbx");
-	prettyModel->SetModel(std::make_shared<ModelInstance>(model));
+	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
 
+	std::shared_ptr<ModelInstance>tempModel = std::make_shared<ModelInstance>(model);
 
+	tempModel->SetMatrix(tempModel->GetMatrix() * Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
+	prettyModel->SetModel(tempModel);
 
-	GetCamera().SetPosition(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	GetCamera().SetPosition(tempModel->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 
-	enemy->AddComponent<ModelComponent>(prettyModel);
+	myObjects.Add(enemy);
+
+	
 }
