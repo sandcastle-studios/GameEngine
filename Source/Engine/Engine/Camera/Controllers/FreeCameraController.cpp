@@ -35,6 +35,8 @@ FreeSpaceCameraController::~FreeSpaceCameraController()
 
 CameraControllerResult FreeSpaceCameraController::Update(const Time & aDeltaTime, Camera & aCamera)
 {
+	const float TurnAccelerationAmount = myDriftRotationSpeed / 3.f;
+
 	UpdateAcceleration(aDeltaTime);
 
 	if (myRollLeft)

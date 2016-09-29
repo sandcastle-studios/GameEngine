@@ -32,17 +32,17 @@
       "children": []
     },
 	{
-      "name": "wall",
+      "name": "wall1",
       "components": [
         {
           "localPosition": [
+            -30.0,
             0.0,
-            -5.0,
             0.0
           ],
           "localRotation": [
             0.0,
-            1.57,
+            -1.0,
             0.0,
             1.0
           ],
@@ -54,7 +54,217 @@
           "type": "Transform"
         },
         {
-          "modelPath": "Assets/Models/Tests/Gubbe/gubbe.fbx",
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall2",
+      "components": [
+        {
+          "localPosition": [
+            -30.0,
+            -10.0,
+            140.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall3",
+      "components": [
+        {
+          "localPosition": [
+            -30.0,
+            0.0,
+            280.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall4",
+      "components": [
+        {
+          "localPosition": [
+            -30.0,
+            -10.0,
+            420.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall5",
+      "components": [
+        {
+          "localPosition": [
+            -50.0,
+            0.0,
+            0.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall6",
+      "components": [
+        {
+          "localPosition": [
+            -50.0,
+            -10.0,
+            140.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall7",
+      "components": [
+        {
+          "localPosition": [
+            -50.0,
+            0.0,
+            280.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
+          "texturePath": "",
+          "type": "ModelData"
+        }
+      ],
+      "children": []
+    },
+	{
+      "name": "wall8",
+      "components": [
+        {
+          "localPosition": [
+            -50.0,
+            -10.0,
+            420.0
+          ],
+          "localRotation": [
+            0.0,
+            -1.0,
+            0.0,
+            1.0
+          ],
+          "localScale": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "type": "Transform"
+        },
+        {
+          "modelPath": "Assets/Models/Tests/Wall/wall.fbx",
           "texturePath": "",
           "type": "ModelData"
         }
