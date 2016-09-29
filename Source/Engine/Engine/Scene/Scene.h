@@ -34,7 +34,7 @@ protected:
 	//ComponentFactory<std::shared_ptr<ModelComponent>> myModelComponentFactory;
 	GrowingArray<std::shared_ptr<BaseComponentFactory>, size_t> myFactories;
 
-	std::vector<std::shared_ptr<GameObject>> myObjects;
+	GrowingArray<std::shared_ptr<GameObject>> myObjects;
 
 	std::unique_ptr<ModelInstance> mySkybox;
 
