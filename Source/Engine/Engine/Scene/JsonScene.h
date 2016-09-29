@@ -12,5 +12,6 @@ public:
 	virtual void Render() override;
 
 private:
+
 };
 

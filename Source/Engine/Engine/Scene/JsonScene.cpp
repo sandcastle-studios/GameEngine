@@ -13,7 +13,7 @@
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath)
 {
-
+	GetCamera().SetPosition(Vector3f(0.f, 0.f, -10.f));
 }
 
 
@@ -23,6 +23,7 @@ JsonScene::~JsonScene()
 
 void JsonScene::Update(const Time & aDeltaTime)
 {
+
 	Scene::Update(aDeltaTime);
 }
 

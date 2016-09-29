@@ -73,6 +73,8 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 				aObjectNode["components"][i]["localRotation"][1].GetFloat(),
 				aObjectNode["components"][i]["localRotation"][2].GetFloat()
 			);
+
+			continue;
 		}
 		else if (componentType == "ModelData")
 		{
@@ -85,6 +87,11 @@ GameObjectData SceneManager::LoadGameObject(DataNode aObjectNode, std::shared_pt
 			Error("Unable to load component. Unrecognized component type.");
 		}
 
+
+		if (newComponent == nullptr)
+		{
+			Error("Failed to create new component");
+		}
 
 		objectData.myComponentList.Add(newComponent);
 	}

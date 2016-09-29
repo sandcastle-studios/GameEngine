@@ -22,7 +22,7 @@ void GameObject::SetData(const GameObjectData& aData)
 	myRotation = aData.myRotation;
 	myScene = aData.myScene;
 
-	for (size_t i = 0; aData.myComponentList.Size(); ++i)
+	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
 	{
 		AddComponent(aData.myComponentList[i]);
 	}

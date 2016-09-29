@@ -100,7 +100,7 @@
           "type": "Transform"
         },
         {
-          "modelPath": "Hej",
+          "modelPath": "models/tga_companioncube/companion.fbx",
           "texturePath": "Heeeeeej",
           "type": "ModelData"
         }

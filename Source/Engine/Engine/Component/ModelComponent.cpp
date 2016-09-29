@@ -30,6 +30,8 @@ void ModelComponent::SetModel(std::shared_ptr<ModelInstance> aModel)
 void ModelComponent::SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect)
 {
 	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(aEffect, aModelFilePath);
+	std::shared_ptr<ModelInstance> modelInstance = std::make_shared<ModelInstance>(model);
+	myModel = modelInstance;
 }
 
 void ModelComponent::Construct()
