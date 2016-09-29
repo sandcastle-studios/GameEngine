@@ -10,13 +10,17 @@
 #include <Engine\Camera\Camera.h>
 #include <Engine\DataParser\DataParser.h>
 #include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
-
+#include "..\SoundManager\SoundManger.h"
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 {
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 2.5f));
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
+
+	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+
 }
 
 
@@ -26,6 +30,7 @@ JsonScene::~JsonScene()
 
 void JsonScene::Update(const Time & aDeltaTime)
 {
+	Engine::GetSoundManager().Update();
 
 	Scene::Update(aDeltaTime);
 }
