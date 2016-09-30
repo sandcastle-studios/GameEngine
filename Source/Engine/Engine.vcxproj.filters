@@ -19,10 +19,6 @@
     <ClInclude Include="Engine\Buffer\VertexBuffer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Camera\Camera.h" />
-    <ClInclude Include="Engine\Camera\Skybox.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Effect\Effect.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -189,6 +185,10 @@
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
     <ClInclude Include="Engine\Texture\TextureCube.h" />
+    <ClInclude Include="Engine\Camera\Camera.h" />
+    <ClInclude Include="Engine\Camera\CameraController.h" />
+    <ClInclude Include="Engine\Camera\Skybox.h" />
+    <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -207,10 +207,6 @@
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Buffer\VertexBuffer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Camera\Camera.cpp" />
-    <ClCompile Include="Engine\Camera\Skybox.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Effect\Effect.cpp">
@@ -309,6 +305,10 @@
     <ClCompile Include="Engine\Component\LightComponent.cpp" />
     <ClCompile Include="Engine\DataParser\DataParser.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
+    <ClCompile Include="Engine\Camera\Camera.cpp" />
+    <ClCompile Include="Engine\Camera\CameraController.cpp" />
+    <ClCompile Include="Engine\Camera\Skybox.cpp" />
+    <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

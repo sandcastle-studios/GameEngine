@@ -9,6 +9,7 @@ template <typename TComponentFactoryType>class ComponentFactory;
 
 class Camera;
 class StandardEffect;
+class CameraController;
 
 template <typename TBufferType>
 class ConstantBuffer;
@@ -25,6 +26,8 @@ public:
 	Scene(const char * aSkyboxPath = nullptr);
 	virtual ~Scene();
 
+	void PushCameraController(const std::shared_ptr<CameraController> & aCameraController);
+
 	virtual void Update(const Time & aDeltaTime);
 	virtual void Render();
 
@@ -34,7 +37,7 @@ public:
 	void AddComponentFactory();
 
 protected:
-
+	Stack<std::shared_ptr<CameraController>> myCameraControllers;
 	template <typename TComponentType>
 	std::shared_ptr<ComponentFactory<TComponentType>> GetComponentFactory();
 

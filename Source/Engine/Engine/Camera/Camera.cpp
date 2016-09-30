@@ -43,19 +43,6 @@ void Camera::UpdateCB() const
 	myCameraCB->UpdateData(cb);
 }
 
-void Camera::ApplySkyboxMatrixToVS() const
-{
-	Quaternion rotation = myRotation;
-	rotation.Normalize();
-
-	CameraCB cb;
-	cb.projection = myProjection;
-	cb.view = rotation.GenerateMatrix();
-	cb.view.Inverse();
-	cb.cameraPosition = myPosition;
-	myCameraCB->UpdateData(cb);
-}
-
 void Camera::LookAt(const Vector3f & aLookAt)
 {
 	Vector3f forwardVector = Vector3f(aLookAt - myPosition).GetNormalized();

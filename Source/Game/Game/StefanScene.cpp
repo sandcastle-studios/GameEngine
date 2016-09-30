@@ -8,11 +8,13 @@
 #include <Engine\Model\AssimpModel.h>
 #include <Engine/Effect/StandardEffect.h>
 #include <Engine\Camera/Camera.h>
+#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
+
 StefanScene::StefanScene()
 {
+	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+
 	CreateFactories();
-
-
 }
 
 StefanScene::~StefanScene()

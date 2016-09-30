@@ -9,7 +9,7 @@
 #include "Engine\Buffer\DepthBuffer.h"
 #include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
-
+#include "Engine\Camera\CameraController.h"
 
 
 Scene::Scene(const char * aSkyboxPath)
@@ -42,6 +42,11 @@ Scene::~Scene()
 {
 }
 
+void Scene::PushCameraController(const std::shared_ptr<CameraController> & aCameraController)
+{
+	myCameraControllers.Push(aCameraController);
+}
+
 void Scene::Update(const Time & aDeltaTime)
 {
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
@@ -61,7 +66,7 @@ void Scene::Render()
 	myMipmapBuffer->BindToPS(2);
 	if (mySkybox != nullptr)
 	{
-		myCamera->ApplySkyboxMatrixToVS();
+		//myCamera->ApplySkyboxMatrixToVS();
 		mySkybox->InstantRender();
 		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
 	}

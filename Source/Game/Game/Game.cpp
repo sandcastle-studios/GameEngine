@@ -11,7 +11,7 @@
 #include <Engine\FileWatcher\FileChangeWatcher.h>
 //#include "LightingTestScene.h"
 //#include <Engine\SplashScreen\SplashScreenScene.h>
-#include "StefanScene.h"
+#include "LightingTestScene.h"
 
 Game::Game()
 {
@@ -78,7 +78,7 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	myScene = std::make_unique<StefanScene>();
+	myScene = std::make_unique<LightingTestScene>();
 
 	CreatePerspective();
 }
