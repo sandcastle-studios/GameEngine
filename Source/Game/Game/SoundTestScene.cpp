@@ -29,8 +29,6 @@ SoundTestScene::SoundTestScene()
 
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 
-	success = Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
-
 	success = Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 	success;
 	myPlaying = false;
