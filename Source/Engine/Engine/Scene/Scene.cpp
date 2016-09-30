@@ -19,7 +19,7 @@ Scene::Scene(const char * aSkyboxPath)
 
 
 	MipMapStruct data;
-	data.actualValue = 8;
+	data.actualValue = 11;
 	myMipmapBuffer->UpdateData(data);
 
 	myCamera = std::make_unique<Camera>();
