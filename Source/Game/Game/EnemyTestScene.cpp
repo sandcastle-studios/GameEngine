@@ -6,7 +6,7 @@
 #include <Engine/GameObject/GameObject.h>
 #include <Engine/SoundManager/SoundManger.h>
 #include <Engine\Model\AssimpModel.h>
-#include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
+#include "Utilities\Intersection\Colliders\SphereCollider.h"
 #include "ShotComponent.h"
 #include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 #include "Engine\Component\ModelComponent.h"
@@ -46,14 +46,14 @@ void EnemyTestScene::Update(const Time & aDeltaTime)
 
 	
 
-	SphereIntersection tempProjectileCollider;
+	SphereCollider tempProjectileCollider;
 
 
 	float enemySize = myEnemy->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * myEnemy->GetScale().x;
 
 	
 
-	SphereIntersection tempEnemyCollider;
+	SphereCollider tempEnemyCollider;
 	tempEnemyCollider.SetRadius(enemySize);
 	
 

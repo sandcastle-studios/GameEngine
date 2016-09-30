@@ -13,7 +13,7 @@
 #include <Engine\Component\BouncingComponent.h>
 #include "..\SoundManager\SoundManger.h"
 #include "..\Game\ShotComponent.h"
-#include "..\Utilities\Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
+#include "..\Utilities\Utilities\Intersection\Colliders\SphereCollider.h"
 #include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 
 JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
@@ -50,8 +50,8 @@ void JsonScene::Update(const Time & aDeltaTime)
 	GrowingArray<GameObject*>tempShoots;
 	GrowingArray<GameObject*>NotShots;
 
-	SphereIntersection tempEnemyCollider;
-	SphereIntersection tempProjectileCollider;
+	SphereCollider tempEnemyCollider;
+	SphereCollider tempProjectileCollider;
 
 	GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
 		[&](ShotComponent & ashot)

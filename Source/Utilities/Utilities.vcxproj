@@ -154,7 +154,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Utilities\Intersection\IntersectionShapes\SphereIntersection.h" />
+    <ClInclude Include="Utilities\Intersection\CollisionManager.h" />
+    <ClInclude Include="Utilities\Intersection\Colliders\SphereCollider.h" />
     <ClInclude Include="Utilities\Container\Stack.h" />
     <ClInclude Include="Utilities\Intersection\IntersectionTests.h" />
     <ClInclude Include="Utilities\Math\MathMacros.h" />
@@ -173,7 +174,8 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Utilities\Intersection\IntersectionShapes\SphereIntersection.cpp" />
+    <ClCompile Include="Utilities\Intersection\CollisionManager.cpp" />
+    <ClCompile Include="Utilities\Intersection\Colliders\SphereCollider.cpp" />
     <ClCompile Include="Utilities\Intersection\IntersectionTests.cpp" />
     <ClCompile Include="Utilities\Math\Quaternion.cpp" />
     <ClCompile Include="stdafx.cpp">

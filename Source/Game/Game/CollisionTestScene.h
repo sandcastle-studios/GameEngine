@@ -4,7 +4,7 @@
 struct SplashScreenCBuffer;
 class SplashScreenEffect;
 
-class SphereIntersection;
+class SphereCollider;
 
 class CollisionTestScene :
 	public Scene
@@ -21,8 +21,8 @@ public:
 
 private:
 
-	std::unique_ptr<SphereIntersection> myCollisionSphere1;
-	std::unique_ptr<SphereIntersection> myCollisionSphere2;
+	std::unique_ptr<SphereCollider> myCollisionSphere1;
+	std::unique_ptr<SphereCollider> myCollisionSphere2;
 
 	std::shared_ptr<GameObject> myTestObject1;
 	std::shared_ptr<GameObject> myTestObject2;
