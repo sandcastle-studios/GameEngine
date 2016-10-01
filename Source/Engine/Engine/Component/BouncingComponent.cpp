@@ -87,14 +87,14 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 	//float rotAngle = acosf(Vector3f::Dot(baseDirection, towardsPoint));
 	//
 	//Quaternion myOrientation;
-	//myOrientation.RotateAlongAxis(rotAxis, rotAngle);
 	//
-	//myObject->SetRotation(myOrientation);
+	//myObject->SetRotation(myOrientation.GetRotation(baseDirection, towardsPoint, Vector3f(0.f, -1.f, 0.f)));
 	//
 	//if (nonNormalizedTowardsPoint.Length() <= 1.f)
 	//{
 	//	myMovingTowardsPoint.x = myRandomizer.GetRandomValue(-20, 20);
 	//	myMovingTowardsPoint.y = myRandomizer.GetRandomValue(-20, 20);
+	//	myMovingTowardsPoint.z = myRandomizer.GetRandomValue(-20, 20);
 	//}
 	/////////TEST FOR ENEMY ROTATION, WORKS FOR X AND Y AXIS BUT NOT WITH Z, BECAUSE REASONS///////////////////////////////////////
 
