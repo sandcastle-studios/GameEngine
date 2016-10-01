@@ -11,16 +11,16 @@
 
 void PlayerShootComponent::Construct()
 {
-	myModel = std::make_shared<CubeModel>(std::make_shared<StandardEffect>(), nullptr);
+	myModel = std::make_shared<SB::CubeModel>(std::make_shared<SB::StandardEffect>(), nullptr);
 
-	myKeySubscription = std::make_shared<Subscription<KeyDownMessage<KeyboardKey::eReturn>>>(
-		[this] (const KeyDownMessage<KeyboardKey::eReturn> & aMessage) -> ReceiveResult
+	myKeySubscription = std::make_shared<SB::Subscription<SB::KeyDownMessage<SB::KeyboardKey::eReturn>>>(
+		[this] (const SB::KeyDownMessage<SB::KeyboardKey::eReturn> & aMessage) -> SB::ReceiveResult
 		{
 			return this->Receive(aMessage);
 		}
 	);
-	myKeyUpSubscription = std::make_shared<Subscription<KeyUpMessage<KeyboardKey::eReturn>>>(
-		[this](const KeyUpMessage<KeyboardKey::eReturn> & aMessage) -> ReceiveResult
+	myKeyUpSubscription = std::make_shared<SB::Subscription<SB::KeyUpMessage<SB::KeyboardKey::eReturn>>>(
+		[this](const SB::KeyUpMessage<SB::KeyboardKey::eReturn> & aMessage) -> SB::ReceiveResult
 	{
 		return this->Receive(aMessage);
 	}
@@ -38,19 +38,19 @@ void PlayerShootComponent::Destruct()
 	myKeyUpSubscription = nullptr;
 }
 
-ReceiveResult PlayerShootComponent::Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage)
+SB::ReceiveResult PlayerShootComponent::Receive(const SB::KeyDownMessage<SB::KeyboardKey::eReturn> & aMessage)
 {
 	myShooting = true;
-	return ReceiveResult::eContinue;
+	return SB::ReceiveResult::eContinue;
 }
 
-ReceiveResult PlayerShootComponent::Receive(const KeyUpMessage<KeyboardKey::eReturn> & aMessage)
+SB::ReceiveResult PlayerShootComponent::Receive(const SB::KeyUpMessage<SB::KeyboardKey::eReturn> & aMessage)
 {
 	myShooting = false;
-	return ReceiveResult::eContinue;
+	return SB::ReceiveResult::eContinue;
 }
 
-void PlayerShootComponent::Update(const Time & aDeltaTime)
+void PlayerShootComponent::Update(const SB::Time & aDeltaTime)
 {
 	myObject->SetPosition(myObject->GetScene().GetCamera().GetPosition());
 
@@ -60,21 +60,21 @@ void PlayerShootComponent::Update(const Time & aDeltaTime)
 		
 		while (myShootTimer >= 0.2f)
 		{
-			const Camera & camera = myObject->GetScene().GetCamera();
-			const Vector3f right = camera.GetOrientation().GetRight();
+			const SB::Camera & camera = myObject->GetScene().GetCamera();
+			const SB::Vector3f right = camera.GetOrientation().GetRight();
 			const float distance = 0.35f;
 
 			myShotCounter++;
-			std::shared_ptr<GameObject> shot;
+			std::shared_ptr<SB::GameObject> shot;
 
-			const Vector3f shotSize(0.1f, 0.1f, 1.5f);
+			const SB::Vector3f shotSize(0.1f, 0.1f, 1.5f);
 
 			if (myShotCounter % 2 == 0)
 				shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * distance, shotSize, camera.GetOrientation());
 			else
 				shot = myObject->GetScene().CreateObjectWithModel(myModel, camera.GetPosition() + right * -distance, shotSize, camera.GetOrientation());
 
-			Engine::GetSoundManager().PostEvent("Play_Derp");
+			SB::Engine::GetSoundManager().PostEvent("Play_Derp");
 
 			auto shotComponent = myObject->GetScene().GetComponentFactory<ShotComponent>()->CreateComponent();
 			shotComponent->SetSpeed(camera.GetOrientation().GetForward() * 100.f);

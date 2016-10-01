@@ -18,24 +18,24 @@
 PbrTestScene::PbrTestScene()
 	: Scene("PbrTestScene", "grass.dds")
 {
-	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
-	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+	SB::Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	SB::Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
-	CreateAndAddModel("models/stefan_sphere/testSpheres.fbx", Vector3f(0.f, 0.f, 15.f));
+	CreateAndAddModel("models/stefan_sphere/testSpheres.fbx", SB::Vector3f(0.f, 0.f, 15.f));
 	
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	PushCameraController(std::make_shared<SB::FreeSpaceCameraController>(5.f, 1.5f));
 
-	Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
+	SB::Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
+	SB::Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, SB::Vector3f(1.f, -1.f, 1.f), SB::Vector4f(1.0f, 1.0f, 1.0f, 1.f));
 }
 
 PbrTestScene::~PbrTestScene()
 {
 }
 
-void PbrTestScene::Update(const Time & aDeltaTime)
+void PbrTestScene::Update(const SB::Time & aDeltaTime)
 {
-	Engine::GetSoundManager().Update();
+	SB::Engine::GetSoundManager().Update();
 
 	if (ImGui::Begin("PBR Test Scene", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
@@ -45,10 +45,10 @@ void PbrTestScene::Update(const Time & aDeltaTime)
 
 	//myHead->SetMatrix(Matrix44f::CreateRotateAroundY(myTime.InSeconds()) * Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
 
 void PbrTestScene::Render()
 {
-	Scene::Render();
+	SB::Scene::Render();
 }

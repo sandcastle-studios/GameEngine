@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine\Component\BaseComponent.h"
-class ShotComponent : public BaseComponent
+class ShotComponent : public SB::BaseComponent
 {
 public:
 
-	void SetSpeed(const Vector3f & aSpeed);
+	void SetSpeed(const SB::Vector3f & aSpeed);
 
 	virtual void Construct() override;
 
@@ -12,14 +12,14 @@ public:
 	virtual void Destruct() override;
 
 
-	virtual void Update(const Time & aDeltaTime) override;
+	virtual void Update(const SB::Time & aDeltaTime) override;
 
 	bool myHasHit;
 
 private:
 	
 
-	Vector3f mySpeed;
-	Time myAge;
+	SB::Vector3f mySpeed;
+	SB::Time myAge;
 };
 

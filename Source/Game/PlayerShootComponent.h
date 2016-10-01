@@ -1,27 +1,30 @@
 #pragma once
 #include <Engine\Component\BaseComponent.h>
 
-class Model;
-class Scene;
+namespace SB
+{
+	class Model;
+	class Scene;
+}
 
-class PlayerShootComponent : public BaseComponent
+class PlayerShootComponent : public SB::BaseComponent
 {
 public:
 	virtual void Construct() override;
 	virtual void Destruct() override;
 
-	ReceiveResult Receive(const KeyDownMessage<KeyboardKey::eReturn> & aMessage);
-	ReceiveResult Receive(const KeyUpMessage<KeyboardKey::eReturn> & aMessage);
+	SB::ReceiveResult Receive(const SB::KeyDownMessage<SB::KeyboardKey::eReturn> & aMessage);
+	SB::ReceiveResult Receive(const SB::KeyUpMessage<SB::KeyboardKey::eReturn> & aMessage);
 
 
-	virtual void Update(const Time & aDeltaTime) override;
+	virtual void Update(const SB::Time & aDeltaTime) override;
 
 private:
-	std::shared_ptr<Model> myModel;
-	std::shared_ptr<Subscription<KeyDownMessage<KeyboardKey::eReturn>>> myKeySubscription;
-	std::shared_ptr<Subscription<KeyUpMessage<KeyboardKey::eReturn>>> myKeyUpSubscription;
+	std::shared_ptr<SB::Model> myModel;
+	std::shared_ptr<SB::Subscription<SB::KeyDownMessage<SB::KeyboardKey::eReturn>>> myKeySubscription;
+	std::shared_ptr<SB::Subscription<SB::KeyUpMessage<SB::KeyboardKey::eReturn>>> myKeyUpSubscription;
 	int myShotCounter;
 	bool myShooting;
-	Time myShootTimer;
+	SB::Time myShootTimer;
 };
 

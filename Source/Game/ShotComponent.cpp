@@ -2,7 +2,7 @@
 #include "ShotComponent.h"
 #include <Engine\GameObject\GameObject.h>
 
-void ShotComponent::SetSpeed(const Vector3f & aSpeed)
+void ShotComponent::SetSpeed(const SB::Vector3f & aSpeed)
 {
 	mySpeed = aSpeed;
 	myHasHit = false;
@@ -11,7 +11,7 @@ void ShotComponent::SetSpeed(const Vector3f & aSpeed)
 void ShotComponent::Construct()
 {
 	myAge = 0.f;
-	mySpeed = Vector3f::Zero;
+	mySpeed = SB::Vector3f::Zero;
 }
 
 void ShotComponent::Destruct()
@@ -19,7 +19,7 @@ void ShotComponent::Destruct()
 	// Engine::GetLogger().LogInfo("ShotComponent::Destruct");
 }
 
-void ShotComponent::Update(const Time & aDeltaTime)
+void ShotComponent::Update(const SB::Time & aDeltaTime)
 {
 	myAge += aDeltaTime;
 
