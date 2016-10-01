@@ -27,7 +27,7 @@ namespace ENGINE_NAMESPACE
 
 		Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
-		CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.61f, 3.87f, 22.368f));
+		// CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.61f, 3.87f, 22.368f));
 
 		/*myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One / 100.f);
 

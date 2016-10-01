@@ -21,7 +21,7 @@ namespace ENGINE_NAMESPACE
 
 	void ModelComponent::Render() const
 	{
-		myModel->Render(myEffect, myObject->GetTransformation() * myMatrix);
+		myModel->Render(myEffect, myMatrix * myObject->GetTransformation());
 	}
 
 	void ModelComponent::SetModel(std::shared_ptr<Model> aModel)
