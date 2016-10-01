@@ -72,8 +72,8 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 
 
 
-	/////////TEST FOR ENEMY ROTATION, WORKS FOR X AND Y AXIS BUT NOT WITH Z, BECAUSE REASONS///////////////////////////////////////
-	//Vector3f baseDirection = Vector3f(0.f, 0.f, -1.f); //Forward vector of an Identity matrix. -1 because something is wrong with our shit
+	/////////TEST FOR ENEMY ROTATION///////////////////////////////////////
+	//Vector3f baseDirection = Vector3f(0.f, 0.f, 1.f); //Forward vector of an Identity matrix.
 	//
 	//Vector3f towardsPoint = myMovingTowardsPoint - myObject->GetPosition();
 	//Vector3f nonNormalizedTowardsPoint = towardsPoint; //Can't check for length when normalized.
@@ -96,7 +96,7 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 	//	myMovingTowardsPoint.y = myRandomizer.GetRandomValue(-20, 20);
 	//	myMovingTowardsPoint.z = myRandomizer.GetRandomValue(-20, 20);
 	//}
-	/////////TEST FOR ENEMY ROTATION, WORKS FOR X AND Y AXIS BUT NOT WITH Z, BECAUSE REASONS///////////////////////////////////////
+	/////////TEST FOR ENEMY ROTATION///////////////////////////////////////
 
 
 }
