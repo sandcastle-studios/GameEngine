@@ -5,36 +5,40 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Rendering\ModelRenderer.h"
 
-ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
+namespace ENGINE_NAMESPACE
 {
-	myModel = aModel;
-}
 
-ModelInstance::~ModelInstance()
-{
-}
+	ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
+	{
+		myModel = aModel;
+	}
 
-void ModelInstance::Render() const
-{
-	myModel->Render(myWorldMatrix);
-}
+	ModelInstance::~ModelInstance()
+	{
+	}
 
-void ModelInstance::InstantRender() const
-{
-	myModel->InstantRender(myWorldMatrix);
-}
+	void ModelInstance::Render() const
+	{
+		myModel->Render(myWorldMatrix);
+	}
 
-void ModelInstance::SetMatrix(const Matrix44f & aMatrix)
-{
-	myWorldMatrix = aMatrix;
-}
+	void ModelInstance::InstantRender() const
+	{
+		myModel->InstantRender(myWorldMatrix);
+	}
+
+	void ModelInstance::SetMatrix(const Matrix44f & aMatrix)
+	{
+		myWorldMatrix = aMatrix;
+	}
 
 
 
-BoundingBoxf ModelInstance::GetBoundingBox() const
-{
-	BoundingBoxf boundingBox = myModel->GetBoundingBox();
-	boundingBox.min = Vector4f(boundingBox.min, 1.f) * myWorldMatrix;
-	boundingBox.max = Vector4f(boundingBox.max, 1.f) * myWorldMatrix;
-	return boundingBox;
+	BoundingBoxf ModelInstance::GetBoundingBox() const
+	{
+		BoundingBoxf boundingBox = myModel->GetBoundingBox();
+		boundingBox.min = Vector4f(boundingBox.min, 1.f) * myWorldMatrix;
+		boundingBox.max = Vector4f(boundingBox.max, 1.f) * myWorldMatrix;
+		return boundingBox;
+	}
 }

@@ -91,7 +91,7 @@ void Game::Initialize()
 
 	auto player = mySceneManager->GetCurrentScene()->CreateGameObject();
 	player->SetIdentifier("Player");
-	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<SB::PlayerShootComponent>()->CreateComponent();
+	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<PlayerShootComponent>()->CreateComponent();
 	player->AddComponent(shootComponent);
 	
 	// mySceneManager->LoadScene<PbrTestScene>();

@@ -3,18 +3,16 @@
 
 namespace ENGINE_NAMESPACE
 {
-	namespace ENGINE_NAMESPACE
+	
+	class LightComponent : public BaseComponent
 	{
-		class LightComponent : public BaseComponent
-		{
-		public:
-			LightComponent();
-			~LightComponent();
+	public:
+		LightComponent();
+		~LightComponent();
 
-			virtual void Construct() override;
+		virtual void Construct() override;
 
-			virtual void Destruct() override;
+		virtual void Destruct() override;
 
-		};
-	}
+	};
 }

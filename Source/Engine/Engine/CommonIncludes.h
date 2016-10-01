@@ -15,6 +15,8 @@
 #include "Engine\Component\BaseComponent.h"
 #include <Utilities\Container\GrowingArray.h>
 #include <Utilities\Pointer\SharedPtr.h>
+#include "Engine\Component\Pointer\SharedPtrComponent.h"
+
 
 #include "Engine\BoundingBox.h"
 #include "Engine\Time\Stopwatch.h"

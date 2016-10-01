@@ -83,53 +83,53 @@ namespace ENGINE_NAMESPACE
 		{
 			if ((aMesh->myShaderType & EModelBluePrint_Position) != 0)
 			{
-				vertices[i].position = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
-				readOffset += sizeof(::Vector4f);
+				vertices[i].position = *reinterpret_cast<const Vector4f*>(&meshVertices[readOffset]);
+				readOffset += sizeof(Vector4f);
 			}
 			else
 			{
-				vertices[i].position = ::Vector4f(0.f, 0.f, 0.f, 1.f);
+				vertices[i].position = Vector4f(0.f, 0.f, 0.f, 1.f);
 			}
 
 			if ((aMesh->myShaderType & EModelBluePrint_Normal) != 0)
 			{
-				vertices[i].normal = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
-				readOffset += sizeof(::Vector4f);
+				vertices[i].normal = *reinterpret_cast<const Vector4f*>(&meshVertices[readOffset]);
+				readOffset += sizeof(Vector4f);
 			}
 			else
 			{
-				vertices[i].normal = ::Vector4f(0.f, 0.f, 0.f, 0.f);
+				vertices[i].normal = Vector4f(0.f, 0.f, 0.f, 0.f);
 			}
 
 			if ((aMesh->myShaderType & EModelBluePrint_BinormTan) != 0)
 			{
-				vertices[i].tangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
-				readOffset += sizeof(::Vector4f);
+				vertices[i].tangent = *reinterpret_cast<const Vector4f*>(&meshVertices[readOffset]);
+				readOffset += sizeof(Vector4f);
 
-				vertices[i].bitangent = *reinterpret_cast<const ::Vector4f*>(&meshVertices[readOffset]);
-				readOffset += sizeof(::Vector4f);
+				vertices[i].bitangent = *reinterpret_cast<const Vector4f*>(&meshVertices[readOffset]);
+				readOffset += sizeof(Vector4f);
 			}
 			else
 			{
-				vertices[i].tangent = ::Vector4f(0.f, 0.f, 0.f, 0.f);
-				vertices[i].bitangent = ::Vector4f(0.f, 0.f, 0.f, 0.f);
+				vertices[i].tangent = Vector4f(0.f, 0.f, 0.f, 0.f);
+				vertices[i].bitangent = Vector4f(0.f, 0.f, 0.f, 0.f);
 			}
 
 			if ((aMesh->myShaderType & EModelBluePrint_UV) != 0)
 			{
-				vertices[i].uv = *reinterpret_cast<const ::Vector2f*>(&meshVertices[readOffset]);
-				readOffset += sizeof(::Vector2f);
+				vertices[i].uv = *reinterpret_cast<const Vector2f*>(&meshVertices[readOffset]);
+				readOffset += sizeof(Vector2f);
 			}
 			else
 			{
-				vertices[i].uv = ::Vector2f(0.f, 0.f);
+				vertices[i].uv = Vector2f(0.f, 0.f);
 			}
 
 			if ((aMesh->myShaderType & EModelBluePrint_Bones) != 0)
 			{
 				// vertices[i].position = *reinterpret_cast<const ::Vector4f*>(&meshVertices[i * aMesh->myVertexBufferSize]);
-				readOffset += sizeof(::Vector4f);
-				readOffset += sizeof(::Vector4f);
+				readOffset += sizeof(Vector4f);
+				readOffset += sizeof(Vector4f);
 			}
 			else
 			{

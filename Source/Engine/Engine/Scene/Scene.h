@@ -5,7 +5,6 @@ namespace ENGINE_NAMESPACE
 {
 
 	class GameObject;
-	struct GameObjectData;
 	class BaseComponentFactory;
 
 	template <typename TComponentFactoryType>class ComponentFactory;

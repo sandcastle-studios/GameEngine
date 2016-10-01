@@ -37,11 +37,11 @@ void SprintReviewScene::CreateFactories()
 
 	std::shared_ptr<SB::GameObject> enemy = CreateGameObject();
 
-	SharedPtrComponent<SB::ModelComponent> prettyModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	SB::SharedPtrComponent<SB::ModelComponent> prettyModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
 	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(model);
 
-	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	SB::SharedPtrComponent<SB::ModelComponent> moarModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
 	std::shared_ptr<SB::AssimpModel> actualModel = std::make_shared<SB::AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
 	moarModel->SetModel(actualModel);
 
