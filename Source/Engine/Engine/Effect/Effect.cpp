@@ -7,81 +7,84 @@
 #include "Engine\Engine.h"
 #include "Engine\Effect\InputLayout.h"
 
-Effect::Effect()
+namespace ENGINE_NAMESPACE
 {
-	myVertexShader = nullptr;
-	myPixelShader = nullptr;
-	myLayout = nullptr;
-
-	myIsLinked = false;
-}
-
-Effect::~Effect()
-{
-	delete myVertexShader;
-	myVertexShader = nullptr;
-	delete myPixelShader;
-	myPixelShader = nullptr;
-
-	if (myLayout != nullptr)
+	Effect::Effect()
 	{
-		myLayout->Release();
+		myVertexShader = nullptr;
+		myPixelShader = nullptr;
 		myLayout = nullptr;
-	}
-}
 
-void Effect::AttachVertexShader(const std::string & aFileName, const char * aEntryPoint)
-{
-	assert("Effect already linked" && myIsLinked == false);
-	assert("Vertex shader already attached" && myVertexShader == nullptr);
-	myVertexShader = new VertexShader(aFileName, aEntryPoint);
-}
-
-void Effect::AttachPixelShader(const std::string & aFileName, const char * aEntryPoint)
-{
-	assert("Effect already linked" && myIsLinked == false);
-	assert("Pixel shader already attached" && myPixelShader == nullptr);
-	myPixelShader = new PixelShader(aFileName, aEntryPoint);
-}
-
-void Effect::Link(const InputLayout & aLayoutDescription)
-{
-	assert("Effect already linked" && myIsLinked == false);
-
-	if (myVertexShader != nullptr)
-	{
-		myLayout = myVertexShader->CreateLayout(aLayoutDescription);
+		myIsLinked = false;
 	}
 
-	myIsLinked = true;
-}
+	Effect::~Effect()
+	{
+		delete myVertexShader;
+		myVertexShader = nullptr;
+		delete myPixelShader;
+		myPixelShader = nullptr;
 
-void Effect::Bind() const
-{
-	if (myVertexShader != nullptr)
-	{
-		myVertexShader->Bind();
-	}
-	else
-	{
-		Engine::GetInstance().GetRenderer().GetContext()->VSSetShader(nullptr, nullptr, 0);
+		if (myLayout != nullptr)
+		{
+			myLayout->Release();
+			myLayout = nullptr;
+		}
 	}
 
-	if (myPixelShader != nullptr)
+	void Effect::AttachVertexShader(const std::string & aFileName, const char * aEntryPoint)
 	{
-		myPixelShader->Bind();
+		assert("Effect already linked" && myIsLinked == false);
+		assert("Vertex shader already attached" && myVertexShader == nullptr);
+		myVertexShader = new VertexShader(aFileName, aEntryPoint);
 	}
-	else
+
+	void Effect::AttachPixelShader(const std::string & aFileName, const char * aEntryPoint)
 	{
-		Engine::GetInstance().GetRenderer().GetContext()->PSSetShader(nullptr, nullptr, 0);
+		assert("Effect already linked" && myIsLinked == false);
+		assert("Pixel shader already attached" && myPixelShader == nullptr);
+		myPixelShader = new PixelShader(aFileName, aEntryPoint);
 	}
-	
-	if (myLayout != nullptr)
+
+	void Effect::Link(const InputLayout & aLayoutDescription)
 	{
-		Engine::GetInstance().GetRenderer().GetContext()->IASetInputLayout(myLayout);
+		assert("Effect already linked" && myIsLinked == false);
+
+		if (myVertexShader != nullptr)
+		{
+			myLayout = myVertexShader->CreateLayout(aLayoutDescription);
+		}
+
+		myIsLinked = true;
 	}
-	else
+
+	void Effect::Bind() const
 	{
-		Engine::GetInstance().GetRenderer().GetContext()->IASetInputLayout(nullptr);
+		if (myVertexShader != nullptr)
+		{
+			myVertexShader->Bind();
+		}
+		else
+		{
+			Engine::GetInstance().GetRenderer().GetContext()->VSSetShader(nullptr, nullptr, 0);
+		}
+
+		if (myPixelShader != nullptr)
+		{
+			myPixelShader->Bind();
+		}
+		else
+		{
+			Engine::GetInstance().GetRenderer().GetContext()->PSSetShader(nullptr, nullptr, 0);
+		}
+
+		if (myLayout != nullptr)
+		{
+			Engine::GetInstance().GetRenderer().GetContext()->IASetInputLayout(myLayout);
+		}
+		else
+		{
+			Engine::GetInstance().GetRenderer().GetContext()->IASetInputLayout(nullptr);
+		}
 	}
 }

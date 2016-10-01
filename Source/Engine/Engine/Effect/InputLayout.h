@@ -1,21 +1,23 @@
 #pragma once
 #include <d3d11.h>
 
-class InputLayout
+namespace ENGINE_NAMESPACE
 {
-public:
-	InputLayout();
-	~InputLayout();
+	class InputLayout
+	{
+	public:
+		InputLayout();
+		~InputLayout();
 
-	void Add(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot = 0);
-	void AddPerInstance(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot = 0);
+		void Add(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot = 0);
+		void AddPerInstance(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot = 0);
 
-	const D3D11_INPUT_ELEMENT_DESC *GetLayoutLocation() const;
-	int GetLayoutCount() const;
+		const D3D11_INPUT_ELEMENT_DESC *GetLayoutLocation() const;
+		int GetLayoutCount() const;
 
-private:
-	std::vector<D3D11_INPUT_ELEMENT_DESC> myDescription;
-	int myPerVertexCount;
-	int myPerInstanceCount;
-};
-
+	private:
+		std::vector<D3D11_INPUT_ELEMENT_DESC> myDescription;
+		int myPerVertexCount;
+		int myPerInstanceCount;
+	};
+}

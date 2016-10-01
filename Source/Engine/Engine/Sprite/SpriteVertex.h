@@ -1,12 +1,15 @@
 #pragma once
 
-struct SpriteVertex
+namespace ENGINE_NAMESPACE
 {
-	Vector4f position;
-	Vector2f uv;
-
-	Vector3f GetPosition() const
+	struct SpriteVertex
 	{
-		return position;
-	}
-};
+		Vector4f position;
+		Vector2f uv;
+
+		Vector3f GetPosition() const
+		{
+			return position;
+		}
+	};
+}

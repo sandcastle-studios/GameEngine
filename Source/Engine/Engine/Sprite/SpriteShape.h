@@ -1,23 +1,25 @@
 #pragma once
 
-struct SpriteVertex;
-template <typename T>
-class VertexBuffer;
-class IndexBuffer;
-
-class SpriteShape
+namespace ENGINE_NAMESPACE
 {
-public:
-	virtual ~SpriteShape();
+	struct SpriteVertex;
+	template <typename T>
+	class VertexBuffer;
+	class IndexBuffer;
 
-	void RenderInstanced(const int aInstanceCount);
+	class SpriteShape
+	{
+	public:
+		virtual ~SpriteShape();
 
-protected:
-	SpriteShape();
-	void CreateBuffers(const SpriteVertex * aVertices, const int aVertexCount, const unsigned int * aIndices, const int aIndexCount);
+		void RenderInstanced(const int aInstanceCount);
 
-private:
-	std::unique_ptr<VertexBuffer<SpriteVertex>> myVertexBuffer;
-	std::unique_ptr<IndexBuffer> myIndexBuffer;
-};
+	protected:
+		SpriteShape();
+		void CreateBuffers(const SpriteVertex * aVertices, const int aVertexCount, const unsigned int * aIndices, const int aIndexCount);
 
+	private:
+		std::unique_ptr<VertexBuffer<SpriteVertex>> myVertexBuffer;
+		std::unique_ptr<IndexBuffer> myIndexBuffer;
+	};
+}

@@ -1,13 +1,16 @@
 #pragma once
 
-struct VertexPosColUV
+namespace ENGINE_NAMESPACE
 {
-	::Vector4f position;
-	::Vector4f color;
-	::Vector2f uv;
-
-	::Vector3f GetPosition() const
+	struct VertexPosColUV
 	{
-		return position;
-	}
-};
+		::Vector4f position;
+		::Vector4f color;
+		::Vector2f uv;
+
+		::Vector3f GetPosition() const
+		{
+			return position;
+		}
+	};
+}

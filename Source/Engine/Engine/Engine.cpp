@@ -5,40 +5,42 @@
 #include "Debugging\Debugger.h"
 #include "SoundManager\SoundManger.h"
 
-Engine * Engine::ourInstance = nullptr;
-
-Engine::Engine()
+namespace ENGINE_NAMESPACE
 {
-	myRenderer = std::make_unique<DXRenderer>();
-	myFileWatcher = new FileChangeWatcher();
-	myResourceManager = std::make_unique<ResourceManager>();
-	myDebugLogger = std::make_unique<DebugLogger>();
-	mySoundManager = std::make_unique<SoundManger>();
+	Engine * Engine::ourInstance = nullptr;
+
+	Engine::Engine()
+	{
+		myRenderer = std::make_unique<DXRenderer>();
+		myFileWatcher = new FileChangeWatcher();
+		myResourceManager = std::make_unique<ResourceManager>();
+		myDebugLogger = std::make_unique<DebugLogger>();
+		mySoundManager = std::make_unique<SoundManger>();
+	}
+
+	Engine::~Engine()
+	{
+	}
+
+
+
+	void Engine::CreateInstance()
+	{
+		assert("Instance already created" && ourInstance == nullptr);
+
+		ourInstance = new Engine();
+	}
+
+	void Engine::DestroyInstance()
+	{
+		assert("Instance not created" && ourInstance != nullptr);
+
+		delete ourInstance;
+		ourInstance = nullptr;
+	}
+
+	void Engine::AttachDebugger(const std::shared_ptr<Debugger> & aDebugger)
+	{
+		myDebugger = aDebugger;
+	}
 }
-
-Engine::~Engine()
-{
-}
-
-
-
-void Engine::CreateInstance()
-{
-	assert("Instance already created" && ourInstance == nullptr);
-
-	ourInstance = new Engine();
-}
-
-void Engine::DestroyInstance()
-{
-	assert("Instance not created" && ourInstance != nullptr);
-
-	delete ourInstance;
-	ourInstance = nullptr;
-}
-
-void Engine::AttachDebugger(const std::shared_ptr<Debugger> & aDebugger)
-{
-	myDebugger = aDebugger;
-}
-

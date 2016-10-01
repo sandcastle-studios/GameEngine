@@ -1,10 +1,12 @@
 #pragma once
 #include "Engine\Sprite\SpriteEffect.h"
 
-class SplashScreenEffect : public SpriteEffect
+namespace ENGINE_NAMESPACE
 {
-public:
-	SplashScreenEffect();
-	~SplashScreenEffect();
-};
-
+	class SplashScreenEffect : public SpriteEffect
+	{
+	public:
+		SplashScreenEffect();
+		~SplashScreenEffect();
+	};
+}

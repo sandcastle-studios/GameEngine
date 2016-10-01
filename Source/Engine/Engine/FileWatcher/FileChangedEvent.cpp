@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "Engine\FileWatcher\FileChangedEvent.h"
 
-FileChangedEvent::FileChangedEvent(const std::string &aPath)
+namespace ENGINE_NAMESPACE
 {
-	myPath = aPath;
-}
+	FileChangedEvent::FileChangedEvent(const std::string &aPath)
+	{
+		myPath = aPath;
+	}
 
-FileChangedEvent::~FileChangedEvent()
-{
+	FileChangedEvent::~FileChangedEvent()
+	{
+	}
 }

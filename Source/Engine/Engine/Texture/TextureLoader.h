@@ -1,11 +1,13 @@
 #pragma once
 
-class Texture;
-
-template<>
-class ResourceLoader<Texture>
+namespace ENGINE_NAMESPACE
 {
-public:
-	static std::shared_ptr<Texture> Load(const std::string & aPath, LoadError & aError);
-};
+	class Texture;
 
+	template<>
+	class ResourceLoader<Texture>
+	{
+	public:
+		static std::shared_ptr<Texture> Load(const std::string & aPath, LoadError & aError);
+	};
+}

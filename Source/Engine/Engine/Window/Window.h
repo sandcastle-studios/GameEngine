@@ -1,49 +1,52 @@
 #pragma once
 #include "Engine\Size.h"
 
-struct WindowMessage;
-
-class Window
+namespace ENGINE_NAMESPACE
 {
-public:
-	virtual ~Window();
-	
-	virtual void SetTitle(const std::string &aTitle) = 0;
-	inline const std::string & GetTitle() const;
+	struct WindowMessage;
 
-	virtual bool CanResize() const = 0;
-	virtual void SetSize(const Size<int> &aSize) = 0;
-	inline const Size<int> &GetSize() const;
+	class Window
+	{
+	public:
+		virtual ~Window();
 
-	virtual bool PollMessage(WindowMessage & aMessage) = 0;
-	virtual bool GetMessage(WindowMessage & aMessage) = 0;
+		virtual void SetTitle(const std::string &aTitle) = 0;
+		inline const std::string & GetTitle() const;
 
-	virtual void Open() = 0;
-	virtual bool IsOpen() const = 0;
-	virtual void Close() = 0;
+		virtual bool CanResize() const = 0;
+		virtual void SetSize(const Size<int> &aSize) = 0;
+		inline const Size<int> &GetSize() const;
 
-	virtual void SetVisible(bool aIsVisible) = 0;
-	virtual bool IsVisible() const;
+		virtual bool PollMessage(WindowMessage & aMessage) = 0;
+		virtual bool GetMessage(WindowMessage & aMessage) = 0;
 
-	virtual void * GetHandle() const = 0;
+		virtual void Open() = 0;
+		virtual bool IsOpen() const = 0;
+		virtual void Close() = 0;
 
-protected:
-	Window();
+		virtual void SetVisible(bool aIsVisible) = 0;
+		virtual bool IsVisible() const;
 
-	void UpdateSize(const Size<int> &aNewSize);
+		virtual void * GetHandle() const = 0;
 
-private:
-	std::string myTitle;
-	Size<int> mySize;
-	bool myIsVisible;
-};
+	protected:
+		Window();
 
-const std::string & Window::GetTitle() const
-{
-	return myTitle;
-}
+		void UpdateSize(const Size<int> &aNewSize);
 
-const Size<int> & Window::GetSize() const
-{
-	return mySize;
+	private:
+		std::string myTitle;
+		Size<int> mySize;
+		bool myIsVisible;
+	};
+
+	const std::string & Window::GetTitle() const
+	{
+		return myTitle;
+	}
+
+	const Size<int> & Window::GetSize() const
+	{
+		return mySize;
+	}
 }

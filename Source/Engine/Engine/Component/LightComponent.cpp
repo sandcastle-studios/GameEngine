@@ -1,20 +1,22 @@
 #include "stdafx.h"
 #include "LightComponent.h"
 
-
-LightComponent::LightComponent()
+namespace ENGINE_NAMESPACE
 {
-}
+	LightComponent::LightComponent()
+	{
+	}
 
 
-LightComponent::~LightComponent()
-{
-}
+	LightComponent::~LightComponent()
+	{
+	}
 
-void LightComponent::Construct()
-{
-}
+	void LightComponent::Construct()
+	{
+	}
 
-void LightComponent::Destruct()
-{
+	void LightComponent::Destruct()
+	{
+	}
 }

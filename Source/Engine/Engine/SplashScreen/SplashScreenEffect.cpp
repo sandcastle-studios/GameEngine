@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "SplashScreenEffect.h"
 
-SplashScreenEffect::SplashScreenEffect()
-	: SpriteEffect("shaders/sprite/splashscreen.fx", "VShader", "shaders/sprite/splashscreen.fx", "PShader")
+namespace ENGINE_NAMESPACE
 {
-}
+	SplashScreenEffect::SplashScreenEffect()
+		: SpriteEffect("shaders/sprite/splashscreen.fx", "VShader", "shaders/sprite/splashscreen.fx", "PShader")
+	{
+	}
 
-SplashScreenEffect::~SplashScreenEffect()
-{
+	SplashScreenEffect::~SplashScreenEffect()
+	{
+	}
 }

@@ -1,11 +1,14 @@
 #pragma once
 #include "rapidjson\document.h"
 
-typedef rapidjson::Document DataDocument;
-typedef rapidjson::Value& DataNode;
-
-namespace DataParser
+namespace ENGINE_NAMESPACE
 {
-	void Open(const char* aFileName, rapidjson::Document& aDocument, const bool aPrintLogMessage = true);
+	typedef rapidjson::Document DataDocument;
+	typedef rapidjson::Value& DataNode;
 
-} namespace Data = DataParser; namespace JsonParser = DataParser; namespace Json = DataParser;
+	namespace DataParser
+	{
+		void Open(const char* aFileName, rapidjson::Document& aDocument, const bool aPrintLogMessage = true);
+
+	} namespace Data = DataParser; namespace JsonParser = DataParser; namespace Json = DataParser;
+}

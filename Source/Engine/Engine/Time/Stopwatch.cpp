@@ -1,30 +1,33 @@
 #include "stdafx.h"
 #include "Engine\Time\Stopwatch.h"
 
-Stopwatch::Stopwatch()
+namespace ENGINE_NAMESPACE
 {
-	LARGE_INTEGER freq, pc;
-	QueryPerformanceFrequency(&freq);
-	QueryPerformanceCounter(&pc);
+	Stopwatch::Stopwatch()
+	{
+		LARGE_INTEGER freq, pc;
+		QueryPerformanceFrequency(&freq);
+		QueryPerformanceCounter(&pc);
 
-	myFrequency = static_cast<float>(freq.QuadPart);
-	myStartTime = pc.QuadPart;
-}
+		myFrequency = static_cast<float>(freq.QuadPart);
+		myStartTime = pc.QuadPart;
+	}
 
-Stopwatch::~Stopwatch()
-{
-}
+	Stopwatch::~Stopwatch()
+	{
+	}
 
-Time Stopwatch::GetElapsedTime() const
-{
-	LARGE_INTEGER pc;
-	QueryPerformanceCounter(&pc);
-	return Time::FromSeconds(static_cast<float>(pc.QuadPart - myStartTime) / myFrequency);
-}
+	Time Stopwatch::GetElapsedTime() const
+	{
+		LARGE_INTEGER pc;
+		QueryPerformanceCounter(&pc);
+		return Time::FromSeconds(static_cast<float>(pc.QuadPart - myStartTime) / myFrequency);
+	}
 
-void Stopwatch::Restart()
-{
-	LARGE_INTEGER pc;
-	QueryPerformanceCounter(&pc);
-	myStartTime = pc.QuadPart;
+	void Stopwatch::Restart()
+	{
+		LARGE_INTEGER pc;
+		QueryPerformanceCounter(&pc);
+		myStartTime = pc.QuadPart;
+	}
 }

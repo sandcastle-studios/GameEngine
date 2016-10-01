@@ -1,15 +1,20 @@
 #pragma once
 #include "Engine\Component\BaseComponent.h"
-class LightComponent :
-	public BaseComponent
+
+namespace ENGINE_NAMESPACE
 {
-public:
-	LightComponent();
-	~LightComponent();
+	namespace ENGINE_NAMESPACE
+	{
+		class LightComponent : public BaseComponent
+		{
+		public:
+			LightComponent();
+			~LightComponent();
 
-	virtual void Construct() override;
+			virtual void Construct() override;
 
-	virtual void Destruct() override;
+			virtual void Destruct() override;
 
-};
-
+		};
+	}
+}

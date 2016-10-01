@@ -1,12 +1,15 @@
 #pragma once
 
-struct SimpleVertex
+namespace ENGINE_NAMESPACE
 {
-	Vector4f position;
-	Vector4f color;
-
-	Vector3f GetPosition() const
+	struct SimpleVertex
 	{
-		return position;
-	}
-};
+		Vector4f position;
+		Vector4f color;
+
+		Vector3f GetPosition() const
+		{
+			return position;
+		}
+	};
+}
