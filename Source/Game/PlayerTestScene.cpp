@@ -15,7 +15,7 @@ PlayerTestScene::PlayerTestScene()
 	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
-	myPlayer = CreateGameObject(nullptr);
+	myPlayer = CreateGameObject();
 	auto && shootComponent = GetComponentFactory<PlayerShootComponent>()->CreateComponent();
 	myPlayer->AddComponent(shootComponent);
 }

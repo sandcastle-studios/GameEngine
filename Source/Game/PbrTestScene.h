@@ -13,6 +13,6 @@ public:
 	virtual void Render() override;
 
 private:
-	std::shared_ptr<CubeModel> myHead;
+	std::shared_ptr<Model> myHead;
 };
 

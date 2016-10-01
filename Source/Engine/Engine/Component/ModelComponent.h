@@ -27,7 +27,10 @@ public:
 
 	virtual void Destruct() override;
 
+	void SetMatrix(const Matrix44f & aMatrix);
+
 private:
 	std::shared_ptr<Model> myModel;
+	Matrix44f myMatrix;
 };
 

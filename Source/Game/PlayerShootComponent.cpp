@@ -52,6 +52,8 @@ ReceiveResult PlayerShootComponent::Receive(const KeyUpMessage<KeyboardKey::eRet
 
 void PlayerShootComponent::Update(const Time & aDeltaTime)
 {
+	myObject->SetPosition(myObject->GetScene().GetCamera().GetPosition());
+
 	if (myShooting)
 	{
 		myShootTimer += aDeltaTime;

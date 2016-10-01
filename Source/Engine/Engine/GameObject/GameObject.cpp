@@ -3,18 +3,15 @@
 #include "..\Scene\Scene.h"
 
 int nextId = 0;
+int objCounter = 0;
 
-GameObject::GameObject(Scene & aScene, const GameObjectData * aData)
+GameObject::GameObject(Scene & aScene)
 {
 	myScene = &aScene;
 	myIsRemoved = false;
+	myID = FormatString("Object {0}", ++objCounter);
 
 	myComponents.Resize(UniqeIdentifier<BaseComponent>::nextTypeIndex);
-
-	if (aData != nullptr)
-	{
-		SetData(*aData);
-	}
 }
 
 GameObject::~GameObject()
@@ -55,26 +52,19 @@ const Vector3f & GameObject::GetScale() const
 Matrix44f GameObject::GetTransformation() const
 {
 	Matrix44f aRotation = myRotation.GenerateMatrix();
-	return Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * aRotation * Matrix44f::CreateTranslation(myPosition);
+	Matrix44f ourTransformation = Matrix44f::CreateScale(myScale.x, myScale.y, myScale.z) * aRotation * Matrix44f::CreateTranslation(myPosition);
+
+	if (myParent == nullptr)
+	{
+		return ourTransformation;
+	}
+	return ourTransformation * myParent->GetTransformation();
 }
 
 template<>
 void GameObject::AddComponent(const SharedPtrComponent<BaseComponent> & aComponent)
 {
 	//Error("SLUTA ROBIN");
-}
-
-void GameObject::SetData(const GameObjectData& aData)
-{
-	myID = aData.myID;
-	myPosition = aData.myPosition;
-	myRotation = aData.myRotation;
-	myScale = aData.myScale;
-
-	for (size_t i = 0; i < aData.myComponentList.Size(); ++i)
-	{
-		AddComponent(aData.myComponentList[i]);
-	}
 }
 
 void GameObject::Remove()
@@ -94,4 +84,24 @@ const std::string & GameObject::GetIdentifier() const
 void GameObject::SetIdentifier(const std::string &aIdentifier)
 {
 	myID = aIdentifier;
+}
+
+void GameObject::SetParent(const std::shared_ptr<GameObject> & aParent)
+{
+	if (myParent != nullptr)
+	{
+		myParent->myChildren.RemoveAtIndex(myParent->myChildren.Find(this));
+	}
+
+	myParent = aParent;
+
+	if (myParent != nullptr)
+	{
+		myParent->myChildren.Add(this);
+	}
+}
+
+const GrowingArray<GameObject*> GameObject::GetChildren() const
+{
+	return myChildren;
 }
