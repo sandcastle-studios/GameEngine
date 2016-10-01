@@ -2,7 +2,12 @@
 
 class SphereIntersection;
 
-namespace Intersection
+namespace ENGINE_NAMESPACE
 {
-	bool SphereVsSphere(const SphereIntersection & aFirstSphere, const SphereIntersection & aSecondSphere);
+
+	namespace Intersection
+	{
+		bool SphereVsSphere(const SphereIntersection & aFirstSphere, const SphereIntersection & aSecondSphere);
+	}
+
 }
