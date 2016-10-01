@@ -13,8 +13,8 @@
 #include "Engine\Resources\ResourceManager.h"
 #include "Engine\SplashScreen\SplashScreenEffect.h"
 #include <Engine\SplashScreen\SplashScreenScene.h>
-#include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
-#include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
+#include "Utilities\Intersection\Colliders\SphereCollider.h"
+#include "Utilities\Intersection\IntersectionTests.h"
 #include "Engine\Camera\Controllers\FreeSpaceCameraController.h"
 
 CollisionTestScene::CollisionTestScene()
@@ -128,8 +128,8 @@ void CollisionTestScene::CreateFactories()
 	myTestObject1->SetScale(SB::Vector3f(0.01f, 0.01f, 0.01f));
 	myTestObject2->SetScale(SB::Vector3f(0.01f, 0.01f, 0.01f));
 
-	myCollisionSphere1 = std::make_unique<SB::SphereIntersection>();
-	myCollisionSphere2 = std::make_unique<SB::SphereIntersection>();
+	myCollisionSphere1 = std::make_unique<SB::SphereCollider>();
+	myCollisionSphere2 = std::make_unique<SB::SphereCollider>();
 
 	SB::BoundingBoxf boundingBox = model->GetBoundingBox();
 	boundingBox.min = SB::Vector4f(boundingBox.min, 1.f) * myTestObject1->GetTransformation();

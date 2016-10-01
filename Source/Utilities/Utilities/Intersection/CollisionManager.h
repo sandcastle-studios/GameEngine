@@ -1,23 +1,27 @@
 #pragma once
 
 
-class SphereCollider;
-
-typedef SphereCollider CollisionCollider;
-
-class CollisionManager
+namespace ENGINE_NAMESPACE
 {
-public:
-	CollisionManager();
-	~CollisionManager();
+	class SphereCollider;
 
-	void AddCollider(const CollisionCollider & aColliderToAdd);
+	typedef SphereCollider CollisionCollider;
 
-	void CheckCollisions();
+	class CollisionManager
+	{
+	public:
+		CollisionManager();
+		~CollisionManager();
 
-private:
-	bool CheckCollision(const CollisionCollider & aFirstColliderToCheck, const CollisionCollider & aColliderToCheckAgainst);
+		void AddCollider(const CollisionCollider & aColliderToAdd);
 
-	GrowingArray<const CollisionCollider*> myColliders;
-};
+		void CheckCollisions();
+
+	private:
+		bool CheckCollision(const CollisionCollider & aFirstColliderToCheck, const CollisionCollider & aColliderToCheckAgainst);
+
+		GrowingArray<const CollisionCollider*> myColliders;
+	};
+
+}
 

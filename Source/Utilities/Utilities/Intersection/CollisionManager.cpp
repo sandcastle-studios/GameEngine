@@ -3,39 +3,42 @@
 #include "IntersectionTests.h"
 
 
-CollisionManager::CollisionManager()
+namespace ENGINE_NAMESPACE
 {
-}
-
-
-CollisionManager::~CollisionManager()
-{
-}
-
-void CollisionManager::AddCollider(const CollisionCollider & aColliderToAdd)
-{
-	myColliders.Add(&aColliderToAdd);
-}
-
-void CollisionManager::CheckCollisions()
-{
-	for (unsigned short iCollider = 0; iCollider < myColliders.Size(); ++iCollider)
+	CollisionManager::CollisionManager()
 	{
-		for (unsigned short iOtherCollider = iCollider + 1; iOtherCollider < myColliders.Size(); ++iOtherCollider)
+	}
+
+
+	CollisionManager::~CollisionManager()
+	{
+	}
+
+	void CollisionManager::AddCollider(const CollisionCollider & aColliderToAdd)
+	{
+		myColliders.Add(&aColliderToAdd);
+	}
+
+	void CollisionManager::CheckCollisions()
+	{
+		for (unsigned short iCollider = 0; iCollider < myColliders.Size(); ++iCollider)
 		{
-			CheckCollision(*myColliders[iCollider], *myColliders[iOtherCollider]);
+			for (unsigned short iOtherCollider = iCollider + 1; iOtherCollider < myColliders.Size(); ++iOtherCollider)
+			{
+				CheckCollision(*myColliders[iCollider], *myColliders[iOtherCollider]);
+			}
 		}
 	}
-}
 
-bool CollisionManager::CheckCollision(const CollisionCollider & aFirstColliderToCheck, const CollisionCollider & aColliderToCheckAgainst)
-{
-	if (Intersection::SphereVsSphere(aFirstColliderToCheck, aColliderToCheckAgainst) == true)
+	bool CollisionManager::CheckCollision(const CollisionCollider & aFirstColliderToCheck, const CollisionCollider & aColliderToCheckAgainst)
 	{
-		// do collision
-		return true;
+		if (Intersection::SphereVsSphere(aFirstColliderToCheck, aColliderToCheckAgainst) == true)
+		{
+			// do collision
+			return true;
+		}
+
+		return false;
 	}
 
-	return false;
 }
-

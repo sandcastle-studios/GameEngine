@@ -13,8 +13,8 @@
 #include <Engine\Component\BouncingComponent.h>
 #include "..\SoundManager\SoundManger.h"
 #include "..\Game\ShotComponent.h"
-#include "..\Utilities\Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
-#include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
+#include "Utilities\Intersection\Colliders\SphereCollider.h"
+#include "Utilities\Intersection\IntersectionTests.h"
 
 namespace ENGINE_NAMESPACE
 {
@@ -55,8 +55,8 @@ namespace ENGINE_NAMESPACE
 		GrowingArray<GameObject*>tempShoots;
 		GrowingArray<GameObject*>NotShots;
 
-		SphereIntersection tempEnemyCollider;
-		SphereIntersection tempProjectileCollider;
+		SphereCollider tempEnemyCollider;
+		SphereCollider tempProjectileCollider;
 
 		GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
 			[&](ShotComponent & ashot)

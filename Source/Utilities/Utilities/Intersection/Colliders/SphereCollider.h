@@ -3,16 +3,16 @@
 namespace ENGINE_NAMESPACE
 {
 
-	class SphereIntersection
+	class SphereCollider
 	{
 	public:
-		SphereIntersection();
-		SphereIntersection(const SphereShape & aSphere) : myPosition(aSphere.myPosition)
+		SphereCollider();
+		SphereCollider(const SphereShape & aSphere) : myPosition(aSphere.myPosition)
 		{
 			SetRadius(aSphere.myRadius);
 		}
 
-		~SphereIntersection();
+		~SphereCollider();
 
 		void SetSphere(const SphereShape & aSphere)
 		{

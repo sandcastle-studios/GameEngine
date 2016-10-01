@@ -1,12 +1,15 @@
 #include "stdafx.h"
 #include "SphereCollider.h"
 
-
-SphereCollider::SphereCollider()
+namespace ENGINE_NAMESPACE
 {
-}
+
+	SphereCollider::SphereCollider()
+	{
+	}
 
 
-SphereCollider::~SphereCollider()
-{
+	SphereCollider::~SphereCollider()
+	{
+	}
 }
