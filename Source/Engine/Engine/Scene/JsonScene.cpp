@@ -125,6 +125,11 @@ namespace ENGINE_NAMESPACE
 
 		Engine::GetRenderer().GetModelRenderer().RenderBuffer();
 
+		for (unsigned short i = 0; i + 1< myObjects.Size(); i++)
+		{
+			Engine::GetDebugger().DrawLine(myObjects[i]->GetPosition(), myObjects[i + 1]->GetPosition(), SB::Vector4f(1.f, 0.f, 0.f, 1.f));
+		}
+
 		Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
 		pos.x = std::floorf(pos.x);
 		pos.y = std::floorf(pos.y);

@@ -87,7 +87,7 @@ void Game::Initialize()
 {
 	mySceneManager = std::make_unique<SB::SceneManager>();
 
-	mySceneManager->LoadJsonScene("Assets/Data/TestScene.json");
+	mySceneManager->LoadJsonScene("Assets/Data/asteroidFieldTestScene.json");
 
 	auto player = mySceneManager->GetCurrentScene()->CreateGameObject();
 	player->SetIdentifier("Player");

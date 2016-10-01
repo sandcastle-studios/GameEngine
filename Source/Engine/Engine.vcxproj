@@ -280,6 +280,7 @@
     <ClInclude Include="Engine\DataParser\rapidjson\stringbuffer.h" />
     <ClInclude Include="Engine\DataParser\rapidjson\writer.h" />
     <ClInclude Include="Engine\Debugging\Debugger.h" />
+    <ClInclude Include="Engine\Debugging\LineVertex.h" />
     <ClInclude Include="Engine\Imgui\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\Model\AssimpModel.h" />
     <ClInclude Include="Engine\BoundingBox.h" />

@@ -200,6 +200,7 @@
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Effect\SkyboxEffect.h" />
+    <ClInclude Include="Engine\Debugging\LineVertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
