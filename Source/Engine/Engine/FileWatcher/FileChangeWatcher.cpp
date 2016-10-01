@@ -47,11 +47,15 @@ FileChangeWatcher::~FileChangeWatcher()
 bool FileChangeWatcher::PostChanges()
 {
 	std::lock_guard<std::mutex> lock(myMutex);
-	for (size_t i=0; i<myChanges.size(); i++)
+	for (int i=0; i<static_cast<int>(myChanges.size()); i++)
 	{
-		PostMaster::Post(FileChangedEvent(myChanges[i]));
+		if (myChanges[i].postTime <= myWatch.GetElapsedTime().InSeconds())
+		{
+			PostMaster::Post(FileChangedEvent(myChanges[i].file));
+			myChanges.erase(myChanges.begin() + i);
+			i--;
+		}
 	}
-	myChanges.clear();
 	return true;
 }
 
@@ -76,7 +80,6 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch, std::atom
 	}*/
 
 	FILE_NOTIFY_INFORMATION notifications[255];
-	Stopwatch watch;
 
 	while (stopThreadFlag->load() == false)
 	{
@@ -151,7 +154,7 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch, std::atom
 					}
 				}
 
-				auto currentTime = watch.GetElapsedTime().InSeconds();
+				auto currentTime = myWatch.GetElapsedTime().InSeconds();
 				auto &&lastTimeIt = lastTime.find(fileName);
 
 				if (lastTime.find(fileName) == lastTime.end() ||
@@ -159,7 +162,11 @@ void FileChangeWatcher::ThreadFunction(std::wstring aDirectoryToWatch, std::atom
 				{
 					std::lock_guard<std::mutex> lock(myMutex);
 
-					myChanges.push_back(fileName);
+					myChanges.push_back(ChangeEntry
+					{
+						currentTime + 0.2f,
+						fileName
+					});
 
 					lastTime[fileName] = currentTime;
 				}

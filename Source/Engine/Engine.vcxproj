@@ -101,37 +101,37 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|x64'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
-    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\ModelLoader\;..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -341,6 +341,9 @@
     <ClInclude Include="Engine\Component\LightComponent.h" />
     <ClInclude Include="Engine\Scene\JsonScene.h" />
     <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
+    <ClInclude Include="Engine\Scripting\Script.h" />
+    <ClInclude Include="Engine\Scripting\ScriptLoader.h" />
+    <ClInclude Include="Engine\Scripting\ScriptFile.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Engine\Time\Stopwatch.h" />
     <ClInclude Include="Engine\StringFormatter.h" />
@@ -411,6 +414,9 @@
     <ClCompile Include="Engine\Scene\JsonScene.cpp" />
     <ClCompile Include="Engine\Texture\TextureCube.cpp" />
     <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
+    <ClCompile Include="Engine\Scripting\Script.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptLoader.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptFile.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -430,14 +436,14 @@
     <ClCompile Include="Engine\Window\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Audio\Audio\Audio.vcxproj">
-      <Project>{b5915c8f-2aef-4137-bcbe-152f819860cd}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{f6457bb1-2b8a-423f-b7d7-6d4f26952fc4}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ModelLoader\ModelLoader.vcxproj">
       <Project>{1f6e6e52-a1a6-4e1c-ae3b-7cb5437256b9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
+      <Project>{92d34133-88e5-4fe3-bfe2-96e8a9b316f3}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

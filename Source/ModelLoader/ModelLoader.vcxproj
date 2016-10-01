@@ -73,7 +73,7 @@
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
     <IntDir>$(SolutionDir)..\Temp\$(ProjectName)\$(Platform) $(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>..\Utilities\;..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>..\Utilities\;..\ImGui\;..\Lua\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)..\Lib\</OutDir>
@@ -212,6 +212,11 @@
     <None Include="AssImp\quaternion.inl" />
     <None Include="AssImp\vector2.inl" />
     <None Include="AssImp\vector3.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.vcxproj">
+      <Project>{92d34133-88e5-4fe3-bfe2-96e8a9b316f3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

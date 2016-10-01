@@ -23,6 +23,7 @@
 #include "Engine\Resources\ResourceManager.h"
 #include "Engine\Texture\Texture.h"
 #include "Engine\Texture\TextureLoader.h"
+#include "Engine\Scripting\ScriptLoader.h"
 #include "Engine\Engine.h"
 #include "Engine\Buffer\Buffer.h"
 #include "Engine\Buffer\ConstantBuffer.h"
