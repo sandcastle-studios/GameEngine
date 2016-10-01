@@ -1,19 +1,23 @@
 #pragma once
 
 struct lua_State;
-class ScriptFile;
 
-class Script
+namespace ENGINE_NAMESPACE
 {
-public:
-	Script(lua_State * aState, const std::shared_ptr<ScriptFile> & aScriptFile, int aLuaRef);
-	~Script();
+	class ScriptFile;
 
-	void UpdateRef(int aLuaRef);
+	class Script
+	{
+	public:
+		Script(lua_State * aState, const std::shared_ptr<ScriptFile> & aScriptFile, int aLuaRef);
+		~Script();
 
-private:
-	std::shared_ptr<ScriptFile> myScriptFile;
-	lua_State * L;
-	int myLuaRef;
-};
+		void UpdateRef(int aLuaRef);
 
+	private:
+		std::shared_ptr<ScriptFile> myScriptFile;
+		lua_State * L;
+		int myLuaRef;
+	};
+
+}

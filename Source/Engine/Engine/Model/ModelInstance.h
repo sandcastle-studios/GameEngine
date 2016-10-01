@@ -1,53 +1,57 @@
 #pragma once
 
-class Model;
 
-class ModelInstance
+namespace ENGINE_NAMESPACE
 {
-public:
-	ModelInstance(const std::shared_ptr<Model> & aModel);
-	~ModelInstance();
+	class Model;
 
-	void Render() const;
-	void InstantRender() const;
+	class ModelInstance
+	{
+	public:
+		ModelInstance(const std::shared_ptr<Model> & aModel);
+		~ModelInstance();
 
-	void SetMatrix(const Matrix44f & aMatrix);
-	const Matrix44f & GetMatrix() const;
+		void Render() const;
+		void InstantRender() const;
 
-	void SetPosition(const Vector3f & aPosition);
-	Vector3f GetPosition() const;
+		void SetMatrix(const Matrix44f & aMatrix);
+		const Matrix44f & GetMatrix() const;
 
-	const std::shared_ptr<Model> & GetModel();
-	const std::shared_ptr<const Model> & GetModel() const;
+		void SetPosition(const Vector3f & aPosition);
+		Vector3f GetPosition() const;
 
-	BoundingBoxf GetBoundingBox() const;
+		const std::shared_ptr<Model> & GetModel();
+		const std::shared_ptr<const Model> & GetModel() const;
 
-private:
-	std::shared_ptr<Model> myModel;
-	Matrix44f myWorldMatrix;
-};
+		BoundingBoxf GetBoundingBox() const;
 
-inline const Matrix44f & ModelInstance::GetMatrix() const
-{
-	return myWorldMatrix;
-}
+	private:
+		std::shared_ptr<Model> myModel;
+		Matrix44f myWorldMatrix;
+	};
 
-inline void ModelInstance::SetPosition(const Vector3f & aPosition)
-{
-	myWorldMatrix.SetPosition(aPosition);
-}
+	inline const Matrix44f & ModelInstance::GetMatrix() const
+	{
+		return myWorldMatrix;
+	}
 
-inline Vector3f ModelInstance::GetPosition() const
-{
-	return myWorldMatrix.GetPosition();
-}
+	inline void ModelInstance::SetPosition(const Vector3f & aPosition)
+	{
+		myWorldMatrix.SetPosition(aPosition);
+	}
 
-inline const std::shared_ptr<Model> & ModelInstance::GetModel()
-{
-	return myModel;
-}
+	inline Vector3f ModelInstance::GetPosition() const
+	{
+		return myWorldMatrix.GetPosition();
+	}
 
-inline const std::shared_ptr<const Model> & ModelInstance::GetModel() const
-{
-	return myModel;
+	inline const std::shared_ptr<Model> & ModelInstance::GetModel()
+	{
+		return myModel;
+	}
+
+	inline const std::shared_ptr<const Model> & ModelInstance::GetModel() const
+	{
+		return myModel;
+	}
 }

@@ -12,9 +12,14 @@ lua_State * MakeState()
 
 lua_State * L = MakeState();
 
-std::shared_ptr<ScriptFile> ResourceLoader<ScriptFile>::Load(const std::string& aPath, LoadError& aError)
+namespace ENGINE_NAMESPACE
 {
-	std::shared_ptr<ScriptFile> file = std::make_shared<ScriptFile>(L, aPath);
-	file->myOurSelf = file;
-	return file;
+
+	std::shared_ptr<ScriptFile> ResourceLoader<ScriptFile>::Load(const std::string& aPath, LoadError& aError)
+	{
+		std::shared_ptr<ScriptFile> file = std::make_shared<ScriptFile>(L, aPath);
+		file->myOurSelf = file;
+		return file;
+	}
+
 }

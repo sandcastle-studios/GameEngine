@@ -16,122 +16,126 @@
 #include "..\Utilities\Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
 #include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
 
-JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
+namespace ENGINE_NAMESPACE
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 3.f));
-	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
-	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 
-	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+	JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
+	{
+		PushCameraController(std::make_shared<FreeSpaceCameraController>(10.f, 3.f));
+		SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
+		mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 
-	CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.61f, 3.87f, 22.368f));
+		Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
-	/*myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One / 100.f);
+		CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.61f, 3.87f, 22.368f));
 
-	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
-	myEnemy->AddComponent(movementComponent);
-	myEnemy->SetPosition(Vector3f(0.f, 0.f, 0.f));
+		/*myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One / 100.f);
 
-	myObjects.Add(myEnemy);
+		auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+		myEnemy->AddComponent(movementComponent);
+		myEnemy->SetPosition(Vector3f(0.f, 0.f, 0.f));
 
-	myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(-40.f, 0.f, -5.f), Vector3f::One / 100.f);
+		myObjects.Add(myEnemy);
 
-	movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
-	myEnemy->AddComponent(movementComponent);
+		myEnemy = CreateAndAddModel("Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx", Vector3f(-40.f, 0.f, -5.f), Vector3f::One / 100.f);
 
-	myObjects.Add(myEnemy);*/
-}
+		movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+		myEnemy->AddComponent(movementComponent);
+
+		myObjects.Add(myEnemy);*/
+	}
 
 
-JsonScene::~JsonScene()
-{
-}
+	JsonScene::~JsonScene()
+	{
+	}
 
-void JsonScene::Update(const Time & aDeltaTime)
-{
-	GrowingArray<GameObject*>tempShoots;
-	GrowingArray<GameObject*>NotShots;
+	void JsonScene::Update(const Time & aDeltaTime)
+	{
+		GrowingArray<GameObject*>tempShoots;
+		GrowingArray<GameObject*>NotShots;
 
-	SphereIntersection tempEnemyCollider;
-	SphereIntersection tempProjectileCollider;
+		SphereIntersection tempEnemyCollider;
+		SphereIntersection tempProjectileCollider;
 
-	GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
-		[&](ShotComponent & ashot)
+		GetComponentFactory<ShotComponent>()->EnumerateActiveComponents(
+			[&](ShotComponent & ashot)
 		{
 			tempShoots.Add(&ashot.GetGameObject());
 		}
-	);
+		);
 
-	GetComponentFactory<ModelComponent>()->EnumerateActiveComponents(
-		[&](ModelComponent & aThing)
+		GetComponentFactory<ModelComponent>()->EnumerateActiveComponents(
+			[&](ModelComponent & aThing)
 		{
 			if (aThing.GetGameObject().GetComponentCount<ShotComponent>() < 1)
 			{
 				NotShots.Add(&aThing.GetGameObject());
 			}
 		}
-	);
+		);
 
-	size_t c = 0;
+		size_t c = 0;
 
-	for (unsigned short iNotShot = 0; iNotShot < NotShots.Size(); ++iNotShot)
-	{
-		tempEnemyCollider.UpdatePosition(NotShots[iNotShot]->GetPosition());
-
-		if (NotShots[iNotShot]->GetComponent<ModelComponent>() != nullptr)
+		for (unsigned short iNotShot = 0; iNotShot < NotShots.Size(); ++iNotShot)
 		{
-			c++;
-			tempEnemyCollider.SetRadius((NotShots[iNotShot]->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * NotShots[iNotShot]->GetScale().x);	
-		}
-		else
-		{
-			continue;
-		}
+			tempEnemyCollider.UpdatePosition(NotShots[iNotShot]->GetPosition());
 
-		for (unsigned short iShot = 0; iShot < tempShoots.Size(); ++iShot)
-		{
-			GameObject & tempShoot = *tempShoots[iShot];
-
-			tempProjectileCollider.UpdatePosition(tempShoot.GetPosition());
-			tempProjectileCollider.SetRadius((tempShoot.GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * tempShoot.GetScale().x);
-
-			if (Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true)
+			if (NotShots[iNotShot]->GetComponent<ModelComponent>() != nullptr)
 			{
-				if (tempShoot.GetComponent < ShotComponent>()->myHasHit == false)
-				{
-					tempShoot.GetComponent < ShotComponent>()->myHasHit = true;
+				c++;
+				tempEnemyCollider.SetRadius((NotShots[iNotShot]->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * NotShots[iNotShot]->GetScale().x);
+			}
+			else
+			{
+				continue;
+			}
 
-					Engine::GetLogger().LogInfo("{0}", NotShots[iNotShot]->GetIdentifier());
-					
-					NotShots[iNotShot]->SetScale(NotShots[iNotShot]->GetScale() * Vector3f(1.01f, 1.01f, 1.01f));
+			for (unsigned short iShot = 0; iShot < tempShoots.Size(); ++iShot)
+			{
+				GameObject & tempShoot = *tempShoots[iShot];
+
+				tempProjectileCollider.UpdatePosition(tempShoot.GetPosition());
+				tempProjectileCollider.SetRadius((tempShoot.GetComponent<ModelComponent>()->GetBoundingBox().GetSize().z / 2.f) * tempShoot.GetScale().x);
+
+				if (Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true)
+				{
+					if (tempShoot.GetComponent < ShotComponent>()->myHasHit == false)
+					{
+						tempShoot.GetComponent < ShotComponent>()->myHasHit = true;
+
+						Engine::GetLogger().LogInfo("{0}", NotShots[iNotShot]->GetIdentifier());
+
+						NotShots[iNotShot]->SetScale(NotShots[iNotShot]->GetScale() * Vector3f(1.01f, 1.01f, 1.01f));
+					}
 				}
 			}
 		}
+
+		// Engine::GetLogger().LogInfo("{0}", c);
+
+		Engine::GetSoundManager().Update();
+
+		Scene::Update(aDeltaTime);
 	}
 
-	// Engine::GetLogger().LogInfo("{0}", c);
+	void JsonScene::Render()
+	{
+		Scene::Render();
 
-	Engine::GetSoundManager().Update();
+		Engine::GetRenderer().GetModelRenderer().RenderBuffer();
 
-	Scene::Update(aDeltaTime);
+		Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
+		pos.x = std::floorf(pos.x);
+		pos.y = std::floorf(pos.y);
+		mySprite.SetOrigin(pos);
+		mySprite.SetPosition(pos);
+		mySprite.SetRotation(0.f);
+		mySprite.SetScale(Engine::GetRenderer().GetRenderTargetResolution() / Vector2f(1920.f, 1080.f));
+		mySprite.Render();
+	}
+
+
+	//PRIVATE FUNCTIONS:
+
 }
-
-void JsonScene::Render()
-{
-	Scene::Render();
-
-	Engine::GetRenderer().GetModelRenderer().RenderBuffer();
-
-	Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
-	pos.x = std::floorf(pos.x);
-	pos.y = std::floorf(pos.y);
-	mySprite.SetOrigin(pos);
-	mySprite.SetPosition(pos);
-	mySprite.SetRotation(0.f);
-	mySprite.SetScale(Engine::GetRenderer().GetRenderTargetResolution() / Vector2f(1920.f, 1080.f));
-	mySprite.Render();
-}
-
-
-//PRIVATE FUNCTIONS:
-

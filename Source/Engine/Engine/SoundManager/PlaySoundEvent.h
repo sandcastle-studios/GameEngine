@@ -1,9 +1,14 @@
 #pragma once
 
-struct PlaySoundEvent
+namespace ENGINE_NAMESPACE
 {
-	PlaySoundEvent(const char * aSoundEventName) : mySoundEventName(aSoundEventName)
-	{}
 
-	const char * mySoundEventName;
-};
+	struct PlaySoundEvent
+	{
+		PlaySoundEvent(const char * aSoundEventName) : mySoundEventName(aSoundEventName)
+		{}
+
+		const char * mySoundEventName;
+	};
+
+}

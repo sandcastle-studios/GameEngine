@@ -2,11 +2,16 @@
 #include "SphereIntersection.h"
 
 
-SphereIntersection::SphereIntersection()
+namespace ENGINE_NAMESPACE
 {
-}
+
+	SphereIntersection::SphereIntersection()
+	{
+	}
 
 
-SphereIntersection::~SphereIntersection()
-{
+	SphereIntersection::~SphereIntersection()
+	{
+	}
+
 }
