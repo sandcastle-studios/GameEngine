@@ -88,7 +88,7 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 	//
 	//Quaternion myOrientation;
 	//
-	//myObject->SetRotation(myOrientation.GetRotation(baseDirection, towardsPoint, Vector3f(0.f, -1.f, 0.f))); //we need the actual up vector of the objects current orientation here, I think
+	//myObject->SetRotation(myOrientation.GetRotation(baseDirection, towardsPoint, myObject->GetRotation().GetUpward()));
 	//
 	//if (nonNormalizedTowardsPoint.Length() <= 1.f)
 	//{
