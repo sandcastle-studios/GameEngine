@@ -1,20 +1,25 @@
 #pragma once
 
-template <typename TIDType>
-class UniqeIdentifier
+namespace ENGINE_NAMESPACE
 {
-public:
 
-	static size_t nextTypeIndex;
-
-	template<typename T>
-	static size_t GetID()
+	template <typename TIDType>
+	class UniqeIdentifier
 	{
-		static size_t id =  nextTypeIndex++;
+	public:
 
-		return id;
-	}
-};
+		static size_t nextTypeIndex;
 
-template <typename TIDType>
-size_t UniqeIdentifier<TIDType>::nextTypeIndex = 0;
+		template<typename T>
+		static size_t GetID()
+		{
+			static size_t id = nextTypeIndex++;
+
+			return id;
+		}
+	};
+
+	template <typename TIDType>
+	size_t UniqeIdentifier<TIDType>::nextTypeIndex = 0;
+
+}

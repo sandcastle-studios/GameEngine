@@ -4,7 +4,7 @@
 #pragma comment (lib, "d3dcompiler.lib")
 #pragma comment( lib, "dxguid.lib")
 
-#define ENGINE_NAMESPACE SB
+
 
 #include "Utilities/CommonIncludes.h"
 #include "../ModelLoader/CommonIncludes.h"
