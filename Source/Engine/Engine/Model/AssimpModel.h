@@ -13,8 +13,7 @@ namespace ENGINE_NAMESPACE
 	class AssimpModel : public Model
 	{
 	public:
-		AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath);
-		AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath);
+		AssimpModel(const std::string & aFilePath);
 		~AssimpModel();
 	private:
 		void TryLoadTexture(const CLoaderModel & model, Surface & surface, const std::string & aModelDirectory, const int aLoadFromSlot, const SurfaceTextureIndex aLoadIntoSlot);
@@ -25,6 +24,6 @@ namespace ENGINE_NAMESPACE
 	class AssimpMesh : public Mesh<Vertex>
 	{
 	public:
-		AssimpMesh(const std::shared_ptr<Effect> & aEffect, CLoaderMesh * aMesh, const std::string & aModelDirectory);
+		AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory);
 	};
 }

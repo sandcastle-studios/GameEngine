@@ -8,16 +8,16 @@
 SlideShowScene::SlideShowScene()
 	: Scene("skybox.dds")
 {
-	auto cube = std::make_shared<SB::AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
+	auto cube = std::make_shared<SB::AssimpModel>("models/tga_companioncube/companion.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(cube));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/crystalAsteroid/crystalAsteroidHigh.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/pillar/pillarShortObelisk.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Asteroid/AsteroidPillarHuge1.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Asteroid/AsteroidPillarLarge1.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Asteroid/AsteroidPillarLarge2.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Asteroid/AsteroidPillarLarge3.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/Pistol/gunMesh.fbx")));
-	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/m4a1/m4a1_s.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/crystalAsteroid/crystalAsteroidHigh.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/pillar/pillarShortObelisk.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/Asteroid/AsteroidPillarHuge1.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/Asteroid/AsteroidPillarLarge1.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/Asteroid/AsteroidPillarLarge2.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/Asteroid/AsteroidPillarLarge3.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/Pistol/gunMesh.fbx")));
+	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>("models/m4a1/m4a1_s.fbx")));
 
 	myCurrentModel = 0;
 	myTimePerModel = SB::Time::FromSeconds(5.0f);

@@ -21,7 +21,7 @@ namespace ENGINE_NAMESPACE
 
 	void ModelComponent::Render() const
 	{
-		myModel->Render(myObject->GetTransformation() * myMatrix);
+		myModel->Render(myEffect, myObject->GetTransformation() * myMatrix);
 	}
 
 	void ModelComponent::SetModel(std::shared_ptr<Model> aModel)
@@ -29,9 +29,9 @@ namespace ENGINE_NAMESPACE
 		myModel = aModel;
 	}
 
-	void ModelComponent::SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect)
+	void ModelComponent::SetModel(const char* aModelFilePath)
 	{
-		std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(aEffect, aModelFilePath);
+		std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(aModelFilePath);
 		myModel = model;
 	}
 
@@ -51,5 +51,15 @@ namespace ENGINE_NAMESPACE
 	void ModelComponent::SetMatrix(const Matrix44f & aMatrix)
 	{
 		myMatrix = aMatrix;
+	}
+
+	void ModelComponent::SetEffect(const std::shared_ptr<Effect> & aEffect)
+	{
+		myEffect = aEffect;
+	}
+
+	const std::shared_ptr<Effect> & ModelComponent::GetEffect() const
+	{
+		return myEffect;
 	}
 }

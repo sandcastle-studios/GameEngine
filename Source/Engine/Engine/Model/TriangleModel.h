@@ -8,7 +8,7 @@ namespace ENGINE_NAMESPACE
 	class TriangleModel : public Model
 	{
 	public:
-		TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture);
+		TriangleModel(std::shared_ptr<Texture> aTexture);
 		~TriangleModel();
 	};
 }

@@ -12,6 +12,8 @@ namespace ENGINE_NAMESPACE
 	template <typename T>
 	class ConstantBuffer;
 
+	class Effect;
+
 	class TextureCube;
 
 	class BatchEntry
@@ -21,18 +23,26 @@ namespace ENGINE_NAMESPACE
 		void Schedule();
 		bool IsScheduled();
 
-		void AddInstance(const Matrix44f & aMatrix);
-		const Matrix44f * GetInstances() const;
-		int GetInstanceCount() const;
+		void AddInstance(const std::shared_ptr<Effect> & aEffect, const Matrix44f & aMatrix);
 		void FinishedRendering();
+
+		struct MatricesContainer
+		{
+			GrowingArray<Matrix44f> matrices;
+			std::shared_ptr<Effect> effect;
+			unsigned short matrixCounter;
+		};
+
+		const GrowingArray<MatricesContainer> & GetMatricesContainers() const;
 
 		const GenericMesh & GetMesh() const;
 
 	private:
 		std::weak_ptr<const GenericMesh> myMesh;
 		std::shared_ptr<const GenericMesh> myMeshScheduleLock;
-		std::vector<Matrix44f> myMatrices;
-		int myMatrixCounter;
+		
+		GrowingArray<MatricesContainer> myMatrices;
+		int myEffectCounter;
 	};
 
 	class ModelRenderer
@@ -41,8 +51,8 @@ namespace ENGINE_NAMESPACE
 		ModelRenderer();
 		~ModelRenderer();
 
-		void InstantRender(const std::shared_ptr<GenericMesh> & myMeshes);
-		void Render(const std::shared_ptr<GenericMesh> & aMesh, const Matrix44f & aMatrix);
+		void InstantRender(const std::shared_ptr<Effect>& aEffect, const std::shared_ptr<GenericMesh> & myMeshes);
+		void Render(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<GenericMesh> & aMesh, const Matrix44f & aMatrix);
 		void RenderBuffer();
 
 		void PrepareInstantRender(const Matrix44f & aWorldMatrix);
@@ -67,6 +77,7 @@ namespace ENGINE_NAMESPACE
 		LightConstantBufferData myLightingData;
 
 		std::shared_ptr<TextureCube> mySkybox;
+		std::shared_ptr<Effect> myEffect;
 
 		bool myIsInstantRendering;
 		void UpdateAndBindLightingBuffer();

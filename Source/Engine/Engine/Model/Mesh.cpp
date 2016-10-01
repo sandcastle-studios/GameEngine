@@ -13,11 +13,10 @@
 namespace ENGINE_NAMESPACE
 {
 
-	GenericMesh::GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
+	GenericMesh::GenericMesh(const Surface & aSurface)
 	{
 		myVertexCount = 0;
 		myIndexCount = 0;
-		myEffect = aEffect;
 		mySurface = aSurface;
 		myIdentifier = 0;
 	}
@@ -50,14 +49,11 @@ namespace ENGINE_NAMESPACE
 		mySurface = aSurface;
 	}
 
-	void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
-	{
-		myEffect = aEffect;
-	}
-
-	void GenericMesh::Render() const
+	void GenericMesh::Render(const std::shared_ptr<Effect>& aEffect) const
 	{
 		mySurface.BindToPS();
+
+		aEffect->Bind();
 
 		myVertexBuffer->Bind(0);
 		Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -66,14 +62,11 @@ namespace ENGINE_NAMESPACE
 		Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
 	}
 
-	void GenericMesh::RenderInstanced(int aInstanceCount) const
+	void GenericMesh::RenderInstanced(const std::shared_ptr<Effect>& aEffect, int aInstanceCount) const
 	{
 		mySurface.BindToPS();
 
-		if (myEffect != nullptr)
-		{
-			myEffect->Bind();
-		}
+		aEffect->Bind();
 
 		myVertexBuffer->Bind(0);
 		Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);

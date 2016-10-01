@@ -8,7 +8,7 @@ namespace ENGINE_NAMESPACE
 	class CubeModel : public Model
 	{
 	public:
-		CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture);
+		CubeModel(const std::shared_ptr<Texture> & aTexture);
 		~CubeModel();
 	};
 

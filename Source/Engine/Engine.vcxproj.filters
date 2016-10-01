@@ -199,6 +199,7 @@
     <ClInclude Include="Engine\DXHelpers\DDSTextureLoader.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Effect\SkyboxEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -328,6 +329,7 @@
     <ClCompile Include="Engine\DXHelpers\DDSTextureLoader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Effect\SkyboxEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

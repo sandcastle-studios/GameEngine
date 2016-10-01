@@ -7,14 +7,14 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Texture\RenderTexture.h"
 #include "Engine\Buffer\DepthBuffer.h"
-#include "Engine\Effect\StandardEffect.h"
 #include "Engine\Component\Factory\BaseComponentFactory.h"
 #include "Engine\Camera\CameraController.h"
 #include "Engine/Component\ModelComponent.h"
 #include "Engine/Model/AssimpModel.h"
 #include "Engine/Component/Factory/ComponentFactory.h"
 #include "Engine/GameObject/GameObject.h"
-#include "..\ImGui\imgui.h"
+#include <imgui.h>
+#include <Engine/Effect/SkyboxEffect.h>
 
 namespace ENGINE_NAMESPACE
 {
@@ -23,11 +23,12 @@ namespace ENGINE_NAMESPACE
 	{
 		myCamera = std::make_unique<Camera>();
 
-		myEffect = std::make_shared<StandardEffect>();
 		myName = aName;
 		if (aSkyboxPath != nullptr)
 		{
-			mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
+			std::shared_ptr<Effect> skyboxShader = std::make_shared<SkyboxEffect>();
+			mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<Texture>(aSkyboxPath)));
+			mySkybox->SetEffect(skyboxShader);
 		}
 		else
 		{
@@ -182,7 +183,7 @@ namespace ENGINE_NAMESPACE
 
 	std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
 	{
-		return CreateObjectWithModel(std::make_shared<AssimpModel>(myEffect, aPath), aPosition, aScale, aOrientation);
+		return CreateObjectWithModel(std::make_shared<AssimpModel>(aPath), aPosition, aScale, aOrientation);
 	}
 
 	std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)

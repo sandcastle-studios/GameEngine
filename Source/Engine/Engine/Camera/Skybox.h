@@ -8,7 +8,7 @@ namespace ENGINE_NAMESPACE
 	class Skybox : public Model
 	{
 	public:
-		Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture);
+		Skybox(const std::shared_ptr<Texture> & aTexture);
 		~Skybox();
 	};
 }

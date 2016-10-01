@@ -20,10 +20,9 @@ namespace ENGINE_NAMESPACE
 		virtual ~GenericMesh();
 
 		void SetSurface(const Surface & aSurface);
-		void SetEffect(const std::shared_ptr<Effect> & aEffect);
 
-		void Render() const;
-		void RenderInstanced(int aInstanceCount) const;
+		void Render(const std::shared_ptr<Effect>& aEffect) const;
+		void RenderInstanced(const std::shared_ptr<Effect>& aEffect, int aInstanceCount) const;
 
 		const BoundingBoxf & GetBoundingBox();
 
@@ -37,7 +36,7 @@ namespace ENGINE_NAMESPACE
 		// Only Mesh<TVertex> may inherit
 		template<typename TVertex>
 		friend class Mesh;
-		GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface);
+		GenericMesh(const Surface & aSurface);
 		std::unique_ptr<GenericVertexBuffer> myVertexBuffer;
 		std::unique_ptr<IndexBuffer> myIndexBuffer;
 
@@ -46,19 +45,17 @@ namespace ENGINE_NAMESPACE
 		Surface mySurface;
 		BoundingBoxf myBoundingBox;
 		size_t myIdentifier;
-
-		std::shared_ptr<Effect> myEffect;
 	};
 
 	template<typename TVertex>
 	class Mesh : public GenericMesh
 	{
 	public:
-		Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface);
-		Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
-		Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
+		Mesh(const Surface & aSurface);
+		Mesh(const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount);
+		Mesh(const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData);
 		template <size_t TVertexCount, size_t TIndexCount>
-		Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
+		Mesh(const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData);
 
 		~Mesh();
 
@@ -69,29 +66,29 @@ namespace ENGINE_NAMESPACE
 	};
 
 	template<typename TVertex>
-	Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
-		: GenericMesh(aEffect, aSurface)
+	Mesh<TVertex>::Mesh(const Surface & aSurface)
+		: GenericMesh(aSurface)
 	{
 
 	}
 
 	template<typename TVertex>
-	Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
-		: GenericMesh(aEffect, aSurface)
+	Mesh<TVertex>::Mesh(const Surface & aSurface, const TVertex * aVertexData, int aVertexCount, const unsigned int * aIndexData, int aIndexCount)
+		: GenericMesh(aSurface)
 	{
 		CreateMesh(aVertexData, aVertexCount, aIndexData, aIndexCount);
 	}
 
 	template<typename TVertex>
-	Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
-		: Mesh(aEffect, aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
+	Mesh<TVertex>::Mesh(const Surface & aSurface, const std::vector<TVertex> & aVertexData, const std::vector<unsigned int> & aIndexData)
+		: Mesh(aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 	{
 	}
 
 	template<typename TVertex>
 	template <size_t TVertexCount, size_t TIndexCount>
-	Mesh<TVertex>::Mesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
-		: Mesh(aEffect, aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
+	Mesh<TVertex>::Mesh(const Surface & aSurface, const std::array<TVertex, TVertexCount> & aVertexData, const std::array<unsigned int, TIndexCount> & aIndexData)
+		: Mesh(aSurface, &aVertexData[0], static_cast<int>(aVertexData.size()), &aIndexData[0], static_cast<int>(aIndexData.size()))
 	{
 	}
 

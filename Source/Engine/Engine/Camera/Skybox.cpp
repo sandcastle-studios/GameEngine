@@ -5,7 +5,7 @@
 
 namespace ENGINE_NAMESPACE
 {
-	Skybox::Skybox(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
+	Skybox::Skybox(const std::shared_ptr<Texture> & aTexture)
 	{
 		const float skyboxSize = .5f;
 		Vector2f quadSize = Vector2f(0.25f, 0.25f);
@@ -85,7 +85,7 @@ namespace ENGINE_NAMESPACE
 		Surface surface;
 		surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
 
-		AddMesh(std::make_shared<Mesh<Vertex>>(aEffect, surface, verticies, indicies));
+		AddMesh(std::make_shared<Mesh<Vertex>>(surface, verticies, indicies));
 	}
 
 

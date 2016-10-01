@@ -7,7 +7,7 @@
 namespace ENGINE_NAMESPACE
 {
 
-	AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath)
+	AssimpModel::AssimpModel(const std::string & aFilePath)
 	{
 		CFBXLoader loader;
 		CLoaderModel * model = loader.LoadModel(aFilePath.c_str());
@@ -27,7 +27,7 @@ namespace ENGINE_NAMESPACE
 		{
 			CLoaderMesh * mesh = model->myMeshes[i];
 
-			AddMesh(std::make_shared<AssimpMesh>(aEffect, mesh, modelDirectory));
+			AddMesh(std::make_shared<AssimpMesh>(mesh, modelDirectory));
 		}
 
 		Surface surface;
@@ -54,11 +54,6 @@ namespace ENGINE_NAMESPACE
 		delete model;
 	}
 
-	AssimpModel::AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath)
-		: AssimpModel(aEffect, std::string(aFilePath))
-	{
-	}
-
 	AssimpModel::~AssimpModel()
 	{
 	}
@@ -71,8 +66,8 @@ namespace ENGINE_NAMESPACE
 		}
 	}
 
-	AssimpMesh::AssimpMesh(const std::shared_ptr<Effect> & aEffect, CLoaderMesh * aMesh, const std::string & aModelDirectory)
-		: Mesh(aEffect, Surface())
+	AssimpMesh::AssimpMesh(CLoaderMesh * aMesh, const std::string & aModelDirectory)
+		: Mesh(Surface())
 	{
 		const char * meshVertices = reinterpret_cast<const char*>(aMesh->myVerticies);
 

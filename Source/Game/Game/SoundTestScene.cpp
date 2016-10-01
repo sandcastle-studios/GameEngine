@@ -23,7 +23,7 @@ void ErrorCallback(const char* aError)
 SoundTestScene::SoundTestScene()
 {
 	bool success;
-	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>("models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(model));
 	SetCameraOrientation(SB::Vector3f(0.0f, 0.0f, -1.0f));
 

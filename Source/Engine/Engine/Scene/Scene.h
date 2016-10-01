@@ -11,7 +11,6 @@ namespace ENGINE_NAMESPACE
 
 	class Camera;
 	class CameraController;
-	class StandardEffect;
 
 	class Scene
 	{
@@ -55,9 +54,7 @@ namespace ENGINE_NAMESPACE
 
 		std::unique_ptr<Camera> myCamera;
 		Stack<std::shared_ptr<CameraController>> myCameraControllers;
-
-		std::shared_ptr<StandardEffect> myEffect;
-
+		
 		Time myTime;
 		std::string myName;
 

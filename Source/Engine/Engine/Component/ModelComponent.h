@@ -20,7 +20,7 @@ namespace ENGINE_NAMESPACE
 
 		void SetModel(std::shared_ptr<Model> aModel);
 
-		void SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect);
+		void SetModel(const char* aModelFilePath);
 
 		const BoundingBoxf & GetBoundingBox() const;
 
@@ -30,8 +30,12 @@ namespace ENGINE_NAMESPACE
 
 		void SetMatrix(const Matrix44f & aMatrix);
 
+		void SetEffect(const std::shared_ptr<Effect> & aEffect);
+		const std::shared_ptr<Effect> & GetEffect() const;
+
 	private:
 		std::shared_ptr<Model> myModel;
 		Matrix44f myMatrix;
+		std::shared_ptr<Effect> myEffect;
 	};
 }

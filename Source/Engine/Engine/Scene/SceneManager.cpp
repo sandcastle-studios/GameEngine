@@ -13,7 +13,6 @@ namespace ENGINE_NAMESPACE
 
 	SceneManager::SceneManager()
 	{
-		myStandardEffect = std::make_shared<StandardEffect>();
 	}
 
 
@@ -83,7 +82,7 @@ namespace ENGINE_NAMESPACE
 			{
 				//TODO: Send texture into model comp. as well, also send desired effect/shader to use for the model
 				auto && mc = aScene->GetComponentFactory<ModelComponent>()->CreateComponent();
-				mc->SetModel(aObjectNode["components"][i]["modelPath"].GetString(), myStandardEffect);
+				mc->SetModel(aObjectNode["components"][i]["modelPath"].GetString());
 				mc->SetMatrix(Matrix44f::CreateScale(0.01f, 0.01f, 0.01f));
 				obj->AddComponent(mc);
 			}

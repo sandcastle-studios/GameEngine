@@ -14,7 +14,7 @@ LightingTestScene::LightingTestScene()
 {
 	PushCameraController(std::make_shared<SB::FreeSpaceCameraController>(5.f, 1.5f));
 
-	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>("models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	myHead = std::make_shared<SB::ModelInstance>(model);
 	
 	myHead->SetMatrix(SB::Matrix44f::CreateTranslation(0.f, 0.f, -5.f));

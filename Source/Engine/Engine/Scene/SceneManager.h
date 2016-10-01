@@ -32,8 +32,6 @@ namespace ENGINE_NAMESPACE
 		std::unordered_map<const char*, std::shared_ptr<Scene>> myScenes;
 		std::shared_ptr<Scene> myCurrentScene;
 
-		std::shared_ptr<StandardEffect> myStandardEffect;
-
 	};
 
 	template<typename TSceneType, typename ...TArgs>

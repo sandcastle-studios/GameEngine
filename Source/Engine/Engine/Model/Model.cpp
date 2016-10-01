@@ -7,7 +7,6 @@
 
 namespace ENGINE_NAMESPACE
 {
-
 	Model::Model()
 	{
 	}
@@ -21,23 +20,23 @@ namespace ENGINE_NAMESPACE
 	{
 	}
 
-	void Model::Render(const Matrix44f & aMatrix) const
+	void Model::Render(const std::shared_ptr<Effect>& aEffect, const Matrix44f & aMatrix) const
 	{
 		ModelRenderer & modelRenderer = Engine::GetInstance().GetRenderer().GetModelRenderer();
 		for (size_t i = 0; i < myMeshes.size(); i++)
 		{
-			modelRenderer.Render(myMeshes[i], aMatrix);
+			modelRenderer.Render(aEffect, myMeshes[i], aMatrix);
 		}
 	}
 
-	void Model::InstantRender(const Matrix44f & aWorldMatrix) const
+	void Model::InstantRender(const std::shared_ptr<Effect>& aEffect, const Matrix44f & aWorldMatrix) const
 	{
 		ModelRenderer & modelRenderer = Engine::GetInstance().GetRenderer().GetModelRenderer();
 		modelRenderer.PrepareInstantRender(aWorldMatrix);
 
 		for (size_t i = 0; i < myMeshes.size(); i++)
 		{
-			modelRenderer.InstantRender(myMeshes[i]);
+			modelRenderer.InstantRender(aEffect, myMeshes[i]);
 		}
 	}
 

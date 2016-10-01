@@ -11,7 +11,7 @@
 
 void PlayerShootComponent::Construct()
 {
-	myModel = std::make_shared<SB::CubeModel>(std::make_shared<SB::StandardEffect>(), nullptr);
+	myModel = std::make_shared<SB::CubeModel>(nullptr);
 
 	myKeySubscription = std::make_shared<SB::Subscription<SB::KeyDownMessage<SB::KeyboardKey::eReturn>>>(
 		[this] (const SB::KeyDownMessage<SB::KeyboardKey::eReturn> & aMessage) -> SB::ReceiveResult

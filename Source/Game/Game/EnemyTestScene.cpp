@@ -38,7 +38,7 @@ void EnemyTestScene::CreateFactories()
 	//GetComponentFactory<ModelComponent>()->CreateComponent();
 
 	SB::SharedPtrComponent<SB::ModelComponent> prettyModel (GetComponentFactory<SB::ModelComponent>()->CreateComponent());
-	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>("models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(model);
 
 	SetCameraOrientation(model->GetBoundingBox().GetCenter() + SB::Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));

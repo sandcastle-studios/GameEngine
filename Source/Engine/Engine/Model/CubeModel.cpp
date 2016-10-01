@@ -7,7 +7,7 @@
 namespace ENGINE_NAMESPACE
 {
 
-	CubeModel::CubeModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture)
+	CubeModel::CubeModel(const std::shared_ptr<Texture> & aTexture)
 	{
 		std::array<Vertex, 8> verticies;
 		memset(&verticies[0], 0, sizeof(Vertex) * verticies.size());
@@ -138,7 +138,7 @@ namespace ENGINE_NAMESPACE
 			surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
 		}
 
-		AddMesh(std::make_shared<Mesh<Vertex>>(aEffect, surface, verticies, indicies));
+		AddMesh(std::make_shared<Mesh<Vertex>>(surface, verticies, indicies));
 	}
 
 	CubeModel::~CubeModel()

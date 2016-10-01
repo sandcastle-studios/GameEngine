@@ -6,7 +6,7 @@
 namespace ENGINE_NAMESPACE
 {
 
-	PlaneModel::PlaneModel(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<Texture> & aTexture, int aTextureTileU, int aTextureTileV)
+	PlaneModel::PlaneModel(const std::shared_ptr<Texture> & aTexture, int aTextureTileU, int aTextureTileV)
 	{
 		std::array<VertexPosColUV, 4> verticies;
 		std::array<unsigned int, 6> indicies =
@@ -34,7 +34,7 @@ namespace ENGINE_NAMESPACE
 		Surface surface;
 		surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
 
-		AddMesh(std::make_shared<Mesh<VertexPosColUV>>(aEffect, surface, verticies, indicies));
+		AddMesh(std::make_shared<Mesh<VertexPosColUV>>(surface, verticies, indicies));
 	}
 
 	PlaneModel::~PlaneModel()

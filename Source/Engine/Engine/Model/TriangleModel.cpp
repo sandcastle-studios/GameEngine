@@ -5,7 +5,7 @@
 
 namespace ENGINE_NAMESPACE
 {
-	TriangleModel::TriangleModel(std::shared_ptr<Effect> aEffect, std::shared_ptr<Texture> aTexture)
+	TriangleModel::TriangleModel(std::shared_ptr<Texture> aTexture)
 	{
 		std::array<SimpleVertex, 3> vertexData;
 
@@ -23,7 +23,7 @@ namespace ENGINE_NAMESPACE
 		Surface surface;
 		surface.SetSlot(SurfaceTextureIndex::eDiffuse, aTexture);
 
-		AddMesh(std::make_unique<Mesh<SimpleVertex>>(aEffect, surface, vertexData, indexBuffer));
+		AddMesh(std::make_unique<Mesh<SimpleVertex>>(surface, vertexData, indexBuffer));
 	}
 
 	TriangleModel::~TriangleModel()

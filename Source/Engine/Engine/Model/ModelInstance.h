@@ -4,12 +4,16 @@
 namespace ENGINE_NAMESPACE
 {
 	class Model;
+	class Effect;
 
 	class ModelInstance
 	{
 	public:
 		ModelInstance(const std::shared_ptr<Model> & aModel);
 		~ModelInstance();
+
+		void SetEffect(const std::shared_ptr<Effect> & aEffect);
+		const std::shared_ptr<Effect> & GetEffect() const;
 
 		void Render() const;
 		void InstantRender() const;
@@ -26,8 +30,9 @@ namespace ENGINE_NAMESPACE
 		BoundingBoxf GetBoundingBox() const;
 
 	private:
-		std::shared_ptr<Model> myModel;
 		Matrix44f myWorldMatrix;
+		std::shared_ptr<Model> myModel;
+		std::shared_ptr<Effect> myEffect;
 	};
 
 	inline const Matrix44f & ModelInstance::GetMatrix() const

@@ -7,6 +7,7 @@
 #include "Engine\Rendering\DXRenderer.h"
 #include "Engine\Buffer\ConstantBuffer.h"
 #include "..\Texture\TextureCube.h"
+#include <Engine\Effect\StandardEffect.h>
 
 namespace ENGINE_NAMESPACE
 {
@@ -25,6 +26,8 @@ namespace ENGINE_NAMESPACE
 
 		mySkybox = std::make_shared<TextureCube>("textures/cubeMap.dds");
 		myLightingData.myCubeMapMipMaps = mySkybox->GetMipMapLevels();
+
+		myEffect = std::make_shared<StandardEffect>();
 	}
 
 	ModelRenderer::~ModelRenderer()
@@ -44,7 +47,7 @@ namespace ENGINE_NAMESPACE
 		}
 	}
 
-	void ModelRenderer::Render(const std::shared_ptr<GenericMesh> & aMesh, const Matrix44f & aMatrix)
+	void ModelRenderer::Render(const std::shared_ptr<Effect> & aEffect, const std::shared_ptr<GenericMesh> & aMesh, const Matrix44f & aMatrix)
 	{
 		size_t identifier = aMesh->GetIdentifier();
 		if (identifier == 0)
@@ -53,7 +56,7 @@ namespace ENGINE_NAMESPACE
 			aMesh->AssignIdentifier(identifier);
 		}
 
-		myMeshes[identifier]->AddInstance(aMatrix);
+		myMeshes[identifier]->AddInstance(aEffect == nullptr ? myEffect : aEffect, aMatrix);
 	}
 
 	void ModelRenderer::RenderBuffer()
@@ -65,27 +68,37 @@ namespace ENGINE_NAMESPACE
 
 		for (size_t i = 0; i < myCurrentlyScheduledBatches.size(); i++)
 		{
-			const Matrix44f * matrices = myCurrentlyScheduledBatches[i]->GetInstances();
-			int matricesCount = myCurrentlyScheduledBatches[i]->GetInstanceCount();
+			auto && matricesContainers = myCurrentlyScheduledBatches[i]->GetMatricesContainers();
 
-			auto vertexBuffer = myVertexBuffers[0];
-
-			int c = 0;
-			while (matricesCount >= vertexBuffer->GetCount())
+			for (unsigned short  j = 0; j < matricesContainers.Size(); j++)
 			{
-				c++;
-
-				if (c >= static_cast<int>(myVertexBuffers.size()))
+				if (matricesContainers[j].effect == nullptr)
 				{
-					myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, myVertexBuffers.back()->GetCount() * 2, false));
+					break;
 				}
 
-				vertexBuffer = myVertexBuffers[c];
-			}
+				const Matrix44f * matrices = &matricesContainers[j].matrices[0];
+				unsigned short matricesCount = matricesContainers[j].matrixCounter;
 
-			vertexBuffer->UpdateData(matrices, matricesCount, false);
-			vertexBuffer->Bind(1);
-			myCurrentlyScheduledBatches[i]->GetMesh().RenderInstanced(matricesCount);
+				auto vertexBuffer = myVertexBuffers[0];
+
+				int c = 0;
+				while (matricesCount >= vertexBuffer->GetCount())
+				{
+					c++;
+
+					if (c >= static_cast<int>(myVertexBuffers.size()))
+					{
+						myVertexBuffers.push_back(std::make_shared<VertexBuffer<Matrix44f>>(nullptr, myVertexBuffers.back()->GetCount() * 2, false));
+					}
+
+					vertexBuffer = myVertexBuffers[c];
+				}
+
+				vertexBuffer->UpdateData(matrices, matricesCount, false);
+				vertexBuffer->Bind(1);
+				myCurrentlyScheduledBatches[i]->GetMesh().RenderInstanced(matricesContainers[j].effect, matricesCount);
+			}
 
 			myCurrentlyScheduledBatches[i]->FinishedRendering();
 		}
@@ -147,14 +160,14 @@ namespace ENGINE_NAMESPACE
 		myLightingBuffer->BindToPS(1);
 	}
 
-	void ModelRenderer::InstantRender(const std::shared_ptr<GenericMesh> & myMesh)
+	void ModelRenderer::InstantRender(const std::shared_ptr<Effect>& aEffect, const std::shared_ptr<GenericMesh> & myMesh)
 	{
 		if (myIsInstantRendering == false)
 		{
 			Error("Instant rendering must be preceeded by calling ModelRenderer::PrepareInstantRender()");
 		}
 
-		myMesh->RenderInstanced(1);
+		myMesh->RenderInstanced(aEffect, 1);
 	}
 
 	void ModelRenderer::PrepareInstantRender(const Matrix44f & aWorldMatrix)
@@ -171,7 +184,13 @@ namespace ENGINE_NAMESPACE
 	{
 		myMesh = aMesh;
 		myMeshScheduleLock = nullptr;
-		myMatrices.resize(4);
+		myMatrices.Resize(2);
+		for (unsigned short i = 0; i < myMatrices.Size(); i++)
+		{
+			myMatrices[i].matrices.Resize(16);
+			myMatrices[i].matrixCounter = 0;
+		}
+		myEffectCounter = 0;
 	}
 
 	void BatchEntry::Schedule()
@@ -190,32 +209,67 @@ namespace ENGINE_NAMESPACE
 		return myMeshScheduleLock != nullptr;
 	}
 
-	void BatchEntry::AddInstance(const Matrix44f & aMatrix)
+	void BatchEntry::AddInstance(const std::shared_ptr<Effect> & aEffect, const Matrix44f & aMatrix)
 	{
-		if (myMatrixCounter + 1 >= static_cast<int>(myMatrices.size()))
+		if (myEffectCounter + 1 >= static_cast<int>(myMatrices.Size()))
 		{
-			myMatrices.resize(myMatrices.size() * 2);
+			unsigned short oldSize = myMatrices.Size();
+			myMatrices.Resize(oldSize * 2);
+			for (unsigned short i = oldSize; i < myMatrices.Size(); i++)
+			{
+				myMatrices[i].matrices.Resize(16);
+				myMatrices[i].matrixCounter = 0;
+			}
 		}
 
-		myMatrices[myMatrixCounter++] = aMatrix;
+		unsigned short effectIndex = static_cast<unsigned short>(myEffectCounter);
+
+		for (short i = static_cast<short>(myEffectCounter) - 1; i >= 0; i--)
+		{
+			if (myMatrices[i].effect == aEffect)
+			{
+				effectIndex = static_cast<unsigned short>(i);
+				return;
+			}
+		}
+
+		auto && data = myMatrices[effectIndex];
+
+		if (data.matrixCounter + 1 >= static_cast<int>(data.matrices.Size()))
+		{
+			data.matrices.Resize(static_cast<unsigned short>(data.matrices.Size() * 2));
+		}
+
+		data.matrices[data.matrixCounter++] = aMatrix;
+
+		if (data.effect == nullptr)
+		{
+			data.effect = aEffect;
+		}
 
 		Schedule();
 	}
 
-	const Matrix44f * BatchEntry::GetInstances() const
-	{
-		return &myMatrices[0];
-	}
-
-	int BatchEntry::GetInstanceCount() const
-	{
-		return myMatrixCounter;
-	}
-
 	void BatchEntry::FinishedRendering()
 	{
-		myMatrixCounter = 0;
+		for (unsigned short i = 0; i < myMatrices.Size(); i++)
+		{
+			if (myMatrices[i].effect == nullptr)
+			{
+				break;
+			}
+
+			myMatrices[i].effect = nullptr;
+			myMatrices[i].matrixCounter = 0;
+		}
+
+		myEffectCounter = 0;
 		myMeshScheduleLock = nullptr;
+	}
+
+	const GrowingArray<BatchEntry::MatricesContainer> & BatchEntry::GetMatricesContainers() const
+	{
+		return myMatrices;
 	}
 
 	const GenericMesh & BatchEntry::GetMesh() const

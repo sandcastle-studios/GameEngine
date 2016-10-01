@@ -11,20 +11,31 @@ namespace ENGINE_NAMESPACE
 	ModelInstance::ModelInstance(const std::shared_ptr<Model> & aModel)
 	{
 		myModel = aModel;
+		myEffect = nullptr;
 	}
 
 	ModelInstance::~ModelInstance()
 	{
 	}
 
+	void ModelInstance::SetEffect(const std::shared_ptr<Effect> & aEffect)
+	{
+		myEffect = aEffect;
+	}
+
+	const std::shared_ptr<Effect> & ModelInstance::GetEffect() const
+	{
+		return myEffect;
+	}
+
 	void ModelInstance::Render() const
 	{
-		myModel->Render(myWorldMatrix);
+		myModel->Render(myEffect, myWorldMatrix);
 	}
 
 	void ModelInstance::InstantRender() const
 	{
-		myModel->InstantRender(myWorldMatrix);
+		myModel->InstantRender(myEffect, myWorldMatrix);
 	}
 
 	void ModelInstance::SetMatrix(const Matrix44f & aMatrix)
@@ -41,4 +52,5 @@ namespace ENGINE_NAMESPACE
 		boundingBox.max = Vector4f(boundingBox.max, 1.f) * myWorldMatrix;
 		return boundingBox;
 	}
+	
 }

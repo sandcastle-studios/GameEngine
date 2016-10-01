@@ -113,11 +113,11 @@ void CollisionTestScene::CreateFactories()
 
 
 	SB::SharedPtrComponent<SB::ModelComponent> prettyModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
-	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>("models/unitsphere/sphere.fbx");
 	prettyModel->SetModel(model);
 
 	SB::SharedPtrComponent<SB::ModelComponent> moarModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
-	std::shared_ptr<SB::AssimpModel> actualModel = std::make_shared<SB::AssimpModel>(myEffect, "models/unitsphere/sphere.fbx");
+	std::shared_ptr<SB::AssimpModel> actualModel = std::make_shared<SB::AssimpModel>("models/unitsphere/sphere.fbx");
 	moarModel->SetModel(actualModel);
 	
 	const float tempsize = model->GetBoundingBox().GetMaximumRadius();
