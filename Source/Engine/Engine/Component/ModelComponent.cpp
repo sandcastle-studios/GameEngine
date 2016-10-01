@@ -21,7 +21,7 @@ void ModelComponent::Update(const Time & aDeltaTime)
 
 void ModelComponent::Render() const
 {
-	myModel->Render(myObject->GetTransformation());
+	myModel->Render(myObject->GetTransformation() * myMatrix);
 }
 
 void ModelComponent::SetModel(std::shared_ptr<Model> aModel)
@@ -46,4 +46,9 @@ void ModelComponent::Construct()
 
 void ModelComponent::Destruct()
 {
+}
+
+void ModelComponent::SetMatrix(const Matrix44f & aMatrix)
+{
+	myMatrix = aMatrix;
 }

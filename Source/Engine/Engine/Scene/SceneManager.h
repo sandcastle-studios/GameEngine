@@ -25,7 +25,7 @@ public:
 
 private:
 	std::shared_ptr<JsonScene> CreateScene(const char* aFilePath);
-	void LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene);
+	std::shared_ptr<GameObject> LoadGameObject(DataNode aObjectNode, std::shared_ptr<Scene> aScene);
 	std::unordered_map<const char*, std::shared_ptr<Scene>> myScenes;
 	std::shared_ptr<Scene> myCurrentScene;
 

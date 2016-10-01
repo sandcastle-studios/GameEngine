@@ -196,6 +196,9 @@
     <ClInclude Include="Engine\Camera\Controllers\FreeSpaceCameraController.h" />
     <ClInclude Include="Engine\Component\BouncingComponent.h" />
     <ClInclude Include="Engine\SoundManager\PlaySoundEvent.h" />
+    <ClInclude Include="Engine\Scripting\Script.h" />
+    <ClInclude Include="Engine\Scripting\ScriptLoader.h" />
+    <ClInclude Include="Engine\Scripting\ScriptFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -322,6 +325,9 @@
     <ClCompile Include="Engine\Camera\CameraController.cpp" />
     <ClCompile Include="Engine\Camera\Controllers\FreeCameraController.cpp" />
     <ClCompile Include="Engine\Component\BouncingComponent.cpp" />
+    <ClCompile Include="Engine\Scripting\Script.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptLoader.cpp" />
+    <ClCompile Include="Engine\Scripting\ScriptFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

@@ -14,6 +14,7 @@
 #include "Engine/Model/AssimpModel.h"
 #include "Engine/Component/Factory/ComponentFactory.h"
 #include "Engine/GameObject/GameObject.h"
+#include "..\ImGui\imgui.h"
 
 Scene::Scene(const char* aName, const char * aSkyboxPath)
 {
@@ -39,6 +40,23 @@ Scene::~Scene()
 {
 }
 
+void DebugObject(GameObject & obj)
+{
+	ImGui::Text(FormatString("Local Position {0};{1};{2}", obj.GetPosition().x, obj.GetPosition().y, obj.GetPosition().z).c_str());
+	Matrix44f m = obj.GetTransformation();
+	ImGui::Text(FormatString("World Position {0};{1};{2}", m.GetPosition().x, m.GetPosition().y, m.GetPosition().z).c_str());
+	ImGui::Text(FormatString("Local Scale {0};{1};{2}", obj.GetScale().x, obj.GetScale().y, obj.GetScale().z).c_str());
+
+	const GrowingArray<GameObject*> & children = obj.GetChildren();
+	for (unsigned short i = 0; i < children.Size(); i++)
+	{
+		if (ImGui::CollapsingHeader(children[i]->GetIdentifier().c_str()))
+		{
+			DebugObject(*children[i]);
+		}
+	}
+}
+
 void Scene::Update(const Time & aDeltaTime)
 {
 	//if (myScheduledRemovals > 0)
@@ -62,6 +80,25 @@ void Scene::Update(const Time & aDeltaTime)
 
 		//myScheduledRemovals = 0;
 	}
+
+	/*if (ImGui::Begin("Objects in scene"))
+	{
+		for (unsigned short i = 0; i < myObjects.Size(); i++)
+		{
+			const std::shared_ptr<GameObject> & obj = myObjects[i];
+			if (obj->IsRemoved() == false)
+			{
+				if (obj->GetParent() == nullptr)
+				{
+					if (ImGui::CollapsingHeader(obj->GetIdentifier().c_str()))
+					{
+						DebugObject(*obj);
+					}
+				}
+			}
+		}
+	}
+	ImGui::End();*/
 
 	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 	{
@@ -127,13 +164,10 @@ void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
 	myObjects.Reserve(aObjectCount);
 }
 
-std::shared_ptr<GameObject> Scene::CreateGameObject(const std::shared_ptr<GameObjectData> * aData)
+std::shared_ptr<GameObject> Scene::CreateGameObject()
 {
 	std::shared_ptr<GameObject> go;
-	if (aData != nullptr)
-		go = std::make_shared<GameObject>(*this, &**aData);
-	else
-		go = std::make_shared<GameObject>(*this, nullptr);
+	go = std::make_shared<GameObject>(*this);
 	myObjects.Add(go);
 	return go;
 }
@@ -150,7 +184,7 @@ std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, 
 
 std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
 {
-	std::shared_ptr<GameObject> object = CreateGameObject(nullptr);
+	std::shared_ptr<GameObject> object = CreateGameObject();
 	object->SetPosition(aPosition);
 	object->SetScale(aScale);
 	object->SetRotation(aOrientation);

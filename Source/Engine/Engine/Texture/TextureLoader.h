@@ -1,5 +1,4 @@
 #pragma once
-#include "Engine\Resources\ResourceManager.h"
 
 class Texture;
 

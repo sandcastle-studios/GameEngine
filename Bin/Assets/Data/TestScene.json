@@ -24,7 +24,7 @@
           "type": "Transform"
         },
         {
-          "modelPath": "models/tga_companioncube/companion.fbx",
+          "modelPath": "Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx",
           "texturePath": "",
           "type": "ModelData"
         }
@@ -37,7 +37,7 @@
               "localPosition": [
                 0.0,
                 0.0,
-                1.109
+                10.109
               ],
               "localRotation": [
                 0.0,
@@ -53,7 +53,7 @@
               "type": "Transform"
             },
             {
-              "modelPath": "models/tga_companioncube/companion.fbx",
+              "modelPath": "Assets/Models/Ships/Enemies/InterceptorX101/interceptorX101.fbx",
               "texturePath": "",
               "type": "ModelData"
             }

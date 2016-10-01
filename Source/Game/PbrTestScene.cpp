@@ -13,24 +13,17 @@
 #include <Engine\GameObject\GameObject.h>
 #include "..\Engine\Engine\Camera\Controllers\FreeSpaceCameraController.h"
 #include "..\Engine\Engine\Model\CubeModel.h"
+#include "..\Engine\Engine\SoundManager\SoundManger.h"
 
 PbrTestScene::PbrTestScene()
-	: Scene("spacebox.dds")
+	: Scene("PbrTestScene", "grass.dds")
 {
-	// "models/Modelviewer_Exempelmodell/K11_1415.fbx")); // 
-	myHead = std::make_shared<CubeModel>(myEffect, nullptr); // 
+	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+
+	CreateAndAddModel("models/stefan_sphere/testSpheres.fbx", Vector3f(0.f, 0.f, 15.f));
 	
-	auto bb = myHead->GetBoundingBox();
-
-	auto model = GetComponentFactory<ModelComponent>()->CreateComponent();
-	model->SetModel(myHead);
-
-	std::shared_ptr<GameObject> obj = CreateGameObject();
-	obj->AddComponent(model);
-
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
-
-	myObjects.Add(obj);
 
 	Engine::GetRenderer().GetModelRenderer().SetAmbient(.05f);
 	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(1.f, -1.f, 1.f), Vector4f(1.0f, 1.0f, 1.0f, 1.f));
@@ -42,6 +35,8 @@ PbrTestScene::~PbrTestScene()
 
 void PbrTestScene::Update(const Time & aDeltaTime)
 {
+	Engine::GetSoundManager().Update();
+
 	if (ImGui::Begin("PBR Test Scene", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
 		ImGui::Text("Move camera with WASD, QE, Ctrl, Space and Arrow Keys.");

@@ -87,12 +87,14 @@ void Game::Initialize()
 {
 	mySceneManager = std::make_unique<SceneManager>();
 
-	mySceneManager->LoadJsonScene("Assets/Data/asteroidFieldTestScene.json");
+	mySceneManager->LoadJsonScene("Assets/Data/TestScene.json");
 
-	auto player = mySceneManager->GetCurrentScene()->CreateGameObject(nullptr);
+	auto player = mySceneManager->GetCurrentScene()->CreateGameObject();
+	player->SetIdentifier("Player");
 	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<PlayerShootComponent>()->CreateComponent();
 	player->AddComponent(shootComponent);
-	//mySceneManager->LoadScene<EnemyTestScene>();
+	
+	// mySceneManager->LoadScene<PbrTestScene>();
 
 	CreatePerspective();
 }

@@ -10,7 +10,7 @@ enum class FileChangeWatcherNotificationFormat
 class FileChangeWatcher
 {
 public:
-	// Pass nullptr or an empty string to watch working directory
+	// Pass nullptr or an empty string to myWatch working directory
 	FileChangeWatcher(const wchar_t * aDirectory = nullptr, FileChangeWatcherNotificationFormat aFormat = FileChangeWatcherNotificationFormat::eForwardSlashes, float aMinimumTimeDifference = 0.1f);
 	~FileChangeWatcher();
 
@@ -25,7 +25,16 @@ private:
 	std::unordered_map<std::string, float> lastTime;
 
 	std::mutex myMutex;
-	std::vector<std::string> myChanges;
+
+	Stopwatch myWatch;
+
+	struct ChangeEntry
+	{
+		float postTime;
+		std::string file;
+	};
+
+	std::vector<ChangeEntry> myChanges;
 
 	float myMinimumTimeDifference;
 };

@@ -4,19 +4,10 @@
 class Scene;
 class BaseComponent;
 
-struct GameObjectData
-{
-	std::string myID;
-	Quaternion myRotation;
-	Vector3f myPosition;
-	Vector3f myScale;
-	GrowingArray<SharedPtrComponent<BaseComponent>, size_t> myComponentList;
-};
-
 class GameObject
 {
 public:
-	GameObject(Scene & aScene, const GameObjectData * aData = nullptr);
+	GameObject(Scene & aScene);
 	~GameObject();
 
 	void SetPosition(const Vector3f & aPosition);
@@ -53,14 +44,17 @@ public:
 	template <typename TComponentType>
 	size_t GetComponentCount() const;
 
-	void SetData(const GameObjectData& aData);
-
 	void Remove();
 
 	bool IsRemoved() const;
 
 	const std::string & GetIdentifier() const;
 	void SetIdentifier(const std::string &aIdentifier);
+
+	void SetParent(const std::shared_ptr<GameObject> & aParent);
+	const std::shared_ptr<GameObject> & GetParent() const;
+
+	const GrowingArray<GameObject*> GetChildren() const;
 
 private:
 	GrowingArray<GrowingArray<SharedPtrComponent<BaseComponent>, size_t>, size_t> myComponents;
@@ -70,6 +64,9 @@ private:
 	Quaternion myRotation;
 	Scene * myScene;
 	bool myIsRemoved;
+	std::shared_ptr<GameObject> myParent;
+public:
+	GrowingArray<GameObject*> myChildren;
 };
 
 inline Scene & GameObject::GetScene()
@@ -149,4 +146,9 @@ size_t GameObject::GetComponentCount() const
 inline bool GameObject::IsRemoved() const
 {
 	return myIsRemoved;
+}
+
+inline const std::shared_ptr<GameObject> & GameObject::GetParent() const
+{
+	return myParent;
 }
