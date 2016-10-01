@@ -6,6 +6,7 @@
 SoundManger::SoundManger()
 {
 	myWwiseManager = std::make_unique<CWwiseManager>();
+	Init("Audio/SoundBanks/Init.bnk");
 }
 
 SoundManger::~SoundManger()

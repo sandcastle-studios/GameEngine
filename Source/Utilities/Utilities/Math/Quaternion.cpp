@@ -57,6 +57,34 @@ void Quaternion::RotateZ(float aRotationAmount)
 	RotateAlongAxis(Vector3f(0.0f, 0.0f, 1.0f), aRotationAmount);
 }
 
+Quaternion Quaternion::GetRotation(const Vector3f &aForward, const Vector3f &aDirection, const Vector3f &aUpVector)
+{
+	float dot = Vector3f::Dot(aForward, aDirection);
+	// test for dot -1, need an almost equal to check here.
+	if (dot == -1.0f)
+	{
+		// vector a and b point exactly in the opposite direction, 
+		// so it is a 180 degrees turn around the up-axis
+		Quaternion q;
+		q.RotateAlongAxis(aUpVector, Pi);
+		return q;
+	}
+	// test for dot 1, need an almost equal to check here.
+	else if (dot == 1.f)
+	{
+		// vector a and b point exactly in the same direction
+		// so we return the identity quaternion
+		return Quaternion(0.0f, 0.0f, 0.0f, 1.0f);
+	}
+
+	float rotAngle = acos(dot);
+	Vector3f rotAxis = Vector3f::Cross(aDirection, aForward);
+	rotAxis = Vector3f::Normalize(rotAxis);
+	Quaternion q;
+	q.RotateAlongAxis(rotAxis, rotAngle);
+	return q;
+}
+
 Quaternion Quaternion::operator*(const Quaternion& aRight) const
 {
 	Quaternion returnValue;
