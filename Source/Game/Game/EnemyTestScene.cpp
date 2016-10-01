@@ -14,34 +14,34 @@ EnemyTestScene::EnemyTestScene()
 {
 	CreateFactories();
 
-	myScript = Engine::GetResourceManager().Get<ScriptFile>("Assets/Scripts/Components/TestComponent.lua")->Execute();
+	myScript = SB::Engine::GetResourceManager().Get<SB::ScriptFile>("Assets/Scripts/Components/TestComponent.lua")->Execute();
 }
 
 EnemyTestScene::~EnemyTestScene()
 {
 }
 
-void EnemyTestScene::Update(const Time & aDeltaTime)
+void EnemyTestScene::Update(const SB::Time & aDeltaTime)
 {
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
 
 void EnemyTestScene::Render()
 {
-	Scene::Render();
+	SB::Scene::Render();
 }
 
 void EnemyTestScene::CreateFactories()
 {
-	std::shared_ptr<GameObject> enemy = CreateGameObject();
+	std::shared_ptr<SB::GameObject> enemy = CreateGameObject();
 
 	//GetComponentFactory<ModelComponent>()->CreateComponent();
 
-	SharedPtrComponent<ModelComponent> prettyModel (GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	SB::SharedPtrComponent<SB::ModelComponent> prettyModel (GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(model);
 
-	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + SB::Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 	
-	enemy->AddComponent<ModelComponent>(prettyModel);
+	enemy->AddComponent<SB::ModelComponent>(prettyModel);
 }

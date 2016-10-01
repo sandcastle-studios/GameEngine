@@ -12,25 +12,25 @@
 
 LightingTestScene::LightingTestScene()
 {
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	PushCameraController(std::make_shared<SB::FreeSpaceCameraController>(5.f, 1.5f));
 
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
-	myHead = std::make_shared<ModelInstance>(model);
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	myHead = std::make_shared<SB::ModelInstance>(model);
 	
-	myHead->SetMatrix(Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
+	myHead->SetMatrix(SB::Matrix44f::CreateTranslation(0.f, 0.f, -5.f));
 
 	auto bb = myHead->GetBoundingBox();
 
-	SetCameraOrientation(bb.GetCenter() + Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
+	SetCameraOrientation(bb.GetCenter() + SB::Vector3f(0.f, 0.f, -bb.GetSize().z * 1.5f));
 	
-	Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, Vector3f(0.f, 1.f, .5f), Vector4f(0.7f, 0.7f, 0.7f, 1.f));
+	SB::Engine::GetRenderer().GetModelRenderer().SetDirectionalLight(0, SB::Vector3f(0.f, 1.f, .5f), SB::Vector4f(0.7f, 0.7f, 0.7f, 1.f));
 }
 
 LightingTestScene::~LightingTestScene()
 {
 }
 
-void LightingTestScene::Update(const Time & aDeltaTime)
+void LightingTestScene::Update(const SB::Time & aDeltaTime)
 {
 	ImGui::SetNextWindowPos({ 16, 16 }, ImGuiSetCond_Once);
 	ImGui::SetNextWindowSize({ 375, 400 }, ImGuiSetCond_Once);

@@ -1,7 +1,7 @@
 #pragma once
 #include <Engine\Scene\Scene.h>
 
-class InstancedTestScene : public Scene
+class InstancedTestScene : public SB::Scene
 {
 public:
 	InstancedTestScene();

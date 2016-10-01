@@ -30,27 +30,27 @@ Game::~Game()
 
 void Game::Start()
 {
-	Engine::CreateInstance();
+	SB::Engine::CreateInstance();
 
-	myWindow = std::make_unique<WindowsWindow>();
+	myWindow = std::make_unique<SB::WindowsWindow>();
 	myWindow->SetTitle("Game Engine");
-	myWindow->SetSize(Size<int>(1280, 720));
+	myWindow->SetSize(SB::Size<int>(1280, 720));
 	myWindow->Open();
 
-	Engine::GetInstance().GetRenderer().Initialize(myWindow->GetHandle(), myWindow->GetSize().width, myWindow->GetSize().height, false);
+	SB::Engine::GetInstance().GetRenderer().Initialize(myWindow->GetHandle(), myWindow->GetSize().width, myWindow->GetSize().height, false);
 
-	Engine::GetInstance().AttachDebugger(std::make_shared<Debugger>(myWindow->GetHandle()));
+	SB::Engine::GetInstance().AttachDebugger(std::make_shared<SB::Debugger>(myWindow->GetHandle()));
 
 	Initialize();
 
-	Stopwatch watch;
+	SB::Stopwatch watch;
 
 	while (myWindow->IsOpen())
 	{
-		Time deltaTime = watch.GetElapsedTime();
+		SB::Time deltaTime = watch.GetElapsedTime();
 		watch.Restart();
 
-		Engine::GetDebugger().NewFrame();
+		SB::Engine::GetDebugger().NewFrame();
 
 		ProcessMessages();
 
@@ -62,21 +62,21 @@ void Game::Start()
 	// Destroy our world releasing it's resources allowing the engine to shut down
 	mySceneManager = nullptr;
 
-	Engine::DestroyInstance();
+	SB::Engine::DestroyInstance();
 }
 
 void Game::ProcessMessages()
 {
-	WindowMessage message;
+	SB::WindowMessage message;
 	while (myWindow->PollMessage(message))
 	{
 		switch (message.type)
 		{
-		case WindowMessageType::eCloseButtonPressed:
+		case SB::WindowMessageType::eCloseButtonPressed:
 			myWindow->Close();
 			break;
-		case WindowMessageType::eSizeChanged:
-			Engine::GetInstance().GetRenderer().Resize(myWindow->GetSize().width, myWindow->GetSize().height);
+		case SB::WindowMessageType::eSizeChanged:
+			SB::Engine::GetInstance().GetRenderer().Resize(myWindow->GetSize().width, myWindow->GetSize().height);
 			CreatePerspective();
 			break;
 		}
@@ -85,13 +85,13 @@ void Game::ProcessMessages()
 
 void Game::Initialize()
 {
-	mySceneManager = std::make_unique<SceneManager>();
+	mySceneManager = std::make_unique<SB::SceneManager>();
 
 	mySceneManager->LoadJsonScene("Assets/Data/TestScene.json");
 
 	auto player = mySceneManager->GetCurrentScene()->CreateGameObject();
 	player->SetIdentifier("Player");
-	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<PlayerShootComponent>()->CreateComponent();
+	auto && shootComponent = mySceneManager->GetCurrentScene()->GetComponentFactory<SB::PlayerShootComponent>()->CreateComponent();
 	player->AddComponent(shootComponent);
 	
 	// mySceneManager->LoadScene<PbrTestScene>();
@@ -99,10 +99,10 @@ void Game::Initialize()
 	CreatePerspective();
 }
 
-void Game::Update(const Time &aDeltaTime)
+void Game::Update(const SB::Time &aDeltaTime)
 {
-	Engine::GetResourceManager().Update();
-	Engine::GetFileWatcher().PostChanges();
+	SB::Engine::GetResourceManager().Update();
+	SB::Engine::GetFileWatcher().PostChanges();
 
 	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
@@ -112,14 +112,14 @@ void Game::Update(const Time &aDeltaTime)
 
 void Game::Render()
 {
-	Engine::GetInstance().GetRenderer().ClearFrame();
+	SB::Engine::GetInstance().GetRenderer().ClearFrame();
 
 	if (mySceneManager->GetCurrentScene() != nullptr)
 	{
 		mySceneManager->GetCurrentScene()->Render();
 	}
 
-	Engine::GetInstance().GetRenderer().Present();
+	SB::Engine::GetInstance().GetRenderer().Present();
 }
 
 void Game::CreatePerspective()

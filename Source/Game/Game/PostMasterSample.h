@@ -9,6 +9,6 @@ public:
 	~PostMasterSample();
 
 private:
-	ReceiveResult MemberReceive(const CoutMessage & aMessage);
+	SB::ReceiveResult MemberReceive(const CoutMessage & aMessage);
 };
 
