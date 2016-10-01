@@ -12,28 +12,28 @@
 #include "Engine\Component\ModelComponent.h"
 #include <Engine\BoundingBox.h>
 
-EnemyTestScene::EnemyTestScene(const char* aName)
+EnemyTestScene::EnemyTestScene()
 	: Scene("EnemyScene", "grass.dds")
 {
 
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
-	//CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One /** 0.05f*/);
+	//PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	////CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One /** 0.05f*/);
 
-	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
-	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+	//Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
+	//Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
 
-	myPlayer = CreateGameObject(nullptr);
-	auto && shootComponent = GetComponentFactory<PlayerShootComponent>()->CreateComponent();
-	myPlayer->AddComponent(shootComponent);
+	//myPlayer = CreateGameObject(nullptr);
+	//auto && shootComponent = GetComponentFactory<PlayerShootComponent>()->CreateComponent();
+	//myPlayer->AddComponent(shootComponent);
 
-	//-------------
+	////-------------
 
-	myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 1.5f);
+	//myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 1.5f);
 
-	auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
-	myEnemy->AddComponent(movementComponent);
-	myEnemy->SetPosition(Vector3f(0.f, 0.f, 50.f));
+	//auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
+	//myEnemy->AddComponent(movementComponent);
+	//myEnemy->SetPosition(Vector3f(0.f, 0.f, 50.f));
 }
 
 EnemyTestScene::~EnemyTestScene()
@@ -42,7 +42,7 @@ EnemyTestScene::~EnemyTestScene()
 
 void EnemyTestScene::Update(const Time & aDeltaTime)
 {
-	Engine::GetSoundManager().Update();
+	/*Engine::GetSoundManager().Update();
 
 	
 
@@ -83,7 +83,7 @@ void EnemyTestScene::Update(const Time & aDeltaTime)
 	if (EnemyHit == true)
 	{
 		myEnemy->SetScale(myEnemy->GetScale() + Vector3f(0.1f, 0.1f, 0.1f));
-	}
+	}*/
 
 	Scene::Update(aDeltaTime);
 }
