@@ -12,7 +12,6 @@ PlayerTestScene::PlayerTestScene()
 	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
 	// CreateAndAddModel("models/pillar/pillarShortObelisk.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 0.05f);
 
-	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
 	myPlayer = CreateGameObject();

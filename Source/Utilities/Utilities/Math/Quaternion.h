@@ -16,6 +16,8 @@ public:
 	void RotateX(float aRotationAmount);
 	void RotateY(float aRotationAmount);
 	void RotateZ(float aRotationAmount);
+	Quaternion GetRotation(const Vector3f &aForward, const Vector3f &aDirection, const Vector3f &aUpVector);
+	
 
 	//note: (Q1*Q2) != (Q2*Q1)
 	Quaternion operator *(const Quaternion& aRight) const;

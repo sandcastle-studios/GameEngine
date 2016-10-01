@@ -69,6 +69,36 @@ void BouncingComponent::MoveObject(const Time & aDeltaTime)
 	Quaternion orientation(rot.x, rot.y, rot.z, 1.f);
 
 	myObject->SetRotation(orientation);
+
+
+
+	/////////TEST FOR ENEMY ROTATION///////////////////////////////////////
+	//Vector3f baseDirection = Vector3f(0.f, 0.f, 1.f); //Forward vector of an Identity matrix.
+	//
+	//Vector3f towardsPoint = myMovingTowardsPoint - myObject->GetPosition();
+	//Vector3f nonNormalizedTowardsPoint = towardsPoint; //Can't check for length when normalized.
+	//towardsPoint.Normalize();
+	//
+	//Vector3f newPosition = myObject->GetPosition() + (towardsPoint * aDeltaTime.InSeconds() * 5.f);
+	//myObject->SetPosition(newPosition);
+	//
+	//Vector3f rotAxis = Vector3f::Cross(baseDirection, towardsPoint);
+	//
+	//float rotAngle = acosf(Vector3f::Dot(baseDirection, towardsPoint));
+	//
+	//Quaternion myOrientation;
+	//
+	//myObject->SetRotation(myOrientation.GetRotation(baseDirection, towardsPoint, myObject->GetRotation().GetUpward()));
+	//
+	//if (nonNormalizedTowardsPoint.Length() <= 1.f)
+	//{
+	//	myMovingTowardsPoint.x = myRandomizer.GetRandomValue(-20, 20);
+	//	myMovingTowardsPoint.y = myRandomizer.GetRandomValue(-20, 20);
+	//	myMovingTowardsPoint.z = myRandomizer.GetRandomValue(-20, 20);
+	//}
+	/////////TEST FOR ENEMY ROTATION///////////////////////////////////////
+
+
 }
 
 //void BouncingComponent::Construct()

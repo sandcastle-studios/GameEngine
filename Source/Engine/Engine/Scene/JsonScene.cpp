@@ -22,7 +22,6 @@ JsonScene::JsonScene(const char* aFilePath) : Scene(aFilePath, "grass.dds")
 	SetCameraOrientation(Vector3f(0.f, 0.f, -15.f));
 	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
 
-	Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
 	Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 
 	CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.61f, 3.87f, 22.368f));
