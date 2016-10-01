@@ -32,21 +32,21 @@ void SprintReviewScene::Render()
 
 void SprintReviewScene::CreateFactories()
 {
-	PreCreateComponentFactory<ModelComponent>();
-	PreCreateComponentFactory<LightComponent>();
+	PreCreateComponentFactory<SB::ModelComponent>();
+	PreCreateComponentFactory<SB::LightComponent>();
 
 	std::shared_ptr<SB::GameObject> enemy = CreateGameObject();
 
-	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	SharedPtrComponent<SB::ModelComponent> prettyModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
 	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(model);
 
-	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
+	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
 	std::shared_ptr<SB::AssimpModel> actualModel = std::make_shared<SB::AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
 	moarModel->SetModel(actualModel);
 
-	enemy->AddComponent<ModelComponent>(prettyModel);
-	enemy->AddComponent<ModelComponent>(moarModel);
+	enemy->AddComponent<SB::ModelComponent>(prettyModel);
+	enemy->AddComponent<SB::ModelComponent>(moarModel);
 
 	myObjects.Add(enemy);
 

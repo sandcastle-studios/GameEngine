@@ -8,7 +8,7 @@
 SlideShowScene::SlideShowScene()
 	: Scene("skybox.dds")
 {
-	auto cube = std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
+	auto cube = std::make_shared<SB::AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(cube));
 	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/crystalAsteroid/crystalAsteroidHigh.fbx")));
 	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/pillar/pillarShortObelisk.fbx")));
@@ -20,8 +20,8 @@ SlideShowScene::SlideShowScene()
 	//myObjects.push_back(std::make_shared<ModelInstance>(std::make_shared<AssimpModel>(myEffect, "models/m4a1/m4a1_s.fbx")));
 
 	myCurrentModel = 0;
-	myTimePerModel = Time::FromSeconds(5.0f);
-	myModelTransitionTime = Time::FromSeconds(1.f);
+	myTimePerModel = SB::Time::FromSeconds(5.0f);
+	myModelTransitionTime = SB::Time::FromSeconds(1.f);
 }
 
 
@@ -29,7 +29,7 @@ SlideShowScene::~SlideShowScene()
 {
 }
 
-void SlideShowScene::Update(const Time &aDeltaTime)
+void SlideShowScene::Update(const SB::Time &aDeltaTime)
 {
 //	myTime += aDeltaTime;
 //	myCurrentModelTime += aDeltaTime;
@@ -62,7 +62,7 @@ void SlideShowScene::Update(const Time &aDeltaTime)
 //	Vector3f cameraTo = currentObjectBoundingBox.GetCenter() + Vector3f(0.f, 0.f, -currentObjectBoundingBox.GetMaximumRadius() * 1.5f);
 //	myCamera->SetPosition(myCameraFrom + (cameraTo - myCameraFrom) * progress);
 //
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
 
 void SlideShowScene::NextModel()

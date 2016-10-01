@@ -1,7 +1,10 @@
 #pragma once
 #include <Engine/Scene/Scene.h>
 
-class Time;
+namespace SB
+{
+	class Time;
+}
 
 class SprintReviewScene : public SB::Scene
 {
