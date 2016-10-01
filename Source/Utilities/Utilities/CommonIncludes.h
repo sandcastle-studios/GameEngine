@@ -2,6 +2,8 @@
 
 #define NOMINMAX
 
+#define ENGINE_NAMESPACE SB
+
 template<typename T>
 __forceinline T max(T a, T b)
 {

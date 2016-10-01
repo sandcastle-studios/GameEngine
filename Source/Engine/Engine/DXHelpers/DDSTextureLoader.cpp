@@ -19,9 +19,9 @@
 //--------------------------------------------------------------------------------------
 
 #include "stdafx.h"
-#include "Engine\Texture\DDSTextureLoader.h"
+#include "Engine\DXHelpers\DDSTextureLoader.h"
 
-#include "Engine\Texture\dds.h"
+#include "Engine\DXHelpers\dds.h"
 #include "Engine\DXHelpers\DirectXHelpers.h"
 #include "Engine\DXHelpers\PlatformHelpers.h"
 #include <assert.h>

@@ -31,10 +31,10 @@ CFBXLoader::~CFBXLoader()
 {
 }
 
-Matrix44f ConvertToEngineMatrix33(const aiMatrix3x3& AssimpMatrix)
+SB::Matrix44f ConvertToEngineMatrix33(const aiMatrix3x3& AssimpMatrix)
 {
 
-	Matrix44f mat;
+	SB::Matrix44f mat;
 	mat.m11 = AssimpMatrix.a1;	mat.m12 = AssimpMatrix.a2;	mat.m13 = AssimpMatrix.a3;	mat.m14 = 0.0f;
 	mat.m21 = AssimpMatrix.b1;	mat.m22 = AssimpMatrix.b2;	mat.m23 = AssimpMatrix.b3;	mat.m24 = 0.0f;
 	mat.m31 = AssimpMatrix.c1;	mat.m32 = AssimpMatrix.c2;	mat.m33 = AssimpMatrix.c3;	mat.m34 = 0.0f;
@@ -43,9 +43,9 @@ Matrix44f ConvertToEngineMatrix33(const aiMatrix3x3& AssimpMatrix)
 }
 
 // constructor from Assimp matrix
-Matrix44f ConvertToEngineMatrix44(const aiMatrix4x4& AssimpMatrix)
+SB::Matrix44f ConvertToEngineMatrix44(const aiMatrix4x4& AssimpMatrix)
 {
-	Matrix44f mat;
+	SB::Matrix44f mat;
 	mat.m11 = AssimpMatrix.a1; mat.m12 = AssimpMatrix.a2; mat.m13 = AssimpMatrix.a3; mat.m14 = AssimpMatrix.a4;
 	mat.m21 = AssimpMatrix.b1; mat.m22 = AssimpMatrix.b2; mat.m23 = AssimpMatrix.b3; mat.m24 = AssimpMatrix.b4;
 	mat.m31 = AssimpMatrix.c1; mat.m32 = AssimpMatrix.c2; mat.m33 = AssimpMatrix.c3; mat.m34 = AssimpMatrix.c4;
@@ -93,7 +93,7 @@ int CFBXLoader::DetermineAndLoadVerticies(aiMesh* fbxMesh, CLoaderMesh* aLoaderM
 				aLoaderMesh->myModel->myBoneInfo.push_back(bi);
 
 
-				Matrix44f NodeTransformation = ConvertToEngineMatrix44(fbxMesh->mBones[i]->mOffsetMatrix);
+				SB::Matrix44f NodeTransformation = ConvertToEngineMatrix44(fbxMesh->mBones[i]->mOffsetMatrix);
 
 				aLoaderMesh->myModel->myBoneInfo[BoneIndex].BoneOffset = NodeTransformation;
 				aLoaderMesh->myModel->myBoneNameToIndex[BoneName] = BoneIndex;
@@ -118,24 +118,24 @@ int CFBXLoader::DetermineAndLoadVerticies(aiMesh* fbxMesh, CLoaderMesh* aLoaderM
 		if (fbxMesh->HasPositions())
 		{
 			aiVector3D& mVertice = fbxMesh->mVertices[i];
-			vertexCollection.PushVec4(Vector4f(mVertice.x, mVertice.y, mVertice.z, 1));
+			vertexCollection.PushVec4(SB::Vector4f(mVertice.x, mVertice.y, mVertice.z, 1));
 		}
 		if (fbxMesh->HasNormals())
 		{
 			aiVector3D& mNorm = fbxMesh->mNormals[i];
-			vertexCollection.PushVec4(Vector4f(mNorm.x, mNorm.y, mNorm.z, 1));
+			vertexCollection.PushVec4(SB::Vector4f(mNorm.x, mNorm.y, mNorm.z, 1));
 		}
 		if (fbxMesh->HasTangentsAndBitangents())
 		{
 			aiVector3D& mTangent = fbxMesh->mTangents[i];
 			aiVector3D& biTangent = fbxMesh->mBitangents[i];
 
-			vertexCollection.PushVec4(Vector4f(mTangent.x, mTangent.y, mTangent.z, 1));
-			vertexCollection.PushVec4(Vector4f(biTangent.x, biTangent.y, biTangent.z, 1));
+			vertexCollection.PushVec4(SB::Vector4f(mTangent.x, mTangent.y, mTangent.z, 1));
+			vertexCollection.PushVec4(SB::Vector4f(biTangent.x, biTangent.y, biTangent.z, 1));
 		}
 		if (fbxMesh->HasTextureCoords(TEXTURE_SET_0))		//HasTextureCoords(texture_coordinates_set)
 		{
-			vertexCollection.PushVec2(Vector2f(fbxMesh->mTextureCoords[TEXTURE_SET_0][i].x, fbxMesh->mTextureCoords[TEXTURE_SET_0][i].y));
+			vertexCollection.PushVec2(SB::Vector2f(fbxMesh->mTextureCoords[TEXTURE_SET_0][i].x, fbxMesh->mTextureCoords[TEXTURE_SET_0][i].y));
 		}
 		if (fbxMesh->HasBones())
 		{
@@ -143,10 +143,10 @@ int CFBXLoader::DetermineAndLoadVerticies(aiMesh* fbxMesh, CLoaderMesh* aLoaderM
 
 			// UINTS woudl be better
 			aiVector3D bones;
-			vertexCollection.PushVec4(Vector4f((float)boneData.IDs[0], (float)boneData.IDs[1], (float)boneData.IDs[2], (float)boneData.IDs[3]));
+			vertexCollection.PushVec4(SB::Vector4f((float)boneData.IDs[0], (float)boneData.IDs[1], (float)boneData.IDs[2], (float)boneData.IDs[3]));
 
 			aiVector3D weights;
-			vertexCollection.PushVec4(Vector4f(boneData.Weights[0], boneData.Weights[1], boneData.Weights[2], boneData.Weights[3]));
+			vertexCollection.PushVec4(SB::Vector4f(boneData.Weights[0], boneData.Weights[1], boneData.Weights[2], boneData.Weights[3]));
 		}
 	}
 

@@ -1,29 +1,32 @@
 #pragma once
 #include "Engine\Size.h"
 
-enum class WindowMessageType
+namespace ENGINE_NAMESPACE
 {
-	eUnknown,
-	eCloseButtonPressed,
-	eResizeBegins,
-	eResizeEnds,
-	eSizeChanged,
-	ePaint,
-	eCreate,
-	eDestroy,
-	eKeyDown,
-	eKeyUp,
+	enum class WindowMessageType
+	{
+		eUnknown,
+		eCloseButtonPressed,
+		eResizeBegins,
+		eResizeEnds,
+		eSizeChanged,
+		ePaint,
+		eCreate,
+		eDestroy,
+		eKeyDown,
+		eKeyUp,
 
-	eCount,
-};
+		eCount,
+	};
 
-struct SizeChangedData
-{
-	Size<int> newSize;
-};
+	struct SizeChangedData
+	{
+		Size<int> newSize;
+	};
 
-struct KeyData
-{
-	KeyboardKey key;
-	int repeatCount;
-};
+	struct KeyData
+	{
+		KeyboardKey key;
+		int repeatCount;
+	};
+}

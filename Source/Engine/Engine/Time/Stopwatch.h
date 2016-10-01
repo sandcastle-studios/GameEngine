@@ -1,17 +1,19 @@
 #pragma once
 
-class Stopwatch
+namespace ENGINE_NAMESPACE
 {
-public:
-	Stopwatch();
-	~Stopwatch();
+	class Stopwatch
+	{
+	public:
+		Stopwatch();
+		~Stopwatch();
 
-	void Restart();
+		void Restart();
 
-	Time GetElapsedTime() const;
+		Time GetElapsedTime() const;
 
-private:
-	LONGLONG myStartTime;
-	float myFrequency;
-};
-
+	private:
+		LONGLONG myStartTime;
+		float myFrequency;
+	};
+}

@@ -1,29 +1,32 @@
 #pragma once
 
-enum class SurfaceTextureIndex
+namespace ENGINE_NAMESPACE
 {
-	eDiffuse,
-	eNormal,
-	eRoughness,
-	eAmbientOcclusion,
-	eEmissive,
-	eMetalness,
+	enum class SurfaceTextureIndex
+	{
+		eDiffuse,
+		eNormal,
+		eRoughness,
+		eAmbientOcclusion,
+		eEmissive,
+		eMetalness,
 
-	eCount
-};
+		eCount
+	};
 
-class Texture;
+	class Texture;
 
-class Surface
-{
-public:
-	Surface();
-	void BindToPS() const;
+	class Surface
+	{
+	public:
+		Surface();
+		void BindToPS() const;
 
-	void SetSlot(const SurfaceTextureIndex aSlot, const std::shared_ptr<Texture> & aTexture);
+		void SetSlot(const SurfaceTextureIndex aSlot, const std::shared_ptr<Texture> & aTexture);
 
-private:
-	void BindSlotToPS(int aIndex) const;
+	private:
+		void BindSlotToPS(int aIndex) const;
 
-	std::array<std::shared_ptr<const Texture>, static_cast<int>(SurfaceTextureIndex::eCount)> myTextures;
-};
+		std::array<std::shared_ptr<const Texture>, static_cast<int>(SurfaceTextureIndex::eCount)> myTextures;
+	};
+}

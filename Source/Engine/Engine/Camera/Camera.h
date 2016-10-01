@@ -1,67 +1,70 @@
 #pragma once
 
-template<typename T>
-class ConstantBuffer;
-
-struct CameraCB
+namespace ENGINE_NAMESPACE
 {
-	Matrix44f view;
-	Matrix44f projection;
-	Vector4f cameraPosition;
-};
+	template<typename T>
+	class ConstantBuffer;
 
-class Camera
-{
-public:
-	Camera();
-	~Camera();
+	struct CameraCB
+	{
+		Matrix44f view;
+		Matrix44f projection;
+		Vector4f cameraPosition;
+	};
 
-	void CreatePerspective(float aVerticalFoVInDegrees, float aProjectionWidth, float aProjectionHeight, float aNearPlane, float aFarPlane);
+	class Camera
+	{
+	public:
+		Camera();
+		~Camera();
 
-	void SetPosition(const Vector3f & aPosition);
-	void AddPosition(const Vector3f & aPositionToAdd);
-	const Vector3f & GetPosition() const;
+		void CreatePerspective(float aVerticalFoVInDegrees, float aProjectionWidth, float aProjectionHeight, float aNearPlane, float aFarPlane);
 
-	void LookAt(const Vector3f & aLookAt);
+		void SetPosition(const Vector3f & aPosition);
+		void AddPosition(const Vector3f & aPositionToAdd);
+		const Vector3f & GetPosition() const;
 
-	Quaternion& GetOrientation();
-	const Quaternion& GetOrientation() const;
+		void LookAt(const Vector3f & aLookAt);
 
-	const ConstantBuffer<CameraCB> & GetCameraConstantBuffer() const;
+		Quaternion& GetOrientation();
+		const Quaternion& GetOrientation() const;
 
-	void ApplyToVS() const;
+		const ConstantBuffer<CameraCB> & GetCameraConstantBuffer() const;
 
-	void UpdateCB() const;
+		void ApplyToVS() const;
 
-private:
-	std::unique_ptr<ConstantBuffer<CameraCB>> myCameraCB;
-	Vector3f myPosition;
-	Quaternion myRotation;
-	Matrix44f myProjection;
-};
+		void UpdateCB() const;
+
+	private:
+		std::unique_ptr<ConstantBuffer<CameraCB>> myCameraCB;
+		Vector3f myPosition;
+		Quaternion myRotation;
+		Matrix44f myProjection;
+	};
 
 
-inline void Camera::SetPosition(const Vector3f & aPosition)
-{
-	myPosition = aPosition;
-}
+	inline void Camera::SetPosition(const Vector3f & aPosition)
+	{
+		myPosition = aPosition;
+	}
 
-inline void Camera::AddPosition(const Vector3f & aPositionToAdd)
-{
-	myPosition += aPositionToAdd;
-}
+	inline void Camera::AddPosition(const Vector3f & aPositionToAdd)
+	{
+		myPosition += aPositionToAdd;
+	}
 
-inline const Vector3f & Camera::GetPosition() const
-{
-	return myPosition;
-}
+	inline const Vector3f & Camera::GetPosition() const
+	{
+		return myPosition;
+	}
 
-inline Quaternion & Camera::GetOrientation()
-{
-	return myRotation;
-}
+	inline Quaternion & Camera::GetOrientation()
+	{
+		return myRotation;
+	}
 
-inline const Quaternion & Camera::GetOrientation() const
-{
-	return myRotation;
+	inline const Quaternion & Camera::GetOrientation() const
+	{
+		return myRotation;
+	}
 }

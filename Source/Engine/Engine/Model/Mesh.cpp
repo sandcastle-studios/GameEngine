@@ -10,91 +10,96 @@
 #include "Engine\Texture\Texture.h"
 #include "Engine\Rendering\ModelRenderer.h"
 
-GenericMesh::GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
+namespace ENGINE_NAMESPACE
 {
-	myVertexCount = 0;
-	myIndexCount = 0;
-	myEffect = aEffect;
-	mySurface = aSurface;
-	myIdentifier = 0;
-}
 
-size_t GenericMesh::GetIdentifier() const
-{
-	return myIdentifier;
-}
-
-void GenericMesh::AssignIdentifier(size_t aIdentifier)
-{
-	if (myIdentifier != 0)
+	GenericMesh::GenericMesh(const std::shared_ptr<Effect> & aEffect, const Surface & aSurface)
 	{
-		Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
-	}
-	myIdentifier = aIdentifier;
-}
-
-GenericMesh::~GenericMesh()
-{
-	if (myIdentifier != 0)
-	{
-		Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
+		myVertexCount = 0;
+		myIndexCount = 0;
+		myEffect = aEffect;
+		mySurface = aSurface;
 		myIdentifier = 0;
 	}
-}
 
-void GenericMesh::SetSurface(const Surface & aSurface)
-{
-	mySurface = aSurface;
-}
-
-void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
-{
-	myEffect = aEffect;
-}
-
-void GenericMesh::Render() const
-{
-	mySurface.BindToPS();
-
-	myVertexBuffer->Bind(0);
-	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	myIndexBuffer->Bind();
-	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
-}
-
-void GenericMesh::RenderInstanced(int aInstanceCount) const
-{
-	mySurface.BindToPS();
-
-	if (myEffect != nullptr)
+	size_t GenericMesh::GetIdentifier() const
 	{
-		myEffect->Bind();
+		return myIdentifier;
 	}
 
-	myVertexBuffer->Bind(0);
-	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	myIndexBuffer->Bind();
-	Engine::GetInstance().GetRenderer().GetContext()->DrawIndexedInstanced(myIndexCount, aInstanceCount, 0, 0, 0);
-}
-
-const BoundingBoxf & GenericMesh::GetBoundingBox()
-{
-	return myBoundingBox;
-}
-
-void GenericMesh::CreateMesh(const void * aVertexData, int aVertexCount, int aVertexSizeInBytes, const unsigned int * aIndexData, int aIndexCount)
-{
-	if (myVertexBuffer != nullptr)
+	void GenericMesh::AssignIdentifier(size_t aIdentifier)
 	{
-		Error("Mesh already created!");
-		return;
+		if (myIdentifier != 0)
+		{
+			Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
+		}
+		myIdentifier = aIdentifier;
 	}
 
-	myVertexBuffer = std::make_unique<GenericVertexBuffer>(aVertexData, aVertexCount * aVertexSizeInBytes, aVertexSizeInBytes);
-	myIndexBuffer = std::make_unique<IndexBuffer>(aIndexData, aIndexCount);
+	GenericMesh::~GenericMesh()
+	{
+		if (myIdentifier != 0)
+		{
+			Engine::GetInstance().GetRenderer().GetModelRenderer().ReturnBatchIdentifier(myIdentifier);
+			myIdentifier = 0;
+		}
+	}
 
-	myVertexCount = aVertexCount;
-	myIndexCount = aIndexCount;
+	void GenericMesh::SetSurface(const Surface & aSurface)
+	{
+		mySurface = aSurface;
+	}
+
+	void GenericMesh::SetEffect(const std::shared_ptr<Effect> & aEffect)
+	{
+		myEffect = aEffect;
+	}
+
+	void GenericMesh::Render() const
+	{
+		mySurface.BindToPS();
+
+		myVertexBuffer->Bind(0);
+		Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		myIndexBuffer->Bind();
+		Engine::GetInstance().GetRenderer().GetContext()->DrawIndexed(myIndexCount, 0, 0);
+	}
+
+	void GenericMesh::RenderInstanced(int aInstanceCount) const
+	{
+		mySurface.BindToPS();
+
+		if (myEffect != nullptr)
+		{
+			myEffect->Bind();
+		}
+
+		myVertexBuffer->Bind(0);
+		Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		myIndexBuffer->Bind();
+		Engine::GetInstance().GetRenderer().GetContext()->DrawIndexedInstanced(myIndexCount, aInstanceCount, 0, 0, 0);
+	}
+
+	const BoundingBoxf & GenericMesh::GetBoundingBox()
+	{
+		return myBoundingBox;
+	}
+
+	void GenericMesh::CreateMesh(const void * aVertexData, int aVertexCount, int aVertexSizeInBytes, const unsigned int * aIndexData, int aIndexCount)
+	{
+		if (myVertexBuffer != nullptr)
+		{
+			Error("Mesh already created!");
+			return;
+		}
+
+		myVertexBuffer = std::make_unique<GenericVertexBuffer>(aVertexData, aVertexCount * aVertexSizeInBytes, aVertexSizeInBytes);
+		myIndexBuffer = std::make_unique<IndexBuffer>(aIndexData, aIndexCount);
+
+		myVertexCount = aVertexCount;
+		myIndexCount = aIndexCount;
+	}
+
 }

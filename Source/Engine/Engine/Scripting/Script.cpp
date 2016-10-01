@@ -3,23 +3,27 @@
 #include <lua.hpp>
 #include "ScriptFile.h"
 
-Script::Script(lua_State* aState, const std::shared_ptr<ScriptFile>& aScriptFile, int aLuaRef)
+namespace ENGINE_NAMESPACE
 {
-	L = aState;
-	myScriptFile = aScriptFile;
-	myLuaRef = aLuaRef;
-}
 
-Script::~Script()
-{
-	luaL_unref(L, LUA_REGISTRYINDEX, myLuaRef);
-	myLuaRef = LUA_NOREF;
+	Script::Script(lua_State* aState, const std::shared_ptr<ScriptFile>& aScriptFile, int aLuaRef)
+	{
+		L = aState;
+		myScriptFile = aScriptFile;
+		myLuaRef = aLuaRef;
+	}
 
-	myScriptFile->RemoveScript(*this);
-}
+	Script::~Script()
+	{
+		luaL_unref(L, LUA_REGISTRYINDEX, myLuaRef);
+		myLuaRef = LUA_NOREF;
 
-void Script::UpdateRef(int aLuaRef)
-{
-	luaL_unref(L, LUA_REGISTRYINDEX, myLuaRef);
-	myLuaRef = aLuaRef;
+		myScriptFile->RemoveScript(*this);
+	}
+
+	void Script::UpdateRef(int aLuaRef)
+	{
+		luaL_unref(L, LUA_REGISTRYINDEX, myLuaRef);
+		myLuaRef = aLuaRef;
+	}
 }

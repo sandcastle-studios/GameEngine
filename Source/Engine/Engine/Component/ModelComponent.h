@@ -3,34 +3,35 @@
 #include <Engine/BoundingBox.h>
 
 
-class Model;
-class Effect;
-
-
-class ModelComponent : public BaseComponent
+namespace ENGINE_NAMESPACE
 {
-public:
-	ModelComponent();
-	~ModelComponent();
+	class Model;
+	class Effect;
 
-	virtual void Update(const Time & aDeltaTime) override;
+	class ModelComponent : public BaseComponent
+	{
+	public:
+		ModelComponent();
+		~ModelComponent();
 
-	virtual void Render() const override;
+		virtual void Update(const Time & aDeltaTime) override;
 
-	void SetModel(std::shared_ptr<Model> aModel);
+		virtual void Render() const override;
 
-	void SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect);
+		void SetModel(std::shared_ptr<Model> aModel);
 
-	const BoundingBoxf & GetBoundingBox() const;
+		void SetModel(const char* aModelFilePath, std::shared_ptr<Effect> aEffect);
 
-	virtual void Construct() override;
+		const BoundingBoxf & GetBoundingBox() const;
 
-	virtual void Destruct() override;
+		virtual void Construct() override;
 
-	void SetMatrix(const Matrix44f & aMatrix);
+		virtual void Destruct() override;
 
-private:
-	std::shared_ptr<Model> myModel;
-	Matrix44f myMatrix;
-};
+		void SetMatrix(const Matrix44f & aMatrix);
 
+	private:
+		std::shared_ptr<Model> myModel;
+		Matrix44f myMatrix;
+	};
+}

@@ -11,70 +11,74 @@ struct ID3D11RasterizerState;
 struct ID3D11BlendState;
 struct ID3D11DepthStencilView;
 
-class RenderTexture;
-class DepthBuffer;
-class TextureDebugger;
-class ModelRenderer;
-class SpriteRenderer;
-
-class DXRenderer
+namespace ENGINE_NAMESPACE
 {
-public:
-	DXRenderer();
-	~DXRenderer();
 
-	void Initialize(void *aOutputTarget, int aWidth, int aHeight, bool aFullscreen);
+	class RenderTexture;
+	class DepthBuffer;
+	class TextureDebugger;
+	class ModelRenderer;
+	class SpriteRenderer;
 
-	void ClearFrame();
-	void Present();
+	class DXRenderer
+	{
+	public:
+		DXRenderer();
+		~DXRenderer();
 
-	void Resize(int aNewWidth, int aNewHeight);
+		void Initialize(void *aOutputTarget, int aWidth, int aHeight, bool aFullscreen);
 
-	ID3D11Device * GetDevice();
-	ID3D11DeviceContext * GetContext();
+		void ClearFrame();
+		void Present();
 
-	const std::shared_ptr<RenderTexture> & GetBackBuffer();
+		void Resize(int aNewWidth, int aNewHeight);
 
-	TextureDebugger & GetTextureDebugger();
-	ModelRenderer & GetModelRenderer();
-	SpriteRenderer & GetSpriteRenderer();
+		ID3D11Device * GetDevice();
+		ID3D11DeviceContext * GetContext();
 
-	void SetViewport(const Vector2f& aTopLeft, const Vector2f& aSize);
-	void ResetViewport();
+		const std::shared_ptr<RenderTexture> & GetBackBuffer();
 
-	void StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution);
-	const Vector2f & GetRenderTargetResolution() const;
+		TextureDebugger & GetTextureDebugger();
+		ModelRenderer & GetModelRenderer();
+		SpriteRenderer & GetSpriteRenderer();
 
-	void EnableDepthWrite();
-	void DisableDepthWrite();
+		void SetViewport(const Vector2f& aTopLeft, const Vector2f& aSize);
+		void ResetViewport();
 
-private:
-	void CreateBuffers(int aWidth, int aHeight);
+		void StoreRenderTargetResolution(const Vector2f & aRenderTargetResolution);
+		const Vector2f & GetRenderTargetResolution() const;
 
-	IDXGISwapChain * mySwapchain;
-	ID3D11Device * myDevice;
-	ID3D11DeviceContext * myDeviceContext;
-	ID3D11SamplerState * mySamplerState;
-	ID3D11RasterizerState * myRasterState;
-	ID3D11BlendState * myAlphaBlendingState;
-	ID3D11DepthStencilState* myDepthStencilState;
-	ID3D11DepthStencilState* myDepthStencilStateDisableWrite;
-	
-	std::shared_ptr<RenderTexture> myBackbuffer;
+		void EnableDepthWrite();
+		void DisableDepthWrite();
 
-	std::unique_ptr<TextureDebugger> myTextureDebugger;
-	std::unique_ptr<ModelRenderer> myModelRenderer;
-	std::unique_ptr<SpriteRenderer> mySpriteRenderer;
+	private:
+		void CreateBuffers(int aWidth, int aHeight);
 
-	Vector2f myCurrentRenderTargetResolution;
-};
+		IDXGISwapChain * mySwapchain;
+		ID3D11Device * myDevice;
+		ID3D11DeviceContext * myDeviceContext;
+		ID3D11SamplerState * mySamplerState;
+		ID3D11RasterizerState * myRasterState;
+		ID3D11BlendState * myAlphaBlendingState;
+		ID3D11DepthStencilState* myDepthStencilState;
+		ID3D11DepthStencilState* myDepthStencilStateDisableWrite;
 
-inline ID3D11Device * DXRenderer::GetDevice()
-{
-	return myDevice;
-}
+		std::shared_ptr<RenderTexture> myBackbuffer;
 
-inline ID3D11DeviceContext * DXRenderer::GetContext()
-{
-	return myDeviceContext;
+		std::unique_ptr<TextureDebugger> myTextureDebugger;
+		std::unique_ptr<ModelRenderer> myModelRenderer;
+		std::unique_ptr<SpriteRenderer> mySpriteRenderer;
+
+		Vector2f myCurrentRenderTargetResolution;
+	};
+
+	inline ID3D11Device * DXRenderer::GetDevice()
+	{
+		return myDevice;
+	}
+
+	inline ID3D11DeviceContext * DXRenderer::GetContext()
+	{
+		return myDeviceContext;
+	}
 }

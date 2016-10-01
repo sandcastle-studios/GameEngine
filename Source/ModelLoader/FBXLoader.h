@@ -5,8 +5,8 @@
 
 struct BoneInfo
 {
-	Matrix44f BoneOffset;
-	Matrix44f FinalTransformation;
+	SB::Matrix44f BoneOffset;
+	SB::Matrix44f FinalTransformation;
 
 	BoneInfo()
 	{
@@ -41,7 +41,7 @@ public:
 	std::string myModelPath;
 	float myAnimationDuration;
 	const struct aiScene* myScene;
-	Matrix44f myGlobalInverseTransform;
+	SB::Matrix44f myGlobalInverseTransform;
 	bool myIsLoaded;
 	std::vector<std::string> myTextures;
 	// Animation data

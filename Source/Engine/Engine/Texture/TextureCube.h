@@ -2,24 +2,27 @@
 
 struct ID3D11ShaderResourceView;
 
-class TextureCube : public Resource
+namespace ENGINE_NAMESPACE
 {
-public:
-	TextureCube(const std::string & aPath);
-	~TextureCube();
+	class TextureCube : public Resource
+	{
+	public:
+		TextureCube(const std::string & aPath);
+		~TextureCube();
 
-	void BindToVS(int aSlot) const;
-	void BindToPS(int aSlot) const;
-	void BindToGS(int aSlot) const;
-	void BindToCS(int aSlot) const;
-	void BindToHS(int aSlot) const;
-	void BindToDS(int aSlot) const;
+		void BindToVS(int aSlot) const;
+		void BindToPS(int aSlot) const;
+		void BindToGS(int aSlot) const;
+		void BindToCS(int aSlot) const;
+		void BindToHS(int aSlot) const;
+		void BindToDS(int aSlot) const;
 
-	void Reload() override;
+		void Reload() override;
 
-	int GetMipMapLevels() const;
+		int GetMipMapLevels() const;
 
-private:
-	ID3D11ShaderResourceView * myTextureView;
-	int myMipMapLevels;
-};
+	private:
+		ID3D11ShaderResourceView * myTextureView;
+		int myMipMapLevels;
+	};
+}

@@ -1,20 +1,25 @@
 #include "stdafx.h"
 #include "IntersectionTests.h"
-#include "Utilities\Intersection\Colliders\SphereCollider.h"
+#include "Utilities\Intersection\IntersectionShapes\SphereIntersection.h"
 
-namespace Intersection
+namespace ENGINE_NAMESPACE
 {
-	bool SphereVsSphere(const SphereCollider & aFirstSphere, const SphereCollider & aSecondSphere)
+
+	namespace Intersection
 	{
-		Vector3f tempLengthDifference = aFirstSphere.GetPosition() - aSecondSphere.GetPosition();
-		float tempCombinedRadius = aFirstSphere.GetRadius() + aSecondSphere.GetRadius();
-		float tempDistance = tempLengthDifference.Length();
-
-		if (tempDistance < tempCombinedRadius)
+		bool SphereVsSphere(const SphereIntersection & aFirstSphere, const SphereIntersection & aSecondSphere)
 		{
-			return true;
-		}
+			Vector3f tempLengthDifference = aFirstSphere.GetPosition() - aSecondSphere.GetPosition();
+			float tempCombinedRadius = aFirstSphere.GetRadius() + aSecondSphere.GetRadius();
+			float tempDistance = tempLengthDifference.Length();
 
-		return false;
+			if (tempDistance < tempCombinedRadius)
+			{
+				return true;
+			}
+
+			return false;
+		}
 	}
+
 }

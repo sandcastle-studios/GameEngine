@@ -1,21 +1,21 @@
 #pragma once
 #include <Engine\Scene\Scene.h>
 
-class SlideShowScene : public Scene
+class SlideShowScene : public SB::Scene
 {
 public:
 	SlideShowScene();
 	~SlideShowScene();
 
-	void Update(const Time &aDeltaTime) override;
+	void Update(const SB::Time &aDeltaTime) override;
 
 private:
 	void NextModel();
 
-	Time myCurrentModelTime;
-	Time myTimePerModel;
-	Time myModelTransitionTime;
-	Vector3f myCameraFrom;
+	SB::Time myCurrentModelTime;
+	SB::Time myTimePerModel;
+	SB::Time myModelTransitionTime;
+	SB::Vector3f myCameraFrom;
 
 	size_t myCurrentModel;
 };

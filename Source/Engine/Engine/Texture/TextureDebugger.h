@@ -1,22 +1,24 @@
 #pragma once
 
-class Effect;
-class Texture;
-class Model;
-
-class TextureDebugger
+namespace ENGINE_NAMESPACE
 {
-public:
-	TextureDebugger();
-	~TextureDebugger();
+	class Effect;
+	class Texture;
+	class Model;
 
-	void Render();
+	class TextureDebugger
+	{
+	public:
+		TextureDebugger();
+		~TextureDebugger();
 
-	void QueueRender(std::shared_ptr<Texture> aTextureToView);
+		void Render();
 
-private:
-	std::vector<std::shared_ptr<Texture>> myTexturesToDebug;
-	std::shared_ptr<Effect> myEffect;
-	std::unique_ptr<Model> myUnitQuad;
-};
+		void QueueRender(std::shared_ptr<Texture> aTextureToView);
 
+	private:
+		std::vector<std::shared_ptr<Texture>> myTexturesToDebug;
+		std::shared_ptr<Effect> myEffect;
+		std::unique_ptr<Model> myUnitQuad;
+	};
+}

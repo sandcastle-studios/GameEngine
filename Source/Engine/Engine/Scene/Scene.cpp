@@ -16,187 +16,192 @@
 #include "Engine/GameObject/GameObject.h"
 #include "..\ImGui\imgui.h"
 
-Scene::Scene(const char* aName, const char * aSkyboxPath)
+namespace ENGINE_NAMESPACE
 {
-	myCamera = std::make_unique<Camera>();
 
-	myEffect = std::make_shared<StandardEffect>();
-	myName = aName;
-	if (aSkyboxPath != nullptr)
+	Scene::Scene(const char* aName, const char * aSkyboxPath)
 	{
-		mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
-	}
-	else
-	{
-		mySkybox = nullptr;
-	}
+		myCamera = std::make_unique<Camera>();
 
-	myScheduledRemovals = 0;
-
-	myFactories.Reserve(8);
-}
-
-Scene::~Scene()
-{
-}
-
-void DebugObject(GameObject & obj)
-{
-	ImGui::Text(FormatString("Local Position {0};{1};{2}", obj.GetPosition().x, obj.GetPosition().y, obj.GetPosition().z).c_str());
-	Matrix44f m = obj.GetTransformation();
-	ImGui::Text(FormatString("World Position {0};{1};{2}", m.GetPosition().x, m.GetPosition().y, m.GetPosition().z).c_str());
-	ImGui::Text(FormatString("Local Scale {0};{1};{2}", obj.GetScale().x, obj.GetScale().y, obj.GetScale().z).c_str());
-
-	const GrowingArray<GameObject*> & children = obj.GetChildren();
-	for (unsigned short i = 0; i < children.Size(); i++)
-	{
-		if (ImGui::CollapsingHeader(children[i]->GetIdentifier().c_str()))
+		myEffect = std::make_shared<StandardEffect>();
+		myName = aName;
+		if (aSkyboxPath != nullptr)
 		{
-			DebugObject(*children[i]);
+			mySkybox = std::make_unique<ModelInstance>(std::make_shared<Skybox>(std::make_shared<StandardEffect>("shaders/pbr/vertex.fx", "VShader", "shaders/pbr/skybox.fx", "PShader"), std::make_shared<Texture>(aSkyboxPath)));
 		}
-	}
-}
-
-void Scene::Update(const Time & aDeltaTime)
-{
-	//if (myScheduledRemovals > 0)
-	{
-		for (int i = static_cast<int>(myObjects.Size()) - 1; i >= 0; i--)
+		else
 		{
-			if (myObjects[static_cast<unsigned short>(i)]->IsRemoved())
+			mySkybox = nullptr;
+		}
+
+		myScheduledRemovals = 0;
+
+		myFactories.Reserve(8);
+	}
+
+	Scene::~Scene()
+	{
+	}
+
+	void DebugObject(GameObject & obj)
+	{
+		ImGui::Text(FormatString("Local Position {0};{1};{2}", obj.GetPosition().x, obj.GetPosition().y, obj.GetPosition().z).c_str());
+		Matrix44f m = obj.GetTransformation();
+		ImGui::Text(FormatString("World Position {0};{1};{2}", m.GetPosition().x, m.GetPosition().y, m.GetPosition().z).c_str());
+		ImGui::Text(FormatString("Local Scale {0};{1};{2}", obj.GetScale().x, obj.GetScale().y, obj.GetScale().z).c_str());
+
+		const GrowingArray<GameObject*> & children = obj.GetChildren();
+		for (unsigned short i = 0; i < children.Size(); i++)
+		{
+			if (ImGui::CollapsingHeader(children[i]->GetIdentifier().c_str()))
 			{
-				auto obj = myObjects[static_cast<unsigned short>(i)];
-				myObjects.RemoveCyclicAtIndex(static_cast<unsigned short>(i));
-				myScheduledRemovals--;
-
-				// Engine::GetLogger().LogInfo("Refcount after removal: {0}", obj.use_count());
-
-				if (myScheduledRemovals == 0)
-				{
-					//break;
-				}
+				DebugObject(*children[i]);
 			}
 		}
-
-		//myScheduledRemovals = 0;
 	}
 
-	/*if (ImGui::Begin("Objects in scene"))
+	void Scene::Update(const Time & aDeltaTime)
 	{
-		for (unsigned short i = 0; i < myObjects.Size(); i++)
+		//if (myScheduledRemovals > 0)
 		{
-			const std::shared_ptr<GameObject> & obj = myObjects[i];
-			if (obj->IsRemoved() == false)
+			for (int i = static_cast<int>(myObjects.Size()) - 1; i >= 0; i--)
 			{
-				if (obj->GetParent() == nullptr)
+				if (myObjects[static_cast<unsigned short>(i)]->IsRemoved())
 				{
-					if (ImGui::CollapsingHeader(obj->GetIdentifier().c_str()))
+					auto obj = myObjects[static_cast<unsigned short>(i)];
+					myObjects.RemoveCyclicAtIndex(static_cast<unsigned short>(i));
+					myScheduledRemovals--;
+
+					// Engine::GetLogger().LogInfo("Refcount after removal: {0}", obj.use_count());
+
+					if (myScheduledRemovals == 0)
 					{
-						DebugObject(*obj);
+						//break;
+					}
+				}
+			}
+
+			//myScheduledRemovals = 0;
+		}
+
+		/*if (ImGui::Begin("Objects in scene"))
+		{
+			for (unsigned short i = 0; i < myObjects.Size(); i++)
+			{
+				const std::shared_ptr<GameObject> & obj = myObjects[i];
+				if (obj->IsRemoved() == false)
+				{
+					if (obj->GetParent() == nullptr)
+					{
+						if (ImGui::CollapsingHeader(obj->GetIdentifier().c_str()))
+						{
+							DebugObject(*obj);
+						}
 					}
 				}
 			}
 		}
-	}
-	ImGui::End();*/
+		ImGui::End();*/
 
-	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
-	{
-		if (myFactories[iFactory] != nullptr)
+		for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
 		{
-			myFactories[iFactory]->Update(aDeltaTime);
-		}
-	}
-
-	if (myCameraControllers.Size() > 0)
-	{
-		std::shared_ptr<CameraController> & cc = myCameraControllers.Top();
-		if (cc != nullptr)
-		{
-			CameraControllerResult result = cc->Update(aDeltaTime, *myCamera);
-			if (result == CameraControllerResult::ePassControl)
+			if (myFactories[iFactory] != nullptr)
 			{
-				myCameraControllers.Pop();
+				myFactories[iFactory]->Update(aDeltaTime);
+			}
+		}
+
+		if (myCameraControllers.Size() > 0)
+		{
+			std::shared_ptr<CameraController> & cc = myCameraControllers.Top();
+			if (cc != nullptr)
+			{
+				CameraControllerResult result = cc->Update(aDeltaTime, *myCamera);
+				if (result == CameraControllerResult::ePassControl)
+				{
+					myCameraControllers.Pop();
+				}
+			}
+		}
+
+		myTime += aDeltaTime;
+	}
+
+	void Scene::Render()
+	{
+		myCamera->ApplyToVS();
+
+		if (mySkybox != nullptr)
+		{
+			mySkybox->SetMatrix(Matrix44f::CreateTranslation(myCamera->GetPosition()));
+			mySkybox->InstantRender();
+			Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
+		}
+
+		for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
+		{
+			if (myFactories[iFactory] != nullptr)
+			{
+				myFactories[iFactory]->Render();
 			}
 		}
 	}
 
-	myTime += aDeltaTime;
-}
-
-void Scene::Render()
-{
-	myCamera->ApplyToVS();
-
-	if (mySkybox != nullptr)
+	void Scene::PushCameraController(const std::shared_ptr<CameraController> & aCameraController)
 	{
-		mySkybox->SetMatrix(Matrix44f::CreateTranslation(myCamera->GetPosition()));
-		mySkybox->InstantRender();
-		Engine::GetInstance().GetRenderer().GetBackBuffer()->GetDepthBuffer()->Clear();
+		myCameraControllers.Push(aCameraController);
 	}
 
-	for (size_t iFactory = 0; iFactory < myFactories.Size(); ++iFactory)
+	void Scene::SetCameraOrientation(const Vector3f & aCameraPosition, const Vector3f & aLookDirection /*= Vector3f(0.f, 0.f, 1.f)*/)
 	{
-		if (myFactories[iFactory] != nullptr)
-		{
-			myFactories[iFactory]->Render();
-		}
+		myCamera->SetPosition(aCameraPosition);
+		myCamera->LookAt(aCameraPosition + aLookDirection);
 	}
-}
 
-void Scene::PushCameraController(const std::shared_ptr<CameraController> & aCameraController)
-{
-	myCameraControllers.Push(aCameraController);
-}
+	const Camera & Scene::GetCamera() const
+	{
+		return *myCamera;
+	}
+	void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
+	{
+		myObjects.Reserve(aObjectCount);
+	}
 
-void Scene::SetCameraOrientation(const Vector3f & aCameraPosition, const Vector3f & aLookDirection /*= Vector3f(0.f, 0.f, 1.f)*/)
-{
-	myCamera->SetPosition(aCameraPosition);
-	myCamera->LookAt(aCameraPosition + aLookDirection);
-}
+	std::shared_ptr<GameObject> Scene::CreateGameObject()
+	{
+		std::shared_ptr<GameObject> go;
+		go = std::make_shared<GameObject>(*this);
+		myObjects.Add(go);
+		return go;
+	}
 
-const Camera & Scene::GetCamera() const
-{
-	return *myCamera;
-}
-void Scene::CreateGameObjectBuffer(const unsigned short aObjectCount)
-{
-	myObjects.Reserve(aObjectCount);
-}
+	void Scene::IncrementRemovalCounter()
+	{
+		myScheduledRemovals++;
+	}
 
-std::shared_ptr<GameObject> Scene::CreateGameObject()
-{
-	std::shared_ptr<GameObject> go;
-	go = std::make_shared<GameObject>(*this);
-	myObjects.Add(go);
-	return go;
-}
+	std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
+	{
+		return CreateObjectWithModel(std::make_shared<AssimpModel>(myEffect, aPath), aPosition, aScale, aOrientation);
+	}
 
-void Scene::IncrementRemovalCounter()
-{
-	myScheduledRemovals++;
-}
+	std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
+	{
+		std::shared_ptr<GameObject> object = CreateGameObject();
+		object->SetPosition(aPosition);
+		object->SetScale(aScale);
+		object->SetRotation(aOrientation);
 
-std::shared_ptr<GameObject> Scene::CreateAndAddModel(const std::string & aPath, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
-{
-	return CreateObjectWithModel(std::make_shared<AssimpModel>(myEffect, aPath), aPosition, aScale, aOrientation);
-}
+		SharedPtrComponent<ModelComponent> modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
+		modelComponent->SetModel(aModel);
+		object->AddComponent(modelComponent);
 
-std::shared_ptr<GameObject> Scene::CreateObjectWithModel(const std::shared_ptr<Model> & aModel, const Vector3f & aPosition, const Vector3f & aScale /*= Vector3f::One*/, const Quaternion & aOrientation /*= Quaternion()*/)
-{
-	std::shared_ptr<GameObject> object = CreateGameObject();
-	object->SetPosition(aPosition);
-	object->SetScale(aScale);
-	object->SetRotation(aOrientation);
+		return object;
+	}
 
-	SharedPtrComponent<ModelComponent> modelComponent = GetComponentFactory<ModelComponent>()->CreateComponent();
-	modelComponent->SetModel(aModel);
-	object->AddComponent(modelComponent);
+	void Scene::UpdatePerspective(float aFoV, float aWidth, float aHeight, float aNearPlane, float aFarPlane) const
+	{
+		myCamera->CreatePerspective(aFoV, aWidth, aHeight, aNearPlane, aFarPlane);
+	}
 
-	return object;
-}
-
-void Scene::UpdatePerspective(float aFoV, float aWidth, float aHeight, float aNearPlane, float aFarPlane) const
-{
-	myCamera->CreatePerspective(aFoV, aWidth, aHeight, aNearPlane, aFarPlane);
 }

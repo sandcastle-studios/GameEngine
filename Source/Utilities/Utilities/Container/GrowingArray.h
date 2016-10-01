@@ -3,6 +3,10 @@
 
 #include <assert.h>
 #include <cstring>
+
+namespace ENGINE_NAMESPACE
+{
+
 	template<typename ObjectType, typename SizeType = unsigned short>
 	class GrowingArray
 	{
@@ -46,7 +50,7 @@
 		SizeType GetCapacity();
 		inline void Resize(SizeType aNewSize);
 		inline void Reserve(SizeType aReservedSize);
-		__forceinline const ObjectType* GetArrayPointer(SizeType aPosition = 0)const { return myArray+ aPosition; }
+		__forceinline const ObjectType* GetArrayPointer(SizeType aPosition = 0)const { return myArray + aPosition; }
 	private:
 		ObjectType * myArray;
 
@@ -77,7 +81,7 @@
 		myNrOfItems = 0;
 		myCapacity = aNrOfRecommendedItems;
 		mySafeModeFlag = aUseSafeModeFlag;
-		
+
 		myArray = new ObjectType[myCapacity];
 	}
 
@@ -108,11 +112,11 @@
 	{
 		//assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
 
-		delete []myArray;
+		delete[]myArray;
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
-	GrowingArray<ObjectType,SizeType>& GrowingArray<ObjectType, SizeType>::operator=(const GrowingArray& aGrowingArray)
+	GrowingArray<ObjectType, SizeType>& GrowingArray<ObjectType, SizeType>::operator=(const GrowingArray& aGrowingArray)
 	{
 		assert(aGrowingArray.myArray != nullptr && "CAN NOT ASSIGN WITH UNINITIALIZED ARRAY!");
 		if (myCapacity != aGrowingArray.myCapacity)
@@ -159,7 +163,7 @@
 		myArray = new ObjectType[aNrOfRecomendedItems];
 	}
 
-	
+
 	template<typename ObjectType, typename SizeType = unsigned short>
 	ObjectType& GrowingArray<ObjectType, SizeType>::operator[](const SizeType& aIndex)
 	{
@@ -181,11 +185,11 @@
 	{
 		assert(myArray != nullptr && "GROWING ARRAY NOT INITIALIZED!");
 		if (myNrOfItems >= myCapacity)
-		{			
+		{
 			Reserve(myCapacity * 2);
 		}
-		
- 		myArray[myNrOfItems++] = aObject;
+
+		myArray[myNrOfItems++] = aObject;
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
@@ -213,7 +217,7 @@
 		while (i <= myNrOfItems)
 		{
 			if (myArray[i] == aObject)
-			{				
+			{
 				break;
 			}
 			++i;
@@ -283,7 +287,7 @@
 		{
 			if (myArray[i] == aObject)
 			{
-				
+
 				break;
 			}
 			++i;
@@ -292,7 +296,7 @@
 		assert(myArray[i] == aObject && "OBJECT NOT FOUND");
 		myArray[i] = ObjectType();
 
-		if (i < myNrOfItems -1)
+		if (i < myNrOfItems - 1)
 		{
 			myArray[i] = myArray[--myNrOfItems];
 		}
@@ -377,7 +381,7 @@
 
 		return (myArray[myNrOfItems - 1]);
 	}
-	 
+
 	template<typename ObjectType, typename SizeType = unsigned short>
 	const ObjectType& GrowingArray<ObjectType, SizeType>::GetLast() const
 	{
@@ -448,7 +452,7 @@
 			myCapacity = aReservedSize;
 
 		}
-		
+
 	}
 
 	template<typename ObjectType, typename SizeType = unsigned short>
@@ -462,7 +466,8 @@
 		}
 		myNrOfItems = aNewSize;
 
-		
+
 
 
 	}
+}

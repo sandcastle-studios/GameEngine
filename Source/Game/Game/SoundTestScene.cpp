@@ -23,13 +23,13 @@ void ErrorCallback(const char* aError)
 SoundTestScene::SoundTestScene()
 {
 	bool success;
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	//myObjects.push_back(std::make_shared<ModelInstance>(model));
-	SetCameraOrientation(Vector3f(0.0f, 0.0f, -1.0f));
+	SetCameraOrientation(SB::Vector3f(0.0f, 0.0f, -1.0f));
 
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
+	PushCameraController(std::make_shared<SB::FreeSpaceCameraController>(5.f, 1.5f));
 
-	success = Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
+	success = SB::Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
 	success;
 	myPlaying = false;
 }
@@ -39,24 +39,24 @@ SoundTestScene::~SoundTestScene()
 {
 }
 
-void SoundTestScene::Update(const Time & aDeltaTime)
+void SoundTestScene::Update(const SB::Time & aDeltaTime)
 {
 	if (ImGui::Begin("Sound stuffs", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 	{
 		if (ImGui::Button("Play sound!") == true)
 		{
-			PostMaster::Post(PlaySoundEvent("Play_Derp"));
+			SB::PostMaster::Post(SB::PlaySoundEvent("Play_Derp"));
 		}
 	}
 	ImGui::End();
 
 
-	Engine::GetSoundManager().Update();
+	SB::Engine::GetSoundManager().Update();
 	//myObjects[0]->SetMatrix(myObjects[0]->GetMatrix()*Matrix44f::CreateRotateAroundY(0.7f * aDeltaTime.InSeconds()));
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
 
 void SoundTestScene::Render()
 {
-	Scene::Render();
+	SB::Scene::Render();
 }

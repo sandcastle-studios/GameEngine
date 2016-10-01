@@ -2,27 +2,32 @@
 #include <Engine\PostMaster.h>
 
 class CWwiseManager;
-struct PlaySoundEvent;
-
-class SoundManger : public Subscriber<PlaySoundEvent>
+namespace ENGINE_NAMESPACE
 {
-public:
-	SoundManger();
-	~SoundManger();
 
-	bool Init(const char* aInitBank);
-	bool LoadBank(const char* aBankPath);
-	void UnLoadBank(const char* aBankPath);
-	void PostEvent(const char* aEvent);
-	void Update();
+	struct PlaySoundEvent;
 
-	/*typedef void(*callback_function)(const char*);
-	void SetErrorCallBack(callback_function aErrorCallback);*/
+	class SoundManger : public Subscriber<PlaySoundEvent>
+	{
+	public:
+		SoundManger();
+		~SoundManger();
 
-	virtual ReceiveResult Receive(const PlaySoundEvent & aMessage);
+		bool Init(const char* aInitBank);
+		bool LoadBank(const char* aBankPath);
+		void UnLoadBank(const char* aBankPath);
+		void PostEvent(const char* aEvent);
+		void Update();
 
-private:
-	std::unique_ptr<CWwiseManager> myWwiseManager;
+		/*typedef void(*callback_function)(const char*);
+		void SetErrorCallBack(callback_function aErrorCallback);*/
 
-	static void ErrorCallback(const char* aError);
-};
+		virtual ReceiveResult Receive(const PlaySoundEvent & aMessage);
+
+	private:
+		std::unique_ptr<CWwiseManager> myWwiseManager;
+
+		static void ErrorCallback(const char* aError);
+	};
+
+}

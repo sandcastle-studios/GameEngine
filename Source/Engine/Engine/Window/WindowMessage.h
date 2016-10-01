@@ -1,26 +1,29 @@
 #pragma once
 #include "Engine\Window\WindowMessageType.h"
 
-union WindowMessageData
+namespace ENGINE_NAMESPACE
 {
-	SizeChangedData resizeEvent;
-	KeyData keyEvent;
+	union WindowMessageData
+	{
+		SizeChangedData resizeEvent;
+		KeyData keyEvent;
 
-	inline WindowMessageData();
-	inline ~WindowMessageData();
-};
+		inline WindowMessageData();
+		inline ~WindowMessageData();
+	};
 
-inline WindowMessageData::WindowMessageData()
-{
-	memset(this, 0, sizeof(*this));
+	inline WindowMessageData::WindowMessageData()
+	{
+		memset(this, 0, sizeof(*this));
+	}
+
+	inline WindowMessageData::~WindowMessageData()
+	{
+	}
+
+	struct WindowMessage
+	{
+		WindowMessageType type;
+		WindowMessageData data;
+	};
 }
-
-inline WindowMessageData::~WindowMessageData()
-{
-}
-
-struct WindowMessage
-{
-	WindowMessageType type;
-	WindowMessageData data;
-};

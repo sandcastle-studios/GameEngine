@@ -3,52 +3,56 @@
 #include "Audio/WwiseManager.h"
 #include "Engine/SoundManager/PlaySoundEvent.h"
 
-SoundManger::SoundManger()
+namespace ENGINE_NAMESPACE
 {
-	myWwiseManager = std::make_unique<CWwiseManager>();
-	Init("Audio/SoundBanks/Init.bnk");
-}
 
-SoundManger::~SoundManger()
-{
-}
+	SoundManger::SoundManger()
+	{
+		myWwiseManager = std::make_unique<CWwiseManager>();
+		Init("Audio/SoundBanks/Init.bnk");
+	}
 
-bool SoundManger::Init(const char* aInitBank)
-{
-	bool success = myWwiseManager->Init(aInitBank);
-	myWwiseManager->SetErrorCallBack(&SoundManger::ErrorCallback);
-	return success;
-}
+	SoundManger::~SoundManger()
+	{
+	}
 
-void SoundManger::Update()
-{
-	myWwiseManager->Update();
-}
-bool SoundManger::LoadBank(const char* aBankPath)
-{
-	return myWwiseManager->LoadBank(aBankPath);
-}
+	bool SoundManger::Init(const char* aInitBank)
+	{
+		bool success = myWwiseManager->Init(aInitBank);
+		myWwiseManager->SetErrorCallBack(&SoundManger::ErrorCallback);
+		return success;
+	}
 
-void SoundManger::UnLoadBank(const char* aBankPath)
-{
-	return myWwiseManager->UnLoadBank(aBankPath);
-}
+	void SoundManger::Update()
+	{
+		myWwiseManager->Update();
+	}
+	bool SoundManger::LoadBank(const char* aBankPath)
+	{
+		return myWwiseManager->LoadBank(aBankPath);
+	}
 
-void SoundManger::PostEvent(const char* aEvent)
-{
-	return myWwiseManager->PostEvent(aEvent);
-}
+	void SoundManger::UnLoadBank(const char* aBankPath)
+	{
+		return myWwiseManager->UnLoadBank(aBankPath);
+	}
 
-void SoundManger::ErrorCallback(const char* aError)
-{
-	std::string temp = aError;
-	std::wstring errorMsg(temp.begin(), temp.end());
-	OutputDebugString(errorMsg.c_str());
-}
+	void SoundManger::PostEvent(const char* aEvent)
+	{
+		return myWwiseManager->PostEvent(aEvent);
+	}
 
-ReceiveResult SoundManger::Receive(const PlaySoundEvent & aMessage)
-{
-	PostEvent(aMessage.mySoundEventName);
+	void SoundManger::ErrorCallback(const char* aError)
+	{
+		std::string temp = aError;
+		std::wstring errorMsg(temp.begin(), temp.end());
+		OutputDebugString(errorMsg.c_str());
+	}
 
-	return ReceiveResult::eContinue;
+	ReceiveResult SoundManger::Receive(const PlaySoundEvent & aMessage)
+	{
+		PostEvent(aMessage.mySoundEventName);
+
+		return ReceiveResult::eContinue;
+	}
 }

@@ -75,12 +75,6 @@
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Scene\Scene.h" />
-    <ClInclude Include="Engine\Texture\dds.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Texture\DDSTextureLoader.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Texture\Texture.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -199,6 +193,12 @@
     <ClInclude Include="Engine\Scripting\Script.h" />
     <ClInclude Include="Engine\Scripting\ScriptLoader.h" />
     <ClInclude Include="Engine\Scripting\ScriptFile.h" />
+    <ClInclude Include="Engine\DXHelpers\dds.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DXHelpers\DDSTextureLoader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Buffer\Buffer.cpp">
@@ -275,9 +275,6 @@
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Scene\Scene.cpp" />
-    <ClCompile Include="Engine\Texture\DDSTextureLoader.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Texture\Texture.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
@@ -328,6 +325,9 @@
     <ClCompile Include="Engine\Scripting\Script.cpp" />
     <ClCompile Include="Engine\Scripting\ScriptLoader.cpp" />
     <ClCompile Include="Engine\Scripting\ScriptFile.cpp" />
+    <ClCompile Include="Engine\DXHelpers\DDSTextureLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObjects">

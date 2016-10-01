@@ -1,44 +1,49 @@
 #pragma once
 
-template <KeyboardKey TKey = KeyboardKey::eNone> 
-struct KeyDownMessage
+namespace ENGINE_NAMESPACE
 {
-	KeyDownMessage(KeyboardKey aKey)
+
+	template <KeyboardKey TKey = KeyboardKey::eNone>
+	struct KeyDownMessage
 	{
-		key = aKey;
-	}
+		KeyDownMessage(KeyboardKey aKey)
+		{
+			key = aKey;
+		}
 
-	KeyboardKey key;
-};
+		KeyboardKey key;
+	};
 
-using AnyKeyDownMessage = KeyDownMessage<>;
+	using AnyKeyDownMessage = KeyDownMessage<>;
 
-template <KeyboardKey TKey = KeyboardKey::eNone>
-struct KeyRepeatMessage
-{
-	KeyRepeatMessage(KeyboardKey aKey, int aRepeatCount)
+	template <KeyboardKey TKey = KeyboardKey::eNone>
+	struct KeyRepeatMessage
 	{
-		key = aKey;
-		repeatCount = aRepeatCount;
-		isFirstRepeat = repeatCount == 0;
-	}
+		KeyRepeatMessage(KeyboardKey aKey, int aRepeatCount)
+		{
+			key = aKey;
+			repeatCount = aRepeatCount;
+			isFirstRepeat = repeatCount == 0;
+		}
 
-	KeyboardKey key;
-	int repeatCount;
-	bool isFirstRepeat;
-};
+		KeyboardKey key;
+		int repeatCount;
+		bool isFirstRepeat;
+	};
 
-using AnyKeyRepeatMessage = KeyRepeatMessage<>;
+	using AnyKeyRepeatMessage = KeyRepeatMessage<>;
 
-template <KeyboardKey TKey = KeyboardKey::eNone>
-struct KeyUpMessage
-{
-	KeyUpMessage(KeyboardKey aKey)
+	template <KeyboardKey TKey = KeyboardKey::eNone>
+	struct KeyUpMessage
 	{
-		key = aKey;
-	}
+		KeyUpMessage(KeyboardKey aKey)
+		{
+			key = aKey;
+		}
 
-	KeyboardKey key;
-};
+		KeyboardKey key;
+	};
 
-using AnyKeyUpMessage = KeyUpMessage<>;
+	using AnyKeyUpMessage = KeyUpMessage<>;
+
+}

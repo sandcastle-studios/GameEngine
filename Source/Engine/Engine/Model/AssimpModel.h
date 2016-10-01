@@ -4,23 +4,27 @@
 
 class CLoaderModel;
 class CLoaderMesh;
-class AssimpMesh;
-struct Vertex;
 
-class AssimpModel : public Model
+namespace ENGINE_NAMESPACE
 {
-public:
-	AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath);
-	AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath);
-	~AssimpModel();
-private:
-	void TryLoadTexture(const CLoaderModel & model, Surface & surface, const std::string & aModelDirectory, const int aLoadFromSlot, const SurfaceTextureIndex aLoadIntoSlot);
-};
+	class AssimpMesh;
+	struct Vertex;
 
-struct VertexPosColUV;
+	class AssimpModel : public Model
+	{
+	public:
+		AssimpModel(const std::shared_ptr<Effect> & aEffect, const char * aFilePath);
+		AssimpModel(const std::shared_ptr<Effect> & aEffect, const std::string & aFilePath);
+		~AssimpModel();
+	private:
+		void TryLoadTexture(const CLoaderModel & model, Surface & surface, const std::string & aModelDirectory, const int aLoadFromSlot, const SurfaceTextureIndex aLoadIntoSlot);
+	};
 
-class AssimpMesh : public Mesh<Vertex>
-{
-public: 
-	AssimpMesh(const std::shared_ptr<Effect> & aEffect, CLoaderMesh * aMesh, const std::string & aModelDirectory);
-};
+	struct VertexPosColUV;
+
+	class AssimpMesh : public Mesh<Vertex>
+	{
+	public:
+		AssimpMesh(const std::shared_ptr<Effect> & aEffect, CLoaderMesh * aMesh, const std::string & aModelDirectory);
+	};
+}

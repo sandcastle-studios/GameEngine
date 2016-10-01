@@ -5,39 +5,43 @@
 #include "Engine\Sprite\QuadSpriteShape.h"
 #include "Engine\Sprite\SpriteEffect.h"
 
-SpriteRenderer::SpriteRenderer()
+namespace ENGINE_NAMESPACE
 {
-	mySpriteEffect = std::make_shared<SpriteEffect>();
-	myInstanceBuffer = std::make_unique<VertexBuffer<SpriteInstanceData>>(nullptr, 1, false);
-	myQuad = std::make_unique<QuadSpriteShape>();
-}
 
-SpriteRenderer::~SpriteRenderer()
-{
-}
-
-void SpriteRenderer::Render(const Sprite &aSprite)
-{
-	const std::shared_ptr<const Effect> & effect = aSprite.GetEffect();
-	if (effect != nullptr)
+	SpriteRenderer::SpriteRenderer()
 	{
-		effect->Bind();
-	}
-	else
-	{
-		mySpriteEffect->Bind();
+		mySpriteEffect = std::make_shared<SpriteEffect>();
+		myInstanceBuffer = std::make_unique<VertexBuffer<SpriteInstanceData>>(nullptr, 1, false);
+		myQuad = std::make_unique<QuadSpriteShape>();
 	}
 
+	SpriteRenderer::~SpriteRenderer()
+	{
+	}
 
-	SpriteInstanceData data;
-	data.toWorld = aSprite.GenerateMatrix();
-	data.color = aSprite.GetColor();
-	myInstanceBuffer->UpdateData(&data, 1);
-	myInstanceBuffer->Bind(1);
+	void SpriteRenderer::Render(const Sprite &aSprite)
+	{
+		const std::shared_ptr<const Effect> & effect = aSprite.GetEffect();
+		if (effect != nullptr)
+		{
+			effect->Bind();
+		}
+		else
+		{
+			mySpriteEffect->Bind();
+		}
 
-	aSprite.GetTexture()->BindToPS(0);
-	Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	Engine::GetRenderer().DisableDepthWrite();
-	myQuad->RenderInstanced(1);
-	Engine::GetRenderer().EnableDepthWrite();
+
+		SpriteInstanceData data;
+		data.toWorld = aSprite.GenerateMatrix();
+		data.color = aSprite.GetColor();
+		myInstanceBuffer->UpdateData(&data, 1);
+		myInstanceBuffer->Bind(1);
+
+		aSprite.GetTexture()->BindToPS(0);
+		Engine::GetInstance().GetRenderer().GetContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		Engine::GetRenderer().DisableDepthWrite();
+		myQuad->RenderInstanced(1);
+		Engine::GetRenderer().EnableDepthWrite();
+	}
 }

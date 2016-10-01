@@ -3,17 +3,19 @@
 
 struct ID3D11PixelShader;
 
-class PixelShader : public Shader
+namespace ENGINE_NAMESPACE
 {
-public:
-	PixelShader(const std::string & aFileName, const char * aEntryPoint);
-	~PixelShader();
+	class PixelShader : public Shader
+	{
+	public:
+		PixelShader(const std::string & aFileName, const char * aEntryPoint);
+		~PixelShader();
 
-	void Bind() const override;
-	void Reload() override;
+		void Bind() const override;
+		void Reload() override;
 
-private:
-	std::string myEntryPoint;
-	ID3D11PixelShader * myShader;
-};
-
+	private:
+		std::string myEntryPoint;
+		ID3D11PixelShader * myShader;
+	};
+}

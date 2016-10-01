@@ -1,8 +1,13 @@
 #pragma once
 
-class SphereCollider;
+class SphereIntersection;
 
-namespace Intersection
+namespace ENGINE_NAMESPACE
 {
-	bool SphereVsSphere(const SphereCollider & aFirstSphere, const SphereCollider & aSecondSphere);
+
+	namespace Intersection
+	{
+		bool SphereVsSphere(const SphereIntersection & aFirstSphere, const SphereIntersection & aSecondSphere);
+	}
+
 }

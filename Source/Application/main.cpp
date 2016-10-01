@@ -8,14 +8,14 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show)
 int main(int argc, char * argv[])
 #endif
 {
-	CommandLineParameters::CreateInstance();
+	SB::CommandLineParameters::CreateInstance();
 
-	CommandLineParameters::GetInstance().Parse(argc, argv);
+	SB::CommandLineParameters::GetInstance().Parse(argc, argv);
 
 	Game game;
 	game.Start();
 
-	CommandLineParameters::DestroyInstance();
+	SB::CommandLineParameters::DestroyInstance();
 
     return 0;
 }

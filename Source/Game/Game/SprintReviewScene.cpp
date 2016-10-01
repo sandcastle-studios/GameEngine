@@ -20,35 +20,35 @@ SprintReviewScene::~SprintReviewScene()
 {
 }
 
-void SprintReviewScene::Update(const Time & aDeltaTime)
+void SprintReviewScene::Update(const SB::Time & aDeltaTime)
 {
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
 
 void SprintReviewScene::Render()
 {
-	Scene::Render();
+	SB::Scene::Render();
 }
 
 void SprintReviewScene::CreateFactories()
 {
-	PreCreateComponentFactory<ModelComponent>();
-	PreCreateComponentFactory<LightComponent>();
+	PreCreateComponentFactory<SB::ModelComponent>();
+	PreCreateComponentFactory<SB::LightComponent>();
 
-	std::shared_ptr<GameObject> enemy = CreateGameObject();
+	std::shared_ptr<SB::GameObject> enemy = CreateGameObject();
 
-	SharedPtrComponent<ModelComponent> prettyModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> model = std::make_shared<AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	SB::SharedPtrComponent<SB::ModelComponent> prettyModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
 	prettyModel->SetModel(model);
 
-	SharedPtrComponent<ModelComponent> moarModel(GetComponentFactory<ModelComponent>()->CreateComponent());
-	std::shared_ptr<AssimpModel> actualModel = std::make_shared<AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
+	SB::SharedPtrComponent<SB::ModelComponent> moarModel(GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	std::shared_ptr<SB::AssimpModel> actualModel = std::make_shared<SB::AssimpModel>(myEffect, "models/Stefan/testSpheres.fbx");
 	moarModel->SetModel(actualModel);
 
-	enemy->AddComponent<ModelComponent>(prettyModel);
-	enemy->AddComponent<ModelComponent>(moarModel);
+	enemy->AddComponent<SB::ModelComponent>(prettyModel);
+	enemy->AddComponent<SB::ModelComponent>(moarModel);
 
 	myObjects.Add(enemy);
 
-	SetCameraOrientation(model->GetBoundingBox().GetCenter() + Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + SB::Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
 }

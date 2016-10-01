@@ -1,93 +1,47 @@
 #include "stdafx.h"
 #include "EnemyTestScene.h"
-#include <Engine\Camera\Controllers\FreeSpaceCameraController.h>
-#include <Engine\Component\BouncingComponent.h>
-#include "PlayerShootComponent.h"
-#include <Engine/GameObject/GameObject.h>
-#include <Engine/SoundManager/SoundManger.h>
+#include <Engine\Component\Factory\ComponentFactory.h>
+#include <Engine/Model/ModelInstance.h>
+#include <Engine\Component\ModelComponent.h>
+#include <Engine\Component\LightComponent.h>
+#include <Engine\GameObject\GameObject.h>
 #include <Engine\Model\AssimpModel.h>
-#include "Utilities\Intersection\Colliders\SphereCollider.h"
-#include "ShotComponent.h"
-#include "..\Utilities\Utilities\Intersection\IntersectionTests.h"
-#include "Engine\Component\ModelComponent.h"
-#include <Engine\BoundingBox.h>
+#include <Engine/Effect/StandardEffect.h>
+#include <Engine\Camera/Camera.h>
+#include <Engine/Scripting/ScriptFile.h>
 
 EnemyTestScene::EnemyTestScene()
-	: Scene("EnemyScene", "grass.dds")
 {
+	CreateFactories();
 
-	//PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 1.5f));
-	////CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One /** 0.05f*/);
-
-	//Engine::GetSoundManager().Init("Audio/SoundBanks/Init.bnk");
-	//Engine::GetSoundManager().LoadBank("Audio/SoundBanks/level1.bnk");
-
-
-	//myPlayer = CreateGameObject(nullptr);
-	//auto && shootComponent = GetComponentFactory<PlayerShootComponent>()->CreateComponent();
-	//myPlayer->AddComponent(shootComponent);
-
-	////-------------
-
-	//myEnemy = CreateAndAddModel("models/test/test2.fbx", Vector3f(0.f, 0.f, 5.f), Vector3f::One * 1.5f);
-
-	//auto && movementComponent = GetComponentFactory<BouncingComponent>()->CreateComponent();
-	//myEnemy->AddComponent(movementComponent);
-	//myEnemy->SetPosition(Vector3f(0.f, 0.f, 50.f));
+	myScript = SB::Engine::GetResourceManager().Get<SB::ScriptFile>("Assets/Scripts/Components/TestComponent.lua")->Execute();
 }
 
 EnemyTestScene::~EnemyTestScene()
 {
 }
 
-void EnemyTestScene::Update(const Time & aDeltaTime)
+void EnemyTestScene::Update(const SB::Time & aDeltaTime)
 {
-	/*Engine::GetSoundManager().Update();
-
-	
-
-	SphereCollider tempProjectileCollider;
-
-
-	float enemySize = myEnemy->GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * myEnemy->GetScale().x;
-
-	
-
-	SphereCollider tempEnemyCollider;
-	tempEnemyCollider.SetRadius(enemySize);
-	
-
-	tempEnemyCollider.UpdatePosition(myEnemy->GetPosition());
-
-	bool tempEnemyHit = false;
-
-	bool EnemyHit = false;
-
-	auto testLamba = [&](ShotComponent & aShot)
-	{
-		tempProjectileCollider.UpdatePosition(aShot.GetGameObject().GetPosition());
-		tempProjectileCollider.SetRadius(aShot.GetGameObject().GetComponent<ModelComponent>()->GetBoundingBox().GetSize().x / 2.f * aShot.GetGameObject().GetScale().x);
-
-		if ((Intersection::SphereVsSphere(tempEnemyCollider, tempProjectileCollider) == true) && aShot.myHasHit == false)
-		{
-			aShot.myHasHit = true;
-			EnemyHit = true;
-			Engine::GetLogger().LogInfo("ARARARARAR");
-		}
-	};
-
-	
-
-	GetComponentFactory<ShotComponent>()->EnumerateActiveComponents( testLamba );
-
-	if (EnemyHit == true)
-	{
-		myEnemy->SetScale(myEnemy->GetScale() + Vector3f(0.1f, 0.1f, 0.1f));
-	}*/
-
-	Scene::Update(aDeltaTime);
+	SB::Scene::Update(aDeltaTime);
 }
+
 void EnemyTestScene::Render()
 {
-	Scene::Render();
+	SB::Scene::Render();
+}
+
+void EnemyTestScene::CreateFactories()
+{
+	std::shared_ptr<SB::GameObject> enemy = CreateGameObject();
+
+	//GetComponentFactory<ModelComponent>()->CreateComponent();
+
+	SB::SharedPtrComponent<SB::ModelComponent> prettyModel (GetComponentFactory<SB::ModelComponent>()->CreateComponent());
+	std::shared_ptr<SB::AssimpModel> model = std::make_shared<SB::AssimpModel>(myEffect, "models/Modelviewer_Exempelmodell/K11_1415.fbx");
+	prettyModel->SetModel(model);
+
+	SetCameraOrientation(model->GetBoundingBox().GetCenter() + SB::Vector3f(0.f, 0.f, -model->GetBoundingBox().GetSize().z * 1.5f));
+	
+	enemy->AddComponent<SB::ModelComponent>(prettyModel);
 }
