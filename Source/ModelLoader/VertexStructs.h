@@ -181,7 +181,7 @@ struct VertexBoneData
 class SVertexCollection
 {
 public:
-	void PushVec4(Vector4f aPos)
+	void PushVec4(SB::Vector4f aPos)
 	{
 		myData.push_back(aPos.x);
 		myData.push_back(aPos.y);
@@ -189,7 +189,7 @@ public:
 		myData.push_back(aPos.w);
 
 	}
-	void PushVec2(Vector2f aPos)
+	void PushVec2(SB::Vector2f aPos)
 	{
 		myData.push_back(aPos.x);
 		myData.push_back(aPos.y);
