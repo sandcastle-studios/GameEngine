@@ -1,29 +1,31 @@
 #include "stdafx.h"
 #include "BaseComponent.h"
 
-
-BaseComponent::BaseComponent()
+namespace ENGINE_NAMESPACE
 {
-}
+	BaseComponent::BaseComponent()
+	{
+	}
 
-BaseComponent::~BaseComponent()
-{
-}
+	BaseComponent::~BaseComponent()
+	{
+	}
 
-void BaseComponent::Update(const Time & aDeltaTime)
-{
-}
+	void BaseComponent::Update(const Time & aDeltaTime)
+	{
+	}
 
-void BaseComponent::Render() const
-{
-}
+	void BaseComponent::Render() const
+	{
+	}
 
-GameObject & BaseComponent::GetGameObject()
-{
-	return *myObject;
-}
+	GameObject & BaseComponent::GetGameObject()
+	{
+		return *myObject;
+	}
 
-void BaseComponent::SetGameObject(GameObject & anObject)
-{
-	myObject = &anObject;
+	void BaseComponent::SetGameObject(GameObject & anObject)
+	{
+		myObject = &anObject;
+	}
 }

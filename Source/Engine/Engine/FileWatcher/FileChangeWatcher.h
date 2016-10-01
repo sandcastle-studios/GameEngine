@@ -1,41 +1,43 @@
 #pragma once
 
-enum class FileChangeWatcherNotificationFormat
+namespace ENGINE_NAMESPACE
 {
-	eForwardSlashes,
-	eBackSlashes,
-	eDefault
-};
-
-class FileChangeWatcher
-{
-public:
-	// Pass nullptr or an empty string to myWatch working directory
-	FileChangeWatcher(const wchar_t * aDirectory = nullptr, FileChangeWatcherNotificationFormat aFormat = FileChangeWatcherNotificationFormat::eForwardSlashes, float aMinimumTimeDifference = 0.1f);
-	~FileChangeWatcher();
-
-	bool PostChanges();
-
-private:
-	void ThreadFunction(std::wstring aDirectoryToWatch, std::atomic<bool> *stopThreadFlag);
-
-	std::thread * myThread;
-	FileChangeWatcherNotificationFormat myFormat;
-	std::atomic<bool> *myStopThread;
-	std::unordered_map<std::string, float> lastTime;
-
-	std::mutex myMutex;
-
-	Stopwatch myWatch;
-
-	struct ChangeEntry
+	enum class FileChangeWatcherNotificationFormat
 	{
-		float postTime;
-		std::string file;
+		eForwardSlashes,
+		eBackSlashes,
+		eDefault
 	};
 
-	std::vector<ChangeEntry> myChanges;
+	class FileChangeWatcher
+	{
+	public:
+		// Pass nullptr or an empty string to myWatch working directory
+		FileChangeWatcher(const wchar_t * aDirectory = nullptr, FileChangeWatcherNotificationFormat aFormat = FileChangeWatcherNotificationFormat::eForwardSlashes, float aMinimumTimeDifference = 0.1f);
+		~FileChangeWatcher();
 
-	float myMinimumTimeDifference;
-};
+		bool PostChanges();
 
+	private:
+		void ThreadFunction(std::wstring aDirectoryToWatch, std::atomic<bool> *stopThreadFlag);
+
+		std::thread * myThread;
+		FileChangeWatcherNotificationFormat myFormat;
+		std::atomic<bool> *myStopThread;
+		std::unordered_map<std::string, float> lastTime;
+
+		std::mutex myMutex;
+
+		Stopwatch myWatch;
+
+		struct ChangeEntry
+		{
+			float postTime;
+			std::string file;
+		};
+
+		std::vector<ChangeEntry> myChanges;
+
+		float myMinimumTimeDifference;
+	};
+}

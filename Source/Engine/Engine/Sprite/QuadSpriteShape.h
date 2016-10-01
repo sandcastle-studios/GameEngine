@@ -1,10 +1,12 @@
 #pragma once
 #include "Engine/Sprite/SpriteShape.h"
 
-class QuadSpriteShape : public SpriteShape
+namespace ENGINE_NAMESPACE
 {
-public:
-	QuadSpriteShape();
-	~QuadSpriteShape();
-};
-
+	class QuadSpriteShape : public SpriteShape
+	{
+	public:
+		QuadSpriteShape();
+		~QuadSpriteShape();
+	};
+}

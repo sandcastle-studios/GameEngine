@@ -1,19 +1,21 @@
 #pragma once
 #include "Engine/Camera/Camera.h"
 
-enum class CameraControllerResult
+namespace ENGINE_NAMESPACE
 {
-	eKeepControl,
-	ePassControl
-};
+	enum class CameraControllerResult
+	{
+		eKeepControl,
+		ePassControl
+	};
 
-class CameraController
-{
-public:
-	virtual CameraControllerResult Update(const Time & aDeltaTime, Camera & aCamera) = 0;
-	virtual ~CameraController();
+	class CameraController
+	{
+	public:
+		virtual CameraControllerResult Update(const Time & aDeltaTime, Camera & aCamera) = 0;
+		virtual ~CameraController();
 
-protected:
-	CameraController();
-};
-
+	protected:
+		CameraController();
+	};
+}

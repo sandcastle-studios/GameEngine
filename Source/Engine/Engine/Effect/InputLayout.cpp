@@ -1,59 +1,62 @@
 #include "stdafx.h"
 #include "Engine\Effect\InputLayout.h"
 
-InputLayout::InputLayout()
+namespace ENGINE_NAMESPACE
 {
-	myPerVertexCount = 0;
-	myPerInstanceCount = 0;
-}
-
-InputLayout::~InputLayout()
-{
-}
-
-void InputLayout::Add(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot)
-{
-	if (myPerInstanceCount > 0)
+	InputLayout::InputLayout()
 	{
-		Error("Per Instance layout descriptions must be added last!");
+		myPerVertexCount = 0;
+		myPerInstanceCount = 0;
 	}
 
-	D3D11_INPUT_ELEMENT_DESC desc;
+	InputLayout::~InputLayout()
+	{
+	}
 
-	desc.SemanticName = aSemanticName;
-	desc.SemanticIndex = aSemanticIndex;
-	desc.Format = aFormat;
-	desc.InputSlot = aInputSlot;
-	desc.AlignedByteOffset = myDescription.size() > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
-	desc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-	desc.InstanceDataStepRate = 0;
+	void InputLayout::Add(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot)
+	{
+		if (myPerInstanceCount > 0)
+		{
+			Error("Per Instance layout descriptions must be added last!");
+		}
 
-	myPerVertexCount++;
-	myDescription.push_back(desc);
-}
+		D3D11_INPUT_ELEMENT_DESC desc;
 
-void InputLayout::AddPerInstance(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot)
-{
-	D3D11_INPUT_ELEMENT_DESC desc;
+		desc.SemanticName = aSemanticName;
+		desc.SemanticIndex = aSemanticIndex;
+		desc.Format = aFormat;
+		desc.InputSlot = aInputSlot;
+		desc.AlignedByteOffset = myDescription.size() > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
+		desc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		desc.InstanceDataStepRate = 0;
 
-	desc.SemanticName = aSemanticName;
-	desc.SemanticIndex = aSemanticIndex;
-	desc.Format = aFormat;
-	desc.InputSlot = aInputSlot;
-	desc.AlignedByteOffset = myPerInstanceCount > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
-	desc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
-	desc.InstanceDataStepRate = 1;
+		myPerVertexCount++;
+		myDescription.push_back(desc);
+	}
 
-	myPerInstanceCount++;
-	myDescription.push_back(desc);
-}
+	void InputLayout::AddPerInstance(const char *aSemanticName, const int aSemanticIndex, const DXGI_FORMAT aFormat, int aInputSlot)
+	{
+		D3D11_INPUT_ELEMENT_DESC desc;
 
-const D3D11_INPUT_ELEMENT_DESC * InputLayout::GetLayoutLocation() const
-{
-	return &myDescription[0];
-}
+		desc.SemanticName = aSemanticName;
+		desc.SemanticIndex = aSemanticIndex;
+		desc.Format = aFormat;
+		desc.InputSlot = aInputSlot;
+		desc.AlignedByteOffset = myPerInstanceCount > 0 ? D3D11_APPEND_ALIGNED_ELEMENT : 0;
+		desc.InputSlotClass = D3D11_INPUT_PER_INSTANCE_DATA;
+		desc.InstanceDataStepRate = 1;
 
-int InputLayout::GetLayoutCount() const
-{
-	return static_cast<int>(myDescription.size());
+		myPerInstanceCount++;
+		myDescription.push_back(desc);
+	}
+
+	const D3D11_INPUT_ELEMENT_DESC * InputLayout::GetLayoutLocation() const
+	{
+		return &myDescription[0];
+	}
+
+	int InputLayout::GetLayoutCount() const
+	{
+		return static_cast<int>(myDescription.size());
+	}
 }

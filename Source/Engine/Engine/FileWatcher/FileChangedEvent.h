@@ -1,18 +1,21 @@
 #pragma once
 
-class FileChangedEvent
+namespace ENGINE_NAMESPACE
 {
-public:
-	FileChangedEvent(const std::string &aPath);
-	~FileChangedEvent();
+	class FileChangedEvent
+	{
+	public:
+		FileChangedEvent(const std::string &aPath);
+		~FileChangedEvent();
 
-	const std::string& GetPath() const;
+		const std::string& GetPath() const;
 
-private:
-	std::string myPath;
-};
+	private:
+		std::string myPath;
+	};
 
-inline const std::string& FileChangedEvent::GetPath() const
-{
-	return myPath;
+	inline const std::string& FileChangedEvent::GetPath() const
+	{
+		return myPath;
+	}
 }

@@ -1,11 +1,14 @@
 #pragma once
 
-class Debugger
+namespace ENGINE_NAMESPACE
 {
-public:
-	Debugger(void * aWindowHandle);
-	~Debugger();
+	class Debugger
+	{
+	public:
+		Debugger(void * aWindowHandle);
+		~Debugger();
 
-	void NewFrame();
-	void RenderFrame();
-};
+		void NewFrame();
+		void RenderFrame();
+	};
+}

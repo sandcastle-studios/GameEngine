@@ -1,44 +1,47 @@
 #pragma once
 #include "Engine\Buffer\Buffer.h"
 
-class GenericVertexBuffer : public Buffer
+namespace ENGINE_NAMESPACE
 {
-public:
-	GenericVertexBuffer(const void * aData, int aSizeInBytes, int aVertexSize, bool aIsImmutable = true);
-	~GenericVertexBuffer();
+	class GenericVertexBuffer : public Buffer
+	{
+	public:
+		GenericVertexBuffer(const void * aData, int aSizeInBytes, int aVertexSize, bool aIsImmutable = true);
+		~GenericVertexBuffer();
 
-	int GetVertexSize() const;
-	int GetCount() const;
-	
-	void Bind(int aSlot) const;
+		int GetVertexSize() const;
+		int GetCount() const;
 
-private:
-	int myVertexSize;
-};
+		void Bind(int aSlot) const;
 
-template<typename TVertex>
-class VertexBuffer : public GenericVertexBuffer
-{
-public:
-	VertexBuffer(const TVertex *aInitialData, int aVertexCount, bool aIsImmutable = true);
-	~VertexBuffer();
+	private:
+		int myVertexSize;
+	};
 
-	void UpdateData(const TVertex *aInitialData, int aVertexCount, bool aAllowResize = false);
-};
+	template<typename TVertex>
+	class VertexBuffer : public GenericVertexBuffer
+	{
+	public:
+		VertexBuffer(const TVertex *aInitialData, int aVertexCount, bool aIsImmutable = true);
+		~VertexBuffer();
 
-template<typename TVertex>
-VertexBuffer<TVertex>::VertexBuffer(const TVertex *aInitialData, int aVertexCount, bool aIsImmutable)
-	: GenericVertexBuffer(aInitialData, sizeof(TVertex) * aVertexCount, sizeof(TVertex), aIsImmutable)
-{
-}
+		void UpdateData(const TVertex *aInitialData, int aVertexCount, bool aAllowResize = false);
+	};
 
-template<typename TVertex>
-void VertexBuffer<TVertex>::UpdateData(const TVertex *aInitialData, int aVertexCount, bool aAllowResize)
-{
-	GenericVertexBuffer::UpdateData(aInitialData, sizeof(TVertex) * aVertexCount, aAllowResize);
-}
+	template<typename TVertex>
+	VertexBuffer<TVertex>::VertexBuffer(const TVertex *aInitialData, int aVertexCount, bool aIsImmutable)
+		: GenericVertexBuffer(aInitialData, sizeof(TVertex) * aVertexCount, sizeof(TVertex), aIsImmutable)
+	{
+	}
 
-template<typename TVertex>
-VertexBuffer<TVertex>::~VertexBuffer()
-{
+	template<typename TVertex>
+	void VertexBuffer<TVertex>::UpdateData(const TVertex *aInitialData, int aVertexCount, bool aAllowResize)
+	{
+		GenericVertexBuffer::UpdateData(aInitialData, sizeof(TVertex) * aVertexCount, aAllowResize);
+	}
+
+	template<typename TVertex>
+	VertexBuffer<TVertex>::~VertexBuffer()
+	{
+	}
 }

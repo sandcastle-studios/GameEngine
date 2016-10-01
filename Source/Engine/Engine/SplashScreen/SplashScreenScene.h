@@ -1,27 +1,29 @@
 #pragma once
 #include "Engine\Scene\Scene.h"
 
-template<typename T>
-class ConstantBuffer;
-class SplashScreenEffect;
-
-struct SplashScreenCBuffer
+namespace ENGINE_NAMESPACE
 {
-	Vector4f time;
-};
+	template<typename T>
+	class ConstantBuffer;
+	class SplashScreenEffect;
 
-class SplashScreenScene : public Scene
-{
-public:
-	SplashScreenScene();
-	~SplashScreenScene();
+	struct SplashScreenCBuffer
+	{
+		Vector4f time;
+	};
 
-	void Update(const Time & aDeltaTime) override;
-	void Render() override;
+	class SplashScreenScene : public Scene
+	{
+	public:
+		SplashScreenScene();
+		~SplashScreenScene();
 
-private:
-	std::unique_ptr<ConstantBuffer<SplashScreenCBuffer>> myConstantBuffer;
-	std::shared_ptr<SplashScreenEffect> mySplashScreenEffect;
-	Sprite mySprite;
-};
+		void Update(const Time & aDeltaTime) override;
+		void Render() override;
 
+	private:
+		std::unique_ptr<ConstantBuffer<SplashScreenCBuffer>> myConstantBuffer;
+		std::shared_ptr<SplashScreenEffect> mySplashScreenEffect;
+		Sprite mySprite;
+	};
+}
