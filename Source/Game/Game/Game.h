@@ -1,7 +1,10 @@
 #pragma once
 
-class SceneManager;
-class Window;
+namespace SB
+{
+	class SceneManager;
+	class Window;
+}
 
 class Game
 {
@@ -12,12 +15,12 @@ public:
 	void Start();
 
 private:
-	std::unique_ptr<Window> myWindow;
-	std::unique_ptr<SceneManager> mySceneManager;
+	std::unique_ptr<SB::Window> myWindow;
+	std::unique_ptr<SB::SceneManager> mySceneManager;
 
 	void Initialize();
 	void ProcessMessages();
-	void Update(const Time &aDeltaTime);
+	void Update(const SB::Time &aDeltaTime);
 	void Render();
 	void CreatePerspective();
 };

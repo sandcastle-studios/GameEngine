@@ -8,7 +8,7 @@
 #include <Engine\Texture\Texture.h>
 
 InstancedTestScene::InstancedTestScene()
-	: Scene("skybox.dds")
+	: SB::Scene("skybox.dds")
 {
 	// auto cube = std::make_shared<AssimpModel>(myEffect, "models/tga_companioncube/companion.fbx");
 	//auto cube = std::make_shared<CubeModel>(myEffect, std::make_shared<Texture>("models/tga_companioncube/companion_heart.dds"));

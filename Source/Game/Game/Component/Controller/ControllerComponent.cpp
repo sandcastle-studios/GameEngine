@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "ControllerComponent.h"
 
-
-
-
-void ControllerComponent::Update(const Time & aDeltaTime)
+void ControllerComponent::Update(const SB::Time & aDeltaTime)
 {
 	
 }

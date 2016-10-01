@@ -23,9 +23,9 @@ CockpitTestScene::CockpitTestScene()
 {
 	CreateFactories();
 	
-	mySprite.SetTexture(Engine::GetResourceManager().Get<Texture>("textures/cockpitPlaceholder.dds"));
-	CreateAndAddModel("models/tga_companioncube/companion.fbx", Vector3f(0.f, 0.f, 5.f));
-	PushCameraController(std::make_shared<FreeSpaceCameraController>(5.f, 2.f));
+	mySprite.SetTexture(SB::Engine::GetResourceManager().Get<SB::Texture>("textures/cockpitPlaceholder.dds"));
+	CreateAndAddModel("models/tga_companioncube/companion.fbx", SB::Vector3f(0.f, 0.f, 5.f));
+	PushCameraController(std::make_shared<SB::FreeSpaceCameraController>(5.f, 2.f));
 }
 
 
@@ -33,7 +33,7 @@ CockpitTestScene::~CockpitTestScene()
 {
 }
 
-void CockpitTestScene::Update(const Time & aDeltaTime)
+void CockpitTestScene::Update(const SB::Time & aDeltaTime)
 {
 	Scene::Update(aDeltaTime);
 }
@@ -42,15 +42,15 @@ void CockpitTestScene::Render()
 {
 	Scene::Render();
 
-	Engine::GetRenderer().GetModelRenderer().RenderBuffer();
+	SB::Engine::GetRenderer().GetModelRenderer().RenderBuffer();
 
-	Vector2f pos = Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
+	SB::Vector2f pos = SB::Engine::GetRenderer().GetRenderTargetResolution() / 2.f;
 	pos.x = std::floorf(pos.x);
 	pos.y = std::floorf(pos.y);
 	mySprite.SetOrigin(pos);
 	mySprite.SetPosition(pos);
 	mySprite.SetRotation(0.f);
-	mySprite.SetScale(Engine::GetRenderer().GetRenderTargetResolution() / Vector2f(1920.f, 1080.f));
+	mySprite.SetScale(SB::Engine::GetRenderer().GetRenderTargetResolution() / SB::Vector2f(1920.f, 1080.f));
 	mySprite.Render();
 }
 

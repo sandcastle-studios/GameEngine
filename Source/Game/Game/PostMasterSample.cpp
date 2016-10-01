@@ -6,17 +6,17 @@ struct CoutMessage
 	std::string message;
 };
 
-class CoutMessageSubscriber : public Subscriber<CoutMessage>
+class CoutMessageSubscriber : public SB::Subscriber<CoutMessage>
 {
 public:
-	CoutMessageSubscriber(int aPriority, ReceiveResult aReceiveResult)
-		: Subscriber<CoutMessage>(aPriority)
+	CoutMessageSubscriber(int aPriority, SB::ReceiveResult aReceiveResult)
+		: SB::Subscriber<CoutMessage>(aPriority)
 	{
 		myPriority = aPriority;
 		myReceiveResult = aReceiveResult;
 	}
 
-	ReceiveResult Receive(const CoutMessage& aMessage) override
+	SB::ReceiveResult Receive(const CoutMessage& aMessage) override
 	{
 		std::cout << "subscriber(" << myPriority << ", " << static_cast<int>(myReceiveResult) << ") received: " << aMessage.message << std::endl;
 
@@ -25,26 +25,26 @@ public:
 
 private:
 	int myPriority;
-	ReceiveResult myReceiveResult;
+	SB::ReceiveResult myReceiveResult;
 };
 
 PostMasterSample::PostMasterSample()
 {
-	CoutMessageSubscriber subscriber1(1, ReceiveResult::eContinue);
+	CoutMessageSubscriber subscriber1(1, SB::ReceiveResult::eContinue);
 
 	{
-		CoutMessageSubscriber subscriber2(0, ReceiveResult::eContinue);
-		CoutMessageSubscriber subscriber3(-100, ReceiveResult::eContinue);
-		CoutMessageSubscriber subscriber4(50, ReceiveResult::eContinue);
+		CoutMessageSubscriber subscriber2(0, SB::ReceiveResult::eContinue);
+		CoutMessageSubscriber subscriber3(-100, SB::ReceiveResult::eContinue);
+		CoutMessageSubscriber subscriber4(50, SB::ReceiveResult::eContinue);
 
 		{
-			CoutMessageSubscriber subscriber5(-101, ReceiveResult::eContinue);
-			CoutMessageSubscriber subscriber6(50, ReceiveResult::eContinue);
-			CoutMessageSubscriber subscriber7(30, ReceiveResult::eContinue);
-			CoutMessageSubscriber subscriber8(20, ReceiveResult::eContinue);
-			CoutMessageSubscriber subscriber9(40, ReceiveResult::eContinue);
+			CoutMessageSubscriber subscriber5(-101, SB::ReceiveResult::eContinue);
+			CoutMessageSubscriber subscriber6(50, SB::ReceiveResult::eContinue);
+			CoutMessageSubscriber subscriber7(30, SB::ReceiveResult::eContinue);
+			CoutMessageSubscriber subscriber8(20, SB::ReceiveResult::eContinue);
+			CoutMessageSubscriber subscriber9(40, SB::ReceiveResult::eContinue);
 
-			Subscription<CoutMessage> subscription([](const CoutMessage & aMessage)
+			SB::Subscription<CoutMessage> subscription([](const CoutMessage & aMessage)
 			{
 				std::cout << "Hello from subscription!: " << aMessage.message << std::endl;
 			}, 40);
@@ -53,12 +53,12 @@ PostMasterSample::PostMasterSample()
 			Subscription<CoutMessage> subscription2(std::bind(&PostMasterSample::MemberReceive, this), 40);
 			*/
 
-			PostMaster::Post(CoutMessage{ "Hello!" });
+			SB::PostMaster::Post(CoutMessage{ "Hello!" });
 		}
 
 		std::cout << "---" << std::endl;
 
-		PostMaster::Post(CoutMessage{ "Hello 2!" });
+		SB::PostMaster::Post(CoutMessage{ "Hello 2!" });
 	}
 
 	std::cin.get();
@@ -69,8 +69,8 @@ PostMasterSample::~PostMasterSample()
 {
 }
 
-ReceiveResult PostMasterSample::MemberReceive(const CoutMessage & aMessage)
+SB::ReceiveResult PostMasterSample::MemberReceive(const CoutMessage & aMessage)
 {
 	std::cout << "Hello from member!" << std::endl;
-	return ReceiveResult::eContinue;
+	return SB::ReceiveResult::eContinue;
 }

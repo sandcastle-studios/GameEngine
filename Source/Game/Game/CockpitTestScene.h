@@ -6,20 +6,20 @@ class SplashScreenEffect;
 
 class ModelInstance; 
 
-class CockpitTestScene : public Scene
+class CockpitTestScene : public SB::Scene
 {
 public:
 	CockpitTestScene();
 	~CockpitTestScene();
 
 
-	virtual void Update(const Time & aDeltaTime) override;
+	virtual void Update(const SB::Time & aDeltaTime) override;
 
 
 	virtual void Render() override;
 
 private:
-	Sprite mySprite;
+	SB::Sprite mySprite;
 
 	std::shared_ptr<ModelInstance> myTestObject1;
 

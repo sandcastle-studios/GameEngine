@@ -293,8 +293,8 @@
     <ClInclude Include="Engine\Scene\SceneManager.h" />
     <ClInclude Include="Engine\SoundManager\PlaySoundEvent.h" />
     <ClInclude Include="Engine\SplashScreen\SplashScreenScene.h" />
-    <ClInclude Include="Engine\Texture\dds.h" />
-    <ClInclude Include="Engine\Texture\DDSTextureLoader.h" />
+    <ClInclude Include="Engine\DXHelpers\dds.h" />
+    <ClInclude Include="Engine\DXHelpers\DDSTextureLoader.h" />
     <ClInclude Include="Engine\Debugging\DebugLogger.h" />
     <ClInclude Include="Engine\Buffer\DepthBuffer.h" />
     <ClInclude Include="Engine\DXHelpers\DirectXHelpers.h" />
@@ -377,7 +377,7 @@
     <ClCompile Include="Engine\Model\Surface.cpp" />
     <ClCompile Include="Engine\Scene\SceneManager.cpp" />
     <ClCompile Include="Engine\SplashScreen\SplashScreenScene.cpp" />
-    <ClCompile Include="Engine\Texture\DDSTextureLoader.cpp" />
+    <ClCompile Include="Engine\DXHelpers\DDSTextureLoader.cpp" />
     <ClCompile Include="Engine\Debugging\DebugLogger.cpp" />
     <ClCompile Include="Engine\Buffer\DepthBuffer.cpp" />
     <ClCompile Include="Engine\Rendering\DXRenderer.cpp" />
